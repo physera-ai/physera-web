@@ -1,12 +1,11 @@
-import { David_Libre, DM_Mono, DM_Sans } from "next/font/google";
+import { DM_Mono, Figtree, Hubot_Sans } from "next/font/google";
 
-export const displaySerif = David_Libre({
-  weight: ["400", "500"],
+export const headingFont = Hubot_Sans({
   subsets: ["latin"],
-  variable: "--font-david-libre",
+  variable: "--font-heading",
 });
 
-export const sans = DM_Sans({
+export const sans = Figtree({
   subsets: ["latin"],
   variable: "--font-sans",
 });

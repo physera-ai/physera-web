@@ -8,7 +8,7 @@
   
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
-  --font-display: var(--font-david-libre);
+  --font-display: var(--font-heading);
 }
 
 :root {
@@ -31,6 +31,7 @@ body {
   background-color: var(--ink);
   color: var(--background);
 }
+
 
 /* Fade up animation classes */
 .fade-up {

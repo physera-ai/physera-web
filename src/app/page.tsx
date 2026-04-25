@@ -1,60 +1,107 @@
-import { displaySerif } from "./fonts";
+import { AnimatedLink } from "@/components/AnimatedLink";
 import { Logo } from "@/components/Logo";
 import Link from "next/link";
 
+function XIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="size-4"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"
+      />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="size-4"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.942v5.664H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.371 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM7.114 20.452H3.559V9h3.555v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z" />
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-svh w-full max-w-[1120px] flex-col px-6 md:flex-row md:px-10 lg:px-14">
-      <aside className="flex shrink-0 items-center justify-between border-rule/70 py-8 md:h-svh md:w-[210px] md:flex-col md:items-start md:border-r md:py-24">
-        <div className="flex items-center gap-10 md:flex-col md:items-start">
+    <div className="mx-auto flex min-h-svh w-full max-w-[1040px] flex-col px-6 md:justify-center md:px-10">
+      <div className="flex flex-col md:flex-row md:items-stretch">
+        <aside className="flex shrink-0 items-center justify-between border-rule/70 py-8 md:w-[170px] md:flex-col md:items-start md:justify-between md:border-r md:py-12">
           <Link href="/" className="inline-block">
             <Logo />
           </Link>
 
-          <nav className="hidden flex-col gap-2 text-[13px] leading-5 text-muted md:flex">
-            <Link className="text-ink transition-opacity hover:opacity-60" href="/">
-              Work
+          <nav className="hidden flex-col gap-2 font-display text-lg font-medium leading-none tracking-tight text-muted md:flex">
+            <Link className="transition-colors duration-300 ease-out hover:text-ink" href="#research">
+              Research
             </Link>
-            <Link className="transition-opacity hover:opacity-60" href="mailto:hello@physera.ai">
+            <Link className="transition-colors duration-300 ease-out hover:text-ink" href="#about">
+              About
+            </Link>
+            <Link className="transition-colors duration-300 ease-out hover:text-ink" href="mailto:hello@physera.ai">
               Contact
             </Link>
           </nav>
-        </div>
 
-        <p className="hidden text-[12px] text-muted md:block">© 2026</p>
-      </aside>
-
-      <main className="flex flex-1 items-center py-14 md:py-24 md:pl-20 lg:pl-28">
-        <section className="w-full max-w-[620px]">
-          <h1 className={`${displaySerif.className} max-w-[500px] text-[clamp(2rem,3.8vw,3.25rem)] font-medium leading-[1.02] tracking-[-0.035em] text-ink`}>
-            Simulation as infrastructure for intelligence.
-          </h1>
-
-          <div className="mt-8 max-w-[500px] space-y-4 text-[15px] leading-6 text-ink/80">
-            <p>
-              Specialized AI doesn&apos;t become capable in the abstract. It becomes
-              capable inside environments — ones with dynamics, feedback, and
-              consequence.
-            </p>
-            <p>
-              Physera is the operating layer between models and the real world.
-              We build trainable worlds: configurable, high-fidelity, designed
-              for the systems intelligence will eventually have to navigate.
-            </p>
-            <p>Not datasets. Not benchmarks. Worlds.</p>
-          </div>
-
-          <div className="mt-12 flex flex-col gap-3 text-[15px] leading-6 sm:flex-row sm:items-center sm:gap-2">
-            <p className="text-muted">Physera is in active development —</p>
+          <div className="flex items-center gap-2">
             <a
-              className="w-fit border-b border-ink pb-0.5 text-ink transition-opacity hover:opacity-60"
-              href="mailto:hello@physera.ai"
+              aria-label="Physera on X"
+              className="text-muted transition-colors duration-300 ease-out hover:text-ink"
+              href="https://x.com/PhyseraAI"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              hello@physera.ai
+              <XIcon />
+            </a>
+            <a
+              aria-label="Physera on LinkedIn"
+              className="text-muted transition-colors duration-300 ease-out hover:text-ink"
+              href="https://www.linkedin.com"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <LinkedInIcon />
             </a>
           </div>
-        </section>
-      </main>
+        </aside>
+
+        <main className="flex flex-1 py-14 md:py-0 md:pl-20 lg:pl-24">
+          <section id="research" className="w-full max-w-[620px]">
+            <h1 className="max-w-lg font-display text-4xl font-medium leading-tight tracking-tight text-ink md:text-4xl">
+              We&apos;re shaping simulation as infrastructure for intelligence.
+            </h1>
+
+            <div id="about" className="mt-8 max-w-lg space-y-4 text-base leading-7 text-ink/80">
+              <p>
+                Specialized AI doesn&apos;t become capable in the abstract. It becomes
+                capable inside environments — ones with dynamics, feedback, and
+                consequence.
+              </p>
+              <p>
+                Physera is the operating layer between models and the real world.
+                We build trainable worlds: configurable, high-fidelity, designed
+                for the systems intelligence will eventually have to navigate.
+              </p>
+              <p>Not datasets. Not benchmarks. Worlds.</p>
+            </div>
+
+            <div className="mt-12 flex flex-col gap-3 text-base leading-7 sm:flex-row sm:items-center sm:gap-2">
+              <p className="text-muted">Building specialized AI?</p>
+              <AnimatedLink href="mailto:hello@physera.ai" text="hello@physera.ai" />
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
   );
 }

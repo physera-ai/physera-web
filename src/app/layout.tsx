@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { displaySerif, mono, sans } from "./fonts";
+import { headingFont, mono, sans } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${displaySerif.variable} ${sans.variable} ${mono.variable} h-full`}
+      className={`${headingFont.variable} ${sans.variable} ${mono.variable} h-full`}
     >
       <body className="min-h-full flex flex-col relative">{children}</body>
     </html>
