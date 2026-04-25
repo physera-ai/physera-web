@@ -7,7 +7,7 @@ export function AnimatedLink({
 }) {
   return (
     <a
-      className="group inline-flex border-b border-ink hover:border-ink/30 duration-300 pb-px text-ink"
+      className="group inline-flex self-start border-b border-ink hover:border-ink/30 duration-300 pb-px text-ink"
       href={href}
     >
       {text.split("").map((char, i) => (
