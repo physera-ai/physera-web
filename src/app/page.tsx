@@ -36,11 +36,14 @@ export default function Home() {
   return (
     <div className="mx-auto flex min-h-svh w-full max-w-[1040px] flex-col px-6 md:justify-center md:px-10">
       <div className="flex flex-col md:flex-row md:items-stretch">
-        <aside className="flex shrink-0 items-center justify-between border-rule/70 py-8 md:w-[170px] md:flex-col md:items-start md:justify-between md:border-r md:py-12">
+
+        {/* ── Header / Sidebar ── */}
+        <aside className="flex shrink-0 items-center justify-between border-b border-rule/70 py-6 md:w-[170px] md:flex-col md:items-start md:justify-between md:border-b-0 md:border-r md:py-12">
           <Link href="/" className="inline-block">
             <Logo />
           </Link>
 
+          {/* nav: hidden on mobile */}
           <nav className="hidden flex-col gap-2 font-display text-lg font-medium leading-none tracking-tight text-muted md:flex">
             <Link className="transition-colors duration-300 ease-out hover:text-ink" href="#research">
               Research
@@ -53,7 +56,7 @@ export default function Home() {
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <a
               aria-label="Physera on X"
               className="text-muted transition-colors duration-300 ease-out hover:text-ink"
@@ -75,13 +78,14 @@ export default function Home() {
           </div>
         </aside>
 
-        <main className="flex flex-1 py-14 md:py-0 md:pl-20 lg:pl-24">
+        {/* ── Main content ── */}
+        <main className="flex flex-1 py-12 md:py-0 md:pl-20 lg:pl-24">
           <section id="research" className="w-full max-w-[620px]">
-            <h1 className="max-w-lg font-display text-4xl font-medium leading-tight tracking-tight text-ink md:text-4xl">
+            <h1 className="font-display text-3xl font-medium leading-tight tracking-tight text-ink md:text-4xl">
               We&apos;re shaping simulation as infrastructure for intelligence.
             </h1>
 
-            <div id="about" className="mt-8 max-w-lg space-y-4 text-base leading-7 text-ink/80">
+            <div id="about" className="mt-6 space-y-4 text-[15px] leading-7 text-ink/80 md:mt-8 md:max-w-lg md:text-base">
               <p>
                 Specialized AI doesn&apos;t become capable in the abstract. It becomes
                 capable inside environments — ones with dynamics, feedback, and
@@ -95,12 +99,13 @@ export default function Home() {
               <p>Not datasets. Not benchmarks. Worlds.</p>
             </div>
 
-            <div className="mt-12 flex flex-col gap-3 text-base leading-7 sm:flex-row sm:items-center sm:gap-2">
+            <div className="mt-10 flex flex-col gap-2 text-[15px] leading-7 md:mt-12 md:flex-row md:items-center md:gap-2 md:text-base">
               <p className="text-muted">Building specialized AI?</p>
               <AnimatedLink href="mailto:hello@physera.ai" text="hello@physera.ai" />
             </div>
           </section>
         </main>
+
       </div>
     </div>
   );
