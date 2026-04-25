@@ -38,7 +38,7 @@ export default function Home() {
       <div className="mx-auto flex w-full max-w-[860px] flex-col md:flex-row md:items-stretch">
 
         {/* ── Header / Sidebar ── */}
-        <aside className="flex shrink-0 items-center justify-between border-b border-rule/70 py-6 md:w-[170px] md:flex-col md:items-start md:justify-between md:border-b-0 md:border-r md:py-12">
+        <aside className="flex shrink-0 items-center justify-between border-b border-rule/70 py-6 md:w-[170px] md:flex-col md:items-start md:justify-between md:border-b-0 md:border-r md:py-24">
           <Link href="/" className="inline-block">
             <Logo />
           </Link>
