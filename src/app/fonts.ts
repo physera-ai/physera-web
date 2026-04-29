@@ -1,4 +1,14 @@
-import { DM_Mono, Figtree, Hubot_Sans } from "next/font/google";
+import { DM_Mono, Figtree, Hubot_Sans, Newsreader, Funnel_Display } from "next/font/google";
+
+export const funnelDisplay = Funnel_Display({
+  subsets: ["latin"],
+  variable: "--font-funnel",
+});
+
+export const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+});
 
 export const headingFont = Hubot_Sans({
   subsets: ["latin"],

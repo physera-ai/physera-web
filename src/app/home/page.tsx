@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 
-export default function Page() {
+export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Header />
