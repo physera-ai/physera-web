@@ -39,9 +39,9 @@ export function Header() {
             </svg>
           </mask>
         </defs>
-        <rect width="100%" height="100%" fill="#ff3333" mask="url(#header-mask)" />
+        <rect width="100%" height="100%" fill="#111" mask="url(#header-mask)" />
       </svg>
-      <div className={`relative flex items-center justify-between pl-3 transition-[height] duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.2)] ${isOpen ? "h-12" : "h-11"}`}>
+      <div className={`relative flex items-center select-none justify-between pl-3 transition-[height] duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.2)] ${isOpen ? "h-12" : "h-11"}`}>
         <Link
           aria-label="Physera AI home"
           className="flex h-full items-center px-1 transition-opacity hover:opacity-80"
@@ -60,11 +60,11 @@ export function Header() {
         <button
           aria-expanded={isOpen}
           aria-label={isOpen ? "Close menu" : "Open menu"}
-          className="group flex h-full w-14 items-center justify-center focus-visible:outline-none"
+          className="group flex h-full w-14 items-center justify-center focus-visible:outline-none cursor-pointer"
           onClick={() => setIsOpen((current) => !current)}
           type="button"
         >
-          <span className="relative h-[14px] w-[22px] opacity-70 transition-opacity duration-300 group-hover:opacity-100">
+          <span className="relative h-[14px] w-[22px] transition-opacity duration-300">
             <span
               className={`absolute left-0 top-0 h-[2px] w-full rounded-full bg-[#f8f5f1] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.2)] ${
                 isOpen ? "translate-y-[6px] rotate-45" : ""
@@ -102,19 +102,19 @@ export function Header() {
           <nav className="flex flex-wrap items-center gap-2 px-3 pb-2 pt-1">
             <Link
               href="/blog"
-              className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-[#f8f5f1]/70 transition-colors hover:text-[#f8f5f1]"
+              className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-white/90"
             >
               Blog
             </Link>
             <Link
               href="/research"
-              className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-[#f8f5f1]/70 transition-colors hover:text-[#f8f5f1]"
+              className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-white/90"
             >
               Research
             </Link>
             <a
               aria-label="Physera on X"
-              className="flex items-center px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-[#f8f5f1]/70 transition-colors hover:text-[#f8f5f1]"
+              className="flex items-center px-3 py-1.5 font-display text-[16px] font-medium text-white/90"
               href="https://x.com/PhyseraAI"
               rel="noopener noreferrer"
               target="_blank"
