@@ -1,4 +1,4 @@
-import { DM_Mono, Figtree, Hubot_Sans, Newsreader, Funnel_Display } from "next/font/google";
+import { Ubuntu_Mono, Figtree, Hubot_Sans, Newsreader, Funnel_Display } from "next/font/google";
 
 export const funnelDisplay = Funnel_Display({
   subsets: ["latin"],
@@ -20,8 +20,8 @@ export const sans = Figtree({
   variable: "--font-sans",
 });
 
-export const mono = DM_Mono({
-  weight: ["400", "500"],
+export const mono = Ubuntu_Mono({
+  weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-mono",
 });

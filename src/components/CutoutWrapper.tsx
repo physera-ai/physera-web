@@ -60,18 +60,12 @@ export function CutoutWrapper({
             {hasSeparator && (
               <>
                 {/* Top separator */}
-                <svg x={`calc(${separatorPosition}px - 4px)`} y="-8" width="16" height="16" overflow="visible" className="hidden sm:block">
-                  <path d="M 0 8 A 4 4 0 0 0 8 8 A 4 4 0 0 0 0 8 Z" fill="black" />
-                </svg>
-                <svg x={`calc(${separatorPosition - 20}px - 4px)`} y="-8" width="16" height="16" overflow="visible" className="block sm:hidden">
+                <svg x={`calc(${separatorPosition}px - 4px)`} y="-8" width="16" height="16" overflow="visible">
                   <path d="M 0 8 A 4 4 0 0 0 8 8 A 4 4 0 0 0 0 8 Z" fill="black" />
                 </svg>
 
                 {/* Bottom separator */}
-                <svg x={`calc(${separatorPosition}px - 4px)`} y="calc(100% - 8px)" width="16" height="16" overflow="visible" className="hidden sm:block">
-                  <path d="M 0 8 A 4 4 0 0 1 8 8 A 4 4 0 0 1 0 8 Z" fill="black" />
-                </svg>
-                <svg x={`calc(${separatorPosition - 20}px - 4px)`} y="calc(100% - 8px)" width="16" height="16" overflow="visible" className="block sm:hidden">
+                <svg x={`calc(${separatorPosition}px - 4px)`} y="calc(100% - 8px)" width="16" height="16" overflow="visible">
                   <path d="M 0 8 A 4 4 0 0 1 8 8 A 4 4 0 0 1 0 8 Z" fill="black" />
                 </svg>
               </>
