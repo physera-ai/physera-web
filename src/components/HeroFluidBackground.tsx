@@ -65,10 +65,9 @@ export function HeroFluidBackground() {
     let pointerX = window.innerWidth / 2;
     let pointerY = window.innerHeight / 2;
     
-    const onPointerMove = (e: PointerEvent) => {
-      pointerX = e.clientX;
-      pointerY = e.clientY;
-    };
+        const onPointerMove = (e: PointerEvent) => {
+          // Temporarily disabled hover effect
+        };
     window.addEventListener("pointermove", onPointerMove);
 
     // 3. Fluid Ping Pong RenderTargets
@@ -95,7 +94,7 @@ export function HeroFluidBackground() {
     const customNoise = Fn(([p]: [any]) => {
       const ip = floor(p);
       const u = fract(p);
-      const uu = mul(mul(u, u), sub(float(3.0), mul(u, 2.0)));
+      const uu: any = mul(mul(u, u), sub(float(3.0), mul(u, 2.0)));
 
       const res = mix(
         mix(rand(ip), rand(add(ip, vec2(1.0, 0.0))), uu.x),
@@ -188,12 +187,13 @@ export function HeroFluidBackground() {
       const fluidVal = maskNode.sample(screenUV).r;
       const fluidMask = sub(float(1.0), fluidVal);
 
-      const solidColor = vec3(0.5, 0.5, 0.5); // White background
+      const solidColor = vec3(0.9, 0.9, 0.9); // White background
       const wireColor = vec3(1.0, 1.0, 1.0); // Red fluid reveal
 
-      // Scan lines on solid
-      const scanRaw = sin(mul(screenUV.y, float(1250.0)));
-      const scanDarken = clamp(scanRaw, -1.0, 0.0).mul(-0.15);
+      // Scan lines on solid (thinner and more spaced out)
+      const scanFreq = mul(screenUV.y, float(100.0));
+      const scanRaw = add(sin(scanFreq), float(1.0));
+      const scanDarken = clamp(scanRaw, -1.0, 0.0).mul(-0.375);
       const scanLines = sub(float(1.0), scanDarken);
       const solidWithScanLines = solidColor.mul(scanLines);
 
