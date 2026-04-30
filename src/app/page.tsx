@@ -11,10 +11,10 @@ export default function Page() {
         </div>
         {/* Main Content can go here */}
         <div className="flex-1 flex-col flex items-center justify-center">
-          <h1 className="font-display font-medium text-4xl md:text-6xl text-black tracking-tight drop-shadow-sm select-none pointer-events-auto cursor-default">
+          <h1 className="font-mono text-4xl md:text-5xl text-black/80 tracking-tighter drop-shadow-sm select-none pointer-events-auto cursor-default">
             Physera is the RL training
           </h1>
-          <h1 className="font-display font-medium text-4xl md:text-6xl text-black tracking-tight drop-shadow-sm select-none pointer-events-auto cursor-default">
+          <h1 className="font-mono text-4xl md:text-5xl text-black/80 tracking-tighter drop-shadow-sm select-none pointer-events-auto cursor-default">
             Simulation as infrastructure
           </h1>
         </div>

@@ -83,7 +83,7 @@ export function CutoutWrapper({
           height="100%"
           fill={fill}
           mask={`url(#${id})`}
-          className={`transition-colors duration-300 ${hoverClass}`}
+          className={`${hoverClass}`}
         />
       </svg>
       {children}
