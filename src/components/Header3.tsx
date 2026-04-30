@@ -46,7 +46,7 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
 
               {/* Separator Line */}
               <div className="flex h-full items-center justify-center">
-                <span className="h-6 w-px bg-black/10" />
+                <span className="h-4.5 w-[1.5px] bg-black/10" />
               </div>
 
               {/* Nav */}
@@ -112,9 +112,9 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
       <div className="flex sm:hidden fixed left-0 right-0 top-2 z-100 justify-between items-start pointer-events-none px-2">
         
         {/* Left Island: Logo */}
-        <header className="pointer-events-auto relative h-[40px] rounded-[5px] text-black select-none">
+        <header className="pointer-events-auto relative h-[48px] rounded-[5px] text-black select-none">
           <CutoutWrapper id="mobile-logo-cutouts" fill="white" hasSeparator={false}>
-            <div className="flex h-full items-center pl-2.5 pr-4">
+            <div className="flex h-full items-center pl-3 pr-5">
               <Link
                 aria-label="Physera AI home"
                 className="flex h-full items-center transition-opacity hover:opacity-80 relative z-20"
@@ -125,7 +125,7 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                   alt="Physera AI Logo"
                   width={161}
                   height={32}
-                  className="h-[20px] w-auto brightness-0"
+                  className="h-[24px] w-auto brightness-0"
                   priority
                 />
               </Link>
@@ -133,70 +133,88 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
           </CutoutWrapper>
         </header>
 
-        {/* Right Island: Join Waitlist + Menu */}
-        <div 
-          className={`pointer-events-auto relative rounded-[5px] text-black w-[160px] overflow-hidden transition-[height] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] select-none ${isOpen ? "h-[190px]" : "h-[40px]"}`}
-        >
-          <CutoutWrapper id="mobile-right-cutouts" fill="white" hasSeparator={true} separatorPosition={115}>
-            {/* Top Bar */}
-            <div className="relative z-20 flex h-[40px] items-center w-[160px]">
-              {/* Join Waitlist */}
-              <div className="flex h-full items-center px-3">
-                <span className="font-display text-[15px] font-medium text-[#ff4419] w-[91px] text-center">
-                  Join Waitlist
-                </span>
-              </div>
-              
-              {/* Separator Line */}
-              <div className="flex h-full items-center justify-center">
-                <span className="h-6 w-px bg-black/10" />
-              </div>
+        {/* Right Side: Button/Menu Bar + Dropdown Island */}
+        <div className="flex flex-col items-end gap-2 pointer-events-none">
+          
+          {/* Top Right Island: Join Waitlist + Menu Toggle */}
+          <div className="pointer-events-auto relative rounded-[5px] text-black w-[180px] h-[48px] select-none">
+            <CutoutWrapper id="mobile-right-cutouts" fill="white" hasSeparator={true} separatorPosition={125}>
+              <div className="relative z-20 flex h-[48px] items-center w-[180px]">
+                {/* Join Waitlist */}
+                <div className="flex h-full items-center px-3">
+                  <span className="font-display text-[16px] font-medium text-[#ff4419] w-[100px] text-center">
+                    Join Waitlist
+                  </span>
+                </div>
+                
+                {/* Separator Line */}
+                <div className="flex h-full items-center justify-center">
+                  <span className="h-7 w-px bg-black/10" />
+                </div>
 
-              {/* Hamburger Menu / Cross */}
-              <button
-                aria-expanded={isOpen}
-                aria-label={isOpen ? "Close menu" : "Open menu"}
-                className="flex h-full flex-1 items-center justify-center focus-visible:outline-none cursor-pointer relative z-30"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsOpen((current) => !current);
-                }}
-                type="button"
-              >
-                <span className="relative h-[12px] w-[18px] transition-opacity duration-300">
-                  <span className={`absolute left-0 top-0 h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[5.25px] rotate-45" : ""}`} />
-                  <span className={`absolute left-0 top-[5.25px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "scale-x-0 opacity-0" : ""}`} />
-                  <span className={`absolute left-0 top-[10.5px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[-5.25px] -rotate-45" : ""}`} />
-                </span>
-              </button>
-            </div>
+                {/* Hamburger Menu / Cross */}
+                <button
+                  aria-expanded={isOpen}
+                  aria-label={isOpen ? "Close menu" : "Open menu"}
+                  className="flex h-full flex-1 items-center justify-center focus-visible:outline-none cursor-pointer relative z-30"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsOpen((current) => !current);
+                  }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsOpen((current) => !current);
+                  }}
+                  type="button"
+                >
+                  <span className="relative h-[14px] w-[22px] transition-opacity duration-300">
+                    <span className={`absolute left-0 top-0 h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[6.5px] rotate-45" : ""}`} />
+                    <span className={`absolute left-0 top-[6.5px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "scale-x-0 opacity-0" : ""}`} />
+                    <span className={`absolute left-0 top-[13px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[-6.5px] -rotate-45" : ""}`} />
+                  </span>
+                </button>
+              </div>
+            </CutoutWrapper>
+          </div>
 
-            {/* Mobile Menu Content */}
-            <div className={`px-4 pt-2 pb-6 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-              <span className="block h-px w-full bg-black/10 mb-4" />
-              <nav className="flex flex-col gap-4">
-                <Link
-                  href="/blog"
-                  className="font-display text-[16px] font-medium text-black/80 hover:text-black"
-                >
-                  Blog
-                </Link>
-                <Link
-                  href="/research"
-                  className="font-display text-[16px] font-medium text-black/80 hover:text-black"
-                >
-                  Research
-                </Link>
-                <a
-                  className="font-display text-[16px] font-medium text-black/80 hover:text-black"
-                  href="https://x.com/PhyseraAI"
-                  target="_blank"
-                >
-                  X (Twitter)
-                </a>
-              </nav>
-            </div>
-          </CutoutWrapper>
+          {/* Menu Content Island (Dropdown) */}
+          <div 
+            className={`pointer-events-auto relative rounded-[5px] text-black w-[180px] overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${
+              isOpen ? "opacity-100 scale-y-100 translate-y-0" : "opacity-0 scale-y-95 -translate-y-2 pointer-events-none"
+            }`}
+          >
+            <CutoutWrapper id="mobile-menu-dropdown-cutouts" fill="white" hasSeparator={false}>
+              <div className="px-2 py-3">
+                <nav className="flex flex-col gap-4">
+                  <Link
+                    href="/blog"
+                    className="font-display px-4 py-2 text-[18px] font-medium text-black/80 hover:text-black transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Blog
+                  </Link>
+                  <Link
+                    href="/research"
+                    className="font-display px-4 py-2 text-[18px] font-medium text-black/80 hover:text-black transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Research
+                  </Link>
+                  <a
+                    className="font-display px-4 py-2 text-[18px] font-medium text-black/80 hover:text-black transition-colors"
+                    href="https://x.com/PhyseraAI"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    X (Twitter)
+                  </a>
+                </nav>
+              </div>
+            </CutoutWrapper>
+          </div>
         </div>
       </div>
     </>
