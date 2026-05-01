@@ -13,10 +13,18 @@
 }
 
 :root {
-  --background: #f7f6f2;
+  --background: #000000;
   --ink: #1a1814;
   --muted: #7e7971;
   --rule: #ded9d0;
+
+  --site-bg: #184d45;
+  --island-bg: #00000030;
+  --island-bg-hover: #00000090;
+  --island-fg: #ffffff;
+  --island-fg-muted: rgb(255 255 255 / 0.8);
+  --island-rule: rgb(255 255 255 / 0.1);
+  --island-rule-hover: rgb(255 255 255 / 0.2);
 
   --grid-offset-x: 32px;
   --grid-offset-y: 32px;
@@ -47,6 +55,30 @@ body {
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.scramble-text {
+  font-kerning: none;
+}
+
+.scramble-char {
+  display: inline-block;
+  min-width: 0;
+  text-align: center;
+}
+
+@keyframes bracket-load-blink {
+  0%, 8%, 16%, 24%, 32%, 40%, 48%, 56%, 64%, 72% {
+    opacity: 0.12;
+  }
+  4%, 12%, 20%, 28%, 36%, 44%, 52%, 60%, 68%, 76%, 100% {
+    opacity: 1;
+  }
+}
+
+.hero-bracket {
+  animation: bracket-load-blink 3.6s steps(1, end) both;
+  will-change: opacity, transform;
 }
 
 @keyframes noise {

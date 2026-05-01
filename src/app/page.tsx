@@ -2,12 +2,14 @@ import { Header3 } from "@/components/Header3";
 import { SmoothCircleLoop } from "@/components/SmoothCircleLoop";
 import { CutoutWrapper } from "@/components/CutoutWrapper";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
+import { HoverScrambleText } from "@/components/HoverScrambleText";
+import { InteractiveHeroTitle } from "@/components/InteractiveHeroTitle";
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-[#0d6269] relative overflow-hidden selection:bg-white selection:text-[#0c484d]">
+    <main className="min-h-screen bg-(--site-bg) relative overflow-hidden selection:bg-white selection:text-black">
       {/* Background Grid */}
       <BackgroundGrid />
 
@@ -37,17 +39,9 @@ export default function Page() {
               <SmoothCircleLoop />
             </div>
 
-            <div className="flex items-center justify-center gap-2 sm:gap-6 md:gap-8 max-w-[960px] mx-auto w-full px-2 sm:px-0">
-              <div className="font-serif font-[50] text-[70px] sm:text-[100px] md:text-[130px] text-white/20 leading-none select-none -mt-4 sm:-mt-6">
-                [
-              </div>
-              <h1 className="flex-1 font-serif font-[350] text-3xl sm:text-4xl md:text-5xl text-white/90 leading-[1.1] tracking-tighter text-center px-2">
-                Building systems that perceive, reason and decide as humans do, under the constraints humans face.
-              </h1>
-              <div className="font-serif font-[50] text-[70px] sm:text-[100px] md:text-[130px] text-white/20 leading-none select-none -mt-4 sm:-mt-6">
-                ]
-              </div>
-            </div>
+            <InteractiveHeroTitle>
+              Building systems that perceive, reason and decide as humans do, under the constraints humans face.
+            </InteractiveHeroTitle>
 
             <div className="font-sans max-w-[550px] text-[16px] sm:text-[17px] text-white/70 flex flex-col items-center gap-5 sm:gap-6 text-center mx-auto">
               <p>
@@ -55,25 +49,25 @@ export default function Page() {
             </div>
 
             <div className="mt-4">
-              <Link href="/contact" className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-black shrink-0 group select-none inline-flex">
+              <Link href="/contact" data-scramble-trigger className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-(--island-fg) shrink-0 group select-none inline-flex">
                 <CutoutWrapper
                   id="get-in-touch-mask"
-                  fill="#fff"
+                  hoverClass="group-hover:fill-(--island-bg-hover)"
                   hasSeparator={true}
                   separatorPosition={38}
                 >
                   <div className="flex h-full items-center transition-colors duration-200">
-                    <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-black group-hover:text-black">
+                    <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-(--island-fg-muted) group-hover:text-(--island-fg)">
                       <PlusIcon
                         className="h-4 w-4 shrink-0 stroke-2 transition-transform duration-200 ease-out group-hover:rotate-90"
                         aria-hidden
                       />
                     </div>
                     <div className="flex h-full items-center justify-center">
-                      <span className="h-5 w-px bg-black/10" />
+                      <span className="h-5 w-px bg-(--island-rule)" />
                     </div>
-                    <span className="flex min-h-full flex-1 items-center justify-center px-4 font-display text-[15px] font-medium tracking-[-0.01em] text-black group-hover:text-black">
-                      Get in touch
+                    <span className="flex min-h-full flex-1 items-center justify-center px-4 font-display text-[15px] font-medium tracking-[-0.01em] text-(--island-fg-muted) group-hover:text-(--island-fg)">
+                      <HoverScrambleText text="Get in touch" />
                     </span>
                   </div>
                 </CutoutWrapper>

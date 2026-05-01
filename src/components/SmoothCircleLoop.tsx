@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { PlusIcon } from "lucide-react";
 
 export function SmoothCircleLoop() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -53,7 +52,7 @@ export function SmoothCircleLoop() {
         if (!circle) return;
         
         // 'v' is the circle's position along the path from 0 to 1
-        let v = (i / circleCount + progress) % 1;
+        const v = (i / circleCount + progress) % 1;
 
         // Map 'v' to an angle (theta) from PI/2 (right edge) down to -PI/2 (left edge)
         const theta = Math.PI * (0.5 - v);
@@ -64,7 +63,7 @@ export function SmoothCircleLoop() {
         // To make the center circle significantly larger than the adjacent ones,
         // we sharpen the cosine curve by raising it to a power (e.g. 1.8).
         // This makes the size drop off much faster as it moves away from the center.
-        let scale = maxScale * Math.pow(Math.cos(theta), 1.8);
+        const scale = maxScale * Math.pow(Math.cos(theta), 1.8);
 
         // Keep a tiny scale instead of exactly 0 to avoid layout rendering glitches
         const finalScale = Math.max(scale, 0.001);
@@ -82,7 +81,7 @@ export function SmoothCircleLoop() {
 
         // Link the image opacity directly to the circle opacity so it fades out exactly when the circle does,
         // but only at the very edges (the first and last 10%)
-        let imageOpacity = circleOpacity;
+        const imageOpacity = circleOpacity;
 
         circle.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(${finalScale})`;
         circle.style.opacity = circleOpacity.toString();
