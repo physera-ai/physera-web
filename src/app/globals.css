@@ -17,6 +17,9 @@
   --ink: #1a1814;
   --muted: #7e7971;
   --rule: #ded9d0;
+
+  --grid-offset-x: 32px;
+  --grid-offset-y: 32px;
 }
 
 body {
@@ -60,5 +63,5 @@ body {
 }
 
 .animate-noise {
-  animation: noise 0.5s steps(2) infinite;
+  animation: noise 2.5s steps(2) infinite;
 }

@@ -122,13 +122,13 @@ export function SmoothCircleLoop() {
             ref={(el) => {
               circlesRef.current[i] = el;
             }}
-            className="absolute top-1/2 left-1/2 w-20 h-20 rounded-full bg-black/5 will-change-transform overflow-hidden"
+            className="absolute top-1/2 left-1/2 w-20 h-20 rounded-full bg-white/5 will-change-transform overflow-hidden"
             style={{ 
               transform: `translate(-50%, -50%) scale(0)`, // Initial hidden state
             }}
           >
             <div 
-              className="absolute inset-0 bg-cover bg-center grayscale mix-blend-multiply transition-opacity duration-75"
+              className="absolute inset-0 bg-cover bg-center grayscale mix-blend-screen invert opacity-70 transition-opacity duration-75"
               style={{
                 backgroundImage: imagePatterns[i % imagePatterns.length],
               }}

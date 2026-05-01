@@ -17,7 +17,7 @@ interface CutoutWrapperProps {
 export function CutoutWrapper({
   children,
   className = "",
-  fill = "white",
+  fill = "#0004",
   hoverClass = "",
   id = "cutout-mask",
   hasLeftCutouts = true,

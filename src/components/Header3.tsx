@@ -19,7 +19,7 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
       <div className={desktopContainerClass}>
         
         {/* Main Header Island */}
-        <header className="pointer-events-auto relative h-8 rounded-[5px] text-black w-max select-none">
+        <header className="pointer-events-auto relative h-8 rounded-[5px] w-max select-none">
           <CutoutWrapper 
             id="header-cutouts-desktop" 
             hasSeparator={true} 
@@ -34,11 +34,11 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                   href="/"
                 >
                   <Image
-                    src="/physera-logo-full-red-transparent.svg"
+                    src="/physera-logo-full-white-plain-transparent.svg"
                     alt="Physera AI Logo"
                     width={161}
                     height={32}
-                    className="h-6 w-auto brightness-0"
+                    className="h-6 w-auto"
                     priority
                   />
                 </Link>
@@ -46,7 +46,7 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
 
               {/* Separator Line */}
               <div className="flex h-full items-center justify-center">
-                <span className="h-4.5 w-[1.5px] bg-black/10" />
+                <span className="h-4.5 w-[1.5px] bg-white/10" />
               </div>
 
               {/* Nav */}
@@ -54,19 +54,19 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                 <nav className="flex items-center gap-2">
                   <Link
                     href="/blog"
-                    className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-black/60 hover:text-black shrink-0"
+                    className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-white/80 hover:text-white shrink-0"
                   >
                     Blog
                   </Link>
                   <Link
                     href="/team"
-                    className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-black/60 hover:text-black shrink-0"
+                    className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-white/80 hover:text-white shrink-0"
                   >
                     Team
                   </Link>
                   <a
                     aria-label="Physera on X"
-                    className="flex items-center px-3 py-1.5 font-display text-[16px] font-medium text-black/60 hover:text-black shrink-0"
+                    className="flex items-center px-3 py-1.5 font-display text-[16px] font-medium text-white/80 hover:text-white shrink-0"
                     href="https://x.com/PhyseraAI"
                     rel="noopener noreferrer"
                     target="_blank"
@@ -86,21 +86,21 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
           <CutoutWrapper
             id="waitlist-mask-desktop"
             fill="#fff"
-            hoverClass="group-hover:fill-[#ff6542]"
+            hoverClass="group-hover:fill-black"
             hasSeparator={true}
             separatorPosition={38}
           >
-            <div className="flex h-full items-center">
-              <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-[#ff4419] group-hover:text-white">
+            <div className="flex h-full items-center transition-colors duration-200">
+              <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-black group-hover:text-white transition-colors duration-200">
                 <PlusIcon
                   className="h-4 w-4 shrink-0 stroke-2 transition-transform duration-200 ease-out group-hover:rotate-90"
                   aria-hidden
                 />
               </div>
               <div className="flex h-full items-center justify-center">
-                <span className="h-5 w-px bg-black/10 group-hover:bg-white/20" />
+                <span className="h-5 w-px bg-black/10 group-hover:bg-white/20 transition-colors duration-200" />
               </div>
-              <span className="flex min-h-full flex-1 items-center justify-center px-3 font-display text-[15px] font-medium tracking-[-0.01em] text-[#ff4419] group-hover:text-white">
+              <span className="flex min-h-full flex-1 items-center justify-center px-3 font-display text-[15px] font-medium tracking-[-0.01em] text-black group-hover:text-white transition-colors duration-200">
                 Contact
               </span>
             </div>
@@ -142,7 +142,7 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
               <div className="relative z-20 flex h-[36px] items-center w-[155px]">
                 {/* Contact */}
                 <div className="flex h-full items-center px-3">
-                  <span className="font-display text-[14px] font-medium text-[#ff4419] w-[86px] text-center">
+                  <span className="font-display text-[14px] font-medium text-black w-[86px] text-center">
                     Contact
                   </span>
                 </div>
