@@ -1,10 +1,14 @@
 import { Header3 } from "@/components/Header3";
+import { BackgroundGrid } from "@/components/BackgroundGrid";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
     <main className="min-h-screen bg-[#ebebee] relative overflow-hidden selection:bg-black selection:text-white">
+      {/* Background Grid */}
+      <BackgroundGrid />
+
       {/* Static Noise Background */}
       <div
         className="fixed z-0 pointer-events-none opacity-[0.035] mix-blend-multiply animate-noise"

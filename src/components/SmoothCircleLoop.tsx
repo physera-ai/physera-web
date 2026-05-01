@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { PlusIcon } from "lucide-react";
 
 export function SmoothCircleLoop() {
   const containerRef = useRef<HTMLDivElement>(null);
