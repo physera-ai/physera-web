@@ -112,9 +112,9 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
       <div className="flex sm:hidden fixed left-0 right-0 top-2 z-100 justify-between items-start pointer-events-none px-2">
         
         {/* Left Island: Logo */}
-        <header className="pointer-events-auto relative h-[48px] rounded-[5px] text-black select-none">
+        <header className="pointer-events-auto relative h-[36px] rounded-[5px] text-black select-none">
           <CutoutWrapper id="mobile-logo-cutouts" fill="white" hasSeparator={false}>
-            <div className="flex h-full items-center pl-3 pr-5">
+            <div className="flex h-full items-center pl-2.5 pr-4">
               <Link
                 aria-label="Physera AI home"
                 className="flex h-full items-center transition-opacity hover:opacity-80 relative z-20"
@@ -125,7 +125,7 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                   alt="Physera AI Logo"
                   width={161}
                   height={32}
-                  className="h-[24px] w-auto brightness-0"
+                  className="h-[20px] w-auto brightness-0"
                   priority
                 />
               </Link>
@@ -137,19 +137,19 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
         <div className="flex flex-col items-end gap-2 pointer-events-none">
           
           {/* Top Right Island: Join Waitlist + Menu Toggle */}
-          <div className="pointer-events-auto relative rounded-[5px] text-black w-[180px] h-[48px] select-none">
-            <CutoutWrapper id="mobile-right-cutouts" fill="white" hasSeparator={true} separatorPosition={125}>
-              <div className="relative z-20 flex h-[48px] items-center w-[180px]">
+          <div className="pointer-events-auto relative rounded-[5px] text-black w-[155px] h-[36px] select-none">
+            <CutoutWrapper id="mobile-right-cutouts" fill="white" hasSeparator={true} separatorPosition={110}>
+              <div className="relative z-20 flex h-[36px] items-center w-[155px]">
                 {/* Join Waitlist */}
                 <div className="flex h-full items-center px-3">
-                  <span className="font-display text-[16px] font-medium text-[#ff4419] w-[100px] text-center">
+                  <span className="font-display text-[14px] font-medium text-[#ff4419] w-[86px] text-center">
                     Join Waitlist
                   </span>
                 </div>
                 
                 {/* Separator Line */}
                 <div className="flex h-full items-center justify-center">
-                  <span className="h-7 w-px bg-black/10" />
+                  <span className="h-5 w-px bg-black/10" />
                 </div>
 
                 {/* Hamburger Menu / Cross */}
@@ -169,10 +169,10 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                   }}
                   type="button"
                 >
-                  <span className="relative h-[14px] w-[22px] transition-opacity duration-300">
-                    <span className={`absolute left-0 top-0 h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[6.5px] rotate-45" : ""}`} />
-                    <span className={`absolute left-0 top-[6.5px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "scale-x-0 opacity-0" : ""}`} />
-                    <span className={`absolute left-0 top-[13px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[-6.5px] -rotate-45" : ""}`} />
+                  <span className="relative h-[12px] w-[18px] transition-opacity duration-300">
+                    <span className={`absolute left-0 top-0 h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[5.25px] rotate-45" : ""}`} />
+                    <span className={`absolute left-0 top-[5.25px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "scale-x-0 opacity-0" : ""}`} />
+                    <span className={`absolute left-0 top-[10.5px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[-5.25px] -rotate-45" : ""}`} />
                   </span>
                 </button>
               </div>
@@ -181,29 +181,29 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
 
           {/* Menu Content Island (Dropdown) */}
           <div 
-            className={`pointer-events-auto relative rounded-[5px] text-black w-[180px] overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${
+            className={`pointer-events-auto relative rounded-[5px] text-black w-[155px] overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${
               isOpen ? "opacity-100 scale-y-100 translate-y-0" : "opacity-0 scale-y-95 -translate-y-2 pointer-events-none"
             }`}
           >
             <CutoutWrapper id="mobile-menu-dropdown-cutouts" fill="white" hasSeparator={false}>
-              <div className="px-2 py-3">
-                <nav className="flex flex-col gap-4">
+              <div className="px-2 py-2">
+                <nav className="flex flex-col gap-3">
                   <Link
                     href="/blog"
-                    className="font-display px-4 py-2 text-[18px] font-medium text-black/80 hover:text-black transition-colors"
+                    className="font-display px-3 py-1.5 text-[16px] font-medium text-black/80 hover:text-black transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     Blog
                   </Link>
                   <Link
                     href="/research"
-                    className="font-display px-4 py-2 text-[18px] font-medium text-black/80 hover:text-black transition-colors"
+                    className="font-display px-3 py-1.5 text-[16px] font-medium text-black/80 hover:text-black transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     Research
                   </Link>
                   <a
-                    className="font-display px-4 py-2 text-[18px] font-medium text-black/80 hover:text-black transition-colors"
+                    className="font-display px-3 py-1.5 text-[16px] font-medium text-black/80 hover:text-black transition-colors"
                     href="https://x.com/PhyseraAI"
                     target="_blank"
                     rel="noopener noreferrer"

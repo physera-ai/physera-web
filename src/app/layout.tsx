@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { funnelDisplay, headingFont, mono, sans } from "./fonts";
+import { funnelDisplay, headingFont, mono, sans, sourceSerif4 } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${funnelDisplay.variable} ${headingFont.variable} ${sans.variable} ${mono.variable} h-full`}
+      className={`${funnelDisplay.variable} ${headingFont.variable} ${sans.variable} ${mono.variable} ${sourceSerif4.variable} h-full`}
     >
       <body className="min-h-full flex flex-col relative">{children}</body>
     </html>
