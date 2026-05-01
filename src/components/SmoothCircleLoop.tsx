@@ -9,7 +9,7 @@ export function SmoothCircleLoop() {
 
   // Configuration
   const circleCount = 9; // Number of circles in the loop (7 visible usually)
-  const speed = 0.0012; // Speed of movement (progress per frame, 0 to 1)
+  const speed = 0.0008; // Speed of movement (progress per frame, 0 to 1)
 
   useEffect(() => {
     const container = containerRef.current;
@@ -92,7 +92,7 @@ export function SmoothCircleLoop() {
             }}
             // All circles are EXACTLY the same light shade of gray (bg-black/5 or 5% opacity black).
             // No opacity changes happen in JS.
-            className="absolute top-1/2 left-1/2 w-20 h-20 rounded-full bg-black/5 border-black/5 border-[0.5px] will-change-transform"
+            className="absolute top-1/2 left-1/2 w-20 h-20 rounded-full bg-black/5 border-black/5 will-change-transform"
             style={{ 
               transform: `translate(-50%, -50%) scale(0)`, // Initial hidden state
             }}

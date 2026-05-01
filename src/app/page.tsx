@@ -1,9 +1,12 @@
 import { Header3 } from "@/components/Header3";
 import { SmoothCircleLoop } from "@/components/SmoothCircleLoop";
+import { CutoutWrapper } from "@/components/CutoutWrapper";
+import { PlusIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-[#e9e9e9] relative overflow-hidden selection:bg-black selection:text-white">
+    <main className="min-h-screen bg-[#ebebee] relative overflow-hidden selection:bg-black selection:text-white">
       {/* Static Noise Background */}
       <div
         className="fixed z-0 pointer-events-none opacity-[0.035] mix-blend-multiply animate-noise"
@@ -30,14 +33,48 @@ export default function Page() {
               <SmoothCircleLoop />
             </div>
 
-            <h1 className="max-w-2xl mx-auto font-serif font-[350] text-5xl text-black/90 leading-[1.1] tracking-tighter text-center">
-              Rethinking Applied Intelligence
-            </h1>
+            <div className="flex items-center justify-center gap-2 sm:gap-6 md:gap-8 max-w-[960px] mx-auto w-full px-2 sm:px-0">
+              <div className="font-serif font-[300] text-[70px] sm:text-[100px] md:text-[130px] text-black/20 leading-none select-none -mt-4 sm:-mt-6">
+                [
+              </div>
+              <h1 className="flex-1 font-serif font-[350] text-3xl sm:text-4xl md:text-5xl text-black/90 leading-[1.1] tracking-tighter text-center px-2">
+                Building systems that perceive, reason and decide as humans do, under the constraints humans face.
+              </h1>
+              <div className="font-serif font-[300] text-[70px] sm:text-[100px] md:text-[130px] text-black/20 leading-none select-none -mt-4 sm:-mt-6">
+                ]
+              </div>
+            </div>
 
-            <div className="font-sans text-[16px] sm:text-[17px] text-black/70 flex flex-col items-center gap-5 sm:gap-6 text-center max-w-xl mx-auto">
+            <div className="font-sans max-w-[550px] text-[16px] sm:text-[17px] text-black/70 flex flex-col items-center gap-5 sm:gap-6 text-center mx-auto">
               <p>
-                Physera is a research and product lab rethinking Applied Intelligence. We work at the intersection of model efficiency and behavioural simulations by building environments that are multimodal.
-              </p>
+              Physera is a research and product lab rethinking applied intelligence. We work at the intersection of model efficiency and behavioural simulations while building environments that are multimodal.              </p>
+            </div>
+
+            <div className="mt-4">
+              <Link href="/contact" className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-black transition-opacity hover:opacity-90 shrink-0 group select-none inline-flex">
+                <CutoutWrapper
+                  id="get-in-touch-mask"
+                  fill="#fff"
+                  hoverClass="group-hover:fill-[#ff6542]"
+                  hasSeparator={true}
+                  separatorPosition={38}
+                >
+                  <div className="flex h-full items-center">
+                    <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-[#ff4419] group-hover:text-white">
+                      <PlusIcon
+                        className="h-4 w-4 shrink-0 stroke-2 transition-transform duration-200 ease-out group-hover:rotate-90"
+                        aria-hidden
+                      />
+                    </div>
+                    <div className="flex h-full items-center justify-center">
+                      <span className="h-5 w-px bg-black/10 group-hover:bg-white/20" />
+                    </div>
+                    <span className="flex min-h-full flex-1 items-center justify-center px-4 font-display text-[15px] font-medium tracking-[-0.01em] text-[#ff4419] group-hover:text-white">
+                      Get in touch
+                    </span>
+                  </div>
+                </CutoutWrapper>
+              </Link>
             </div>
           </div>
         </div>
