@@ -59,10 +59,10 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                     Blog
                   </Link>
                   <Link
-                    href="/research"
+                    href="/team"
                     className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-black/60 hover:text-black shrink-0"
                   >
-                    Research
+                    Team
                   </Link>
                   <a
                     aria-label="Physera on X"
@@ -101,7 +101,7 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                 <span className="h-5 w-px bg-black/10 group-hover:bg-white/20" />
               </div>
               <span className="flex min-h-full flex-1 items-center justify-center px-3 font-display text-[15px] font-medium tracking-[-0.01em] text-[#ff4419] group-hover:text-white">
-                Join Waitlist
+                Contact
               </span>
             </div>
           </CutoutWrapper>
@@ -140,10 +140,10 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
           <div className="pointer-events-auto relative rounded-[5px] text-black w-[155px] h-[36px] select-none">
             <CutoutWrapper id="mobile-right-cutouts" fill="white" hasSeparator={true} separatorPosition={110}>
               <div className="relative z-20 flex h-[36px] items-center w-[155px]">
-                {/* Join Waitlist */}
+                {/* Contact */}
                 <div className="flex h-full items-center px-3">
                   <span className="font-display text-[14px] font-medium text-[#ff4419] w-[86px] text-center">
-                    Join Waitlist
+                    Contact
                   </span>
                 </div>
                 
@@ -196,21 +196,12 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                     Blog
                   </Link>
                   <Link
-                    href="/research"
+                    href="/team"
                     className="font-display px-3 py-1.5 text-[16px] font-medium text-black/80 hover:text-black transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
-                    Research
+                    Team
                   </Link>
-                  <a
-                    className="font-display px-3 py-1.5 text-[16px] font-medium text-black/80 hover:text-black transition-colors"
-                    href="https://x.com/PhyseraAI"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    X (Twitter)
-                  </a>
                 </nav>
               </div>
             </CutoutWrapper>
