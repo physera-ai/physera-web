@@ -43,18 +43,18 @@ export default function Page() {
             </div>
 
             {/* Content Grid */}
-            <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_minmax(auto,680px)] gap-12 lg:gap-20 mt-4 sm:mt-8 relative">
-              
+            <div className="w-full max-w-[1260px] mx-auto flex flex-row justify-between gap-12 mt-4 sm:mt-8 pr-4 relative">
+
               {/* WebGL Graphic Left Wrapper */}
               <div className="relative">
-                <div className="w-full h-[400px] lg:h-[80vh] lg:sticky lg:top-20 flex items-center justify-center">
+                <div className="w-full h-[360px] max-h-[500px] lg:h-[400px] aspect-square xl:sticky xl:top-32 flex items-center justify-center">
                   <FloatingBubbles />
                 </div>
               </div>
-              
+
               {/* Essay Section Right */}
-              <div className="w-full font-sans text-[16px] sm:text-[18px] text-white/80 leading-relaxed flex flex-col gap-10 text-left lg:pt-20 lg:pb-40">
-                <div className="mb-4 -ml-4 sm:-ml-6 lg:-ml-8 flex justify-start">
+              <div className="w-full max-w-[700px] font-sans text-[16px] sm:text-[18px] text-white/80 leading-relaxed flex flex-col items-start gap-8 text-left lg:pt-20 lg:pb-40">
+                <div className="mb-4 flex justify-start lg:-ml-4">
                   <InteractiveHeroTitle>
                     Rethinking Applied Intelligence
                   </InteractiveHeroTitle>

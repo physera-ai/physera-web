@@ -20,7 +20,7 @@ export function InteractiveHeroTitle({ children }: InteractiveHeroTitleProps) {
 
   return (
     <div
-      className="flex items-center justify-center gap-2 max-w-3xl mx-auto w-full px-2 sm:px-0"
+      className="flex gap-2 max-w-3xl mx-auto w-max px-2 sm:px-0"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
