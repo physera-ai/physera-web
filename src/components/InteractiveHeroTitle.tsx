@@ -25,12 +25,12 @@ export function InteractiveHeroTitle({ children }: InteractiveHeroTitleProps) {
   return (
     <div
       ref={frameRef}
-      className="flex items-center justify-center gap-2 sm:gap-6 md:gap-8 max-w-[960px] mx-auto w-full px-2 sm:px-0"
+      className="flex items-center justify-center gap-2  max-w-3xl mx-auto w-full px-2 sm:px-0"
       onPointerLeave={() => setOffset({ x: 0, y: 0 })}
       onPointerMove={handlePointerMove}
     >
       <div
-        className="hero-bracket font-serif font-[50] text-[70px] sm:text-[100px] md:text-[130px] text-white/20 leading-none select-none -mt-4 sm:-mt-6 transition-transform duration-300 ease-out"
+        className="hero-bracket font-serif font-[50] text-8xl text-white/20 leading-none select-none -mt-4 sm:-mt-6 transition-transform duration-300 ease-out"
         style={{ transform: `translate3d(${offset.x}px, ${offset.y}px, 0)` }}
       >
         [
@@ -39,7 +39,7 @@ export function InteractiveHeroTitle({ children }: InteractiveHeroTitleProps) {
         {children}
       </h1>
       <div
-        className="hero-bracket font-serif font-[50] text-[70px] sm:text-[100px] md:text-[130px] text-white/20 leading-none select-none -mt-4 sm:-mt-6 transition-transform duration-300 ease-out"
+        className="hero-bracket font-serif font-[50] text-8xl text-white/20 leading-none select-none -mt-4 sm:-mt-6 transition-transform duration-300 ease-out"
         style={{ transform: `translate3d(${-offset.x}px, ${offset.y}px, 0)` }}
       >
         ]

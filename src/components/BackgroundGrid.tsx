@@ -16,7 +16,7 @@ export function BackgroundGrid() {
               <rect style={{ x: 'calc(100% - var(--grid-offset-x) - 10px)', y: 'calc(100% - var(--grid-offset-y) - 10px)' }} width="20" height="20" fill="black" />
             </mask>
           </defs>
-          <g mask="url(#page-grid-mask)" stroke="currentColor" className="text-white/15" strokeWidth="1">
+          <g mask="url(#page-grid-mask)" stroke="currentColor" className="text-white/5" strokeWidth="1">
             <line x1="var(--grid-offset-x)" y1="0" x2="var(--grid-offset-x)" y2="100%" />
             <line x1="calc(100% - var(--grid-offset-x))" y1="0" x2="calc(100% - var(--grid-offset-x))" y2="100%" />
             <line x1="0" y1="var(--grid-offset-y)" x2="100%" y2="var(--grid-offset-y)" />

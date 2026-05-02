@@ -40,7 +40,7 @@ export default function Page() {
             </div>
 
             <InteractiveHeroTitle>
-              Building systems that perceive, reason and decide as humans do, under the constraints humans face.
+              Rethinking Applied Intelligence
             </InteractiveHeroTitle>
 
             <div className="font-sans max-w-[550px] text-[16px] sm:text-[17px] text-white/70 flex flex-col items-center gap-5 sm:gap-6 text-center mx-auto">
