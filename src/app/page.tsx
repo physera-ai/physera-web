@@ -4,18 +4,19 @@ import { CutoutWrapper } from "@/components/CutoutWrapper";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
 import { HoverScrambleText } from "@/components/HoverScrambleText";
 import { InteractiveHeroTitle } from "@/components/InteractiveHeroTitle";
+import { FloatingBubbles } from "@/components/FloatingBubbles";
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-(--site-bg) relative overflow-hidden selection:bg-white selection:text-black">
+    <main className="min-h-screen bg-(--site-bg) relative selection:bg-white selection:text-black">
       {/* Background Grid */}
       <BackgroundGrid />
 
       {/* Static Noise Background */}
       <div
-        className="fixed z-0 pointer-events-none opacity-[0.03] mix-blend-hard-light animate-noise"
+        className="fixed z-0 pointer-events-none opacity-[0.03]"
         style={{
           width: "200%",
           height: "200%",
@@ -23,7 +24,7 @@ export default function Page() {
           left: "-50%",
           backgroundImage: `url('/noise.png')`,
           backgroundRepeat: "repeat",
-          backgroundSize: "256px",
+          backgroundSize: "64px",
         }}
       />
 
@@ -33,46 +34,89 @@ export default function Page() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col items-center justify-center px-5 sm:px-4 mt-32 md:mt-0 pb-16 sm:pb-0 pointer-events-auto cursor-default overflow-hidden">
-          <div className="w-full flex flex-col items-center gap-8 sm:gap-6">
-            <div className="w-full max-w-7xl mx-auto pb-2">
+        <div className="flex-1 flex flex-col items-center px-5 sm:px-4 pt-12 pointer-events-auto cursor-default">
+          <div className="w-full flex flex-col items-center gap-8">
+
+            {/* Top section: loop and title */}
+            <div className="hidden">
               <SmoothCircleLoop />
             </div>
 
-            <InteractiveHeroTitle>
-              Rethinking Applied Intelligence
-            </InteractiveHeroTitle>
+            {/* Content Grid */}
+            <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_minmax(auto,680px)] gap-12 lg:gap-20 mt-4 sm:mt-8 relative">
+              
+              {/* WebGL Graphic Left Wrapper */}
+              <div className="relative">
+                <div className="w-full h-[400px] lg:h-[80vh] lg:sticky lg:top-20 flex items-center justify-center">
+                  <FloatingBubbles />
+                </div>
+              </div>
+              
+              {/* Essay Section Right */}
+              <div className="w-full font-sans text-[16px] sm:text-[18px] text-white/80 leading-relaxed flex flex-col gap-10 text-left lg:pt-20 lg:pb-40">
+                <div className="mb-4 -ml-4 sm:-ml-6 lg:-ml-8 flex justify-start">
+                  <InteractiveHeroTitle>
+                    Rethinking Applied Intelligence
+                  </InteractiveHeroTitle>
+                </div>
+                <p>
+                  Physera is a research and product lab rethinking applied intelligence. We work at the intersection of model efficiency and behavioural simulations while building environments that are multimodal.
+                </p>
 
-            <div className="font-sans max-w-[550px] text-[16px] sm:text-[17px] text-white/70 flex flex-col items-center gap-5 sm:gap-6 text-center mx-auto">
-              <p>
-              Physera is a research and product lab rethinking applied intelligence. We work at the intersection of model efficiency and behavioural simulations while building environments that are multimodal.              </p>
+                <p>
+                  We have made extraordinary progress in understanding model internals. However, we are yet to translate that understanding into predictable efficiency gains, measurable commercial returns, or faithful modelling of human behaviour at scale.
+                </p>
+
+                <div>
+                  <p>
+                    We are rethinking each layer of AI stack from first principles.
+                  </p>
+                  <ul className="list-disc pl-5 mt-6 space-y-4 marker:text-white/40">
+                    <li className="pl-2">
+                      How models are deployed under hard cost and latency constraints — establishing a new class of commercially meaningful benchmarks and token efficient architectures.
+                    </li>
+                    <li className="pl-2">
+                      How do we simulate human decision-making — building high fidelity, multimodal, multi-agent systems that are falsifiable and improvable.
+                    </li>
+                  </ul>
+                </div>
+
+                <p>
+                  We are a small team of researchers and engineers who believe the important and most valuable problems in AI today are not about capability but about making that capability reliably useful across multimodality. We are heads down building for that future. Stay tuned.
+                </p>
+
+                <p>
+                  We&apos;re looking for collaborators to help shape this vision. Reach out at <a href="mailto:himanshu@physera.ai" className="text-white hover:text-white/70 transition-colors">himanshu@physera.ai</a> and follow our work at <a href="https://x.com/PhyseraAI" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/70 transition-colors">@PhyseraAI</a> for updates.
+                </p>
+
+                <div className="mt-4 sm:mt-8">
+                  <Link href="/contact" data-scramble-trigger className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-(--island-fg) shrink-0 group select-none inline-flex">
+                    <CutoutWrapper
+                      id="get-in-touch-mask"
+                      hoverClass="group-hover:fill-(--island-bg-hover)"
+                      hasSeparator={true}
+                      separatorPosition={38}
+                    >
+                      <div className="flex h-full items-center transition-colors duration-200">
+                        <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-(--island-fg-muted) group-hover:text-(--island-fg)">
+                          <PlusIcon
+                            className="h-4 w-4 shrink-0 stroke-2 transition-transform duration-200 ease-out group-hover:rotate-90"
+                            aria-hidden
+                          />
+                        </div>
+                        <div className="flex h-full items-center justify-center">
+                          <span className="h-5 w-px bg-(--island-rule)" />
+                        </div>
+                        <span className="flex min-h-full flex-1 items-center justify-center px-4 font-display text-[15px] font-medium tracking-[-0.01em] text-(--island-fg-muted) group-hover:text-(--island-fg)">
+                          <HoverScrambleText text="Get in touch" />
+                        </span>
+                      </div>
+                    </CutoutWrapper>
+                  </Link>
+                </div>
+              </div>
             </div>
 
-            <div className="mt-4">
-              <Link href="/contact" data-scramble-trigger className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-(--island-fg) shrink-0 group select-none inline-flex">
-                <CutoutWrapper
-                  id="get-in-touch-mask"
-                  hoverClass="group-hover:fill-(--island-bg-hover)"
-                  hasSeparator={true}
-                  separatorPosition={38}
-                >
-                  <div className="flex h-full items-center transition-colors duration-200">
-                    <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-(--island-fg-muted) group-hover:text-(--island-fg)">
-                      <PlusIcon
-                        className="h-4 w-4 shrink-0 stroke-2 transition-transform duration-200 ease-out group-hover:rotate-90"
-                        aria-hidden
-                      />
-                    </div>
-                    <div className="flex h-full items-center justify-center">
-                      <span className="h-5 w-px bg-(--island-rule)" />
-                    </div>
-                    <span className="flex min-h-full flex-1 items-center justify-center px-4 font-display text-[15px] font-medium tracking-[-0.01em] text-(--island-fg-muted) group-hover:text-(--island-fg)">
-                      <HoverScrambleText text="Get in touch" />
-                    </span>
-                  </div>
-                </CutoutWrapper>
-              </Link>
-            </div>
           </div>
         </div>
       </div>

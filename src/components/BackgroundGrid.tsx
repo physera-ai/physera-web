@@ -2,7 +2,7 @@ import { PlusIcon } from "lucide-react";
 
 export function BackgroundGrid() {
   return (
-    <div className="fixed inset-0 top-[48px] pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+    <div className="fixed inset-0 opacity-0 top-[48px] pointer-events-none z-0 overflow-hidden flex items-center justify-center">
       {/* Background Grid Layer */}
       <div className="absolute inset-0 w-full h-full max-w-[1600px] mx-auto">
         <svg className="absolute inset-0 w-full h-full">
