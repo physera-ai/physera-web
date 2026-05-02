@@ -17,8 +17,8 @@ export function Header3({
   const [isOpen, setIsOpen] = useState(false);
 
   const desktopContainerClass = position === 'center'
-    ? 'hidden sm:flex fixed left-0 right-0 top-4 z-50 justify-center items-start gap-[1.5px] pointer-events-none px-4'
-    : 'hidden sm:flex fixed left-0 right-0 top-4 z-50 justify-between items-start pointer-events-none px-4';
+    ? 'hidden sm:flex fixed left-1/2 -translate-x-1/2 top-4 z-50 justify-center items-start gap-[1.5px] pointer-events-none w-full max-w-7xl px-5 sm:px-4'
+    : 'hidden sm:flex fixed left-1/2 -translate-x-1/2 top-4 z-50 justify-between items-start pointer-events-none w-full max-w-[1440px] px-5 sm:px-4';
 
   return (
     <>

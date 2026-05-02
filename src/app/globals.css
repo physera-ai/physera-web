@@ -18,8 +18,8 @@
   --muted: #7e7971;
   --rule: #ded9d0;
 
-  --site-bg: #0c1c1a;
-  --island-bg: #fff2;
+  --site-bg: #090909;
+  --island-bg: #222;
   --island-bg-hover: #00000090;
   --island-fg: #ffffff;
   --island-fg-muted: rgb(255 255 255 / 0.8);
@@ -67,18 +67,18 @@ body {
   text-align: center;
 }
 
-@keyframes bracket-load-blink {
-  0%, 8%, 16%, 24%, 32%, 40%, 48%, 56%, 64%, 72% {
+@keyframes bracket-blink {
+  0%, 25%, 50%, 75% {
     opacity: 0.12;
   }
-  4%, 12%, 20%, 28%, 36%, 44%, 52%, 60%, 68%, 76%, 100% {
+  12.5%, 37.5%, 62.5%, 87.5%, 100% {
     opacity: 1;
   }
 }
 
-.hero-bracket {
-  animation: bracket-load-blink 3.6s steps(1, end) both;
-  will-change: opacity, transform;
+.animate-bracket-blink {
+  animation: bracket-blink 0.8s steps(1, end) infinite;
+  will-change: opacity;
 }
 
 @keyframes noise {

@@ -1,46 +1,39 @@
 "use client";
 
-import { useRef, useState } from "react";
-import type { PointerEvent } from "react";
+import { useState, useEffect } from "react";
 
 interface InteractiveHeroTitleProps {
   children: string;
 }
 
 export function InteractiveHeroTitle({ children }: InteractiveHeroTitleProps) {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [isInitialBlink, setIsInitialBlink] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    const frame = frameRef.current;
-    if (!frame) return;
+  // Stop the initial blink after 1.6s (2 blinks)
+  useEffect(() => {
+    const timer = setTimeout(() => setIsInitialBlink(false), 1600);
+    return () => clearTimeout(timer);
+  }, []);
 
-    const rect = frame.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 4;
-
-    setOffset({ x, y });
-  };
+  const shouldBlink = isInitialBlink || isHovered;
 
   return (
     <div
-      ref={frameRef}
-      className="flex items-center justify-center gap-2  max-w-3xl mx-auto w-full px-2 sm:px-0"
-      onPointerLeave={() => setOffset({ x: 0, y: 0 })}
-      onPointerMove={handlePointerMove}
+      className="flex gap-2 max-w-3xl mx-auto w-max px-2 sm:px-0"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className="hero-bracket font-serif font-[50] text-8xl text-white/20 leading-none select-none -mt-4 sm:-mt-6 transition-transform duration-300 ease-out"
-        style={{ transform: `translate3d(${offset.x}px, ${offset.y}px, 0)` }}
+        className={`hero-bracket font-serif font-[50] text-7xl text-white/20 leading-none select-none -mt-4 sm:-mt-6 ${shouldBlink ? 'animate-bracket-blink' : ''}`}
       >
         [
       </div>
-      <h1 className="flex-1 font-serif font-[350] text-3xl sm:text-4xl md:text-5xl text-white/90 leading-[1.1] tracking-tighter text-center px-2">
+      <h1 className="flex-1 font-serif font-[350] text-3xl sm:text-[44px] text-white/90 leading-[1.1] tracking-tighter text-center px-2">
         {children}
       </h1>
       <div
-        className="hero-bracket font-serif font-[50] text-8xl text-white/20 leading-none select-none -mt-4 sm:-mt-6 transition-transform duration-300 ease-out"
-        style={{ transform: `translate3d(${-offset.x}px, ${offset.y}px, 0)` }}
+        className={`hero-bracket font-serif font-[50] text-7xl text-white/20 leading-none select-none -mt-4 sm:-mt-6 ${shouldBlink ? 'animate-bracket-blink' : ''}`}
       >
         ]
       </div>

@@ -34,7 +34,7 @@ export function SmoothCircleLoop() {
       
       // Radius of the virtual half-circle path. 
       // 0.45 means it spans 90% of the container width.
-      const R = containerWidth * 0.45; 
+      const R = containerWidth * 0.24; 
 
       // The theoretical distance between circle centers if they were evenly distributed on the arc
       const maxDistance = (R * Math.PI) / circleCount;
