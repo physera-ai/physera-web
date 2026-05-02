@@ -1,12 +1,19 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { CutoutWrapper } from "./CutoutWrapper";
+import { HoverScrambleText } from "./HoverScrambleText";
+import { PhyseraLogo, type PhyseraLogoTone } from "./PhyseraLogo";
 import { PlusIcon } from "lucide-react";
 
-export function Header3({ position = 'center' }: { position?: 'center' | 'sides' }) {
+export function Header3({
+  position = "center",
+  logoTone = "white",
+}: {
+  position?: "center" | "sides";
+  logoTone?: PhyseraLogoTone;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const desktopContainerClass = position === 'center'
@@ -19,7 +26,7 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
       <div className={desktopContainerClass}>
         
         {/* Main Header Island */}
-        <header className="pointer-events-auto relative h-8 rounded-[5px] text-black w-max select-none">
+        <header className="pointer-events-auto relative h-8 rounded-[5px] w-max select-none">
           <CutoutWrapper 
             id="header-cutouts-desktop" 
             hasSeparator={true} 
@@ -33,20 +40,13 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                   className="flex h-full items-center transition-opacity hover:opacity-80"
                   href="/"
                 >
-                  <Image
-                    src="/physera-logo-full-red-transparent.svg"
-                    alt="Physera AI Logo"
-                    width={161}
-                    height={32}
-                    className="h-6 w-auto brightness-0"
-                    priority
-                  />
+                  <PhyseraLogo tone={logoTone} className="h-6 w-auto" priority />
                 </Link>
               </div>
 
               {/* Separator Line */}
               <div className="flex h-full items-center justify-center">
-                <span className="h-4.5 w-[1.5px] bg-black/10" />
+                <span className="h-4.5 w-[1.5px] bg-(--island-rule)" />
               </div>
 
               {/* Nav */}
@@ -54,19 +54,21 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                 <nav className="flex items-center gap-2">
                   <Link
                     href="/blog"
-                    className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-black/60 hover:text-black shrink-0"
+                    data-scramble-trigger
+                    className="px-3 pb-px font-display text-[16px] font-medium tracking-[-0.32px] text-(--island-fg-muted) hover:text-(--island-fg) shrink-0"
                   >
-                    Blog
+                    <HoverScrambleText text="Blog" durationMode="fixed" />
                   </Link>
                   <Link
                     href="/team"
-                    className="px-3 py-1.5 font-display text-[16px] font-medium tracking-[-0.32px] text-black/60 hover:text-black shrink-0"
+                    data-scramble-trigger
+                    className="px-3 pb-px font-display text-[16px] font-medium tracking-[-0.32px] text-(--island-fg-muted) hover:text-(--island-fg) shrink-0"
                   >
-                    Team
+                    <HoverScrambleText text="Team" durationMode="fixed" />
                   </Link>
                   <a
                     aria-label="Physera on X"
-                    className="flex items-center px-3 py-1.5 font-display text-[16px] font-medium text-black/60 hover:text-black shrink-0"
+                    className="flex items-center px-3 py-1.5 font-display text-[16px] font-medium text-(--island-fg-muted) hover:text-(--island-fg) shrink-0"
                     href="https://x.com/PhyseraAI"
                     rel="noopener noreferrer"
                     target="_blank"
@@ -82,52 +84,44 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
         </header>
 
         {/* Join Waitlist Button Island */}
-        <button className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-black transition-opacity hover:opacity-90 shrink-0 group select-none">
+        <Link href="/contact" data-scramble-trigger className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-(--island-fg) transition-opacity hover:opacity-90 shrink-0 group select-none">
           <CutoutWrapper
             id="waitlist-mask-desktop"
-            fill="#fff"
-            hoverClass="group-hover:fill-[#ff6542]"
+            hoverClass="group-hover:fill-(--island-bg-hover)"
             hasSeparator={true}
             separatorPosition={38}
           >
-            <div className="flex h-full items-center">
-              <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-[#ff4419] group-hover:text-white">
+            <div className="flex h-full items-center transition-colors duration-200">
+              <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-(--island-fg-muted) group-hover:text-(--island-fg) transition-colors duration-200">
                 <PlusIcon
                   className="h-4 w-4 shrink-0 stroke-2 transition-transform duration-200 ease-out group-hover:rotate-90"
                   aria-hidden
                 />
               </div>
               <div className="flex h-full items-center justify-center">
-                <span className="h-5 w-px bg-black/10 group-hover:bg-white/20" />
+                <span className="h-5 w-px bg-(--island-rule) group-hover:bg-(--island-rule-hover) transition-colors duration-200" />
               </div>
-              <span className="flex min-h-full flex-1 items-center justify-center px-3 font-display text-[15px] font-medium tracking-[-0.01em] text-[#ff4419] group-hover:text-white">
-                Contact
+              <span className="flex min-h-full flex-1 items-center justify-center px-3 font-display text-[15px] font-medium tracking-[-0.01em] text-(--island-fg-muted) group-hover:text-(--island-fg) transition-colors duration-200">
+                <HoverScrambleText text="Contact" />
               </span>
             </div>
           </CutoutWrapper>
-        </button>
+        </Link>
       </div>
 
       {/* --- MOBILE VIEW --- */}
       <div className="flex sm:hidden fixed left-0 right-0 top-2 z-100 justify-between items-start pointer-events-none px-2">
         
         {/* Left Island: Logo */}
-        <header className="pointer-events-auto relative h-[36px] rounded-[5px] text-black select-none">
-          <CutoutWrapper id="mobile-logo-cutouts" fill="white" hasSeparator={false}>
+        <header className="pointer-events-auto relative h-[36px] rounded-[5px] text-(--island-fg) select-none">
+          <CutoutWrapper id="mobile-logo-cutouts" hasSeparator={false}>
             <div className="flex h-full items-center pl-2.5 pr-4">
               <Link
                 aria-label="Physera AI home"
                 className="flex h-full items-center transition-opacity hover:opacity-80 relative z-20"
                 href="/"
               >
-                <Image
-                  src="/physera-logo-full-red-transparent.svg"
-                  alt="Physera AI Logo"
-                  width={161}
-                  height={32}
-                  className="h-[20px] w-auto brightness-0"
-                  priority
-                />
+                <PhyseraLogo tone={logoTone} className="h-[20px] w-auto" priority />
               </Link>
             </div>
           </CutoutWrapper>
@@ -137,19 +131,19 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
         <div className="flex flex-col items-end gap-2 pointer-events-none">
           
           {/* Top Right Island: Join Waitlist + Menu Toggle */}
-          <div className="pointer-events-auto relative rounded-[5px] text-black w-[155px] h-[36px] select-none">
-            <CutoutWrapper id="mobile-right-cutouts" fill="white" hasSeparator={true} separatorPosition={110}>
+          <div className="pointer-events-auto relative rounded-[5px] text-(--island-fg) w-[155px] h-[36px] select-none">
+            <CutoutWrapper id="mobile-right-cutouts" hasSeparator={true} separatorPosition={110}>
               <div className="relative z-20 flex h-[36px] items-center w-[155px]">
                 {/* Contact */}
-                <div className="flex h-full items-center px-3">
-                  <span className="font-display text-[14px] font-medium text-[#ff4419] w-[86px] text-center">
-                    Contact
+                <Link href="/contact" data-scramble-trigger className="flex h-full items-center px-3">
+                  <span className="font-display text-[14px] font-medium text-(--island-fg-muted) w-[86px] text-center">
+                    <HoverScrambleText text="Contact" />
                   </span>
-                </div>
+                </Link>
                 
                 {/* Separator Line */}
                 <div className="flex h-full items-center justify-center">
-                  <span className="h-5 w-px bg-black/10" />
+                  <span className="h-5 w-px bg-(--island-rule)" />
                 </div>
 
                 {/* Hamburger Menu / Cross */}
@@ -170,9 +164,9 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
                   type="button"
                 >
                   <span className="relative h-[12px] w-[18px] transition-opacity duration-300">
-                    <span className={`absolute left-0 top-0 h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[5.25px] rotate-45" : ""}`} />
-                    <span className={`absolute left-0 top-[5.25px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "scale-x-0 opacity-0" : ""}`} />
-                    <span className={`absolute left-0 top-[10.5px] h-[1.5px] w-full rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[-5.25px] -rotate-45" : ""}`} />
+                    <span className={`absolute left-0 top-0 h-[1.5px] w-full rounded-full bg-(--island-fg) transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[5.25px] rotate-45" : ""}`} />
+                    <span className={`absolute left-0 top-[5.25px] h-[1.5px] w-full rounded-full bg-(--island-fg) transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "scale-x-0 opacity-0" : ""}`} />
+                    <span className={`absolute left-0 top-[10.5px] h-[1.5px] w-full rounded-full bg-(--island-fg) transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[-5.25px] -rotate-45" : ""}`} />
                   </span>
                 </button>
               </div>
@@ -181,26 +175,28 @@ export function Header3({ position = 'center' }: { position?: 'center' | 'sides'
 
           {/* Menu Content Island (Dropdown) */}
           <div 
-            className={`pointer-events-auto relative rounded-[5px] text-black w-[155px] overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${
+            className={`pointer-events-auto relative rounded-[5px] text-(--island-fg) w-[155px] overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${
               isOpen ? "opacity-100 scale-y-100 translate-y-0" : "opacity-0 scale-y-95 -translate-y-2 pointer-events-none"
             }`}
           >
-            <CutoutWrapper id="mobile-menu-dropdown-cutouts" fill="white" hasSeparator={false}>
+            <CutoutWrapper id="mobile-menu-dropdown-cutouts" hasSeparator={false}>
               <div className="px-2 py-2">
                 <nav className="flex flex-col gap-3">
                   <Link
                     href="/blog"
-                    className="font-display px-3 py-1.5 text-[16px] font-medium text-black/80 hover:text-black transition-colors"
+                    data-scramble-trigger
+                    className="font-display px-3 py-1.5 text-[16px] font-medium text-(--island-fg-muted) hover:text-(--island-fg) transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
-                    Blog
+                    <HoverScrambleText text="Blog" durationMode="fixed" />
                   </Link>
                   <Link
                     href="/team"
-                    className="font-display px-3 py-1.5 text-[16px] font-medium text-black/80 hover:text-black transition-colors"
+                    data-scramble-trigger
+                    className="font-display px-3 py-1.5 text-[16px] font-medium text-(--island-fg-muted) hover:text-(--island-fg) transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
-                    Team
+                    <HoverScrambleText text="Team" durationMode="fixed" />
                   </Link>
                 </nav>
               </div>

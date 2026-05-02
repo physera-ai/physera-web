@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 
 interface CutoutWrapperProps {
   children: ReactNode;
-  className?: string;
   fill?: string;
   hoverClass?: string;
   id?: string;
@@ -16,8 +15,7 @@ interface CutoutWrapperProps {
 
 export function CutoutWrapper({
   children,
-  className = "",
-  fill = "white",
+  fill = "var(--island-bg)",
   hoverClass = "",
   id = "cutout-mask",
   hasLeftCutouts = true,
