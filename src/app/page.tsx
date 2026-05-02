@@ -47,7 +47,7 @@ export default function Page() {
 
               {/* WebGL Graphic Left Wrapper */}
               <div className="relative">
-                <div className="w-full h-[360px] max-h-[500px] lg:h-[400px] aspect-square xl:sticky xl:top-32 flex items-center justify-center">
+                <div className="w-full h-[360px] max-h-[500px] lg:h-[400px] aspect-square xl:sticky xl:top-40 flex items-center justify-center">
                   <FloatingBubbles />
                 </div>
               </div>

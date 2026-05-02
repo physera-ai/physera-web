@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, useTexture, MeshDistortMaterial, Environment } from "@react-three/drei";
+import { Float, useTexture, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
 const SHELL_RADIUS = 1.15;
@@ -152,20 +152,25 @@ function OrbitRing({
 function Bubble({ position }: { position: [number, number, number] }) {
   const texture = useTexture("/nature-sim.png");
 
+  useEffect(() => {
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.needsUpdate = true;
+  }, [texture]);
+
   return (
     <Float speed={0.55} rotationIntensity={0.08} floatIntensity={0.08} position={position}>
       <mesh scale={NODE_SCALE}>
         <sphereGeometry args={[1, 64, 64]} />
         <MeshDistortMaterial
           map={texture}
-          color="#8fe2de"
+          color="#ffffff"
           distort={0.018}
           speed={0.14}
-          roughness={0.72}
-          metalness={0.04}
-          envMapIntensity={0.16}
-          opacity={0.82}
-          transparent
+          roughness={0.42}
+          metalness={0}
+          envMapIntensity={0}
+          emissive="#102f2a"
+          emissiveIntensity={0.45}
         />
       </mesh>
     </Float>
@@ -223,12 +228,13 @@ export function FloatingBubbles() {
   return (
     <div className="w-full h-full relative overflow-hidden">
       <Canvas camera={{ position: [0, 0, 3.35], fov: 42 }} gl={{ alpha: true, antialias: true }}>
-        <ambientLight intensity={0.22} />
-        <directionalLight position={[5, 5, 5]} intensity={0.5} />
-        <directionalLight position={[-5, -5, -5]} intensity={0.16} />
+        <ambientLight intensity={0.72} />
+        <hemisphereLight args={["#dffaf4", "#0a1110", 0.9]} />
+        <directionalLight position={[5, 5, 5]} intensity={0.95} />
+        <pointLight color="#8ff6e4" intensity={0.65} position={[0, 0, 2.2]} />
+        <directionalLight position={[-5, -5, -5]} intensity={0.24} />
         <Suspense fallback={null}>
           <BubbleSystem />
-          <Environment preset="city" />
         </Suspense>
       </Canvas>
     </div>
