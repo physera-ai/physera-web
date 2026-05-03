@@ -1,19 +1,24 @@
-import { Header3 } from "@/components/Header3";
 import { SmoothCircleLoop } from "@/components/SmoothCircleLoop";
-import { CutoutWrapper } from "@/components/CutoutWrapper";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
-import { PlusIcon } from "lucide-react";
+import { InteractiveHeroTitle } from "@/components/InteractiveHeroTitle";
+import { MorphingParticles } from "@/components/MorphingParticles";
+import { PhyseraLogo } from "@/components/PhyseraLogo";
+import { HoverScrambleText } from "@/components/HoverScrambleText";
+import { CutoutWrapper } from "@/components/CutoutWrapper";
+import { HeaderContactButton } from "@/components/HeaderContactButton";
+import { ContactInlineActions } from "@/components/ContactInlineActions";
+import { WigglyUnderline } from "@/components/WigglyUnderline";
 import Link from "next/link";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-[#ebebee] relative overflow-hidden selection:bg-black selection:text-white">
+    <main className="min-h-screen bg-(--site-bg) text-(--site-fg) relative transition-colors duration-300">
       {/* Background Grid */}
       <BackgroundGrid />
 
       {/* Static Noise Background */}
-      {/* <div
-        className="fixed z-0 pointer-events-none opacity-[0.035] mix-blend-multiply animate-noise"
+      <div
+        className="fixed z-0 pointer-events-none opacity-4 mix-blend-hard-light"
         style={{
           width: "200%",
           height: "200%",
@@ -21,64 +26,85 @@ export default function Page() {
           left: "-50%",
           backgroundImage: `url('/noise.png')`,
           backgroundRepeat: "repeat",
-          backgroundSize: "256px",
+          backgroundSize: "128px",
         }}
-      /> */}
+      />
 
       <div className="relative z-10 flex flex-col min-h-screen pointer-events-none">
-        <div className="pointer-events-auto">
-          <Header3 position="sides" />
+        
+        {/* Faded background for header */}
+        <div 
+          className="fixed top-0 left-0 right-0 h-32 pointer-events-none z-40 bg-gradient-to-b from-(--site-bg) from-20% to-transparent transition-colors duration-300" 
+        />
+        
+        {/* Fixed Header */}
+        <div className="fixed top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 z-50 flex justify-between items-center pointer-events-none">
+          <Link href="/" aria-label="Physera AI home" className="hover:opacity-80 transition-opacity pointer-events-auto">
+            <PhyseraLogo className="h-7 sm:h-8 w-auto" />
+          </Link>
+          <div className="pointer-events-auto">
+            <HeaderContactButton />
+          </div>
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col items-center justify-center px-5 sm:px-4 mt-32 md:mt-0 pb-16 sm:pb-0 pointer-events-auto cursor-default overflow-hidden">
-          <div className="w-full flex flex-col items-center gap-8 sm:gap-6">
-            <div className="w-full max-w-7xl mx-auto pb-2">
+        <div className="flex-1 flex flex-col items-center px-5 sm:px-4 pt-20 sm:pt-24 lg:pt-24 pointer-events-auto cursor-default">
+          <div className="w-full flex flex-col items-center gap-8">
+
+            {/* Top section: loop and title */}
+            <div className="hidden">
               <SmoothCircleLoop />
             </div>
 
-            <div className="flex items-center justify-center gap-2 sm:gap-6 md:gap-8 max-w-[960px] mx-auto w-full px-2 sm:px-0">
-              <div className="font-serif font-[50] text-[70px] sm:text-[100px] md:text-[130px] text-black/20 leading-none select-none -mt-4 sm:-mt-6">
-                [
+            {/* Content Grid */}
+            <div className="w-full max-w-[1260px] mx-auto flex flex-col lg:flex-row justify-center items-start gap-12 lg:gap-24 mt-4 sm:mt-8 px-0 sm:px-4 relative">
+
+              {/* WebGL Graphic Left Wrapper */}
+              <div className="relative w-full lg:w-[400px] flex justify-center sm:justify-start lg:sticky lg:top-32 self-start z-10 shrink-0">
+                <div className="w-full max-w-[280px] sm:max-w-[400px] aspect-square flex items-center justify-center transition-colors duration-300 p-0 sm:p-4 lg:p-8">
+                  <MorphingParticles />
+                </div>
               </div>
-              <h1 className="flex-1 font-serif font-[350] text-3xl sm:text-4xl md:text-5xl text-black/90 leading-[1.1] tracking-tighter text-center px-2">
-                Building systems that perceive, reason and decide as humans do, under the constraints humans face.
-              </h1>
-              <div className="font-serif font-[50] text-[70px] sm:text-[100px] md:text-[130px] text-black/20 leading-none select-none -mt-4 sm:-mt-6">
-                ]
+
+              {/* Essay Section Right */}
+              <div className="w-full max-w-[700px] font-sans font-regular text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed flex flex-col items-start gap-8 text-left pb-16 lg:pt-4 lg:pb-40">
+                <div className="mb-4 flex justify-start">
+                  <InteractiveHeroTitle>
+                    Rethinking Applied Intelligence
+                  </InteractiveHeroTitle>
+                </div>
+                <p>
+                  Physera is a research and product lab rethinking applied intelligence. We work at the intersection of <span className="bg-(--highlight-bg) px-1 rounded-md">model efficiency</span> and <span className="bg-(--highlight-bg) px-1 rounded-md">behavioural simulations</span> while building environments that are <span className="bg-(--highlight-bg) px-1 rounded-md">multimodal</span>.
+                </p>
+
+                <p>
+                  We have made extraordinary progress in understanding model internals. However, we are yet to translate that understanding into predictable efficiency gains, measurable commercial returns, or faithful modelling of <WigglyUnderline colorClass="text-orange-400">human behaviour at scale</WigglyUnderline>.
+                </p>
+
+                <div>
+                  <p>
+                    We are rethinking each layer of AI stack from <span className="bg-(--highlight-bg) px-1 rounded-md">first principles</span>.
+                  </p>
+                  <ul className="list-disc pl-5 mt-6 space-y-4 marker:text-(--island-rule-hover)">
+                    <li className="pl-2">
+                      How models are deployed under hard cost and latency constraints — establishing a new class of commercially meaningful benchmarks and <span className="bg-(--highlight-bg) px-1 rounded-md">token efficient architectures</span>.
+                    </li>
+                    <li className="pl-2">
+                      How do we simulate <span className="bg-(--highlight-bg) px-1 rounded-md">human decision-making</span> — building high fidelity, multimodal, multi-agent systems that are falsifiable and improvable.
+                    </li>
+                  </ul>
+                </div>
+
+                <p>
+                  We are a small team of researchers and engineers who believe the important and most valuable problems in AI today are not about capability but about making that capability reliably useful across multimodality. We are heads down building for that future. Stay tuned.
+                </p>
+
+                <p className="leading-[2.2]">
+                  We&apos;re looking for collaborators to help shape this vision. Reach out at <ContactInlineActions />
+                </p>
               </div>
             </div>
 
-            <div className="font-sans max-w-[550px] text-[16px] sm:text-[17px] text-black/70 flex flex-col items-center gap-5 sm:gap-6 text-center mx-auto">
-              <p>
-              Physera is a research and product lab rethinking applied intelligence. We work at the intersection of model efficiency and behavioural simulations while building environments that are multimodal.              </p>
-            </div>
-
-            <div className="mt-4">
-              <Link href="/contact" className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-black shrink-0 group select-none inline-flex">
-                <CutoutWrapper
-                  id="get-in-touch-mask"
-                  fill="#fff"
-                  hasSeparator={true}
-                  separatorPosition={38}
-                >
-                  <div className="flex h-full items-center transition-colors duration-200">
-                    <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-black group-hover:text-[#ff4419]">
-                      <PlusIcon
-                        className="h-4 w-4 shrink-0 stroke-2 transition-transform duration-200 ease-out group-hover:rotate-90"
-                        aria-hidden
-                      />
-                    </div>
-                    <div className="flex h-full items-center justify-center">
-                      <span className="h-5 w-px bg-black/10" />
-                    </div>
-                    <span className="flex min-h-full flex-1 items-center justify-center px-4 font-display text-[15px] font-medium tracking-[-0.01em] text-black group-hover:text-[#ff4419]">
-                      Get in touch
-                    </span>
-                  </div>
-                </CutoutWrapper>
-              </Link>
-            </div>
           </div>
         </div>
       </div>

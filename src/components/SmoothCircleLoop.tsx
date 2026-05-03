@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { PlusIcon } from "lucide-react";
 
 export function SmoothCircleLoop() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,7 +34,7 @@ export function SmoothCircleLoop() {
       
       // Radius of the virtual half-circle path. 
       // 0.45 means it spans 90% of the container width.
-      const R = containerWidth * 0.45; 
+      const R = containerWidth * 0.24; 
 
       // The theoretical distance between circle centers if they were evenly distributed on the arc
       const maxDistance = (R * Math.PI) / circleCount;
@@ -53,7 +52,7 @@ export function SmoothCircleLoop() {
         if (!circle) return;
         
         // 'v' is the circle's position along the path from 0 to 1
-        let v = (i / circleCount + progress) % 1;
+        const v = (i / circleCount + progress) % 1;
 
         // Map 'v' to an angle (theta) from PI/2 (right edge) down to -PI/2 (left edge)
         const theta = Math.PI * (0.5 - v);
@@ -64,7 +63,7 @@ export function SmoothCircleLoop() {
         // To make the center circle significantly larger than the adjacent ones,
         // we sharpen the cosine curve by raising it to a power (e.g. 1.8).
         // This makes the size drop off much faster as it moves away from the center.
-        let scale = maxScale * Math.pow(Math.cos(theta), 1.8);
+        const scale = maxScale * Math.pow(Math.cos(theta), 1.8);
 
         // Keep a tiny scale instead of exactly 0 to avoid layout rendering glitches
         const finalScale = Math.max(scale, 0.001);
@@ -82,7 +81,7 @@ export function SmoothCircleLoop() {
 
         // Link the image opacity directly to the circle opacity so it fades out exactly when the circle does,
         // but only at the very edges (the first and last 10%)
-        let imageOpacity = circleOpacity;
+        const imageOpacity = circleOpacity;
 
         circle.style.transform = `translate(-50%, -50%) translateX(${x}px) scale(${finalScale})`;
         circle.style.opacity = circleOpacity.toString();
@@ -122,13 +121,13 @@ export function SmoothCircleLoop() {
             ref={(el) => {
               circlesRef.current[i] = el;
             }}
-            className="absolute top-1/2 left-1/2 w-20 h-20 rounded-full bg-black/5 will-change-transform overflow-hidden"
+            className="absolute top-1/2 left-1/2 w-20 h-20 rounded-full bg-white/5 will-change-transform overflow-hidden"
             style={{ 
               transform: `translate(-50%, -50%) scale(0)`, // Initial hidden state
             }}
           >
             <div 
-              className="absolute inset-0 bg-cover bg-center grayscale mix-blend-multiply transition-opacity duration-75"
+              className="absolute inset-0 bg-cover bg-center grayscale mix-blend-screen invert opacity-70 transition-opacity duration-75"
               style={{
                 backgroundImage: imagePatterns[i % imagePatterns.length],
               }}
