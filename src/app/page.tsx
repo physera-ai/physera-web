@@ -1,14 +1,8 @@
-import { SmoothCircleLoop } from "@/components/SmoothCircleLoop";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
-import { InteractiveHeroTitle } from "@/components/InteractiveHeroTitle";
 import { MorphingParticles } from "@/components/MorphingParticles";
-import { PhyseraLogo } from "@/components/PhyseraLogo";
-import { HoverScrambleText } from "@/components/HoverScrambleText";
-import { CutoutWrapper } from "@/components/CutoutWrapper";
-import { HeaderContactButton } from "@/components/HeaderContactButton";
+import { SiteHeader } from "@/components/SiteHeader";
 import { ContactInlineActions } from "@/components/ContactInlineActions";
 import { WigglyUnderline } from "@/components/WigglyUnderline";
-import Link from "next/link";
 
 export default function Page() {
   return (
@@ -34,27 +28,14 @@ export default function Page() {
         
         {/* Faded background for header */}
         <div 
-          className="fixed top-0 left-0 right-0 h-32 pointer-events-none z-40 bg-gradient-to-b from-(--site-bg) from-20% to-transparent transition-colors duration-300" 
+          className="fixed top-0 left-0 right-0 h-32 pointer-events-none z-40 bg-linear-to-b from-(--site-bg) from-20% to-transparent transition-colors duration-300" 
         />
         
-        {/* Fixed Header */}
-        <div className="fixed top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 z-50 flex justify-between items-center pointer-events-none">
-          <Link href="/" aria-label="Physera AI home" className="hover:opacity-80 transition-opacity pointer-events-auto">
-            <PhyseraLogo className="h-7 sm:h-8 w-auto" />
-          </Link>
-          <div className="pointer-events-auto">
-            <HeaderContactButton />
-          </div>
-        </div>
+        <SiteHeader />
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col items-center px-5 sm:px-4 pt-20 sm:pt-24 lg:pt-24 pointer-events-auto cursor-default">
           <div className="w-full flex flex-col items-center gap-8">
-
-            {/* Top section: loop and title */}
-            <div className="hidden">
-              <SmoothCircleLoop />
-            </div>
 
             {/* Content Grid */}
             <div className="w-full max-w-[1260px] mx-auto flex flex-col lg:flex-row justify-center items-start gap-12 lg:gap-24 mt-4 sm:mt-8 px-0 sm:px-4 relative">
@@ -69,9 +50,9 @@ export default function Page() {
               {/* Essay Section Right */}
               <div className="w-full max-w-[700px] font-sans font-regular text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed flex flex-col items-start gap-8 text-left pb-16 lg:pt-4 lg:pb-40">
                 <div className="mb-4 flex justify-start">
-                  <InteractiveHeroTitle>
+                  <h1 className="flex-1 font-serif italic font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter text-left transition-colors duration-300">
                     Rethinking Applied Intelligence
-                  </InteractiveHeroTitle>
+                  </h1>
                 </div>
                 <p>
                   Physera is a research and product lab rethinking applied intelligence. We work at the intersection of <span className="bg-(--highlight-bg) px-1 rounded-md">model efficiency</span> and <span className="bg-(--highlight-bg) px-1 rounded-md">behavioural simulations</span> while building environments that are <span className="bg-(--highlight-bg) px-1 rounded-md">multimodal</span>.

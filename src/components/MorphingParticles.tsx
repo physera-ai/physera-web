@@ -5,6 +5,19 @@ interface MorphingParticlesProps {
   className?: string;
 }
 
+type Particle = {
+  x: number;
+  y: number;
+  offset: number;
+  size: number;
+  glow: number;
+};
+
+type Point = {
+  x: number;
+  y: number;
+};
+
 export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -52,15 +65,9 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
     ];
 
     let animationFrameId: number;
-    let particles: { 
-      x: number; 
-      y: number; 
-      offset: number; 
-      size: number; 
-      glow: number;
-    }[] = [];
+    const particles: Particle[] = [];
     
-    const targetSets: {x: number, y: number}[][] = [];
+    const targetSets: Point[][] = [];
     let time = 0;
 
     let pointer = { x: -1000, y: -1000 };
@@ -87,10 +94,10 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
     canvas.addEventListener('touchend', handlePointerLeave);
 
     const numParticles = 3000;
-    const shuffle = (arr: any[]) => [...arr].sort(() => Math.random() - 0.5);
+    const shuffle = <T,>(arr: T[]) => [...arr].sort(() => Math.random() - 0.5);
 
     // Shape 0: Double Helix / Waveform
-    let helixPoints = [];
+    const helixPoints: Point[] = [];
     const radiusX = width * 0.38; // Scaled down to prevent clipping
     for(let i = 0; i < numParticles; i++) {
       const t = i / numParticles;
@@ -106,7 +113,7 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
     targetSets.push(shuffle(helixPoints));
 
     // Shape 1: 6x6 Grid
-    let gridPoints = [];
+    const gridPoints: Point[] = [];
     const gridSize = 6;
     const spacingX = (width * 0.76) / (gridSize - 1);
     const spacingY = (height * 0.76) / (gridSize - 1);
@@ -126,7 +133,7 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
     targetSets.push(shuffle(gridPoints));
 
     // Shape 2: Lissajous Curve (Complex figure-8/knot)
-    let knotPoints = [];
+    const knotPoints: Point[] = [];
     for(let i = 0; i < numParticles; i++) {
       const t = Math.random() * Math.PI * 2;
       const a = width * 0.4; // Scaled down to prevent clipping
@@ -194,8 +201,8 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
         const moveX = Math.sin(time + p.offset) * 1.5;
         const moveY = Math.cos(time * 0.8 + p.offset) * 1.5;
 
-        let targetX = target.x + moveX;
-        let targetY = target.y + moveY;
+        const targetX = target.x + moveX;
+        const targetY = target.y + moveY;
 
         // Interaction Logic: Color Glow Only
         const dx = pointer.x - p.x;

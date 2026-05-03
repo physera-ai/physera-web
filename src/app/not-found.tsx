@@ -1,4 +1,3 @@
-import { Header3 } from "@/components/Header3";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
 import { HoverScrambleText } from "@/components/HoverScrambleText";
 import { ArrowLeft } from "lucide-react";
@@ -25,12 +24,8 @@ export default function NotFound() {
       />
 
       <div className="relative z-10 flex flex-col min-h-screen pointer-events-none">
-        <div className="pointer-events-auto">
-          <Header3 position="sides" />
-        </div>
-
         {/* Main Content */}
-        <div className="flex-1 flex flex-col items-center justify-center px-5 sm:px-4 mt-32 md:mt-0 pb-16 sm:pb-0 pointer-events-auto cursor-default overflow-hidden">
+        <div className="flex-1 flex flex-col items-center justify-center px-5 sm:px-4 pb-16 sm:pb-0 pointer-events-auto cursor-default overflow-hidden">
           <div className="w-full flex flex-col items-center gap-8 sm:gap-6">
             <h1 className="max-w-[800px] mx-auto font-serif font-[350] text-5xl text-white/90 leading-[1.1] tracking-tighter text-center">
               Sigh, we don&apos;t have this page yet!
