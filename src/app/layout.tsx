@@ -4,10 +4,68 @@ import { funnelDisplay, headingFont, mono, sans, serifFont } from "./fonts";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-XHRND0W3WV";
+const SITE_URL = "https://physera.ai";
+const SITE_NAME = "Physera";
+const SITE_TITLE = "Physera | Rethinking Applied Intelligence";
+const SITE_DESCRIPTION =
+  "Physera builds AI systems for model efficiency and behavioural simulation that perceive, reason, and decide under real-world constraints.";
+const ORGANIZATION_LOGO_URL = `${SITE_URL}/logo/logo-full/physera-logo-full-red-transparent.svg`;
+const SAME_AS_LINKS = [
+  "https://github.com/physera-ai/",
+  "https://x.com/PhyseraAI",
+  "https://www.linkedin.com/company/physera-ai/",
+  "https://huggingface.co/physera",
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: ORGANIZATION_LOGO_URL,
+      description: SITE_DESCRIPTION,
+      foundingDate: "2026-05-04",
+      sameAs: SAME_AS_LINKS,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      description: SITE_DESCRIPTION,
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      inLanguage: "en",
+    },
+  ],
+};
 
 export const metadata: Metadata = {
-  title: "Physera | Rethinking Applied Intelligence",
-  description: "Physera is a research and product lab rethinking applied intelligence.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    site: "@PhyseraAI",
+    creator: "@PhyseraAI",
+  },
   icons: {
     icon: [
       { url: "/metadata/favicon-32x32.png", sizes: "32x32", type: "image/png" },
@@ -48,6 +106,12 @@ export default function RootLayout({
         `}
       </Script>
       <body className="min-h-full flex flex-col relative">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          }}
+        />
         {children}
       </body>
     </html>
