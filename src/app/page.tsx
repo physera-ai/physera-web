@@ -1,11 +1,10 @@
-import { Header3 } from "@/components/Header3";
+import { FlatHeader } from "@/components/FlatHeader";
 import { SmoothCircleLoop } from "@/components/SmoothCircleLoop";
 import { CutoutWrapper } from "@/components/CutoutWrapper";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
 import { HoverScrambleText } from "@/components/HoverScrambleText";
 import { InteractiveHeroTitle } from "@/components/InteractiveHeroTitle";
-import { FloatingBubbles } from "@/components/FloatingBubbles";
-import { ParticleLogo } from "@/components/ParticleLogo";
+import { MorphingParticles } from "@/components/MorphingParticles";
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -17,7 +16,7 @@ export default function Page() {
 
       {/* Static Noise Background */}
       <div
-        className="fixed z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.03] opacity-10 mix-blend-hard-light"
+        className="fixed z-0 pointer-events-none opacity-4 mix-blend-hard-light"
         style={{
           width: "200%",
           height: "200%",
@@ -25,13 +24,13 @@ export default function Page() {
           left: "-50%",
           backgroundImage: `url('/noise.png')`,
           backgroundRepeat: "repeat",
-          backgroundSize: "64px",
+          backgroundSize: "128px",
         }}
       />
 
       <div className="relative z-10 flex flex-col min-h-screen pointer-events-none">
         <div className="pointer-events-auto">
-          <Header3 position="sides" />
+          <FlatHeader position="sides" />
         </div>
 
         {/* Main Content */}
@@ -44,12 +43,12 @@ export default function Page() {
             </div>
 
             {/* Content Grid */}
-            <div className="w-full max-w-[1260px] mx-auto flex flex-row justify-between gap-12 mt-4 sm:mt-8 pr-4 relative">
+            <div className="w-full max-w-[1260px] mx-auto flex flex-row justify-center gap-24 mt-4 sm:mt-8 pr-4 relative">
 
               {/* WebGL Graphic Left Wrapper */}
               <div className="relative">
-                <div className="w-full h-[360px] max-h-[500px] lg:h-[400px] aspect-square xl:sticky xl:top-40 flex items-center justify-center rounded-[40px] overflow-hidden transition-colors duration-300 p-8">
-                  <ParticleLogo />
+                <div className="w-full bg-white/0 h-[360px] max-h-[500px] lg:h-[400px] aspect-square xl:sticky xl:top-40 flex items-center justify-center transition-colors duration-300 p-0">
+                  <MorphingParticles />
                 </div>
               </div>
 
