@@ -1,8 +1,10 @@
-import { Geist, Geist_Mono, Hubot_Sans, Newsreader, Funnel_Display, Source_Serif_4 } from "next/font/google";
+import { Geist, Geist_Mono, Hubot_Sans, Newsreader, Funnel_Display, Gentium_Plus } from "next/font/google";
 
-export const sourceSerif4 = Source_Serif_4({
+export const serifFont = Gentium_Plus({
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-source-serif",
+  variable: "--font-gentium",
 });
 
 export const funnelDisplay = Funnel_Display({

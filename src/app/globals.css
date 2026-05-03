@@ -9,7 +9,7 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-display: var(--font-funnel);
-  --font-serif: var(--font-source-serif), Georgia, ui-serif, serif;
+  --font-serif: var(--font-gentium), Georgia, ui-serif, serif;
 }
 
 :root {
@@ -27,6 +27,10 @@
   --island-fg-muted: #ffffff;
   --island-rule: rgb(255 255 255 / 0.1);
   --island-rule-hover: rgb(255 255 255 / 0.2);
+  
+  /* Adjust this variable to change the intensity of the text highlights (e.g., 0.05 for subtle, 0.15 for strong) */
+  --highlight-opacity: 0.08;
+  --highlight-bg: rgb(255 255 255 / var(--highlight-opacity));
 
   --grid-offset-x: 32px;
   --grid-offset-y: 32px;
@@ -42,6 +46,7 @@
   --island-fg-muted: rgb(26 26 26 / 0.7);
   --island-rule: rgb(26 26 26 / 0.1);
   --island-rule-hover: rgb(26 26 26 / 0.2);
+  --highlight-bg: rgb(26 26 26 / var(--highlight-opacity));
   --logo-invert: 100%;
 }
 
@@ -59,8 +64,8 @@ body {
 }
 
 ::selection {
-  background-color: var(--ink);
-  color: var(--background);
+  background-color: var(--island-rule-hover);
+  color: var(--site-fg);
 }
 
 
