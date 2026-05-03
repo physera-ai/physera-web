@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { CutoutWrapper } from "./CutoutWrapper";
 import { PhyseraLogo, type PhyseraLogoTone } from "./PhyseraLogo";
+import { ThemeToggle } from "./ThemeToggle";
 
 type NavLink = {
   label: string;
@@ -52,10 +53,12 @@ export function FlatHeader({
         
         {/* Main Header Island */}
         <header className="pointer-events-auto relative h-8 rounded-[5px] w-max select-none">
-          <CutoutWrapper 
-            id="header-cutouts-desktop" 
-            hasSeparator={false} 
-          >
+            <CutoutWrapper 
+              id="header-cutouts-desktop" 
+              hasSeparator={false} 
+              hasLeftCutouts={true}
+              hasRightCutouts={true}
+            >
             <div className="flex h-full items-center px-4">
               {/* Logo */}
               <Link
@@ -70,10 +73,10 @@ export function FlatHeader({
         </header>
 
         {/* Right Islands */}
-        <div className="flex items-center gap-[2px]">
+        <div className="flex items-center gap-0">
           
           {/* Dynamic Nav Links */}
-          {navLinks.map((link) => {
+          {navLinks.map((link, index) => {
             const isExternal = link.isExternal;
             const Component = isExternal ? "a" : Link;
             const props = isExternal 
@@ -85,9 +88,17 @@ export function FlatHeader({
                 key={link.label}
                 {...props}
                 data-scramble-trigger
-                className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-(--island-fg) transition-opacity hover:opacity-90 shrink-0 group select-none block bg-(--island-bg)"
+                className={`pointer-events-auto cursor-pointer relative h-8 text-(--island-fg) transition-opacity hover:opacity-90 shrink-0 group select-none block bg-(--island-bg) ${
+                  index === 0 ? "rounded-l-[5px]" : ""
+                }`}
               >
-                <CutoutWrapper id={`${link.label.toLowerCase()}-cutout`} hasSeparator={false} hoverClass="group-hover:fill-(--island-bg-hover)">
+                <CutoutWrapper 
+                  id={`${link.label.toLowerCase()}-cutout`} 
+                  hasSeparator={false} 
+                  hasLeftCutouts={index === 0}
+                  hasRightCutouts={false}
+                  hoverClass="group-hover:fill-(--island-bg-hover)"
+                >
                   <div className="flex h-full items-center justify-center px-4 font-display text-[15px] font-medium tracking-[-0.01em] text-(--island-fg-muted) group-hover:text-(--island-fg) hover-blink transition-colors duration-200">
                     {link.icon ? (
                       <span className="flex items-center justify-center">{link.icon}</span>
@@ -101,11 +112,13 @@ export function FlatHeader({
           })}
 
           {/* Contact Button Island */}
-          <Link href="/contact" data-scramble-trigger className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-(--island-fg) transition-opacity hover:opacity-90 shrink-0 group select-none block bg-(--island-bg)">
+          <Link href="/contact" data-scramble-trigger className="pointer-events-auto cursor-pointer relative h-8 rounded-r-[5px] text-(--island-fg) transition-opacity hover:opacity-90 shrink-0 group select-none block bg-(--island-bg)">
             <CutoutWrapper
               id="contact-button-desktop"
               hoverClass="group-hover:fill-(--island-bg-hover)"
               hasSeparator={false}
+              hasLeftCutouts={false}
+              hasRightCutouts={true}
             >
               <div className="flex h-full items-center transition-colors duration-200 px-4">
                 <span className="font-display text-[15px] font-medium tracking-[-0.01em] text-(--island-fg-muted) group-hover:text-(--island-fg) hover-blink transition-colors duration-200">

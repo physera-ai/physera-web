@@ -29,12 +29,13 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
 
     const isLight = resolvedTheme === "light";
 
-    // Define unique color palettes for each of the 4 shapes
+    // Define unique color palettes for each of the shapes
     // Format: [[R, G, B], [R, G, B], gradientType]
     // gradientType: 0 = Vertical, 1 = Horizontal, 2 = Radial
     const applyLightMode = (c: number[]) => isLight ? [Math.max(0, c[0] - 80), Math.max(0, c[1] - 80), Math.max(0, c[2] - 80)] : c;
 
-    const palettes = [
+    type PaletteRow = [color1: number[], color2: number[], gradientType: number];
+    const palettes: PaletteRow[] = [
       // Shape 0: Double Helix (Vertical: Cyan to Deep Blue)
       [
         applyLightMode([0, 242, 254]), 
@@ -47,13 +48,7 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
         applyLightMode([255, 177, 153]), 
         2
       ],
-      // Shape 2: Flower (Radial: Yellow center to Red/Pink edges)
-      [
-        applyLightMode([255, 230, 0]), 
-        applyLightMode([255, 0, 100]), 
-        2
-      ],
-      // Shape 3: Lissajous Knot (Horizontal: Emerald to Mint)
+      // Shape 2: Lissajous Knot (Horizontal: Emerald to Mint)
       [
         applyLightMode([0, 200, 100]), 
         applyLightMode([100, 255, 200]), 
@@ -80,8 +75,9 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
       const rect = canvas.getBoundingClientRect();
       const clientX = 'touches' in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
       const clientY = 'touches' in e ? e.touches[0].clientY : (e as MouseEvent).clientY;
-      pointer.x = (clientX - rect.left) * dpr;
-      pointer.y = (clientY - rect.top) * dpr;
+      // Do not multiply by dpr since canvas scales by dpr but logical CSS pixels are used
+      pointer.x = clientX - rect.left;
+      pointer.y = clientY - rect.top;
       pointerIsActive = true;
     };
     
@@ -100,12 +96,12 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
 
     // Shape 0: Double Helix / Waveform
     let helixPoints = [];
-    const radiusX = width * 0.45; // Fill full width
+    const radiusX = width * 0.38; // Scaled down to prevent clipping
     for(let i = 0; i < numParticles; i++) {
       const t = i / numParticles;
       const angle = t * Math.PI * 8; // 4 turns
       const strand = i % 2 === 0 ? 1 : -1;
-      const yOffset = (t - 0.5) * height * 0.96; // Full height
+      const yOffset = (t - 0.5) * height * 0.85; // Scaled down to prevent clipping
       const r = radiusX + (Math.random() - 0.5) * 20;
       helixPoints.push({
         x: width / 2 + Math.cos(angle) * r * strand,
@@ -114,13 +110,13 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
     }
     targetSets.push(shuffle(helixPoints));
 
-    // Shape 1: 8x8 Grid
+    // Shape 1: 6x6 Grid
     let gridPoints = [];
-    const gridSize = 8;
-    const spacingX = (width * 0.96) / (gridSize - 1);
-    const spacingY = (height * 0.96) / (gridSize - 1);
-    const startX = width * 0.02;
-    const startY = height * 0.02;
+    const gridSize = 6;
+    const spacingX = (width * 0.76) / (gridSize - 1);
+    const spacingY = (height * 0.76) / (gridSize - 1);
+    const startX = width * 0.12;
+    const startY = height * 0.12;
 
     for(let i = 0; i < numParticles; i++) {
       const gx = Math.floor(Math.random() * gridSize);
@@ -134,27 +130,12 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
     }
     targetSets.push(shuffle(gridPoints));
 
-    // Shape 2: Flower (Rose Curve)
-    let flowerPoints = [];
-    const petalCount = 6;
-    for(let i = 0; i < numParticles; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const petalLength = Math.min(width, height) * 0.49; // Reach absolute edge
-      const maxR = petalLength * Math.abs(Math.sin((petalCount / 2) * theta));
-      const r = Math.pow(Math.random(), 0.5) * maxR + (Math.random() - 0.5) * 8;
-      flowerPoints.push({
-        x: width / 2 + Math.cos(theta) * r,
-        y: height / 2 + Math.sin(theta) * r
-      });
-    }
-    targetSets.push(shuffle(flowerPoints));
-
-    // Shape 3: Lissajous Curve (Complex figure-8/knot)
+    // Shape 2: Lissajous Curve (Complex figure-8/knot)
     let knotPoints = [];
     for(let i = 0; i < numParticles; i++) {
       const t = Math.random() * Math.PI * 2;
-      const a = width * 0.48; // Edge to edge
-      const b = height * 0.48; // Edge to edge
+      const a = width * 0.4; // Scaled down to prevent clipping
+      const b = height * 0.4; // Scaled down to prevent clipping
       const x = a * Math.sin(3 * t) + (Math.random() - 0.5) * 15;
       const y = b * Math.sin(2 * t) + (Math.random() - 0.5) * 15;
       knotPoints.push({
@@ -225,7 +206,7 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
         const dx = pointer.x - p.x;
         const dy = pointer.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const maxDist = 120 * dpr;
+        const maxDist = 120; // Reverted maxDist to non-scaled (pixels)
 
         if (pointerIsActive && dist < maxDist) {
           const force = (maxDist - dist) / maxDist;
@@ -267,7 +248,7 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
           b = Math.round(b + (255 - b) * p.glow * 0.5);
         }
 
-        const dynamicSize = p.size + p.glow * 1.5 * dpr;
+        const dynamicSize = p.size + p.glow * 1.5;
         const dynamicOpacity = 0.22 + p.glow * 0.4;
 
         ctx.beginPath();
