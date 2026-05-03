@@ -48,8 +48,8 @@ export default function Page() {
               </div>
 
               {/* Essay Section Right */}
-              <div className="w-full max-w-[700px] font-sans font-regular text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed flex flex-col items-start gap-8 text-left pb-16 lg:pt-4 lg:pb-40">
-                <div className="mb-4 flex justify-start">
+              <div className="w-full max-w-[700px] font-sans font-regular text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed flex flex-col items-start gap-5 md:gap-7 text-left pb-16 lg:pt-4 lg:pb-40">
+                <div className="mb-2 flex justify-start">
                   <h1 className="flex-1 font-serif italic font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter text-left transition-colors duration-300">
                     Rethinking Applied Intelligence
                   </h1>
