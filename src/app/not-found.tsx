@@ -17,7 +17,7 @@ export default function NotFound() {
           height: "200%",
           top: "-50%",
           left: "-50%",
-          backgroundImage: `url('/noise.png')`,
+          backgroundImage: `url('/assets/noise.png')`,
           backgroundRepeat: "repeat",
           backgroundSize: "256px",
         }}

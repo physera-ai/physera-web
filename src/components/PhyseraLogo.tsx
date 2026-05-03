@@ -9,8 +9,8 @@ interface PhyseraLogoProps {
 }
 
 const logoByTone: Record<PhyseraLogoTone, string> = {
-  white: "/physera-logo-full-white-plain-transparent.svg",
-  red: "/physera-logo-full-red-transparent.svg",
+  white: "/logo/logo-full/physera-logo-full-white-plain-transparent.svg",
+  red: "/logo/logo-full/physera-logo-full-red-transparent.svg",
 };
 
 export function PhyseraLogo({
