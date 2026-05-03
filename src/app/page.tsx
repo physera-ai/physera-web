@@ -25,12 +25,12 @@ export default function Page() {
       />
 
       <div className="relative z-10 flex flex-col min-h-screen pointer-events-none">
-        
+
         {/* Faded background for header */}
-        <div 
-          className="fixed top-0 left-0 right-0 h-32 pointer-events-none z-40 bg-linear-to-b from-(--site-bg) from-20% to-transparent transition-colors duration-300" 
+        <div
+          className="fixed top-0 left-0 right-0 h-32 pointer-events-none z-40 bg-linear-to-b from-(--site-bg) from-20% to-transparent transition-colors duration-300"
         />
-        
+
         <SiteHeader />
 
         {/* Main Content */}
@@ -48,41 +48,51 @@ export default function Page() {
               </div>
 
               {/* Essay Section Right */}
-              <div className="w-full max-w-[700px] font-sans font-regular text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed flex flex-col items-start gap-5 md:gap-7 text-left pb-16 lg:pt-4 lg:pb-40">
+              <div
+               className="w-full max-w-[700px] font-sans font-regular text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed flex flex-col items-start gap-5 md:gap-7 text-left pb-16 lg:pt-4 lg:pb-40">
                 <div className="mb-2 flex justify-start">
                   <h1 className="flex-1 font-serif italic font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter text-left transition-colors duration-300">
                     Rethinking Applied Intelligence
                   </h1>
                 </div>
-                <p>
-                  Physera is a research and product lab rethinking applied intelligence. We work at the intersection of <span className="bg-(--highlight-bg) px-1 rounded-md">model efficiency</span> and <span className="bg-(--highlight-bg) px-1 rounded-md">behavioural simulations</span> while building environments that are <span className="bg-(--highlight-bg) px-1 rounded-md">multimodal</span>.
-                </p>
+                <div className="contents">
 
-                <p>
-                  We have made extraordinary progress in understanding model internals. However, we are yet to translate that understanding into predictable efficiency gains, measurable commercial returns, or faithful modelling of <WigglyUnderline colorClass="text-orange-400">human behaviour at scale</WigglyUnderline>.
-                </p>
-
-                <div>
                   <p>
-                    We are rethinking each layer of AI stack from <span className="bg-(--highlight-bg) px-1 rounded-md">first principles</span>.
+                    Physera is a research and product lab rethinking applied intelligence. We work at the intersection of <span className="bg-(--highlight-bg) px-1 rounded-md">model efficiency</span> and <span className="bg-(--highlight-bg) px-1 rounded-md">behavioural simulations</span> while building environments that are <span className="bg-(--highlight-bg) px-1 rounded-md">multimodal</span>.
                   </p>
-                  <ul className="list-disc pl-5 mt-6 space-y-4 marker:text-(--island-rule-hover)">
-                    <li className="pl-2">
-                      How models are deployed under hard cost and latency constraints — establishing a new class of commercially meaningful benchmarks and <span className="bg-(--highlight-bg) px-1 rounded-md">token efficient architectures</span>.
-                    </li>
-                    <li className="pl-2">
-                      How do we simulate <span className="bg-(--highlight-bg) px-1 rounded-md">human decision-making</span> — building high fidelity, multimodal, multi-agent systems that are falsifiable and improvable.
-                    </li>
-                  </ul>
+
+                  <p>
+                    We have made extraordinary progress in understanding model internals. However, we are yet to translate that understanding into predictable efficiency gains, measurable commercial returns, or faithful modelling of <WigglyUnderline colorClass="text-orange-400">human behaviour at scale</WigglyUnderline>.
+                  </p>
+
+                  <div>
+                    <p>
+                      We are rethinking each layer of AI stack from <span className="bg-(--highlight-bg) px-1 rounded-md">first principles</span>.
+                    </p>
+                    <ul className="list-disc pl-5 mt-6 space-y-4 marker:text-(--island-rule-hover)">
+                      <li className="pl-2">
+                        How models are deployed under hard cost and latency constraints — establishing a new class of commercially meaningful benchmarks and <span className="bg-(--highlight-bg) px-1 rounded-md">token efficient architectures</span>.
+                      </li>
+                      <li className="pl-2">
+                        How do we simulate <span className="bg-(--highlight-bg) px-1 rounded-md">human decision-making</span> — building high fidelity, multimodal, multi-agent systems that are falsifiable and improvable.
+                      </li>
+                    </ul>
+                  </div>
+
+
+
+                  <p>
+                  We are a team of applied researchers and engineers who believe the important and most valuable problems in AI today are not about capability but about making that capability reliably useful across multimodality. Building systems that perceive, reason, and decide as humans do — under the constraints humans face. We are heads down engineering that future. Stay tuned.
+
+
+                  </p>
+
+                  <p className="leading-[1.8]">
+                    We&apos;re looking for collaborators to help shape this vision. Reach out at <ContactInlineActions />
+                  </p>
+
+
                 </div>
-
-                <p>
-                  We are a small team of researchers and engineers who believe the important and most valuable problems in AI today are not about capability but about making that capability reliably useful across multimodality. We are heads down building for that future. Stay tuned.
-                </p>
-
-                <p className="leading-[2.2]">
-                  We&apos;re looking for collaborators to help shape this vision. Reach out at <ContactInlineActions />
-                </p>
 
                 <footer className="pt-8 text-sm text-white/40">
                   © 2026 Physera AI.
