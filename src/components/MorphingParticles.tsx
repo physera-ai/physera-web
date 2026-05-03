@@ -1,15 +1,12 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
-
 interface MorphingParticlesProps {
   className?: string;
 }
 
 export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,12 +24,10 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
 
-    const isLight = resolvedTheme === "light";
-
     // Define unique color palettes for each of the shapes
     // Format: [[R, G, B], [R, G, B], gradientType]
     // gradientType: 0 = Vertical, 1 = Horizontal, 2 = Radial
-    const applyLightMode = (c: number[]) => isLight ? [Math.max(0, c[0] - 80), Math.max(0, c[1] - 80), Math.max(0, c[2] - 80)] : c;
+    const applyLightMode = (c: number[]) => c;
 
     type PaletteRow = [color1: number[], color2: number[], gradientType: number];
     const palettes: PaletteRow[] = [
@@ -269,7 +264,7 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
       canvas.removeEventListener('mouseleave', handlePointerLeave);
       canvas.removeEventListener('touchend', handlePointerLeave);
     };
-  }, [resolvedTheme]);
+  }, []);
 
   return (
     <canvas

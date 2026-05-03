@@ -175,12 +175,9 @@ function Bubble({ position, isLight = false }: { position: [number, number, numb
   );
 }
 
-import { useTheme } from "next-themes";
-
 function BubbleSystem() {
   const groupRef = useRef<THREE.Group>(null);
-  const { resolvedTheme } = useTheme();
-  const isLight = resolvedTheme === "light";
+  const isLight = false;
 
   useFrame(({ pointer }) => {
     if (!groupRef.current) return;
@@ -228,8 +225,7 @@ function BubbleSystem() {
 }
 
 export function FloatingBubbles() {
-  const { resolvedTheme } = useTheme();
-  const isLight = resolvedTheme === "light";
+  const isLight = false;
 
   return (
     <div className="w-full h-full relative overflow-hidden transition-colors duration-300">

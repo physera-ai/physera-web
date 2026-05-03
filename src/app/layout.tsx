@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { funnelDisplay, headingFont, mono, sans, serifFont } from "./fonts";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,9 +32,7 @@ export default function RootLayout({
       className={`${funnelDisplay.variable} ${headingFont.variable} ${sans.variable} ${mono.variable} ${serifFont.variable} h-full`}
     >
       <body className="min-h-full flex flex-col relative">
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
 
 interface ParticleTextProps {
   text: string;
@@ -10,7 +9,6 @@ interface ParticleTextProps {
 
 export function ParticleText({ text, className = "" }: ParticleTextProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -52,11 +50,7 @@ export function ParticleText({ text, className = "" }: ParticleTextProps) {
     const particles: { x: number; y: number; baseX: number; baseY: number; offset: number; size: number; color: string }[] = [];
     const step = 4; // Check every Nth pixel for performance
 
-    const isLight = resolvedTheme === "light";
-    // We'll assign random colors from a palette to match the humans& vibe
-    const colorsDark = ["120, 150, 100", "150, 100, 120", "160, 130, 100", "100, 120, 150"];
-    const colorsLight = ["80, 110, 60", "110, 60, 80", "120, 90, 60", "60, 80, 110"];
-    const colors = isLight ? colorsLight : colorsDark;
+    const colors = ["120, 150, 100", "150, 100, 120", "160, 130, 100", "100, 120, 150"];
 
     for (let y = 0; y < height; y += step) {
       for (let x = 0; x < width; x += step) {
@@ -114,7 +108,7 @@ export function ParticleText({ text, className = "" }: ParticleTextProps) {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [text, resolvedTheme]);
+  }, [text]);
 
   return (
     <canvas

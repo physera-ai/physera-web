@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
 
 interface ParticleLogoProps {
   className?: string;
@@ -9,7 +8,6 @@ interface ParticleLogoProps {
 
 export function ParticleLogo({ className = "" }: ParticleLogoProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -28,13 +26,7 @@ export function ParticleLogo({ className = "" }: ParticleLogoProps) {
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
 
-    const isLight = resolvedTheme === "light";
-    // Monochromatic shades for a unified, clean look
-    // Dark mode: light grey/white shades
-    const colorsDark = ["255, 255, 255", "230, 230, 230", "200, 200, 200"];
-    // Light mode: very dark grey/black shades
-    const colorsLight = ["26, 26, 26", "45, 45, 45", "65, 65, 65"];
-    const colors = isLight ? colorsLight : colorsDark;
+    const colors = ["255, 255, 255", "230, 230, 230", "200, 200, 200"];
 
     let animationFrameId: number;
     const particles: { x: number; y: number; baseX: number; baseY: number; offset: number; size: number; color: string }[] = [];
@@ -114,7 +106,7 @@ export function ParticleLogo({ className = "" }: ParticleLogoProps) {
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
-  }, [resolvedTheme]);
+  }, []);
 
   return (
     <canvas

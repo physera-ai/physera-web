@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { CutoutWrapper } from "./CutoutWrapper";
 import { PhyseraLogo, type PhyseraLogoTone } from "./PhyseraLogo";
-import { ThemeToggle } from "./ThemeToggle";
 
 type NavLink = {
   label: string;

@@ -6,8 +6,6 @@ import { CutoutWrapper } from "./CutoutWrapper";
 import { HoverScrambleText } from "./HoverScrambleText";
 import { PhyseraLogo, type PhyseraLogoTone } from "./PhyseraLogo";
 import { PlusIcon } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
-
 export function Header3({
   position = "center",
   logoTone = "white",
@@ -84,11 +82,8 @@ export function Header3({
           </CutoutWrapper>
         </header>
 
-        {/* Right Islands: Theme + Contact */}
+        {/* Right Islands: Contact */}
         <div className="flex items-center gap-2">
-          {/* Theme Toggle Island */}
-          <ThemeToggle />
-
           {/* Join Waitlist Button Island */}
           <Link href="/contact" data-scramble-trigger className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-(--island-fg) transition-opacity hover:opacity-90 shrink-0 group select-none">
             <CutoutWrapper
@@ -138,8 +133,6 @@ export function Header3({
         <div className="flex flex-col items-end gap-2 pointer-events-none">
           
           <div className="flex items-center gap-2">
-            <ThemeToggle />
-            
             {/* Top Right Island: Join Waitlist + Menu Toggle */}
             <div className="pointer-events-auto relative rounded-[5px] text-(--island-fg) w-[155px] h-[36px] select-none">
               <CutoutWrapper id="mobile-right-cutouts" hasSeparator={true} separatorPosition={110}>

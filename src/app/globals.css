@@ -36,20 +36,6 @@
   --grid-offset-y: 32px;
 }
 
-.light {
-  --site-bg: #f4ede1;
-  --site-fg: #1a1a1a;
-  --site-fg-muted: rgb(26 26 26 / 0.8);
-  --island-bg: #e6dfd2;
-  --island-bg-hover: #d8cfc0;
-  --island-fg: #1a1a1a;
-  --island-fg-muted: rgb(26 26 26 / 0.7);
-  --island-rule: rgb(26 26 26 / 0.1);
-  --island-rule-hover: rgb(26 26 26 / 0.2);
-  --highlight-bg: rgb(26 26 26 / var(--highlight-opacity));
-  --logo-invert: 100%;
-}
-
 .logo-invertible {
   filter: invert(var(--logo-invert, 0%));
 }
