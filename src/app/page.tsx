@@ -83,6 +83,10 @@ export default function Page() {
                 <p className="leading-[2.2]">
                   We&apos;re looking for collaborators to help shape this vision. Reach out at <ContactInlineActions />
                 </p>
+
+                <footer className="pt-8 text-sm text-white/40">
+                  © 2026 Physera AI.
+                </footer>
               </div>
             </div>
 
