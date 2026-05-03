@@ -2,7 +2,7 @@ import { PlusIcon } from "lucide-react";
 
 export function BackgroundGrid() {
   return (
-    <div className="fixed inset-0 opacity-0 top-[48px] pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+    <div className="fixed inset-0 opacity-0 top-[48px] pointer-events-none z-0 overflow-hidden flex items-center justify-center transition-opacity duration-300">
       {/* Background Grid Layer */}
       <div className="absolute inset-0 w-full h-full max-w-[1600px] mx-auto">
         <svg className="absolute inset-0 w-full h-full">
@@ -16,7 +16,7 @@ export function BackgroundGrid() {
               <rect style={{ x: 'calc(100% - var(--grid-offset-x) - 10px)', y: 'calc(100% - var(--grid-offset-y) - 10px)' }} width="20" height="20" fill="black" />
             </mask>
           </defs>
-          <g mask="url(#page-grid-mask)" stroke="currentColor" className="text-white/5" strokeWidth="1">
+          <g mask="url(#page-grid-mask)" stroke="currentColor" className="text-(--island-rule) transition-colors duration-300" strokeWidth="1">
             <line x1="var(--grid-offset-x)" y1="0" x2="var(--grid-offset-x)" y2="100%" />
             <line x1="calc(100% - var(--grid-offset-x))" y1="0" x2="calc(100% - var(--grid-offset-x))" y2="100%" />
             <line x1="0" y1="var(--grid-offset-y)" x2="100%" y2="var(--grid-offset-y)" />
@@ -26,25 +26,25 @@ export function BackgroundGrid() {
 
         {/* Plus Intersections */}
         <div 
-          className="absolute text-white/20 -translate-x-1/2 -translate-y-1/2"
+          className="absolute text-(--island-rule-hover) transition-colors duration-300 -translate-x-1/2 -translate-y-1/2"
           style={{ left: 'var(--grid-offset-x)', top: 'var(--grid-offset-y)' }}
         >
           <PlusIcon className="w-3 h-3" strokeWidth={2} />
         </div>
         <div 
-          className="absolute text-white/20 -translate-x-1/2 -translate-y-1/2"
+          className="absolute text-(--island-rule-hover) transition-colors duration-300 -translate-x-1/2 -translate-y-1/2"
           style={{ left: 'calc(100% - var(--grid-offset-x))', top: 'var(--grid-offset-y)' }}
         >
           <PlusIcon className="w-3 h-3" strokeWidth={2} />
         </div>
         <div 
-          className="absolute text-white/20 -translate-x-1/2 -translate-y-1/2"
+          className="absolute text-(--island-rule-hover) transition-colors duration-300 -translate-x-1/2 -translate-y-1/2"
           style={{ left: 'var(--grid-offset-x)', top: 'calc(100% - var(--grid-offset-y))' }}
         >
           <PlusIcon className="w-3 h-3" strokeWidth={2} />
         </div>
         <div 
-          className="absolute text-white/20 -translate-x-1/2 -translate-y-1/2"
+          className="absolute text-(--island-rule-hover) transition-colors duration-300 -translate-x-1/2 -translate-y-1/2"
           style={{ left: 'calc(100% - var(--grid-offset-x))', top: 'calc(100% - var(--grid-offset-y))' }}
         >
           <PlusIcon className="w-3 h-3" strokeWidth={2} />

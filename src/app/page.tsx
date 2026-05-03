@@ -5,18 +5,19 @@ import { BackgroundGrid } from "@/components/BackgroundGrid";
 import { HoverScrambleText } from "@/components/HoverScrambleText";
 import { InteractiveHeroTitle } from "@/components/InteractiveHeroTitle";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
+import { ParticleLogo } from "@/components/ParticleLogo";
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-(--site-bg) relative selection:bg-white selection:text-black">
+    <main className="min-h-screen bg-(--site-bg) text-(--site-fg) relative selection:bg-white selection:text-black transition-colors duration-300">
       {/* Background Grid */}
       <BackgroundGrid />
 
       {/* Static Noise Background */}
       <div
-        className="fixed z-0 pointer-events-none opacity-[0.03]"
+        className="fixed z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.03] opacity-10 mix-blend-hard-light"
         style={{
           width: "200%",
           height: "200%",
@@ -47,13 +48,13 @@ export default function Page() {
 
               {/* WebGL Graphic Left Wrapper */}
               <div className="relative">
-                <div className="w-full h-[360px] max-h-[500px] lg:h-[400px] aspect-square xl:sticky xl:top-40 flex items-center justify-center">
-                  <FloatingBubbles />
+                <div className="w-full h-[360px] max-h-[500px] lg:h-[400px] aspect-square xl:sticky xl:top-40 flex items-center justify-center rounded-[40px] overflow-hidden transition-colors duration-300 p-8">
+                  <ParticleLogo />
                 </div>
               </div>
 
               {/* Essay Section Right */}
-              <div className="w-full max-w-[700px] font-sans text-[16px] sm:text-[18px] text-white/80 leading-relaxed flex flex-col items-start gap-8 text-left lg:pt-20 lg:pb-40">
+              <div className="w-full max-w-[700px] font-sans text-[16px] sm:text-[18px] text-(--site-fg-muted) leading-relaxed flex flex-col items-start gap-8 text-left lg:pt-20 lg:pb-40">
                 <div className="mb-4 flex justify-start lg:-ml-4">
                   <InteractiveHeroTitle>
                     Rethinking Applied Intelligence
@@ -71,7 +72,7 @@ export default function Page() {
                   <p>
                     We are rethinking each layer of AI stack from first principles.
                   </p>
-                  <ul className="list-disc pl-5 mt-6 space-y-4 marker:text-white/40">
+                  <ul className="list-disc pl-5 mt-6 space-y-4 marker:text-(--island-rule-hover)">
                     <li className="pl-2">
                       How models are deployed under hard cost and latency constraints — establishing a new class of commercially meaningful benchmarks and token efficient architectures.
                     </li>
@@ -86,7 +87,7 @@ export default function Page() {
                 </p>
 
                 <p>
-                  We&apos;re looking for collaborators to help shape this vision. Reach out at <a href="mailto:himanshu@physera.ai" className="text-white hover:text-white/70 transition-colors">himanshu@physera.ai</a> and follow our work at <a href="https://x.com/PhyseraAI" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/70 transition-colors">@PhyseraAI</a> for updates.
+                  We&apos;re looking for collaborators to help shape this vision. Reach out at <a href="mailto:himanshu@physera.ai" className="text-(--site-fg) hover:text-(--site-fg-muted) transition-colors">himanshu@physera.ai</a> and follow our work at <a href="https://x.com/PhyseraAI" target="_blank" rel="noopener noreferrer" className="text-(--site-fg) hover:text-(--site-fg-muted) transition-colors">@PhyseraAI</a> for updates.
                 </p>
 
                 <div className="mt-4 sm:mt-8">
