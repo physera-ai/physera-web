@@ -18,7 +18,7 @@ export default function Page() {
           height: "200%",
           top: "-50%",
           left: "-50%",
-          backgroundImage: `url('/noise.png')`,
+          backgroundImage: `url('/assets/noise.png')`,
           backgroundRepeat: "repeat",
           backgroundSize: "128px",
         }}
