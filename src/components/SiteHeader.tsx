@@ -22,7 +22,7 @@ export function SiteHeader({ logoTone = "white" }: SiteHeaderProps) {
           >
             <div className="flex h-full items-center transition-colors duration-200">
               <a
-                href="mailto:himanshu@physera.ai"
+                href="mailto:founders@physera.ai"
                 className="flex min-h-full flex-1 items-center justify-center px-4 font-display text-[15px] font-medium tracking-[-0.01em] text-(--island-fg-muted) group-hover:text-(--island-fg) cursor-pointer"
               >
                 <HoverScrambleText text="Get in touch" />
