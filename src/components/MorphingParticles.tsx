@@ -147,8 +147,10 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
     }
     targetSets.push(shuffle(knotPoints));
 
-    // Initialize particles at Shape 0 (Helix)
-    targetSets[0].forEach(pt => {
+    const initialTargetIndex = 1;
+
+    // Initialize particles at the red grid/cube target.
+    targetSets[initialTargetIndex].forEach(pt => {
       particles.push({
         x: pt.x,
         y: pt.y,
@@ -158,13 +160,13 @@ export function MorphingParticles({ className = "" }: MorphingParticlesProps) {
       });
     });
 
-    let currentTargetIndex = 0;
+    let currentTargetIndex = initialTargetIndex;
     let lastSwitchTime = Date.now();
     
     // State for smooth palette transitioning
-    let currentColor1 = [...palettes[0][0]] as number[];
-    let currentColor2 = [...palettes[0][1]] as number[];
-    let currentGradType = palettes[0][2] as number;
+    let currentColor1 = [...palettes[initialTargetIndex][0]] as number[];
+    let currentColor2 = [...palettes[initialTargetIndex][1]] as number[];
+    let currentGradType = palettes[initialTargetIndex][2] as number;
 
     const render = () => {
       time += 0.03;
