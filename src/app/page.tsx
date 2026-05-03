@@ -48,15 +48,13 @@ export default function Page() {
               </div>
 
               {/* Essay Section Right */}
-              <div
-               className="w-full max-w-[700px] font-sans font-regular text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed flex flex-col items-start gap-5 md:gap-7 text-left pb-16 lg:pt-4 lg:pb-40">
+              <div className="w-full max-w-[700px] font-sans font-regular text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed flex flex-col items-start gap-5 md:gap-7 text-left pb-16 lg:pt-4 lg:pb-40">
                 <div className="mb-2 flex justify-start">
                   <h1 className="flex-1 font-serif italic font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter text-left transition-colors duration-300">
                     Rethinking Applied Intelligence
                   </h1>
                 </div>
                 <div className="contents">
-
                   <p>
                     Physera is a research and product lab rethinking applied intelligence. We work at the intersection of <span className="bg-(--highlight-bg) px-1 rounded-md">model efficiency</span> and <span className="bg-(--highlight-bg) px-1 rounded-md">behavioural simulations</span> while building environments that are <span className="bg-(--highlight-bg) px-1 rounded-md">multimodal</span>.
                   </p>
@@ -79,19 +77,13 @@ export default function Page() {
                     </ul>
                   </div>
 
-
-
                   <p>
-                  We are a team of applied researchers and engineers who believe the important and most valuable problems in AI today are not about capability but about making that capability reliably useful across multimodality. Building systems that perceive, reason, and decide as humans do — under the constraints humans face. We are heads down engineering that future. Stay tuned.
-
-
+                    We are a team of applied researchers and engineers who believe the important and most valuable problems in AI today are not about capability but about making that capability reliably useful across multimodality. Building systems that perceive, reason, and decide as humans do — under the constraints humans face. We are heads down engineering that future. Stay tuned.
                   </p>
 
                   <p className="leading-[1.8]">
                     We&apos;re looking for collaborators to help shape this vision. Reach out at <ContactInlineActions />
                   </p>
-
-
                 </div>
 
                 <footer className="pt-8 text-sm text-white/40">
