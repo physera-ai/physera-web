@@ -18,16 +18,35 @@
   --muted: #7e7971;
   --rule: #ded9d0;
 
-  --site-bg: #090909;
-  --island-bg: #222;
+  --site-bg: #0b0909;
+  --site-fg: #ffffff;
+  --site-fg-muted: rgb(255 255 255 / 0.8);
+  --island-bg: #1d1b1b;
   --island-bg-hover: #00000090;
   --island-fg: #ffffff;
-  --island-fg-muted: rgb(255 255 255 / 0.8);
+  --island-fg-muted: #ffffff;
   --island-rule: rgb(255 255 255 / 0.1);
   --island-rule-hover: rgb(255 255 255 / 0.2);
 
   --grid-offset-x: 32px;
   --grid-offset-y: 32px;
+}
+
+.light {
+  --site-bg: #f4ede1;
+  --site-fg: #1a1a1a;
+  --site-fg-muted: rgb(26 26 26 / 0.8);
+  --island-bg: #e6dfd2;
+  --island-bg-hover: #d8cfc0;
+  --island-fg: #1a1a1a;
+  --island-fg-muted: rgb(26 26 26 / 0.7);
+  --island-rule: rgb(26 26 26 / 0.1);
+  --island-rule-hover: rgb(26 26 26 / 0.2);
+  --logo-invert: 100%;
+}
+
+.logo-invertible {
+  filter: invert(var(--logo-invert, 0%));
 }
 
 body {
@@ -96,4 +115,14 @@ body {
 
 .animate-noise {
   animation: noise 2.5s steps(2) infinite;
+}
+
+@keyframes link-blink {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+.hover-blink:hover {
+  animation: link-blink 0.3s ease-in-out 1;
 }

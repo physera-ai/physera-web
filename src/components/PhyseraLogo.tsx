@@ -18,13 +18,14 @@ export function PhyseraLogo({
   className = "h-6 w-auto",
   priority = false,
 }: PhyseraLogoProps) {
+  const filterClass = tone === "white" ? "logo-invertible" : "";
   return (
     <Image
       src={logoByTone[tone]}
       alt="Physera AI Logo"
       width={161}
       height={32}
-      className={className}
+      className={`${className} ${filterClass}`}
       priority={priority}
     />
   );

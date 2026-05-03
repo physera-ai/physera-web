@@ -6,6 +6,7 @@ import { CutoutWrapper } from "./CutoutWrapper";
 import { HoverScrambleText } from "./HoverScrambleText";
 import { PhyseraLogo, type PhyseraLogoTone } from "./PhyseraLogo";
 import { PlusIcon } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header3({
   position = "center",
@@ -83,30 +84,36 @@ export function Header3({
           </CutoutWrapper>
         </header>
 
-        {/* Join Waitlist Button Island */}
-        <Link href="/contact" data-scramble-trigger className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-(--island-fg) transition-opacity hover:opacity-90 shrink-0 group select-none">
-          <CutoutWrapper
-            id="waitlist-mask-desktop"
-            hoverClass="group-hover:fill-(--island-bg-hover)"
-            hasSeparator={true}
-            separatorPosition={38}
-          >
-            <div className="flex h-full items-center transition-colors duration-200">
-              <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-(--island-fg-muted) group-hover:text-(--island-fg) transition-colors duration-200">
-                <PlusIcon
-                  className="h-4 w-4 shrink-0 stroke-2 transition-transform duration-200 ease-out group-hover:rotate-90"
-                  aria-hidden
-                />
+        {/* Right Islands: Theme + Contact */}
+        <div className="flex items-center gap-2">
+          {/* Theme Toggle Island */}
+          <ThemeToggle />
+
+          {/* Join Waitlist Button Island */}
+          <Link href="/contact" data-scramble-trigger className="pointer-events-auto cursor-pointer relative h-8 rounded-[5px] text-(--island-fg) transition-opacity hover:opacity-90 shrink-0 group select-none">
+            <CutoutWrapper
+              id="waitlist-mask-desktop"
+              hoverClass="group-hover:fill-(--island-bg-hover)"
+              hasSeparator={true}
+              separatorPosition={38}
+            >
+              <div className="flex h-full items-center transition-colors duration-200">
+                <div className="flex h-full w-[38px] shrink-0 items-center justify-center text-(--island-fg-muted) group-hover:text-(--island-fg) transition-colors duration-200">
+                  <PlusIcon
+                    className="h-4 w-4 shrink-0 stroke-2 transition-transform duration-200 ease-out group-hover:rotate-90"
+                    aria-hidden
+                  />
+                </div>
+                <div className="flex h-full items-center justify-center">
+                  <span className="h-5 w-px bg-(--island-rule) group-hover:bg-(--island-rule-hover) transition-colors duration-200" />
+                </div>
+                <span className="flex min-h-full flex-1 items-center justify-center px-3 font-display text-[15px] font-medium tracking-[-0.01em] text-(--island-fg-muted) group-hover:text-(--island-fg) transition-colors duration-200">
+                  <HoverScrambleText text="Contact" />
+                </span>
               </div>
-              <div className="flex h-full items-center justify-center">
-                <span className="h-5 w-px bg-(--island-rule) group-hover:bg-(--island-rule-hover) transition-colors duration-200" />
-              </div>
-              <span className="flex min-h-full flex-1 items-center justify-center px-3 font-display text-[15px] font-medium tracking-[-0.01em] text-(--island-fg-muted) group-hover:text-(--island-fg) transition-colors duration-200">
-                <HoverScrambleText text="Contact" />
-              </span>
-            </div>
-          </CutoutWrapper>
-        </Link>
+            </CutoutWrapper>
+          </Link>
+        </div>
       </div>
 
       {/* --- MOBILE VIEW --- */}
@@ -130,47 +137,51 @@ export function Header3({
         {/* Right Side: Button/Menu Bar + Dropdown Island */}
         <div className="flex flex-col items-end gap-2 pointer-events-none">
           
-          {/* Top Right Island: Join Waitlist + Menu Toggle */}
-          <div className="pointer-events-auto relative rounded-[5px] text-(--island-fg) w-[155px] h-[36px] select-none">
-            <CutoutWrapper id="mobile-right-cutouts" hasSeparator={true} separatorPosition={110}>
-              <div className="relative z-20 flex h-[36px] items-center w-[155px]">
-                {/* Contact */}
-                <Link href="/contact" data-scramble-trigger className="flex h-full items-center px-3">
-                  <span className="font-display text-[14px] font-medium text-(--island-fg-muted) w-[86px] text-center">
-                    <HoverScrambleText text="Contact" />
-                  </span>
-                </Link>
-                
-                {/* Separator Line */}
-                <div className="flex h-full items-center justify-center">
-                  <span className="h-5 w-px bg-(--island-rule)" />
-                </div>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            
+            {/* Top Right Island: Join Waitlist + Menu Toggle */}
+            <div className="pointer-events-auto relative rounded-[5px] text-(--island-fg) w-[155px] h-[36px] select-none">
+              <CutoutWrapper id="mobile-right-cutouts" hasSeparator={true} separatorPosition={110}>
+                <div className="relative z-20 flex h-[36px] items-center w-[155px]">
+                  {/* Contact */}
+                  <Link href="/contact" data-scramble-trigger className="flex h-full items-center px-3">
+                    <span className="font-display text-[14px] font-medium text-(--island-fg-muted) w-[86px] text-center">
+                      <HoverScrambleText text="Contact" />
+                    </span>
+                  </Link>
+                  
+                  {/* Separator Line */}
+                  <div className="flex h-full items-center justify-center">
+                    <span className="h-5 w-px bg-(--island-rule)" />
+                  </div>
 
-                {/* Hamburger Menu / Cross */}
-                <button
-                  aria-expanded={isOpen}
-                  aria-label={isOpen ? "Close menu" : "Open menu"}
-                  className="flex h-full flex-1 items-center justify-center focus-visible:outline-none cursor-pointer relative z-30"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setIsOpen((current) => !current);
-                  }}
-                  onTouchEnd={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setIsOpen((current) => !current);
-                  }}
-                  type="button"
-                >
-                  <span className="relative h-[12px] w-[18px] transition-opacity duration-300">
-                    <span className={`absolute left-0 top-0 h-[1.5px] w-full rounded-full bg-(--island-fg) transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[5.25px] rotate-45" : ""}`} />
-                    <span className={`absolute left-0 top-[5.25px] h-[1.5px] w-full rounded-full bg-(--island-fg) transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "scale-x-0 opacity-0" : ""}`} />
-                    <span className={`absolute left-0 top-[10.5px] h-[1.5px] w-full rounded-full bg-(--island-fg) transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[-5.25px] -rotate-45" : ""}`} />
-                  </span>
-                </button>
-              </div>
-            </CutoutWrapper>
+                  {/* Hamburger Menu / Cross */}
+                  <button
+                    aria-expanded={isOpen}
+                    aria-label={isOpen ? "Close menu" : "Open menu"}
+                    className="flex h-full flex-1 items-center justify-center focus-visible:outline-none cursor-pointer relative z-30"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setIsOpen((current) => !current);
+                    }}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setIsOpen((current) => !current);
+                    }}
+                    type="button"
+                  >
+                    <span className="relative h-[12px] w-[18px] transition-opacity duration-300">
+                      <span className={`absolute left-0 top-0 h-[1.5px] w-full rounded-full bg-(--island-fg) transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[5.25px] rotate-45" : ""}`} />
+                      <span className={`absolute left-0 top-[5.25px] h-[1.5px] w-full rounded-full bg-(--island-fg) transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "scale-x-0 opacity-0" : ""}`} />
+                      <span className={`absolute left-0 top-[10.5px] h-[1.5px] w-full rounded-full bg-(--island-fg) transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-y-[-5.25px] -rotate-45" : ""}`} />
+                    </span>
+                  </button>
+                </div>
+              </CutoutWrapper>
+            </div>
           </div>
 
           {/* Menu Content Island (Dropdown) */}

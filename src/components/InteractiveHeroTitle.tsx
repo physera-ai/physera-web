@@ -25,15 +25,15 @@ export function InteractiveHeroTitle({ children }: InteractiveHeroTitleProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`hero-bracket font-serif font-[50] text-7xl text-white/20 leading-none select-none -mt-4 sm:-mt-6 ${shouldBlink ? 'animate-bracket-blink' : ''}`}
+        className={`hero-bracket font-serif font-[50] text-7xl text-(--site-fg-muted) opacity-20 leading-none select-none -mt-4 sm:-mt-6 transition-colors duration-300 ${shouldBlink ? 'animate-bracket-blink' : ''}`}
       >
         [
       </div>
-      <h1 className="flex-1 font-serif font-[350] text-3xl sm:text-[44px] text-white/90 leading-[1.1] tracking-tighter text-center px-2">
+      <h1 className="flex-1 font-serif font-[350] text-3xl sm:text-[44px] text-(--site-fg) leading-[1.1] tracking-tighter text-center px-2 transition-colors duration-300">
         {children}
       </h1>
       <div
-        className={`hero-bracket font-serif font-[50] text-7xl text-white/20 leading-none select-none -mt-4 sm:-mt-6 ${shouldBlink ? 'animate-bracket-blink' : ''}`}
+        className={`hero-bracket font-serif font-[50] text-7xl text-(--site-fg-muted) opacity-20 leading-none select-none -mt-4 sm:-mt-6 transition-colors duration-300 ${shouldBlink ? 'animate-bracket-blink' : ''}`}
       >
         ]
       </div>
