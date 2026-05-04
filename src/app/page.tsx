@@ -50,7 +50,7 @@ export default function Page() {
               {/* Essay Section Right */}
               <div className="w-full max-w-[700px] font-sans font-regular text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed flex flex-col items-start gap-5 md:gap-7 text-left pb-16 lg:pt-4 lg:pb-40">
                 <div className="mb-2 flex justify-start">
-                  <h1 className="flex-1 font-serif italic font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter text-left transition-colors duration-300">
+                  <h1 className="flex-1 font-serif font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter text-left transition-colors duration-300">
                     Rethinking Applied Intelligence
                   </h1>
                 </div>
@@ -65,20 +65,20 @@ export default function Page() {
 
                   <div>
                     <p>
-                      We are rethinking each layer of AI stack from <span className="bg-(--highlight-bg) px-1 rounded-md">first principles</span>.
+                      We are rethinking each layer of the AI stack from <span className="bg-(--highlight-bg) px-1 rounded-md">first principles</span>. The questions guiding our work are:
                     </p>
                     <ul className="list-disc pl-5 mt-6 space-y-4 marker:text-(--island-rule-hover)">
                       <li className="pl-2">
-                        How models are deployed under hard cost and latency constraints — establishing a new class of commercially meaningful benchmarks and <span className="bg-(--highlight-bg) px-1 rounded-md">token efficient architectures</span>.
+                        <span className="text-(--site-fg)">How do we make advanced models cheaper, faster, and more dependable under real-world constraints?</span> We care about <span className="bg-(--highlight-bg) px-1 rounded-md">token efficient architectures</span>, latency, and benchmarks that reflect commercially meaningful deployment conditions.
                       </li>
                       <li className="pl-2">
-                        How do we simulate <span className="bg-(--highlight-bg) px-1 rounded-md">human decision-making</span> — building high fidelity, multimodal, multi-agent systems that are falsifiable and improvable.
+                        <span className="text-(--site-fg)">How do we build environments that reflect how people perceive, reason, and decide?</span> We are building <span className="bg-(--highlight-bg) px-1 rounded-md">high-fidelity behavioural simulations</span> and multimodal, multi-agent systems that can be measured, falsified, and improved.
                       </li>
                     </ul>
                   </div>
 
                   <p>
-                    We are a team of applied researchers and engineers who believe the important and most valuable problems in AI today are not about capability but about making that capability reliably useful across multimodality. Building systems that perceive, reason, and decide as humans do — under the constraints humans face. We are heads down engineering that future. Stay tuned.
+                  We are a team of applied researchers and engineers who believe that the most important  problems in AI today are not about capability but making that capability reliably useful across multimodality. We are heads down building systems that perceive, reason, and decide as humans do, under the constraints humans face.
                   </p>
 
                   <p className="leading-[1.8]">

@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SITE_DESCRIPTION, SITE_URL } from "../site-metadata";
 
-const SITE_URL = "https://physera.ai";
 const PAGE_TITLE = "Team | Physera";
-const PAGE_DESCRIPTION =
-  "Meet the team building Physera, a research and product lab working on model efficiency, behavioural simulations, and multimodal environments.";
 
 const teamMembers = [
-  { name: "Himanshu Dubey", x: "https://x.com/himanshustwts" },
   { name: "Soham Parekh", x: "https://x.com/realsohamparekh" },
+  { name: "Himanshu Dubey", x: "https://x.com/himanshustwts" },
   { name: "Ashwarya Maratha", x: "https://x.com/AshwaryaMaratha" },
   { name: "Tim Cvetko", x: "https://x.com/cvetko_tim" },
   { name: "Shashwat Dubey", x: "https://x.com/shashwatvalid" },
@@ -23,7 +21,7 @@ const structuredData = {
       "@id": `${SITE_URL}/team#webpage`,
       url: `${SITE_URL}/team`,
       name: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
+      description: SITE_DESCRIPTION,
       isPartOf: {
         "@id": `${SITE_URL}/#website`,
       },
@@ -58,13 +56,13 @@ function XIcon() {
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
-  description: PAGE_DESCRIPTION,
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/team",
   },
   openGraph: {
     title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
+    description: SITE_DESCRIPTION,
     url: `${SITE_URL}/team`,
     siteName: "Physera",
     type: "website",
@@ -72,7 +70,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
+    description: SITE_DESCRIPTION,
     site: "@PhyseraAI",
     creator: "@PhyseraAI",
   },
@@ -104,7 +102,7 @@ export default function TeamPage() {
         <div className="flex-1 flex flex-col items-center px-5 sm:px-4 pt-28 sm:pt-36 pb-20 pointer-events-auto cursor-default">
           <section className="w-full max-w-[700px] flex flex-col gap-8 relative z-10 text-left">
             <div className="flex flex-col gap-4">
-              <h1 className="font-serif italic font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter">
+              <h1 className="font-serif font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter">
                 Team
               </h1>
               <p className="font-sans text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed">

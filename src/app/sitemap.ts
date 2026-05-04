@@ -16,5 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${SITE_URL}/contact`,
+      lastModified: "2026-05-04",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 }
