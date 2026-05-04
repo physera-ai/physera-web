@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
 import { ContactForm } from "@/components/ContactForm";
 import { SiteHeader } from "@/components/SiteHeader";
-import { SITE_DESCRIPTION, SITE_URL } from "../site-metadata";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_OG_IMAGE, SITE_URL } from "../site-metadata";
 
 const PAGE_TITLE = "Contact | Physera";
 
@@ -16,13 +16,15 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: SITE_DESCRIPTION,
     url: `${SITE_URL}/contact`,
-    siteName: "Physera",
+    siteName: SITE_NAME,
+    images: [SITE_OG_IMAGE],
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: PAGE_TITLE,
     description: SITE_DESCRIPTION,
+    images: [SITE_OG_IMAGE],
     site: "@PhyseraAI",
     creator: "@PhyseraAI",
   },

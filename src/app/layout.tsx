@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { funnelDisplay, headingFont, mono, sans, serifFont } from "./fonts";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "./site-metadata";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_OG_IMAGE, SITE_TITLE, SITE_URL } from "./site-metadata";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-XHRND0W3WV";
@@ -53,12 +53,14 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: SITE_NAME,
+    images: [SITE_OG_IMAGE],
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: [SITE_OG_IMAGE],
     site: "@PhyseraAI",
     creator: "@PhyseraAI",
   },
