@@ -1,14 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { funnelDisplay, headingFont, mono, sans, serifFont } from "./fonts";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "./site-metadata";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-XHRND0W3WV";
-const SITE_URL = "https://physera.ai";
-const SITE_NAME = "Physera";
-const SITE_TITLE = "Physera | Rethinking Applied Intelligence";
-const SITE_DESCRIPTION =
-  "Physera is a research and product lab working at the intersection of model efficiency and behavioural simulations while building environments that are multimodal.";
 const ORGANIZATION_LOGO_URL = `${SITE_URL}/logo/logo-full/physera-logo-full-red-transparent.svg`;
 const SAME_AS_LINKS = [
   "https://github.com/physera-ai/",

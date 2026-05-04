@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SITE_DESCRIPTION, SITE_URL } from "../site-metadata";
 
-const SITE_URL = "https://physera.ai";
 const PAGE_TITLE = "Team | Physera";
-const PAGE_DESCRIPTION =
-  "Meet the team building Physera, a research and product lab working on model efficiency, behavioural simulations, and multimodal environments.";
 
 const teamMembers = [
   { name: "Soham Parekh", x: "https://x.com/realsohamparekh" },
@@ -23,7 +21,7 @@ const structuredData = {
       "@id": `${SITE_URL}/team#webpage`,
       url: `${SITE_URL}/team`,
       name: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
+      description: SITE_DESCRIPTION,
       isPartOf: {
         "@id": `${SITE_URL}/#website`,
       },
@@ -58,13 +56,13 @@ function XIcon() {
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
-  description: PAGE_DESCRIPTION,
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/team",
   },
   openGraph: {
     title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
+    description: SITE_DESCRIPTION,
     url: `${SITE_URL}/team`,
     siteName: "Physera",
     type: "website",
@@ -72,7 +70,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
+    description: SITE_DESCRIPTION,
     site: "@PhyseraAI",
     creator: "@PhyseraAI",
   },
