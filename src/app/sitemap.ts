@@ -7,8 +7,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: SITE_URL,
       lastModified: "2026-05-04",
-      changeFrequency: "monthly",
+      changeFrequency: "daily",
       priority: 1,
+    },
+    {
+      url: `${SITE_URL}/team`,
+      lastModified: "2026-05-04",
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
   ];
 }
