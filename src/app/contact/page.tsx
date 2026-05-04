@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
+import { ContactForm } from "@/components/ContactForm";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SITE_DESCRIPTION, SITE_URL } from "../site-metadata";
 
@@ -82,65 +83,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <form className="flex flex-col gap-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="text-[14px] text-(--site-fg-muted) opacity-70 font-medium">Name *</label>
-                  <input
-                    id="name"
-                    type="text"
-                    required
-                    className="w-full bg-[#1d1d1d] rounded-xl px-4 py-3 text-[15px] text-(--site-fg) placeholder:text-white/25 focus:outline-none focus:bg-[#262626] transition-colors font-sans border border-white/10 focus:border-white/20"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="email" className="text-[14px] text-(--site-fg-muted) opacity-70 font-medium">Work Email *</label>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    className="w-full bg-[#1d1d1d] rounded-xl px-4 py-3 text-[15px] text-(--site-fg) placeholder:text-white/25 focus:outline-none focus:bg-[#262626] transition-colors font-sans border border-white/10 focus:border-white/20"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="organization" className="text-[14px] text-(--site-fg-muted) opacity-70 font-medium">Company, Lab, or Institution *</label>
-                <input
-                  id="organization"
-                  type="text"
-                  required
-                  className="w-full bg-[#1d1d1d] rounded-xl px-4 py-3 text-[15px] text-(--site-fg) placeholder:text-white/25 focus:outline-none focus:bg-[#262626] transition-colors font-sans border border-white/10 focus:border-white/20"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="website" className="text-[14px] text-(--site-fg-muted) opacity-70 font-medium">Website, Product, Paper, or Profile Link</label>
-                <input
-                  id="website"
-                  type="url"
-                  className="w-full bg-[#1d1d1d] rounded-xl px-4 py-3 text-[15px] text-(--site-fg) placeholder:text-white/25 focus:outline-none focus:bg-[#262626] transition-colors font-sans border border-white/10 focus:border-white/20"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-[14px] text-(--site-fg-muted) opacity-70 font-medium">Describe your use case or what you&apos;d like to explore with us *</label>
-                <textarea
-                  id="message"
-                  required
-                  rows={3}
-                  className="w-full bg-[#1d1d1d] rounded-xl px-4 py-3 text-[15px] text-(--site-fg) placeholder:text-white/25 focus:outline-none focus:bg-[#262626] transition-colors font-sans resize-none border border-white/10 focus:border-white/20"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full mt-1 bg-white text-black font-medium text-[16px] rounded-xl py-3 hover:bg-white/90 focus:outline-none transition-all active:scale-[0.98] cursor-pointer"
-              >
-                Submit
-              </button>
-            </form>
+            <ContactForm />
 
           </section>
         </div>

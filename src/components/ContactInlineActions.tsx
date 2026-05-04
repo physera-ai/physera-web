@@ -2,10 +2,10 @@ export function ContactInlineActions() {
   return (
     <span>
       <a 
-        href="mailto:founders@physera.ai" 
+        href="mailto:hello@physera.ai" 
         className="bg-(--highlight-bg) px-1 rounded-md text-(--site-fg) hover:text-(--site-fg-muted) transition-colors"
       >
-        founders@physera.ai
+        hello@physera.ai
       </a>
       {" "}and follow us on{" "}
       <a 
