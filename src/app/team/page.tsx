@@ -8,8 +8,8 @@ const PAGE_DESCRIPTION =
   "Meet the team building Physera, a research and product lab working on model efficiency, behavioural simulations, and multimodal environments.";
 
 const teamMembers = [
-  { name: "Himanshu Dubey", x: "https://x.com/himanshustwts" },
   { name: "Soham Parekh", x: "https://x.com/realsohamparekh" },
+  { name: "Himanshu Dubey", x: "https://x.com/himanshustwts" },
   { name: "Ashwarya Maratha", x: "https://x.com/AshwaryaMaratha" },
   { name: "Tim Cvetko", x: "https://x.com/cvetko_tim" },
   { name: "Shashwat Dubey", x: "https://x.com/shashwatvalid" },

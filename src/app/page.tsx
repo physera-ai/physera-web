@@ -78,7 +78,7 @@ export default function Page() {
                   </div>
 
                   <p>
-                    We are a team of applied researchers and engineers who believe the important and most valuable problems in AI today are not about capability but about making that capability reliably useful across multimodality. Building systems that perceive, reason, and decide as humans do — under the constraints humans face. We are heads down engineering that future. Stay tuned.
+                  We are a team of applied researchers and engineers who believe the most important  problems in AI today are not about capability but making that capability reliably useful across multimodality. Building systems that perceive, reason, and decide as humans do — under the constraints humans face. We are heads down engineering that future. Stay tuned.
                   </p>
 
                   <p className="leading-[1.8]">
