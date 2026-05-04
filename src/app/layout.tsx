@@ -8,7 +8,7 @@ const SITE_URL = "https://physera.ai";
 const SITE_NAME = "Physera";
 const SITE_TITLE = "Physera | Rethinking Applied Intelligence";
 const SITE_DESCRIPTION =
-  "Physera is a research and product lab working at the intersection of model efficiency, behavioural simulations, and multimodal environments.";
+  "Physera is a research and product lab working at the intersection of model efficiency and behavioural simulations while building environments that are multimodal.";
 const ORGANIZATION_LOGO_URL = `${SITE_URL}/logo/logo-full/physera-logo-full-red-transparent.svg`;
 const SAME_AS_LINKS = [
   "https://github.com/physera-ai/",
