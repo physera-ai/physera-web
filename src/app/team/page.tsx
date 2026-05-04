@@ -102,7 +102,7 @@ export default function TeamPage() {
         <div className="flex-1 flex flex-col items-center px-5 sm:px-4 pt-28 sm:pt-36 pb-20 pointer-events-auto cursor-default">
           <section className="w-full max-w-[700px] flex flex-col gap-8 relative z-10 text-left">
             <div className="flex flex-col gap-4">
-              <h1 className="font-serif italic font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter">
+              <h1 className="font-serif font-normal text-5xl sm:text-[52px] text-(--site-fg) leading-[1.1] tracking-tighter">
                 Team
               </h1>
               <p className="font-sans text-[16px] sm:text-[18px] text-(--site-fg) opacity-90 leading-relaxed">
