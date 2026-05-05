@@ -5,7 +5,8 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_OG_IMAGE, SITE_TITLE, SITE_URL } from
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-XHRND0W3WV";
-const FAVICON_VERSION = "20260504";
+const FAVICON_VERSION = "20260505";
+const SEARCH_FAVICON_URL = "/metadata/favicon-google-20260505-48x48.png";
 const ORGANIZATION_LOGO_URL = `${SITE_URL}/logo/logo-full/physera-logo-full-red-transparent.svg`;
 const SAME_AS_LINKS = [
   "https://github.com/physera-ai/",
@@ -67,6 +68,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: SEARCH_FAVICON_URL, sizes: "48x48", type: "image/png" },
       { url: `/metadata/favicon-32x32.png?v=${FAVICON_VERSION}`, sizes: "32x32", type: "image/png" },
       { url: `/metadata/favicon-16x16.png?v=${FAVICON_VERSION}`, sizes: "16x16", type: "image/png" },
     ],
