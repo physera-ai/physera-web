@@ -82,7 +82,7 @@ export default function Page() {
                   </p>
 
                   <p className="leading-[1.8]">
-                    We&apos;re looking for collaborators to help shape this vision. Reach out at <ContactInlineActions />
+                    Reach out at <ContactInlineActions />
                   </p>
                 </div>
 
