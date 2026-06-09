@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  /* --background: #f8f6f2; */
+  --background: #ffffff;
+  --foreground: #0d0d0d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-cactus-serif);
+}
+
+/* ---- Looping illustration motion ---- */
+.illo-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: illo-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes illo-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.14);
+  }
+}
+
+/* Self-drawing line. Requires pathLength={1} on the element so the dash
+   length is normalized and never depends on the actual geometry. */
+.illo-trace {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: illo-trace 3.6s ease-in-out infinite;
+}
+
+@keyframes illo-trace {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  24% {
+    stroke-dashoffset: 0;
+  }
+  80% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -1;
+  }
+}
+
+/* Gentle wandering of network nodes (kept small so edges stay attached). */
+.illo-drift {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: illo-drift 6s ease-in-out infinite;
+}
+
+@keyframes illo-drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(3px, -2.5px);
+  }
+  50% {
+    transform: translate(-1.5px, -4px);
+  }
+  75% {
+    transform: translate(-3.5px, 2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Sequential cell highlight travelling along the RL path, synced with illo-trace. */
+.illo-step {
+  opacity: 0;
+  animation: illo-step 3.6s ease-in-out infinite;
+}
+
+@keyframes illo-step {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .illo-pulse {
+    animation: none;
+  }
+  .illo-trace {
+    animation: none;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+  .illo-drift {
+    animation: none;
+  }
+  .illo-step {
+    animation: none;
+  }
+}

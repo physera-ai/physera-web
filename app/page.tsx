@@ -1,0 +1,43 @@
+import CardsSection from "./components/CardsSection";
+import HeroVoxels from "./components/HeroVoxels";
+import PillLink from "./components/PillLink";
+
+export default function Home() {
+  return (
+    <main className="flex w-full max-w-[1320px] flex-1 flex-col gap-2.5 px-3 py-1 sm:px-4">
+      <section className="flex flex-col items-center justify-center gap-6 overflow-hidden rounded bg-white px-5 pb-14 pt-0 text-center sm:px-6 sm:pb-16 sm:pt-4">
+        <HeroVoxels />
+
+        <h1 className="-mt-4 font-serif text-[clamp(2.2rem,5.5vw,3.25rem)] leading-tight tracking-[-0.04em] text-[#0d0d0d]">
+          Rethinking Applied Intelligence
+        </h1>
+
+        <p className="max-w-[556px] text-[18px] font-[450] leading-normal tracking-[-0.36px] text-[#656565]">
+          Physera is a research and product lab rethinking applied intelligence.
+          We work at the intersection of{" "}
+          <span className="rounded-md bg-[#f4f4f4] px-1 text-[#111]">
+            model efficiency
+          </span>{" "}
+          and{" "}
+          <span className="rounded-md bg-[#f4f4f4] px-1 text-[#111]">
+            behavioural simulations
+          </span>{" "}
+          while building environments that are{" "}
+          <span className="rounded-md bg-[#f4f4f4] px-1 text-[#111]">
+            multimodal
+          </span>
+          .
+        </p>
+
+        <div className="flex gap-3 pt-4">
+          <PillLink href="/thesis">Read Thesis</PillLink>
+          <PillLink href="/contact" variant="primary">
+            Get in touch
+          </PillLink>
+        </div>
+      </section>
+
+      <CardsSection />
+    </main>
+  );
+}
