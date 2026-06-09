@@ -201,11 +201,18 @@ function EnvironmentsIllo({ accent }: IlloProps) {
 
 const pillars = [
   {
-    title: "Efficient Architectures",
-    body: "Token and compute-efficient research architectures, built for deployment under hard cost and latency constraints.",
-    tint: "#f9f3df",
-    accent: "#f2e6a6",
-    Illo: ArchitecturesIllo,
+    title: "RL Envs",
+    body: "Specialized reinforcement-learning environments built for complex domain-specific tasks.",
+    tint: "#e9f7f1",
+    accent: "#aee5d2",
+    Illo: EnvironmentsIllo,
+  },
+  {
+    title: "Behavioral Simulations",
+    body: "High-fidelity multi-agent systems that simulate human decision-making by pairing LLMs with predictive modelling.",
+    tint: "#fbeaf0",
+    accent: "#f4b8c7",
+    Illo: SimulationIllo,
   },
   {
     title: "Multimodal Benchmarks",
@@ -215,18 +222,11 @@ const pillars = [
     Illo: BenchmarksIllo,
   },
   {
-    title: "Behavioural Simulation",
-    body: "High-fidelity multi-agent systems that simulate human decision-making by pairing LLMs with predictive modelling.",
-    tint: "#fbeaf0",
-    accent: "#f4b8c7",
-    Illo: SimulationIllo,
-  },
-  {
-    title: "RL Environments",
-    body: "Specialized reinforcement-learning environments built for complex computer use and long-horizon tasks.",
-    tint: "#e9f7f1",
-    accent: "#aee5d2",
-    Illo: EnvironmentsIllo,
+    title: "Efficient Architectures",
+    body: "Token and compute-efficient research architectures, built for deployment under hard cost and latency constraints.",
+    tint: "#f9f3df",
+    accent: "#f2e6a6",
+    Illo: ArchitecturesIllo,
   },
 ];
 

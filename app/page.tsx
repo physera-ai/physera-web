@@ -38,6 +38,14 @@ export default function Home() {
       </section>
 
       <CardsSection />
+
+      <section className="rounded bg-white px-6 py-14 text-center sm:px-10 sm:py-16">
+        <p className="mx-auto max-w-[680px] text-[17px] font-[450] leading-relaxed tracking-[-0.02em] text-[#656565] sm:text-[20px]">
+          We’re a remote team based in India and the United States. We partner
+          with frontier labs and design partners to build the next generation of
+          applied intelligence.
+        </p>
+      </section>
     </main>
   );
 }

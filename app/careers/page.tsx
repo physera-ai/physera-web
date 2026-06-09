@@ -24,9 +24,9 @@ export default function CareersPage() {
               something real.
             </p>
             <p>
-              If this resonates, send us an email about yourself, what you have
-              worked on, and the kind of problems you want to spend your time
-              on. We read every message.
+              If this resonates, send us an email about yourself and the work
+              you have done. Tell us what kinds of problems you want to spend
+              your time on. We read every message.
             </p>
           </div>
 

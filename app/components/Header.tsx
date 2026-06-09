@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const navLinks = [
-  { label: "Careers", href: "/careers" },
   { label: "Thesis", href: "/thesis" },
+  { label: "Careers", href: "/careers" },
 ];
 
 export default function Header() {
