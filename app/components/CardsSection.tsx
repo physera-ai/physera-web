@@ -201,8 +201,8 @@ function EnvironmentsIllo({ accent }: IlloProps) {
 
 const pillars = [
   {
-    title: "RL Envs",
-    body: "Specialized reinforcement-learning environments built for complex domain-specific tasks.",
+    title: "RL Environments",
+    body: "Specialized long-horizon RL environments built for complex domain-specific tasks.",
     tint: "#e9f7f1",
     accent: "#aee5d2",
     Illo: EnvironmentsIllo,

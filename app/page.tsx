@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CardsSection from "./components/CardsSection";
 import HeroVoxels from "./components/HeroVoxels";
 import PillLink from "./components/PillLink";
@@ -41,9 +42,16 @@ export default function Home() {
 
       <section className="rounded bg-white px-6 py-14 text-center sm:px-10 sm:py-16">
         <p className="mx-auto max-w-[680px] text-[17px] font-[450] leading-relaxed tracking-[-0.02em] text-[#656565] sm:text-[20px]">
-          We’re a remote team based in India and the United States. We partner
-          with frontier labs and design partners to build the next generation of
-          applied intelligence.
+          We’re a remote{" "}
+          <Link
+            href="/team"
+            className="rounded-md bg-[#f4f4f4] px-1 text-[#111] underline underline-offset-4 transition-colors hover:bg-[#e8e8e8]"
+          >
+            team
+          </Link>{" "}
+          based in India and the United States. We partner with frontier labs
+          and design partners to build the next generation of applied
+          intelligence.
         </p>
       </section>
     </main>
