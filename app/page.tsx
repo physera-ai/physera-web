@@ -50,7 +50,7 @@ export default function Home() {
             team
           </Link>{" "}
           based in India and the United States. We partner with frontier labs
-          and enterprises to build the next generation of applied
+          and design partners to build the next generation of applied
           intelligence.
         </p>
       </section>
