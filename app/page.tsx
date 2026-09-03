@@ -2,10 +2,10 @@ import Link from "next/link";
 import HomeBenchmarks from "./components/HomeBenchmarks";
 
 const readout = [
-  { k: "Benchmarks live", v: "02" },
-  { k: "Systems measured", v: "12" },
-  { k: "Scored dimensions", v: "38" },
-  { k: "Public leaderboards", v: "02" },
+  { k: "Benchmarks live", v: "02", note: "Cyber and voice, more in build" },
+  { k: "Systems measured", v: "12", note: "Frontier and open models" },
+  { k: "Scored dimensions", v: "38", note: "Security checks and audio axes" },
+  { k: "Public leaderboards", v: "02", note: "Open and reproducible" },
 ];
 
 const lines = [
@@ -57,21 +57,23 @@ export default function Home() {
             </div>
             <div className="home-readout" aria-label="Lab readout">
               <div className="home-readout-head">
-                <span className="bench-mono-label">Readout</span>
-                <span className="home-readout-live">● live</span>
+                <span className="bench-mono-label">Lab readout</span>
+                <span className="home-readout-live">Live</span>
               </div>
               <dl>
                 {readout.map((r) => (
-                  <div key={r.k}>
-                    <dt>{r.k}</dt>
+                  <div key={r.k} className="home-readout-row">
+                    <dt>
+                      {r.k}
+                      <span className="rn">{r.note}</span>
+                    </dt>
                     <dd>{r.v}</dd>
                   </div>
                 ))}
               </dl>
-              <p className="home-readout-note">
-                Applied research on model efficiency and behavioural simulation, sold to the labs that
-                train the frontier.
-              </p>
+              <Link href="/research" className="home-readout-cta">
+                See the benchmarks
+              </Link>
             </div>
           </div>
         </div>
