@@ -8,6 +8,19 @@ const readout = [
   { k: "Public leaderboards", v: "02", note: "Open and reproducible" },
 ];
 
+const measuring = [
+  "GPT-5.5",
+  "Claude Opus 5",
+  "Gemini TTS",
+  "ElevenLabs",
+  "DeepSeek V4 Pro",
+  "Kimi K3",
+  "GLM-5.3 Flash",
+  "Cartesia Sonic",
+  "GPT-4o Audio",
+  "Gemini Live",
+];
+
 const lines = [
   {
     n: "01",
@@ -31,10 +44,11 @@ const lines = [
 
 export default function Home() {
   return (
-    <main className="bench home-frame flex w-full max-w-[1320px] flex-1 flex-col">
+    <main className="bench home-page flex w-full flex-1 flex-col">
+      <div className="home-frame">
       {/* Hero — split: thesis left, instrument readout right */}
       <section className="bg-white px-5 pt-16 pb-6 sm:px-12 sm:pt-24">
-        <div className="mx-auto max-w-[1180px]">
+        <div className="home-inner">
           <div className="home-split">
             <div>
               <span className="bench-kicker">Physera · Applied research lab</span>
@@ -81,7 +95,7 @@ export default function Home() {
 
       {/* Calibration axis */}
       <section className="bg-white px-5 py-2 sm:px-12">
-        <div className="mx-auto max-w-[1180px]">
+        <div className="home-inner">
           <div className="home-axis">
             <span className="home-axis-end">Model efficiency</span>
             <div className="home-axis-track" aria-hidden="true">
@@ -95,9 +109,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Now measuring — live ticker */}
+      <section className="home-ticker-sec bg-white">
+        <div className="home-ticker">
+          <span className="home-ticker-label">Now measuring</span>
+          <div className="home-ticker-track">
+            {[0, 1].map((run) => (
+              <ul key={run} className="home-ticker-run" aria-hidden={run === 1 || undefined}>
+                {measuring.map((m) => (
+                  <li key={m}>
+                    <span className="dot" />
+                    {m}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Two lines of work */}
       <section className="bg-white px-5 py-12 sm:px-12 sm:py-16">
-        <div className="mx-auto max-w-[1180px]">
+        <div className="home-inner">
           <span className="bench-kicker">Two lines of work</span>
           <div className="home-work">
             {lines.map((l) => (
@@ -122,7 +155,7 @@ export default function Home() {
 
       {/* Research track record */}
       <section className="bg-white px-5 py-12 sm:px-12 sm:py-16">
-        <div className="mx-auto max-w-[1180px]">
+        <div className="home-inner">
           <div className="home-strip-head">
             <span className="bench-kicker">Research track record</span>
             <Link href="/research" className="bench-mono-label bench-link">
@@ -168,6 +201,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </div>
     </main>
   );
 }

@@ -497,7 +497,24 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .home-readout-cta:hover { color: var(--bench-accent); }
 .home-readout-cta:hover::after { transform: translateX(3px); }
 
-/* ---- Homepage frame (vertical rules box the column) ---- */
-.home-frame { border-left: 1px solid var(--bench-rule); border-right: 1px solid var(--bench-rule); background: #ffffff; }
+
+/* ---- Homepage full-bleed frame ---- */
+.home-page { width: 100%; background: #ffffff; padding-inline: clamp(20px, 4vw, 68px); }
+.home-frame { border-left: 1px solid var(--bench-rule); border-right: 1px solid var(--bench-rule); }
 .home-frame > section { border-bottom: 1px solid var(--bench-rule); }
 .home-frame > section:last-child { border-bottom: 0; }
+.home-inner { width: 100%; }
+/* align chrome to the same gutter as the frame */
+.site-header-inner { max-width: none; padding: 0 clamp(20px, 4vw, 68px); }
+.site-footer-inner { max-width: none; padding: 64px clamp(20px, 4vw, 68px) 28px; }
+
+/* ---- Now-measuring ticker ---- */
+.home-ticker-sec { padding: 0; }
+.home-ticker { display: grid; grid-template-columns: auto 1fr; align-items: center; }
+.home-ticker-label { padding: 0 20px; height: 52px; display: inline-flex; align-items: center; white-space: nowrap; border-right: 1px solid var(--bench-rule); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bench-accent); }
+.home-ticker-track { overflow: hidden; display: flex; width: 100%; mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.home-ticker-run { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; flex: none; gap: 0; animation: home-ticker-scroll 34s linear infinite; }
+.home-ticker-run li { display: inline-flex; align-items: center; gap: 10px; padding: 0 26px; height: 52px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; color: var(--bench-ink); white-space: nowrap; }
+.home-ticker-run li .dot { width: 5px; height: 5px; background: var(--bench-accent); transform: rotate(45deg); }
+@keyframes home-ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) { .home-ticker-run { animation: none; } }
