@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Geist, Cactus_Classical_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Cactus_Classical_Serif } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,6 +14,11 @@ import {
 
 const geist = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -129,7 +134,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${cactusSerif.variable} antialiased`}
+      className={`${geist.variable} ${geistMono.variable} ${cactusSerif.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col items-center bg-background font-sans text-foreground">
         <script

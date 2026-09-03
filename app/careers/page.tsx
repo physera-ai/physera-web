@@ -37,7 +37,7 @@ export default function CareersPage() {
             >
               Email us
             </a>
-            <PillLink href="/thesis">Read the thesis</PillLink>
+            <PillLink href="/manifesto">Read the manifesto</PillLink>
           </div>
         </div>
       </article>

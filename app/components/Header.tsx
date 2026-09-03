@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const navLinks = [
-  { label: "Thesis", href: "/thesis" },
+  { label: "Manifesto", href: "/manifesto" },
+  { label: "Research", href: "/research" },
   { label: "Careers", href: "/careers" },
 ];
 
@@ -54,7 +55,7 @@ export default function Header() {
       </Link>
       <nav className="flex items-center gap-4 text-[15px] font-medium tracking-[-0.32px] text-[#111] sm:gap-6 sm:text-[16px]">
         {navLinks.map(({ label, href }) => {
-          const active = pathname === href;
+          const active = pathname === href || (href !== "/" && pathname.startsWith(href + "/"));
           return (
             <Link
               key={label}

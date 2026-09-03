@@ -31,7 +31,7 @@ export default function Home() {
         </p>
 
         <div className="flex gap-3 pt-4">
-          <PillLink href="/thesis">Read Thesis</PillLink>
+          <PillLink href="/manifesto">Read the Manifesto</PillLink>
           <PillLink href="/contact" variant="primary">
             Get in touch
           </PillLink>
