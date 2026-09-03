@@ -31,9 +31,9 @@ const lines = [
 
 export default function Home() {
   return (
-    <main className="bench flex w-full max-w-[1320px] flex-1 flex-col gap-2.5 px-3 py-1 sm:px-4">
+    <main className="bench home-frame flex w-full max-w-[1320px] flex-1 flex-col">
       {/* Hero — split: thesis left, instrument readout right */}
-      <section className="rounded bg-white px-5 pt-16 pb-6 sm:px-12 sm:pt-24">
+      <section className="bg-white px-5 pt-16 pb-6 sm:px-12 sm:pt-24">
         <div className="mx-auto max-w-[1180px]">
           <div className="home-split">
             <div>
@@ -80,7 +80,7 @@ export default function Home() {
       </section>
 
       {/* Calibration axis */}
-      <section className="rounded bg-white px-5 py-2 sm:px-12">
+      <section className="bg-white px-5 py-2 sm:px-12">
         <div className="mx-auto max-w-[1180px]">
           <div className="home-axis">
             <span className="home-axis-end">Model efficiency</span>
@@ -96,7 +96,7 @@ export default function Home() {
       </section>
 
       {/* Two lines of work */}
-      <section className="rounded bg-white px-5 py-12 sm:px-12 sm:py-16">
+      <section className="bg-white px-5 py-12 sm:px-12 sm:py-16">
         <div className="mx-auto max-w-[1180px]">
           <span className="bench-kicker">Two lines of work</span>
           <div className="home-work">
@@ -121,7 +121,7 @@ export default function Home() {
       </section>
 
       {/* Research track record */}
-      <section className="rounded bg-white px-5 py-12 sm:px-12 sm:py-16">
+      <section className="bg-white px-5 py-12 sm:px-12 sm:py-16">
         <div className="mx-auto max-w-[1180px]">
           <div className="home-strip-head">
             <span className="bench-kicker">Research track record</span>
@@ -134,7 +134,7 @@ export default function Home() {
       </section>
 
       {/* Manifesto quote band */}
-      <section className="rounded bg-white px-5 py-16 sm:px-12 sm:py-24">
+      <section className="bg-white px-5 py-16 sm:px-12 sm:py-24">
         <div className="mx-auto max-w-[980px]">
           <blockquote className="home-quote">
             <p className="font-serif">
@@ -151,7 +151,7 @@ export default function Home() {
       </section>
 
       {/* Close */}
-      <section className="rounded bg-white px-5 py-14 sm:px-12 sm:py-20">
+      <section className="bg-white px-5 py-14 sm:px-12 sm:py-20">
         <div className="mx-auto max-w-[860px]">
           <div className="home-close-grid">
             <p className="home-close font-serif">

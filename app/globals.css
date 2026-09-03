@@ -496,3 +496,8 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .home-readout-cta::after { content: "→"; color: var(--bench-accent); transition: transform .15s ease; }
 .home-readout-cta:hover { color: var(--bench-accent); }
 .home-readout-cta:hover::after { transform: translateX(3px); }
+
+/* ---- Homepage frame (vertical rules box the column) ---- */
+.home-frame { border-left: 1px solid var(--bench-rule); border-right: 1px solid var(--bench-rule); background: #ffffff; }
+.home-frame > section { border-bottom: 1px solid var(--bench-rule); }
+.home-frame > section:last-child { border-bottom: 0; }
