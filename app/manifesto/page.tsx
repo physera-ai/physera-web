@@ -136,11 +136,13 @@ const market = [
 
 function NumberedGrid({
   items,
+  columns = 2,
 }: {
   items: { n: string; title: string; body: string }[];
+  columns?: 2 | 3;
 }) {
   return (
-    <div className="bench-manifesto">
+    <div className={columns === 3 ? "bench-manifesto manifesto-grid-3" : "bench-manifesto"}>
       {items.map((it) => (
         <div key={it.n}>
           <span className="bench-mono-label">{it.n}</span>
@@ -237,7 +239,7 @@ export default function ManifestoPage() {
                 The buyers who would pay most for simulation — finance, insurance, risk — cannot use what
                 exists today. It fails them in three ways.
               </p>
-              <NumberedGrid items={faults} />
+              <NumberedGrid items={faults} columns={3} />
               <VarianceCollapse />
               <p className="manifesto-pull">
                 All three faults have the same cause: the unit of simulation has been the population.

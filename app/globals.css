@@ -345,6 +345,14 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .bench-kicker { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bench-accent); margin-bottom: 8px; }
 .bench-quote { border-left: 3px solid var(--bench-accent); padding: 2px 0 2px 22px; margin: 8px 0 4px; }
 .bench-quote p { font-family: var(--font-serif); font-style: italic; font-size: 21px; line-height: 1.4; color: var(--bench-accent); max-width: 60ch; margin: 0; }
+.manifesto-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.manifesto-grid-3 > div { border-bottom: 0; border-right: 1px solid var(--bench-rule); }
+.manifesto-grid-3 > div:last-child { border-right: 0; }
+@media (max-width: 820px) {
+  .manifesto-grid-3 { grid-template-columns: 1fr; }
+  .manifesto-grid-3 > div { border-right: 0; border-bottom: 1px solid var(--bench-rule); }
+  .manifesto-grid-3 > div:last-child { border-bottom: 0; }
+}
 .manifesto-figure { margin: 6px 0 26px; }
 .manifesto-figcaption { align-items: center; }
 .manifesto-figcaption .bench-legend-item:last-child { color: var(--bench-ink-3); }
