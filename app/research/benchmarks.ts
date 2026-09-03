@@ -16,6 +16,7 @@ export const CATEGORIES = [
   "Cyber",
   "Agents",
   "Efficiency",
+  "Voice",
   "Simulation",
 ] as const;
 
@@ -44,6 +45,33 @@ export const benchmarks: Benchmark[] = [
       [0.03, 0.29],
       [0.17, 0.29],
       [0.06, 0.21],
+    ],
+    live: true,
+  },
+  {
+    slug: "voice-arena",
+    name: "Voice Arena",
+    category: "Voice",
+    access: "Open",
+    updated: "May 2026",
+    blurb:
+      "Conversational voice systems scored on empathy, response quality, and latency across cascade and native architectures, with a delivery-versus-content decomposition.",
+    tags: ["Voice", "Audio", "Empathy", "Cascade vs native"],
+    stats: [
+      { label: "Systems", value: "7" },
+      { label: "Axes", value: "24" },
+      { label: "Stimuli", value: "~100" },
+      { label: "Tiers", value: "2" },
+    ],
+    topModel: { org: "Google", name: "Gemini TTS" },
+    spark: [
+      [0.55, 0.98],
+      [0.09, 0.95],
+      [0.10, 0.94],
+      [0.20, 0.90],
+      [0.20, 0.83],
+      [0.95, 0.82],
+      [1.0, 0.02],
     ],
     live: true,
   },

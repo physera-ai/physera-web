@@ -348,3 +348,20 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .manifesto-figure { margin: 6px 0 26px; }
 .manifesto-figcaption { align-items: center; }
 .manifesto-figcaption .bench-legend-item:last-child { color: var(--bench-ink-3); }
+
+/* ---- Voice Arena decomposition ---- */
+.voice-decomp { display: flex; flex-direction: column; }
+.voice-decomp-row { display: grid; grid-template-columns: 200px 1fr 64px; gap: 20px; align-items: center; padding: 18px 16px; border-bottom: 1px solid var(--bench-rule); }
+.voice-decomp-row:last-child { border-bottom: 0; }
+.voice-decomp-label { display: flex; flex-direction: column; gap: 3px; font-size: 15px; color: var(--bench-ink); }
+.voice-decomp-bars { display: flex; flex-direction: column; gap: 8px; }
+.voice-decomp-bar { display: grid; grid-template-columns: 62px 1fr 48px; gap: 10px; align-items: center; }
+.voice-decomp-bar .t { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--bench-ink-2); }
+.voice-decomp-bar .track { height: 8px; background: var(--bench-rule); position: relative; }
+.voice-decomp-bar .track b { position: absolute; inset: 0 auto 0 0; }
+.voice-decomp-bar .v { font-size: 13px; text-align: right; color: var(--bench-ink); font-variant-numeric: tabular-nums; }
+.voice-decomp-gap { font-family: var(--font-mono); font-size: 13px; color: var(--bench-accent); text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 720px) {
+  .voice-decomp-row { grid-template-columns: 1fr; gap: 10px; }
+  .voice-decomp-gap { text-align: left; }
+}
