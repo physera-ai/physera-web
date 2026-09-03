@@ -1,207 +1,95 @@
 import Link from "next/link";
-import HomeBenchmarks from "./components/HomeBenchmarks";
 
-const readout = [
-  { k: "Benchmarks live", v: "02", note: "Cyber and voice, more in build" },
-  { k: "Systems measured", v: "12", note: "Frontier and open models" },
-  { k: "Scored dimensions", v: "38", note: "Security checks and audio axes" },
-  { k: "Public leaderboards", v: "02", note: "Open and reproducible" },
+const stats = [
+  { v: "02", k: "Live benchmarks" },
+  { v: "12", k: "Systems measured" },
+  { v: "38", k: "Scored dimensions" },
+  { v: "Open", k: "Public leaderboards" },
 ];
 
-const measuring = [
-  "GPT-5.5",
-  "Claude Opus 5",
-  "Gemini TTS",
-  "ElevenLabs",
-  "DeepSeek V4 Pro",
-  "Kimi K3",
-  "GLM-5.3 Flash",
-  "Cartesia Sonic",
-  "GPT-4o Audio",
-  "Gemini Live",
-];
-
-const lines = [
+const work = [
   {
-    n: "01",
-    label: "Efficiency",
-    title: "Measure the models nobody else prices.",
-    body: "Commercially meaningful benchmarks and token-efficient architectures, scored under the cost and latency limits that decide whether the work ships. We report per model and per dollar.",
-    foot: "Cyber · Voice · UI · Animation",
-    href: "/research",
-    cta: "Browse the benchmarks",
+    href: "/research/cyberbench",
+    name: "CyberBench",
+    line: "Coding agents patch vulnerable services, scored per model and per dollar.",
   },
   {
-    n: "02",
-    label: "Simulation",
-    title: "Model the person, not the population.",
-    body: "High-fidelity multi-agent systems that simulate human decision-making, built to be falsified against real behaviour and improved. A calibrated instrument, not a plausible story.",
-    foot: "Multimodal · Multi-agent · Falsifiable",
-    href: "/manifesto",
-    cta: "Read the thesis",
+    href: "/research/voice-arena",
+    name: "Voice Arena",
+    line: "Conversational voice systems scored on empathy, quality, and latency.",
   },
 ];
+
+function Corners() {
+  return (
+    <>
+      <span className="hp-x hp-x-tl" aria-hidden="true" />
+      <span className="hp-x hp-x-tr" aria-hidden="true" />
+      <span className="hp-x hp-x-bl" aria-hidden="true" />
+      <span className="hp-x hp-x-br" aria-hidden="true" />
+    </>
+  );
+}
 
 export default function Home() {
   return (
-    <main className="bench home-page flex w-full flex-1 flex-col">
-      <div className="home-frame">
-      {/* Hero — split: thesis left, instrument readout right */}
-      <section className="bg-white px-5 pt-16 pb-6 sm:px-12 sm:pt-24">
-        <div className="home-inner">
-          <div className="home-split">
-            <div>
-              <span className="bench-kicker">Physera · Applied research lab</span>
-              <h1 className="home-lede font-serif">
-                We build the instrument.
-                <br />
-                And we publish the <em>readings</em>.
-              </h1>
-              <div className="home-hero-cta">
-                <Link href="/research" className="bench-btn bench-btn-primary">
-                  See the Research
-                </Link>
-                <Link href="/manifesto" className="bench-btn bench-btn-ghost">
-                  Read the Manifesto
-                </Link>
-                <Link href="/contact" className="bench-mono-label bench-link home-hero-link">
-                  Work with us →
-                </Link>
-              </div>
+    <main className="hp">
+      {/* Hero — centered, clean */}
+      <section className="hp-hero">
+        <span className="hp-eyebrow">Applied research lab · India &amp; United States</span>
+        <h1 className="hp-title font-serif">
+          The first <span className="hp-bracket">[calibrated]</span> instrument for human
+          decision-making.
+        </h1>
+        <p className="hp-sub">
+          Physera works where model efficiency meets faithful behavioural simulation, and publishes the
+          benchmarks that prove it.
+        </p>
+        <div className="hp-cta">
+          <Link href="/manifesto" className="bench-btn bench-btn-dark">
+            Read the Manifesto
+          </Link>
+          <Link href="/research" className="bench-btn bench-btn-ghost">
+            See the Research
+          </Link>
+        </div>
+      </section>
+
+      {/* Stat band with crosshair corners */}
+      <section className="hp-stats-wrap">
+        <div className="hp-stats">
+          <Corners />
+          {stats.map((s) => (
+            <div key={s.k} className="hp-stat">
+              <span className="hp-stat-v font-serif">{s.v}</span>
+              <span className="hp-stat-k">{s.k}</span>
             </div>
-            <div className="home-readout" aria-label="Lab readout">
-              <div className="home-readout-head">
-                <span className="bench-mono-label">Lab readout</span>
-                <span className="home-readout-live">Live</span>
-              </div>
-              <dl>
-                {readout.map((r) => (
-                  <div key={r.k} className="home-readout-row">
-                    <dt>
-                      {r.k}
-                      <span className="rn">{r.note}</span>
-                    </dt>
-                    <dd>{r.v}</dd>
-                  </div>
-                ))}
-              </dl>
-              <Link href="/research" className="home-readout-cta">
-                See the benchmarks
+          ))}
+        </div>
+      </section>
+
+      {/* Research — minimal */}
+      <section className="hp-research">
+        <div className="hp-research-head">
+          <span className="hp-eyebrow hp-eyebrow-sm">Research</span>
+          <Link href="/research" className="bench-mono-label bench-link">
+            All benchmarks →
+          </Link>
+        </div>
+        <ul className="hp-work">
+          {work.map((w) => (
+            <li key={w.href}>
+              <Link href={w.href} className="hp-work-row">
+                <span className="hp-work-name font-serif">{w.name}</span>
+                <span className="hp-work-line">{w.line}</span>
+                <span className="hp-work-arrow" aria-hidden="true">
+                  →
+                </span>
               </Link>
-            </div>
-          </div>
-        </div>
+            </li>
+          ))}
+        </ul>
       </section>
-
-      {/* Calibration axis */}
-      <section className="bg-white px-5 py-2 sm:px-12">
-        <div className="home-inner">
-          <div className="home-axis">
-            <span className="home-axis-end">Model efficiency</span>
-            <div className="home-axis-track" aria-hidden="true">
-              {Array.from({ length: 41 }).map((_, i) => (
-                <span key={i} className={i % 10 === 0 ? "tick major" : "tick"} />
-              ))}
-              <span className="home-axis-dot" />
-            </div>
-            <span className="home-axis-end right">Behavioral simulation</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Now measuring — live ticker */}
-      <section className="home-ticker-sec bg-white">
-        <div className="home-ticker">
-          <span className="home-ticker-label">Now measuring</span>
-          <div className="home-ticker-track">
-            {[0, 1].map((run) => (
-              <ul key={run} className="home-ticker-run" aria-hidden={run === 1 || undefined}>
-                {measuring.map((m) => (
-                  <li key={m}>
-                    <span className="dot" />
-                    {m}
-                  </li>
-                ))}
-              </ul>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Two lines of work */}
-      <section className="bg-white px-5 py-12 sm:px-12 sm:py-16">
-        <div className="home-inner">
-          <span className="bench-kicker">Two lines of work</span>
-          <div className="home-work">
-            {lines.map((l) => (
-              <article key={l.n} className="home-work-panel">
-                <div className="home-work-top">
-                  <span className="research-num">{l.n}</span>
-                  <span className="bench-mono-label">{l.label}</span>
-                </div>
-                <h2 className="home-work-title font-serif">{l.title}</h2>
-                <p className="home-work-body">{l.body}</p>
-                <div className="home-work-foot-row">
-                  <span className="home-work-foot bench-mono-label">{l.foot}</span>
-                  <Link href={l.href} className="home-work-cta bench-mono-label">
-                    {l.cta} →
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Research track record */}
-      <section className="bg-white px-5 py-12 sm:px-12 sm:py-16">
-        <div className="home-inner">
-          <div className="home-strip-head">
-            <span className="bench-kicker">Research track record</span>
-            <Link href="/research" className="bench-mono-label bench-link">
-              All benchmarks →
-            </Link>
-          </div>
-          <HomeBenchmarks />
-        </div>
-      </section>
-
-      {/* Manifesto quote band */}
-      <section className="bg-white px-5 py-16 sm:px-12 sm:py-24">
-        <div className="mx-auto max-w-[980px]">
-          <blockquote className="home-quote">
-            <p className="font-serif">
-              A learned distribution becomes a scientific instrument the moment its boundaries are mapped
-              — where it agrees with real humans, where it diverges, and by how much.
-            </p>
-            <footer>
-              <Link href="/manifesto" className="bench-mono-label bench-link">
-                From the Manifesto →
-              </Link>
-            </footer>
-          </blockquote>
-        </div>
-      </section>
-
-      {/* Close */}
-      <section className="bg-white px-5 py-14 sm:px-12 sm:py-20">
-        <div className="mx-auto max-w-[860px]">
-          <div className="home-close-grid">
-            <p className="home-close font-serif">
-              A four-person team of applied researchers, funded by the work.
-            </p>
-            <div className="home-close-cta">
-              <Link href="/manifesto" className="bench-btn bench-btn-dark">
-                Read the Manifesto
-              </Link>
-              <Link href="/contact" className="bench-btn bench-btn-ghost">
-                Get in touch
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      </div>
     </main>
   );
 }
