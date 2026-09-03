@@ -71,7 +71,7 @@ export function VarianceCollapse() {
         <text x={sx(0.25) + 14} y={sy(Math.max(...sim)) + 4} className="bench-svg-mono" fill="var(--bench-bad-ink)">
           SIMULATED · a thousand variations on one person
         </text>
-        <text x={sx(2.7)} y={sy(real[xs.findIndex((x) => x >= 2.7)]) - 12} textAnchor="middle" className="bench-svg-mono" fill="var(--bench-ink)">
+        <text x={sx(2.7)} y={sy(real[xs.findIndex((x) => x >= 2.7)]) - 20} textAnchor="middle" className="bench-svg-mono" fill="var(--bench-ink)">
           REAL · heavy-tailed, contradictory
         </text>
       </svg>
@@ -132,10 +132,10 @@ export function SufficiencyThreshold() {
           What buyers pay for one more point
         </text>
 
-        <text x={sx(93)} y={sy(bounded[xs.findIndex((x) => x >= 93)]) - 12} textAnchor="middle" className="bench-svg-mono" fill="var(--bench-ink-2)">
+        <text x={sx(90)} y={sy(bounded[xs.findIndex((x) => x >= 90)]) - 20} textAnchor="middle" className="bench-svg-mono" fill="var(--bench-ink-2)">
           BOUNDED · GOOD ENOUGH, THEN COMMODITIZED
         </text>
-        <text x={sx(97.5)} y={sy(unbounded[xs.findIndex((x) => x >= 97.5)]) - 12} textAnchor="end" className="bench-svg-mono" fill="var(--bench-good-ink)">
+        <text x={sx(92)} y={sy(unbounded[xs.findIndex((x) => x >= 92)]) + 22} textAnchor="middle" className="bench-svg-mono" fill="var(--bench-good-ink)">
           UNBOUNDED · EACH POINT IS WORTH MONEY
         </text>
       </svg>
@@ -191,7 +191,7 @@ export function CompoundingMoat() {
           Advantage over a competitor
         </text>
 
-        <text x={sx(4)} y={sy(access[xs.findIndex((x) => x >= 4)]) - 10} textAnchor="middle" className="bench-svg-mono" fill="var(--bench-ink-2)">
+        <text x={sx(0.3)} y={sy(access[xs.findIndex((x) => x >= 0.3)]) - 10} className="bench-svg-mono" fill="var(--bench-ink-2)">
           MODEL ACCESS · EVERYONE GETS THE SAME MODEL
         </text>
         <text x={sx(6.2)} y={sy(loop[xs.findIndex((x) => x >= 6.2)]) - 14} textAnchor="end" className="bench-svg-mono" fill="var(--bench-good-ink)">
