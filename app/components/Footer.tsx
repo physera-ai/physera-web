@@ -1,50 +1,87 @@
+import Link from "next/link";
+
+const research = [
+  { label: "CyberBench", href: "/research/cyberbench" },
+  { label: "Voice Arena", href: "/research/voice-arena" },
+  { label: "All benchmarks", href: "/research" },
+];
+
+const company = [
+  { label: "Manifesto", href: "/manifesto" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
+];
+
+const connect = [
+  { label: "X / Twitter", href: "https://x.com/PhyseraAI", ext: true },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/physera-ai/", ext: true },
+  { label: "GitHub", href: "https://github.com/physera-ai/", ext: true },
+  { label: "hello@physera.ai", href: "mailto:hello@physera.ai", ext: true },
+];
+
 export default function Footer() {
   return (
-    <footer className="w-full max-w-[1320px] px-5 py-10 sm:px-6">
-      <div className="flex flex-col gap-4 text-[15px] text-[#656565] sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} Physera. Rethinking Applied Intelligence.</p>
-        <nav className="flex items-center gap-5">
-          <a
-            href="https://x.com/PhyseraAI"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Physera on X"
-            className="transition-colors hover:text-[#111]"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              width="16"
-              height="16"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25h6.83l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-          </a>
-          <a
-            href="https://www.linkedin.com/company/physera-ai/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Physera on LinkedIn"
-            className="transition-colors hover:text-[#111]"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              width="16"
-              height="16"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
-            </svg>
-          </a>
-          <a
-            href="mailto:hello@physera.ai"
-            className="transition-colors hover:text-[#111]"
-          >
-            hello@physera.ai
-          </a>
-        </nav>
+    <footer className="site-footer">
+      <div className="site-footer-inner">
+        <div className="site-footer-cta">
+          <div>
+            <span className="site-footer-kicker">Work with us</span>
+            <p className="site-footer-head">Let&apos;s calibrate the instrument together.</p>
+          </div>
+          <Link href="/contact" className="bench-btn bench-btn-onlight">
+            Get in touch
+          </Link>
+        </div>
+
+        <div className="site-footer-cols">
+          <div className="site-footer-brand">
+            <span className="site-footer-wordmark">Physera</span>
+            <p>
+              An applied research lab building the first calibrated instrument for human
+              decision-making.
+            </p>
+          </div>
+
+          <div className="site-footer-col">
+            <h4>Research</h4>
+            <ul>
+              {research.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="site-footer-col">
+            <h4>Company</h4>
+            <ul>
+              {company.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="site-footer-col">
+            <h4>Connect</h4>
+            <ul>
+              {connect.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} target={l.ext ? "_blank" : undefined} rel={l.ext ? "noreferrer" : undefined}>
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="site-footer-bottom">
+          <span>© {new Date().getFullYear()} Physera</span>
+          <span>Rethinking applied intelligence · India &amp; United States</span>
+        </div>
       </div>
     </footer>
   );

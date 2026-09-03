@@ -1,6 +1,5 @@
 import Link from "next/link";
 import HomeBenchmarks from "./components/HomeBenchmarks";
-import PillLink from "./components/PillLink";
 
 const readout = [
   { k: "Benchmarks live", v: "02" },
@@ -16,6 +15,8 @@ const lines = [
     title: "Measure the models nobody else prices.",
     body: "Commercially meaningful benchmarks and token-efficient architectures, scored under the cost and latency limits that decide whether the work ships. We report per model and per dollar.",
     foot: "Cyber · Voice · UI · Animation",
+    href: "/research",
+    cta: "Browse the benchmarks",
   },
   {
     n: "02",
@@ -23,6 +24,8 @@ const lines = [
     title: "Model the person, not the population.",
     body: "High-fidelity multi-agent systems that simulate human decision-making, built to be falsified against real behaviour and improved. A calibrated instrument, not a plausible story.",
     foot: "Multimodal · Multi-agent · Falsifiable",
+    href: "/manifesto",
+    cta: "Read the thesis",
   },
 ];
 
@@ -40,6 +43,17 @@ export default function Home() {
                 <br />
                 And we publish the <em>readings</em>.
               </h1>
+              <div className="home-hero-cta">
+                <Link href="/research" className="bench-btn bench-btn-primary">
+                  See the Research
+                </Link>
+                <Link href="/manifesto" className="bench-btn bench-btn-ghost">
+                  Read the Manifesto
+                </Link>
+                <Link href="/contact" className="bench-mono-label bench-link home-hero-link">
+                  Work with us →
+                </Link>
+              </div>
             </div>
             <div className="home-readout" aria-label="Lab readout">
               <div className="home-readout-head">
@@ -92,7 +106,12 @@ export default function Home() {
                 </div>
                 <h2 className="home-work-title font-serif">{l.title}</h2>
                 <p className="home-work-body">{l.body}</p>
-                <span className="home-work-foot bench-mono-label">{l.foot}</span>
+                <div className="home-work-foot-row">
+                  <span className="home-work-foot bench-mono-label">{l.foot}</span>
+                  <Link href={l.href} className="home-work-cta bench-mono-label">
+                    {l.cta} →
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
@@ -137,10 +156,12 @@ export default function Home() {
               A four-person team of applied researchers, funded by the work.
             </p>
             <div className="home-close-cta">
-              <PillLink href="/manifesto" variant="primary">
+              <Link href="/manifesto" className="bench-btn bench-btn-dark">
                 Read the Manifesto
-              </PillLink>
-              <PillLink href="/contact">Get in touch</PillLink>
+              </Link>
+              <Link href="/contact" className="bench-btn bench-btn-ghost">
+                Get in touch
+              </Link>
             </div>
           </div>
         </div>

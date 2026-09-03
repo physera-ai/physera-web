@@ -15,6 +15,7 @@ export default function HomeBenchmarks() {
             </span>
             <h3 className="font-serif home-bench-title">{b.name}</h3>
             <p className="home-bench-blurb">{b.blurb}</p>
+            <span className="home-bench-cta">View benchmark →</span>
           </div>
           <div className="home-bench-meta">
             {b.stats.slice(0, 3).map((s) => (
