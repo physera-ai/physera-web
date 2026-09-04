@@ -43,27 +43,28 @@ export default function PopulationField() {
 
     function draw(t: number) {
       ctx!.clearRect(0, 0, w, h);
+      const cx = w / 2;
+      const cy = h / 2;
       for (const y of rows) {
         for (const x of cols) {
-          // diagonal emerald wave
-          const wave = Math.sin((x + y) * 0.006 - t * 0.0011);
-          const hot = Math.max(0, wave);
+          // concentric ripple expanding from centre
+          const d = Math.hypot(x - cx, y - cy);
+          const wave = Math.sin(d * 0.017 - t * 0.0021);
+          const crest = Math.max(0, wave) ** 1.5;
           // cursor swell
           let near = 0;
           if (pointer.on) {
-            const dx = x - pointer.x;
-            const dy = y - pointer.y;
-            const d = Math.hypot(dx, dy);
-            if (d < R) near = 1 - d / R;
+            const pd = Math.hypot(x - pointer.x, y - pointer.y);
+            if (pd < R) near = (1 - pd / R) ** 1.4;
           }
-          const r = 1 + hot * 1.6 + near * 3.2;
-          const emerald = Math.min(1, hot * 0.7 + near);
+          const r = 1 + crest * 1.7 + near * 3;
+          const emerald = Math.min(1, crest * 0.9 + near);
           ctx!.beginPath();
           ctx!.arc(x, y, r, 0, Math.PI * 2);
-          if (emerald > 0.04) {
-            ctx!.fillStyle = `rgba(15, 157, 110, ${0.2 + emerald * 0.65})`;
+          if (emerald > 0.02) {
+            ctx!.fillStyle = `rgba(15, 157, 110, ${0.12 + emerald * 0.55})`;
           } else {
-            ctx!.fillStyle = "rgba(13, 13, 13, 0.12)";
+            ctx!.fillStyle = "rgba(13, 13, 13, 0.1)";
           }
           ctx!.fill();
         }

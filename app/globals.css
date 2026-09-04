@@ -407,7 +407,7 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .site-footer-wordmark { font-family: var(--font-serif); font-size: 20px; letter-spacing: -0.02em; color: #ffffff; text-transform: none; }
 
 /* ---- Site header ---- */
-.site-header { position: sticky; top: 0; z-index: 50; width: 100%; background: color-mix(in srgb, var(--background) 88%, transparent); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--bench-rule); transition: transform .3s ease; }
+.site-header { position: sticky; top: 0; z-index: 50; width: 100%; background: color-mix(in srgb, var(--background) 82%, transparent); backdrop-filter: saturate(1.4) blur(10px); transition: transform .3s ease; }
 .site-header.is-hidden { transform: translateY(-150%); }
 .site-header-inner { max-width: 1320px; margin: 0 auto; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
 @media (min-width: 640px) { .site-header-inner { padding: 0 40px; } }
@@ -471,5 +471,5 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .hp-field-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hp-hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; padding: clamp(28px, 5vw, 72px) 8px; max-width: 900px; }
 /* legibility scrim so text reads over the field */
-.hp-hero-copy::before { content: ""; position: absolute; inset: -40px -80px; z-index: -1; background: radial-gradient(60% 60% at 50% 46%, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.82) 55%, rgba(255,255,255,0) 100%); }
+.hp-hero-copy::before { content: ""; position: absolute; inset: -60px -100px; z-index: -1; background: radial-gradient(58% 58% at 50% 48%, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 55%, rgba(255,255,255,0) 100%); }
 .hp-title .hp-em { font-style: italic; color: var(--bench-accent); }
