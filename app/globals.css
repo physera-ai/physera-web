@@ -455,7 +455,7 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .hp-x-br { bottom: -7.5px; right: -7.5px; }
 
 /* research, minimal */
-.hp-research { width: 100%; max-width: 1080px; padding: clamp(48px, 8vh, 88px) 24px clamp(56px, 9vh, 96px); }
+.hp-research { width: 100%; max-width: 1160px; padding: clamp(48px, 8vh, 88px) 24px clamp(56px, 9vh, 96px); }
 .hp-research-head { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid var(--bench-rule); }
 .hp-work { list-style: none; margin: 0; padding: 0; }
 .hp-work-row { display: grid; grid-template-columns: 200px 1fr auto; align-items: center; gap: 24px; padding: 26px 4px; border-bottom: 1px solid var(--bench-rule); text-decoration: none; color: inherit; transition: background .15s ease; }
@@ -467,7 +467,7 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 @media (max-width: 640px) { .hp-work-row { grid-template-columns: 1fr auto; } .hp-work-line { display: none; } }
 
 /* ---- Hero population field ---- */
-.hp-field { position: absolute; inset: 0; background: #fcfcfb; overflow: hidden; }
+.hp-field { position: absolute; inset: 0; background: #ffffff; overflow: hidden; }
 .hp-field-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hp-hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; padding: clamp(28px, 5vw, 72px) 8px; max-width: 900px; }
 /* legibility scrim so text reads over the field */

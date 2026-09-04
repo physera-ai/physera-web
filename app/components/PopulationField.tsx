@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
-// A generative flow field: hundreds of "agents" drifting along a smooth
-// vector field, most in ink, a minority in emerald. Reads as a simulated
-// population in motion. No libraries.
+// A crisp dot matrix: a regular grid of points on pure white. A slow
+// emerald wave sweeps diagonally, and dots swell toward the cursor.
+// Reads as a measured field of agents. No libraries.
 export default function PopulationField() {
   const ref = useRef<HTMLCanvasElement>(null);
 
@@ -15,26 +15,15 @@ export default function PopulationField() {
     if (!ctx) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const GAP = 30;
+    const R = 150; // cursor influence radius
     let raf = 0;
     let w = 0;
     let h = 0;
     let dpr = 1;
-
-    type P = { x: number; y: number; hot: boolean; sp: number };
-    let pts: P[] = [];
-
-    const INK = "13, 13, 13";
-    const EMERALD = "15, 157, 110";
-
-    function seed() {
-      const density = Math.max(180, Math.min(520, Math.floor((w * h) / 2600)));
-      pts = Array.from({ length: density }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        hot: Math.random() < 0.16,
-        sp: 0.4 + Math.random() * 0.9,
-      }));
-    }
+    let cols: number[] = [];
+    let rows: number[] = [];
+    const pointer = { x: -9999, y: -9999, on: false };
 
     function resize() {
       const rect = canvas!.getBoundingClientRect();
@@ -44,77 +33,74 @@ export default function PopulationField() {
       canvas!.width = Math.floor(w * dpr);
       canvas!.height = Math.floor(h * dpr);
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx!.fillStyle = "#fcfcfb";
-      ctx!.fillRect(0, 0, w, h);
-      seed();
+      const ox = (w % GAP) / 2;
+      const oy = (h % GAP) / 2;
+      cols = [];
+      rows = [];
+      for (let x = ox; x <= w; x += GAP) cols.push(x);
+      for (let y = oy; y <= h; y += GAP) rows.push(y);
     }
 
-    // smooth pseudo-noise vector field
-    function angle(x: number, y: number, t: number) {
-      const a =
-        Math.sin(x * 0.0032 + t * 0.00022) * Math.cos(y * 0.0028 - t * 0.00017) +
-        Math.sin((x + y) * 0.0016 + t * 0.00011) * 0.6;
-      return a * Math.PI * 1.4;
-    }
-
-    function frame(t: number) {
-      // fade toward the surface for soft trails
-      ctx!.fillStyle = "rgba(252, 252, 251, 0.055)";
-      ctx!.fillRect(0, 0, w, h);
-      for (const p of pts) {
-        const ang = angle(p.x, p.y, t);
-        const nx = p.x + Math.cos(ang) * p.sp;
-        const ny = p.y + Math.sin(ang) * p.sp;
-        ctx!.beginPath();
-        ctx!.moveTo(p.x, p.y);
-        ctx!.lineTo(nx, ny);
-        ctx!.strokeStyle = p.hot ? `rgba(${EMERALD}, 0.55)` : `rgba(${INK}, 0.16)`;
-        ctx!.lineWidth = p.hot ? 1.4 : 1;
-        ctx!.stroke();
-        p.x = nx;
-        p.y = ny;
-        if (p.x < -4) p.x = w + 4;
-        if (p.x > w + 4) p.x = -4;
-        if (p.y < -4) p.y = h + 4;
-        if (p.y > h + 4) p.y = -4;
-      }
-      raf = requestAnimationFrame(frame);
-    }
-
-    function staticFrame() {
-      // a single settled still for reduced-motion
-      ctx!.fillStyle = "#fcfcfb";
-      ctx!.fillRect(0, 0, w, h);
-      for (let s = 0; s < 90; s++) {
-        for (const p of pts) {
-          const ang = angle(p.x, p.y, 0);
-          const nx = p.x + Math.cos(ang) * p.sp;
-          const ny = p.y + Math.sin(ang) * p.sp;
+    function draw(t: number) {
+      ctx!.clearRect(0, 0, w, h);
+      for (const y of rows) {
+        for (const x of cols) {
+          // diagonal emerald wave
+          const wave = Math.sin((x + y) * 0.006 - t * 0.0011);
+          const hot = Math.max(0, wave);
+          // cursor swell
+          let near = 0;
+          if (pointer.on) {
+            const dx = x - pointer.x;
+            const dy = y - pointer.y;
+            const d = Math.hypot(dx, dy);
+            if (d < R) near = 1 - d / R;
+          }
+          const r = 1 + hot * 1.6 + near * 3.2;
+          const emerald = Math.min(1, hot * 0.7 + near);
           ctx!.beginPath();
-          ctx!.moveTo(p.x, p.y);
-          ctx!.lineTo(nx, ny);
-          ctx!.strokeStyle = p.hot ? `rgba(${EMERALD}, 0.5)` : `rgba(${INK}, 0.14)`;
-          ctx!.lineWidth = p.hot ? 1.4 : 1;
-          ctx!.stroke();
-          p.x = nx < 0 || nx > w ? Math.random() * w : nx;
-          p.y = ny < 0 || ny > h ? Math.random() * h : ny;
+          ctx!.arc(x, y, r, 0, Math.PI * 2);
+          if (emerald > 0.04) {
+            ctx!.fillStyle = `rgba(15, 157, 110, ${0.2 + emerald * 0.65})`;
+          } else {
+            ctx!.fillStyle = "rgba(13, 13, 13, 0.12)";
+          }
+          ctx!.fill();
         }
       }
+      raf = requestAnimationFrame(draw);
     }
 
     resize();
-    if (reduce) staticFrame();
-    else raf = requestAnimationFrame(frame);
+    if (reduce) draw(0);
+    else raf = requestAnimationFrame(draw);
 
+    const onMove = (e: PointerEvent) => {
+      const rect = canvas!.getBoundingClientRect();
+      pointer.x = e.clientX - rect.left;
+      pointer.y = e.clientY - rect.top;
+      pointer.on = true;
+    };
+    const onLeave = () => {
+      pointer.on = false;
+      pointer.x = -9999;
+      pointer.y = -9999;
+    };
     const onResize = () => {
       cancelAnimationFrame(raf);
       resize();
-      if (reduce) staticFrame();
-      else raf = requestAnimationFrame(frame);
+      if (reduce) draw(0);
+      else raf = requestAnimationFrame(draw);
     };
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerdown", onMove);
+    window.addEventListener("blur", onLeave);
     window.addEventListener("resize", onResize);
     return () => {
       cancelAnimationFrame(raf);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerdown", onMove);
+      window.removeEventListener("blur", onLeave);
       window.removeEventListener("resize", onResize);
     };
   }, []);

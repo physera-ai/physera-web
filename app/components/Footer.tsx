@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="site-footer-cta">
           <div>
             <span className="site-footer-kicker">Work with us</span>
-            <p className="site-footer-head">Let&apos;s calibrate the instrument together.</p>
+            <p className="site-footer-head">Let&apos;s measure what your models really do.</p>
           </div>
           <Link href="/contact" className="bench-btn bench-btn-onlight">
             Get in touch
@@ -37,8 +37,8 @@ export default function Footer() {
           <div className="site-footer-brand">
             <span className="site-footer-wordmark">Physera</span>
             <p>
-              An applied research lab building the first calibrated instrument for human
-              decision-making.
+              An applied research lab working on model efficiency and behavioural simulation, and the
+              benchmarks that prove them.
             </p>
           </div>
 
