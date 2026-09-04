@@ -39,7 +39,6 @@ export default function Home() {
       <section className="hp-hero">
         <div className="hp-field" aria-hidden="true">
           <PopulationField />
-          <Corners />
         </div>
         <div className="hp-hero-copy">
           <span className="hp-eyebrow">Physera · Applied research lab</span>
