@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PopulationField from "./components/PopulationField";
 
 const stats = [
   { v: "02", k: "Live benchmarks" },
@@ -34,24 +35,31 @@ function Corners() {
 export default function Home() {
   return (
     <main className="hp">
-      {/* Hero — centered, clean */}
+      {/* Hero — centered over a generative population field */}
       <section className="hp-hero">
-        <span className="hp-eyebrow">Applied research lab · India &amp; United States</span>
-        <h1 className="hp-title font-serif">
-          The first <span className="hp-bracket">[calibrated]</span> instrument for human
-          decision-making.
-        </h1>
-        <p className="hp-sub">
-          Physera works where model efficiency meets faithful behavioural simulation, and publishes the
-          benchmarks that prove it.
-        </p>
-        <div className="hp-cta">
-          <Link href="/manifesto" className="bench-btn bench-btn-dark">
-            Read the Manifesto
-          </Link>
-          <Link href="/research" className="bench-btn bench-btn-ghost">
-            See the Research
-          </Link>
+        <div className="hp-field" aria-hidden="true">
+          <PopulationField />
+          <Corners />
+        </div>
+        <div className="hp-hero-copy">
+          <span className="hp-eyebrow">Physera · Applied research lab</span>
+          <h1 className="hp-title font-serif">
+            We simulate people.
+            <br />
+            We <span className="hp-em">measure</span> models.
+          </h1>
+          <p className="hp-sub">
+            An applied research lab at the intersection of behavioural simulation and model efficiency,
+            and the benchmarks that keep both honest.
+          </p>
+          <div className="hp-cta">
+            <Link href="/research" className="bench-btn bench-btn-primary">
+              See the Research
+            </Link>
+            <Link href="/manifesto" className="bench-btn bench-btn-ghost">
+              Read the Manifesto
+            </Link>
+          </div>
         </div>
       </section>
 
