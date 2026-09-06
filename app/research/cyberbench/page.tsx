@@ -10,12 +10,11 @@ import SectionNav, { type Section } from "./components/SectionNav";
 export const metadata: Metadata = {
   title: "CyberBench",
   description:
-    "Frontier coding agents patch vulnerable services under one harness, one attempt each. Solve rates, cost per task, failure families, and every model's own output.",
+    "Seven frontier agents remediate vulnerable services under one harness, one attempt each. Solve rates, cost per task, capability categories, failure modes, and every model's own output.",
   alternates: { canonical: "/research/cyberbench" },
 };
 
-const models = [...bench.models].sort((a, b) => b.acc - a.acc || b.checks - a.checks);
-const oc = models.filter((m) => m.harness === "OpenCode");
+const models = [...bench.models].sort((a, b) => b.solved - a.solved || b.checks - a.checks);
 const cats = Object.keys(bench.cats);
 
 const sections: Section[] = [
@@ -48,20 +47,21 @@ export default function CyberBenchPage() {
             <h1 className="font-serif text-[clamp(2.2rem,5vw,3.25rem)] leading-[1.05] tracking-[-0.04em] text-[#0d0d0d]">
               CyberBench
             </h1>
-            <div className="bench-mono-label">Updated 4 September 2026 · v0.1</div>
+            <div className="bench-mono-label">Updated 5 September 2026 · v0.2</div>
             <p className="max-w-[720px] font-serif text-[22px] leading-[1.35] text-[#1f1f1f]">
-              Five agents, fourteen security tickets, one attempt each.
+              Seven agents, twenty-two security tickets, one attempt each.
             </p>
             <p className="max-w-[720px] text-[17px] leading-relaxed text-[#3a3a3a]">
-              Frontier models patch vulnerable services under one agent harness. Every task is scored by a
-              deterministic verifier: legitimate workflows must keep working, the attacks must stop. A task
-              counts as solved only when every check passes.
+              Most cybersecurity benchmarks ask whether a model can break in. We ask the operational question:
+              can it close the hole and keep the service running? Frontier models remediate vulnerable services
+              under one agent harness, scored by a deterministic verifier — legitimate workflows must keep
+              working, the attacks must stop. A task counts as solved only when every check passes.
             </p>
             <blockquote className="bench-quote">
               <p>A fix that closes nine of ten doors is a fix that leaves a door open. Security is a last-check discipline, so the benchmark is too.</p>
             </blockquote>
             <div className="flex flex-wrap gap-2">
-              {["PHP", "Python", "Java", "Go", "C", "Node", "Incident response"].map((t) => (
+              {["C", "Rust", "Go", "Python", "Java", "Ruby", "PHP", "Node", "Incident response"].map((t) => (
                 <span key={t} className="bench-pill">
                   {t}
                 </span>
@@ -75,23 +75,23 @@ export default function CyberBenchPage() {
           <div className="bench-stats">
             <div>
               <div className="bench-mono-label">Models</div>
-              <div className="v">5</div>
-              <div className="k">GPT-5.5, Claude Opus 5, DeepSeek V4 Pro, Kimi K3, GLM-5.3 Flash</div>
+              <div className="v">7</div>
+              <div className="k">Opus 5, GPT-5.5, Grok 4.6, Kimi K3, GLM-5.3, Gemini 3.8, DeepSeek V4 Pro</div>
             </div>
             <div>
               <div className="bench-mono-label">Tasks</div>
-              <div className="v">14</div>
-              <div className="k">567 verifier checks per model</div>
+              <div className="v">22</div>
+              <div className="k">10–106 verifier checks each · 177 expert-hours of work</div>
             </div>
             <div>
               <div className="bench-mono-label">Best solve rate</div>
-              <div className="v">57.1%</div>
-              <div className="k">GPT-5.5, Claude Opus 5, and Kimi K3 on Terminus 2</div>
+              <div className="v">54.5%</div>
+              <div className="k">Claude Opus 5 — 12 of 22</div>
             </div>
             <div>
               <div className="bench-mono-label">Cost spread</div>
-              <div className="v">118×</div>
-              <div className="k">$0.06 to $7.08 per task</div>
+              <div className="v">40×</div>
+              <div className="k">$0.12 to $4.79 per task</div>
             </div>
           </div>
 
@@ -110,30 +110,29 @@ export default function CyberBenchPage() {
               <h3>Where frontier models do well</h3>
               <ol>
                 <li>
-                  <b>Textbook web hardening is solved.</b> CORS allowlists, header-based admin bypasses,{" "}
-                  <code>alg=none</code>, <code>kid</code> traversal. All five passed every CORS check; the JWT
-                  and cookie tasks were lost on one or two checks, never on the headline bug.
-                  <span className="bench-tag good">14/14 CORS</span>
+                  <b>Web-app hardening is close to solved.</b> On the twelve web and API tasks every model lands
+                  near 50% solved. CORS allowlists, header bypasses, <code>alg=none</code>, <code>kid</code>{" "}
+                  traversal — the field has genuinely converged here.
+                  <span className="bench-tag good">50% web solved</span>
                 </li>
                 <li>
-                  <b>The primary bug is almost never missed.</b> In 27 of 43 failures the model fixed at least
-                  one instance of the right vulnerability class. Check-level pass rates run 89% to 96% for
-                  every model.
+                  <b>The primary bug is almost never missed.</b> Every model clears 80% or more of weighted
+                  checks. When they fail, it is on the second instance or the last check, not the headline
+                  vulnerability.
                 </li>
                 <li>
-                  <b>Memory and concurrency are not the wall.</b> GPT-5.5 scored 100% on the C memory-safety
-                  task and the Go event store; Claude 96%.
-                  <span className="bench-tag good">2/2 GPT-5.5</span>
+                  <b>Injection is the field&apos;s best category.</b> 95% weighted, 15 of 28 solved; Grok 4.6
+                  leads it. Input-validation and untrusted-parsing work is broadly within reach.
+                  <span className="bench-tag good">95% weighted</span>
                 </li>
                 <li>
-                  <b>The scaffold moves the number.</b> Kimi K3 rerun under Terminus 2 solved 8 of 14 against
-                  4 under OpenCode, at $0.63 per task instead of $1.71. Every new pass was a one-check miss
-                  under OpenCode.
-                  <span className="bench-tag good">4 → 8</span>
+                  <b>Real leverage when they finish.</b> Opus solved twelve tasks — about 102 hours of expert
+                  remediation — in under seven agent-hours for roughly a hundred dollars. GPT-5.5 compressed 70
+                  expert-hours into two and a half.
                 </li>
                 <li>
-                  <b>Cheap models get most of the way.</b> DeepSeek at $0.29 per task and GLM at $0.06 per
-                  task cleared 93% and 89% of checks.
+                  <b>Cheap models get most of the way.</b> GLM-5.3 solves 9 for three dollars total and leads
+                  the concurrency category; Grok solves 9 as the fastest model in the field.
                 </li>
               </ol>
             </div>
@@ -141,62 +140,60 @@ export default function CyberBenchPage() {
               <h3>Where they fall down</h3>
               <ol>
                 <li>
-                  <b>The second instance of the same bug.</b> Four models fixed the JWT service and left one
-                  endpoint unauthenticated. Three fixed the C injection at one print site and left the same{" "}
-                  <code>printf</code> a few lines up. A completeness problem, not a knowledge problem.
-                  <span className="bench-tag bad">27 of 43 failures</span>
+                  <b>Finding is not fixing.</b> Six of seven models fail by under-fixing — leaving an attack
+                  working. Opus is the lone over-hardener, breaking legitimate workflows instead. Its failures
+                  are the safe kind a human catches; the others fail silent.
+                  <span className="bench-tag bad">99 attacks left open · DeepSeek</span>
                 </li>
                 <li>
-                  <b>Over-hardening.</b> Eight trials passed every security check and broke a real workflow: a
-                  redaction regex that ate legitimate XML, a bearer-token demand on an endpoint where the code
-                  is the credential, secrets stripped from the admin endpoint that exists to return them.
-                  <span className="bench-tag bad">8 of 43</span>
+                  <b>Systems and analysis are the wall.</b> On C, Rust, and Go the field solves about a quarter;
+                  on no-code detection and incident-response work, less. Only Opus breaks 3 of 5 in native code.
+                  <span className="bench-tag bad">27% systems</span>
                 </li>
                 <li>
-                  <b>Taxonomy precision.</b> All five mapped an OAuth persistence grant to the wrong ATT&amp;CK
-                  sub-technique. Right family, wrong four-digit ID, five different answers.
-                  <span className="bench-tag bad">0/5 IR</span>
+                  <b>Shared blind spots.</b> On the five tasks nobody solved, the same check defeats nearly
+                  every model: amplification denial-of-service, genuinely multi-stage detection rules,
+                  protocol state-machine edges, and session-lifecycle invariants.
+                  <span className="bench-tag bad">7/7 miss</span>
                 </li>
                 <li>
-                  <b>Resource-exhaustion architecture.</b> All five added a body-size cap on DocVault; none
-                  moved off the single-threaded server. One stalled client still starves <code>/health</code>.
+                  <b>The second instance of the same bug.</b> A third of failures were one or two checks short —
+                  usually a nested field or a sibling endpoint of a bug already fixed once.
                 </li>
                 <li>
-                  <b>Less famous bug classes.</b> Only GPT-5.5 caught the duplicate-key JSON parser
-                  differential. Four left the parsing path byte-for-byte unchanged.
-                </li>
-                <li>
-                  <b>Silent no-ops on cheaper models.</b> DeepSeek and GLM each read the full cJSON task,
-                  emitted about a hundred tokens, and edited nothing.
+                  <b>Unbounded persistence.</b> Run unattended, a capable model can spiral. Opus burned 4,628
+                  steps over four hours and $3,214 on one task it never solved.
+                  <span className="bench-tag bad">$3,214, no solve</span>
                 </li>
               </ol>
             </div>
           </div>
           <div className="bench-pair">
             <div>
-              <div className="bench-mono-label">Frontier pair, solves</div>
+              <div className="bench-mono-label">Category leaders</div>
               <p>
-                <b>8/14 each.</b> GPT-5.5 was 3.3× cheaper and 3.5× faster.
+                <b>No model wins everywhere.</b> Six categories, five leaders: Opus takes three, Grok, GLM, and
+                GPT-5.5 each own one.
               </p>
             </div>
             <div>
-              <div className="bench-mono-label">Frontier pair, completeness</div>
+              <div className="bench-mono-label">Safest failure mode</div>
               <p>
-                <b>Claude leaves fewer loose ends.</b> 96% vs 93% of checks on tasks where incomplete fixes
-                occurred; only model to clear the C CVE.
+                <b>Opus over-hardens.</b> When it fails it breaks the deploy, not the defense — the failure a
+                human notices in minutes.
               </p>
             </div>
             <div>
-              <div className="bench-mono-label">Frontier pair, unique solves</div>
+              <div className="bench-mono-label">Best value</div>
               <p>
-                <b>GPT-5.5</b> alone cleared the Go event store and the JWT broker. <b>Claude</b> alone cleared
-                CVE-2023-30623. The task decides.
+                <b>GLM-5.3 at $3.</b> Nine solves and the concurrency lead for the price of a coffee; the catch
+                is a 66-minute median run.
               </p>
             </div>
           </div>
 
           <span className="bench-kicker">Coverage</span>
-          <h2 id="coverage" className="bench-h2 scroll-mt-24">Coverage by vulnerability class</h2>
+          <h2 id="coverage" className="bench-h2 scroll-mt-24">Coverage by capability category</h2>
           <div className="grid gap-5 md:grid-cols-2">
             <Radar models={models} cats={cats} />
             <ClassTable data={bench} />
@@ -212,7 +209,7 @@ export default function CyberBenchPage() {
             Each agent&apos;s own remediation plan for one representative task, the JWT session broker. Switch
             tabs to compare how each model scoped the audit. Ordered by overall solve rate.
           </p>
-          <Outputs models={oc} question={bench.question} plans={bench.plans} />
+          <Outputs models={models} question={bench.question} plans={bench.plans} />
 
           <span className="bench-kicker">Method</span>
           <h2 id="scoring" className="bench-h2 scroll-mt-24">How we score</h2>
@@ -234,24 +231,22 @@ export default function CyberBenchPage() {
               <p>Every point on the results chart is a solve rate and a dollar figure. Efficiency is a first-class axis.</p>
             </div>
             <div>
-              <h3>Infra errors are excluded, and counted</h3>
-              <p>Trials that die before the verifier runs are reported separately and never scored against the model.</p>
+              <h3>Infra errors are excluded</h3>
+              <p>Trials that die before the verifier runs are dropped, not scored against the model. Timeouts that still produced a score are kept.</p>
             </div>
             <div>
               <h3>Verifiers get audited too</h3>
-              <p>Every failed trial is read by hand. Scoring defects are published alongside model results and corrected in the data.</p>
+              <p>Every score is read from each trial&apos;s raw log, not the summary — a fail-close bug there zeroes real partial scores. Four trials were corrected this way.</p>
             </div>
           </div>
 
           <p className="bench-foot">
-            Terminus 2 runs: Kimi K3 scored on 12 of 14 (DocVault produced no reward file; the event store
-            crashed in the harness before the agent started). GPT-5.5&apos;s Terminus 2 run hit provider credit
-            limits on 13 of 14 trials and is excluded. Caveats: one attempt per task, so variance and capability
-            are not yet separated; three of fourteen verifiers have known defects (quarkus fail-closed scoring,
-            DocVault SSRF mock, cJSON judge unavailable), corrected in this data and on the fix list.
+            Caveats: one attempt per task, so variance and capability are not yet separated. The quarkus verifier
+            fail-closes a broken service to a zero; those cells use the pre-fail-closed scores from the raw log.
+            The five unsolved tasks are read as half capability gap, half task calibration.
             <br />
-            OpenCode 1.18.25 and Terminus 2 via OpenRouter · runs of 28–29 August and 3 September 2026 · 14
-            defensive tasks × 5 models.
+            Terminus 2 via OpenRouter, Docker sandboxes · runs of September 2026 · 22 defensive tasks × 7 models =
+            154 trials.
           </p>
             </div>
           </div>

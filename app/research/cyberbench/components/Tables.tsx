@@ -34,7 +34,7 @@ export function Leaderboard({ models }: { models: ModelRow[] }) {
                   </span>
                 )}
               </td>
-              <td className="num">{m.solved}/14</td>
+              <td className="num">{m.solved}/22</td>
               <td>
                 <div className="bench-bar">
                   <b style={{ width: `${m.acc}%` }} />
@@ -53,9 +53,8 @@ export function Leaderboard({ models }: { models: ModelRow[] }) {
 }
 
 export function TaskGrid({ data, models }: { data: BenchData; models: ModelRow[] }) {
-  const oc = models.filter((m) => m.harness === "OpenCode");
   const tasks = [...data.tasks].sort((a, b) => {
-    const s = (t: string) => oc.filter((m) => m.per_task[t].pass_).length;
+    const s = (t: string) => models.filter((m) => m.per_task[t].pass_).length;
     return s(b) - s(a) || a.localeCompare(b);
   });
   return (

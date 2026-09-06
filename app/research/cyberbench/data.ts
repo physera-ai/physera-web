@@ -1,5 +1,6 @@
-// Generated from the cyberstrike OpenCode/Terminus runs (Aug 28-29 and Sep 3 2026).
-// Source of truth: cyber_security_physera/research/data/trials.json. Do not hand-edit.
+// Generated from the Cyberstrike Terminus-2 runs (Sept 2026).
+// Source of truth: cyber_security_physera/blog/data/trials_all.json (+ taxonomy, stacks).
+// Regenerate with: python3 cyber_security_physera/research/gen_cyberbench_data.py — do not hand-edit.
 
 export type PerTask = {
   passed: number | null;
@@ -46,229 +47,44 @@ export type BenchData = {
 export const bench: BenchData = {
  "models": [
   {
-   "id": "openai/gpt-5.5",
-   "label": "GPT-5.5",
-   "org": "OpenAI",
-   "solved": 8,
-   "acc": 57.1,
-   "checks": 94.9,
-   "cost_total": 30.1,
-   "cost_per_task": 2.15,
-   "median_min": 6.8,
-   "out_tokens": 196442,
-   "sec_fail": 24,
-   "func_fail": 5,
-   "near_miss": 2,
-   "radar": {
-    "Auth & sessions": 91.7,
-    "Injection & parsing": 99.3,
-    "Secrets & exposure": 91.5,
-    "Memory & concurrency": 100.0,
-    "Incident response": 87.2
-   },
-   "radar_solved": {
-    "Auth & sessions": "3/5",
-    "Injection & parsing": "2/3",
-    "Secrets & exposure": "1/3",
-    "Memory & concurrency": "2/2",
-    "Incident response": "0/1"
-   },
-   "per_task": {
-    "admidio-security-remediation-defensive": {
-     "passed": 16,
-     "n": 16,
-     "pass_": true,
-     "cost": 4.59,
-     "min": 16.8,
-     "cat": "solved",
-     "failed": []
-    },
-    "airflow-connection-writeonly-defensive": {
-     "passed": 66,
-     "n": 79,
-     "pass_": false,
-     "cost": 2.03,
-     "min": 8.0,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_reader_bulk_export_does_not_embed_secrets",
-      "test_sec_editor_bulk_export_remains_write_only",
-      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
-      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret"
-     ]
-    },
-    "azuretrail-token-theft-detection-ir": {
-     "passed": 41,
-     "n": 47,
-     "pass_": false,
-     "cost": 0.93,
-     "min": 3.5,
-     "cat": "analysis_imprecision",
-     "failed": [
-      "test_functional::test_func_overall_pass",
-      "test_security::test_sec_p1_capability_set_is_complete",
-      "test_security::test_sec_p1_attck_mappings_are_correct",
-      "test_security::test_sec_p1_subtechnique_exactness",
-      "test_security::test_sec_p1_evidence_ids_are_grounded",
-      "test_security::test_sec_p3_attack_sequence_order_is_correct"
-     ]
-    },
-    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
-     "passed": 48,
-     "n": 49,
-     "pass_": false,
-     "cost": 2.22,
-     "min": 8.5,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_title_cannot_inject_workflow_command_on_stdout"
-     ]
-    },
-    "cartograph-tile-provenance-gateway-defensive": {
-     "passed": 86,
-     "n": 86,
-     "pass_": true,
-     "cost": 3.09,
-     "min": 7.3,
-     "cat": "solved",
-     "failed": []
-    },
-    "cjson-memory-safety-defensive": {
-     "passed": 15,
-     "n": 15,
-     "pass_": true,
-     "cost": 4.19,
-     "min": 13.5,
-     "cat": "solved",
-     "failed": []
-    },
-    "docvault-api-audit-defensive": {
-     "passed": 20,
-     "n": 22,
-     "pass_": false,
-     "cost": 1.89,
-     "min": 5.4,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_ssrf",
-      "test_sec_request_body_limits"
-     ]
-    },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 14,
-     "n": 14,
-     "pass_": true,
-     "cost": 3.08,
-     "min": 13.0,
-     "cat": "solved",
-     "failed": []
-    },
-    "gateway-integrity-access-defensive": {
-     "passed": 26,
-     "n": 26,
-     "pass_": true,
-     "cost": 1.56,
-     "min": 5.0,
-     "cat": "solved",
-     "failed": []
-    },
-    "offline-xml-import-defensive": {
-     "passed": 106,
-     "n": 106,
-     "pass_": true,
-     "cost": 1.46,
-     "min": 6.3,
-     "cat": "solved",
-     "failed": []
-    },
-    "partner-portal-cors-defensive": {
-     "passed": 47,
-     "n": 47,
-     "pass_": true,
-     "cost": 1.11,
-     "min": 3.6,
-     "cat": "solved",
-     "failed": []
-    },
-    "quarkus-authentication-authorization-defensive": {
-     "passed": 10,
-     "n": 16,
-     "pass_": false,
-     "cost": 1.2,
-     "min": 5.5,
-     "cat": "over_hardened",
-     "failed": [
-      "test_func_admin_reveal",
-      "test_func_snapshot_reveal",
-      "test_func_distinct_codes_work",
-      "test_sec_replay_same_code",
-      "test_sec_replay_cross_endpoint",
-      "test_sec_replay_snapshot"
-     ]
-    },
-    "session-broker-jwt-defensive": {
-     "passed": 20,
-     "n": 20,
-     "pass_": true,
-     "cost": 1.68,
-     "min": 7.5,
-     "cat": "solved",
-     "failed": []
-    },
-    "signed-cookie-session-defensive": {
-     "passed": 23,
-     "n": 24,
-     "pass_": false,
-     "cost": 1.07,
-     "min": 4.1,
-     "cat": "over_hardened",
-     "failed": [
-      "test_admin_session_via_admin_token_works"
-     ]
-    }
-   },
-   "harness": "OpenCode",
-   "key": "openai/gpt-5.5"
-  },
-  {
    "id": "anthropic/claude-opus-5",
+   "key": "claude-opus-5",
    "label": "Claude Opus 5",
    "org": "Anthropic",
-   "solved": 8,
-   "acc": 57.1,
-   "checks": 95.8,
-   "cost_total": 99.15,
-   "cost_per_task": 7.08,
-   "median_min": 25.5,
-   "out_tokens": 741980,
-   "sec_fail": 9,
-   "func_fail": 15,
+   "harness": "Terminus 2",
+   "solved": 12,
+   "acc": 54.5,
+   "checks": 95.9,
+   "cost_total": 3334.4,
+   "cost_per_task": 4.79,
+   "median_min": 29.1,
+   "out_tokens": 2764715,
+   "sec_fail": 13,
+   "func_fail": 21,
    "near_miss": 3,
    "radar": {
-    "Auth & sessions": 99.0,
-    "Injection & parsing": 95.6,
-    "Secrets & exposure": 95.0,
-    "Memory & concurrency": 96.4,
-    "Incident response": 91.5
+    "Native & memory safety": 95.7,
+    "AuthN / authz / sessions": 97.0,
+    "Injection & untrusted input": 94.0,
+    "Access control & data exposure": 99.6,
+    "Concurrency & state integrity": 95.6,
+    "Detection & incident response": 93.3
    },
    "radar_solved": {
-    "Auth & sessions": "4/5",
-    "Injection & parsing": "2/3",
-    "Secrets & exposure": "1/3",
-    "Memory & concurrency": "1/2",
-    "Incident response": "0/1"
+    "Native & memory safety": "3/5",
+    "AuthN / authz / sessions": "3/5",
+    "Injection & untrusted input": "2/4",
+    "Access control & data exposure": "2/3",
+    "Concurrency & state integrity": "1/2",
+    "Detection & incident response": "1/3"
    },
    "per_task": {
     "admidio-security-remediation-defensive": {
      "passed": 16,
      "n": 16,
      "pass_": true,
-     "cost": 18.6,
-     "min": 40.5,
+     "cost": 8.06,
+     "min": 34.9,
      "cat": "solved",
      "failed": []
     },
@@ -276,9 +92,9 @@ export const bench: BenchData = {
      "passed": 78,
      "n": 79,
      "pass_": false,
-     "cost": 9.05,
-     "min": 30.8,
-     "cat": "spec_test_gap",
+     "cost": 4.93,
+     "min": 25.8,
+     "cat": "incomplete_fix",
      "failed": [
       "test_sec_component_profile_rejects_body_target_confusion"
      ]
@@ -287,8 +103,8 @@ export const bench: BenchData = {
      "passed": 43,
      "n": 47,
      "pass_": false,
-     "cost": 1.15,
-     "min": 4.8,
+     "cost": 1.06,
+     "min": 5.4,
      "cat": "analysis_imprecision",
      "failed": [
       "test_functional::test_func_overall_pass",
@@ -301,8 +117,8 @@ export const bench: BenchData = {
      "passed": 49,
      "n": 49,
      "pass_": true,
-     "cost": 8.72,
-     "min": 31.3,
+     "cost": 4.65,
+     "min": 26.7,
      "cat": "solved",
      "failed": []
     },
@@ -310,8 +126,8 @@ export const bench: BenchData = {
      "passed": 86,
      "n": 86,
      "pass_": true,
-     "cost": 7.31,
-     "min": 22.5,
+     "cost": 6.37,
+     "min": 30.3,
      "cat": "solved",
      "failed": []
     },
@@ -319,30 +135,17 @@ export const bench: BenchData = {
      "passed": 15,
      "n": 15,
      "pass_": true,
-     "cost": 9.87,
-     "min": 25.8,
+     "cost": 7.13,
+     "min": 42.8,
      "cat": "solved",
      "failed": []
-    },
-    "docvault-api-audit-defensive": {
-     "passed": 19,
-     "n": 22,
-     "pass_": false,
-     "cost": 5.94,
-     "min": 24.1,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_ssrf",
-      "test_sec_parser_diff_dupkey",
-      "test_sec_request_body_limits"
-     ]
     },
     "event-store-concurrency-integrity-defensive": {
      "passed": 13,
      "n": 14,
      "pass_": false,
-     "cost": 8.53,
-     "min": 33.3,
+     "cost": 7.98,
+     "min": 67.1,
      "cat": "incomplete_fix",
      "failed": [
       "test_e2_checkpoint_covers_committed_head"
@@ -352,17 +155,56 @@ export const bench: BenchData = {
      "passed": 26,
      "n": 26,
      "pass_": true,
-     "cost": 7.1,
-     "min": 25.3,
+     "cost": 2.99,
+     "min": 18.5,
      "cat": "solved",
      "failed": []
+    },
+    "malware-sideload-lateral-triage-defensive": {
+     "passed": 10,
+     "n": 10,
+     "pass_": true,
+     "cost": 2.19,
+     "min": 13.9,
+     "cat": "solved",
+     "failed": []
+    },
+    "memcached-request-parsing-defensive": {
+     "passed": 18,
+     "n": 20,
+     "pass_": false,
+     "cost": 14.65,
+     "min": 85.5,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_repeated_reference_to_one_key",
+      "test_sec_repeated_reference_to_several_keys"
+     ]
+    },
+    "nightglass-edge-intrusion-defensive": {
+     "passed": 61,
+     "n": 69,
+     "pass_": false,
+     "cost": 2.1,
+     "min": 10.9,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_p2_each_selection_is_load_bearing",
+      "test_p2_no_two_selection_separates",
+      "test_p2_no_three_selection_separates",
+      "test_p3_confirmed_ioc_set_is_correct",
+      "test_p3_no_benign_or_dead_iocs",
+      "test_p3_staged_not_exfiltrated_excluded",
+      "test_p3_confirmed_files_exact",
+      "test_p3_remediation_actions_are_exact"
+     ]
     },
     "offline-xml-import-defensive": {
      "passed": 92,
      "n": 106,
      "pass_": false,
-     "cost": 6.94,
-     "min": 25.6,
+     "cost": 4.44,
+     "min": 28.0,
      "cat": "over_hardened",
      "failed": [
       "test_benign_report_import_works",
@@ -372,15 +214,59 @@ export const bench: BenchData = {
       "test_preview_benign_still_works",
       "test_batch_benign_still_works",
       "test_inspect_benign_works",
-      "test_raw_benign_works"
+      "test_raw_benign_works",
+      "test_transform_benign_works",
+      "test_xinclude_benign_works"
+     ]
+    },
+    "openvpn-control-plane-c-defensive-v2": {
+     "passed": 31,
+     "n": 36,
+     "pass_": false,
+     "cost": 3214.29,
+     "min": 236.7,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_required_artifact_schemas",
+      "test_func_findings_mirror_and_paths",
+      "test_sec_future_cookie_slot_rejected",
+      "test_sec_unterminated_control_frame_rejected",
+      "test_func_findings_are_nonduplicative"
      ]
     },
     "partner-portal-cors-defensive": {
      "passed": 47,
      "n": 47,
      "pass_": true,
-     "cost": 2.42,
-     "min": 14.1,
+     "cost": 1.83,
+     "min": 11.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "passkey-ceremony-broker-rust-defensive": {
+     "passed": 57,
+     "n": 57,
+     "pass_": true,
+     "cost": 10.92,
+     "min": 77.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "pgbouncer-pool-multiplex-defensive": {
+     "passed": 9,
+     "n": 9,
+     "pass_": true,
+     "cost": 14.35,
+     "min": 64.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
+     "passed": 65,
+     "n": 65,
+     "pass_": true,
+     "cost": 7.97,
+     "min": 40.9,
      "cat": "solved",
      "failed": []
     },
@@ -388,17 +274,42 @@ export const bench: BenchData = {
      "passed": 16,
      "n": 16,
      "pass_": true,
-     "cost": 2.43,
-     "min": 15.0,
+     "cost": 1.56,
+     "min": 11.8,
      "cat": "solved",
      "failed": []
+    },
+    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
+     "passed": 25,
+     "n": 28,
+     "pass_": false,
+     "cost": 6.37,
+     "min": 43.1,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_trusted_mirror_fetches_indicator_feed_without_localhost_resolver",
+      "test_func_trusted_mirror_allows_same_host_redirect_without_private_backend",
+      "test_sec_event_ingest_does_not_accept_mass_assignment_of_tenant_or_review_fields"
+     ]
+    },
+    "ruby-admin-ops-chain-defensive": {
+     "passed": 18,
+     "n": 20,
+     "pass_": false,
+     "cost": 3.11,
+     "min": 20.2,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_logout_invalidates_all_older_admin_sessions",
+      "test_sec_restore_profile_invalid_schema_rejected"
+     ]
     },
     "session-broker-jwt-defensive": {
      "passed": 19,
      "n": 20,
      "pass_": false,
-     "cost": 6.9,
-     "min": 34.1,
+     "cost": 4.47,
+     "min": 32.7,
      "cat": "incomplete_fix",
      "failed": [
       "test_unauthenticated_inspect_rejected"
@@ -408,115 +319,111 @@ export const bench: BenchData = {
      "passed": 24,
      "n": 24,
      "pass_": true,
-     "cost": 4.18,
-     "min": 22.6,
+     "cost": 2.96,
+     "min": 20.5,
      "cat": "solved",
      "failed": []
     }
-   },
-   "harness": "OpenCode",
-   "key": "anthropic/claude-opus-5"
+   }
   },
   {
-   "id": "deepseek/deepseek-v4-pro-0813",
-   "label": "DeepSeek V4 Pro",
-   "org": "DeepSeek",
-   "solved": 4,
-   "acc": 28.6,
-   "checks": 93.1,
-   "cost_total": 4.04,
-   "cost_per_task": 0.29,
-   "median_min": 17.2,
-   "out_tokens": 236297,
-   "sec_fail": 35,
-   "func_fail": 4,
+   "id": "openai/gpt-5.5",
+   "key": "gpt-5.5",
+   "label": "GPT-5.5",
+   "org": "OpenAI",
+   "harness": "Terminus 2",
+   "solved": 10,
+   "acc": 45.5,
+   "checks": 84.9,
+   "cost_total": 102.69,
+   "cost_per_task": 4.67,
+   "median_min": 16.9,
+   "out_tokens": 2442499,
+   "sec_fail": 46,
+   "func_fail": 28,
    "near_miss": 2,
    "radar": {
-    "Auth & sessions": 93.7,
-    "Injection & parsing": 96.6,
-    "Secrets & exposure": 89.5,
-    "Memory & concurrency": 72.9,
-    "Incident response": 91.5
+    "Native & memory safety": 69.6,
+    "AuthN / authz / sessions": 89.8,
+    "Injection & untrusted input": 96.4,
+    "Access control & data exposure": 90.2,
+    "Concurrency & state integrity": 67.0,
+    "Detection & incident response": 93.7
    },
    "radar_solved": {
-    "Auth & sessions": "2/5",
-    "Injection & parsing": "1/3",
-    "Secrets & exposure": "1/3",
-    "Memory & concurrency": "0/2",
-    "Incident response": "0/1"
+    "Native & memory safety": "1/5",
+    "AuthN / authz / sessions": "3/5",
+    "Injection & untrusted input": "3/4",
+    "Access control & data exposure": "1/3",
+    "Concurrency & state integrity": "0/2",
+    "Detection & incident response": "2/3"
    },
    "per_task": {
     "admidio-security-remediation-defensive": {
-     "passed": 15,
+     "passed": 16,
      "n": 16,
-     "pass_": false,
-     "cost": 0.53,
-     "min": 17.3,
-     "cat": "over_hardened",
-     "failed": [
-      "test_sec_php_upload_blocked_behavioral"
-     ]
+     "pass_": true,
+     "cost": 2.88,
+     "min": 12.2,
+     "cat": "solved",
+     "failed": []
     },
     "airflow-connection-writeonly-defensive": {
-     "passed": 65,
+     "passed": 78,
      "n": 79,
      "pass_": false,
-     "cost": 0.23,
-     "min": 10.9,
+     "cost": 3.24,
+     "min": 14.8,
      "cat": "incomplete_fix",
      "failed": [
-      "test_sec_reader_bulk_export_does_not_embed_secrets",
-      "test_sec_editor_bulk_export_remains_write_only",
-      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
-      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret"
+      "test_sec_component_profile_rejects_body_target_confusion"
      ]
     },
     "azuretrail-token-theft-detection-ir": {
-     "passed": 43,
-     "n": 47,
-     "pass_": false,
-     "cost": 0.1,
-     "min": 6.6,
-     "cat": "analysis_imprecision",
-     "failed": [
-      "test_functional::test_func_overall_pass",
-      "test_security::test_sec_p1_attck_mappings_are_correct",
-      "test_security::test_sec_p1_subtechnique_exactness",
-      "test_security::test_sec_p1_evidence_ids_are_grounded"
-     ]
-    },
-    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
      "passed": 47,
-     "n": 49,
-     "pass_": false,
-     "cost": 0.37,
-     "min": 17.2,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_title_file_cannot_escape_workspace",
-      "test_sec_config_cannot_escape_workspace"
-     ]
-    },
-    "cartograph-tile-provenance-gateway-defensive": {
-     "passed": 86,
-     "n": 86,
+     "n": 47,
      "pass_": true,
-     "cost": 0.66,
-     "min": 23.9,
+     "cost": 1.16,
+     "min": 5.9,
      "cat": "solved",
      "failed": []
+    },
+    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
+     "passed": 49,
+     "n": 49,
+     "pass_": true,
+     "cost": 4.03,
+     "min": 21.6,
+     "cat": "solved",
+     "failed": []
+    },
+    "cartograph-tile-provenance-gateway-defensive": {
+     "passed": 66,
+     "n": 86,
+     "pass_": false,
+     "cost": 5.91,
+     "min": 24.1,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_west_attach_stage_seal_publish_own_vault",
+      "test_func_east_attach_seal_publish_works",
+      "test_func_jobs_process_endpoint_works",
+      "test_func_publish_permits_list_works",
+      "test_sec_stage_purpose_not_accepted_for_publish",
+      "test_sec_east_legitimate_publish_vault_east_ok_still_works",
+      "test_sec_west_legitimate_publish_still_works",
+      "test_sec_vault_snapshot_cannot_supply_foreign_vault_ref",
+      "test_sec_publish_endpoint_not_404_for_authorized",
+      "test_sec_dynamic_fresh_west_layer_clone_alias_publish_blocked"
+     ]
     },
     "cjson-memory-safety-defensive": {
      "passed": 9,
      "n": 15,
      "pass_": false,
-     "cost": 0.08,
-     "min": 8.7,
-     "cat": "no_output",
+     "cost": 15.18,
+     "min": 93.4,
+     "cat": "over_hardened",
      "failed": [
       "func_findings_schema",
       "sec_unterminated_string_bounded",
@@ -526,224 +433,15 @@ export const bench: BenchData = {
       "sec_escape_decode_allocation"
      ]
     },
-    "docvault-api-audit-defensive": {
-     "passed": 19,
-     "n": 22,
-     "pass_": false,
-     "cost": 0.41,
-     "min": 21.1,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_ssrf",
-      "test_sec_parser_diff_dupkey",
-      "test_sec_request_body_limits"
-     ]
-    },
     "event-store-concurrency-integrity-defensive": {
-     "passed": 12,
+     "passed": 9,
      "n": 14,
      "pass_": false,
-     "cost": 0.57,
-     "min": 28.4,
+     "cost": 4.48,
+     "min": 19.7,
      "cat": "incomplete_fix",
      "failed": [
       "test_e2_checkpoint_covers_committed_head",
-      "test_l4_running_counter_no_wrap"
-     ]
-    },
-    "gateway-integrity-access-defensive": {
-     "passed": 25,
-     "n": 26,
-     "pass_": false,
-     "cost": 0.28,
-     "min": 21.6,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_forged_service_header_blocked"
-     ]
-    },
-    "offline-xml-import-defensive": {
-     "passed": 106,
-     "n": 106,
-     "pass_": true,
-     "cost": 0.23,
-     "min": 17.2,
-     "cat": "solved",
-     "failed": []
-    },
-    "partner-portal-cors-defensive": {
-     "passed": 47,
-     "n": 47,
-     "pass_": true,
-     "cost": 0.08,
-     "min": 8.9,
-     "cat": "solved",
-     "failed": []
-    },
-    "quarkus-authentication-authorization-defensive": {
-     "passed": 16,
-     "n": 16,
-     "pass_": true,
-     "cost": 0.11,
-     "min": 9.1,
-     "cat": "solved",
-     "failed": []
-    },
-    "session-broker-jwt-defensive": {
-     "passed": 17,
-     "n": 20,
-     "pass_": false,
-     "cost": 0.28,
-     "min": 18.9,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_expired_offline_access_token_rejected",
-      "test_status_does_not_leak_token_samples",
-      "test_unauthenticated_inspect_rejected"
-     ]
-    },
-    "signed-cookie-session-defensive": {
-     "passed": 21,
-     "n": 24,
-     "pass_": false,
-     "cost": 0.09,
-     "min": 6.6,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_legacy_sha1_downgrade_blocked",
-      "test_admin_flag_claim_not_entitling",
-      "test_caps_array_not_entitling"
-     ]
-    }
-   },
-   "harness": "OpenCode",
-   "key": "deepseek/deepseek-v4-pro-0813"
-  },
-  {
-   "id": "moonshotai/kimi-k3",
-   "label": "Kimi K3",
-   "org": "Moonshot AI",
-   "solved": 4,
-   "acc": 28.6,
-   "checks": 93.3,
-   "cost_total": 23.89,
-   "cost_per_task": 1.71,
-   "median_min": 14.2,
-   "out_tokens": 227199,
-   "sec_fail": 35,
-   "func_fail": 3,
-   "near_miss": 3,
-   "radar": {
-    "Auth & sessions": 94.4,
-    "Injection & parsing": 94.9,
-    "Secrets & exposure": 89.5,
-    "Memory & concurrency": 85.7,
-    "Incident response": 89.4
-   },
-   "radar_solved": {
-    "Auth & sessions": "2/5",
-    "Injection & parsing": "0/3",
-    "Secrets & exposure": "1/3",
-    "Memory & concurrency": "1/2",
-    "Incident response": "0/1"
-   },
-   "per_task": {
-    "admidio-security-remediation-defensive": {
-     "passed": 15,
-     "n": 16,
-     "pass_": false,
-     "cost": 4.6,
-     "min": 18.1,
-     "cat": "over_hardened",
-     "failed": [
-      "test_sec_php_upload_blocked_behavioral"
-     ]
-    },
-    "airflow-connection-writeonly-defensive": {
-     "passed": 65,
-     "n": 79,
-     "pass_": false,
-     "cost": 1.15,
-     "min": 12.7,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_reader_bulk_export_does_not_embed_secrets",
-      "test_sec_editor_bulk_export_remains_write_only",
-      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
-      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret"
-     ]
-    },
-    "azuretrail-token-theft-detection-ir": {
-     "passed": 42,
-     "n": 47,
-     "pass_": false,
-     "cost": 0.74,
-     "min": 8.6,
-     "cat": "analysis_imprecision",
-     "failed": [
-      "test_functional::test_func_overall_pass",
-      "test_security::test_sec_p1_attck_mappings_are_correct",
-      "test_security::test_sec_p1_subtechnique_exactness",
-      "test_security::test_sec_p1_evidence_ids_are_grounded",
-      "test_security::test_sec_p3_attack_sequence_order_is_correct"
-     ]
-    },
-    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
-     "passed": 46,
-     "n": 49,
-     "pass_": false,
-     "cost": 1.02,
-     "min": 13.7,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_title_file_cannot_escape_workspace",
-      "test_sec_config_cannot_escape_workspace",
-      "test_sec_title_cannot_inject_workflow_command_on_stdout"
-     ]
-    },
-    "cartograph-tile-provenance-gateway-defensive": {
-     "passed": 86,
-     "n": 86,
-     "pass_": true,
-     "cost": 3.93,
-     "min": 24.6,
-     "cat": "solved",
-     "failed": []
-    },
-    "cjson-memory-safety-defensive": {
-     "passed": 15,
-     "n": 15,
-     "pass_": true,
-     "cost": 3.15,
-     "min": 14.1,
-     "cat": "solved",
-     "failed": []
-    },
-    "docvault-api-audit-defensive": {
-     "passed": 19,
-     "n": 22,
-     "pass_": false,
-     "cost": 1.25,
-     "min": 31.5,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_ssrf",
-      "test_sec_parser_diff_dupkey",
-      "test_sec_request_body_limits"
-     ]
-    },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 10,
-     "n": 14,
-     "pass_": false,
-     "cost": 2.47,
-     "min": 31.1,
-     "cat": "incomplete_fix",
-     "failed": [
       "test_e4_cache_reflects_catchup",
       "test_e5_negative_cache_cleared_on_apply",
       "test_l2_copylocks_clear",
@@ -754,250 +452,123 @@ export const bench: BenchData = {
      "passed": 26,
      "n": 26,
      "pass_": true,
-     "cost": 1.01,
-     "min": 19.0,
+     "cost": 2.14,
+     "min": 10.6,
      "cat": "solved",
      "failed": []
     },
-    "offline-xml-import-defensive": {
-     "passed": 103,
-     "n": 106,
-     "pass_": false,
-     "cost": 1.63,
-     "min": 19.3,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_xinclude_internal_secret_blocked",
-      "test_xinclude_passwd_blocked",
-      "test_catalog_internal_secret_blocked"
-     ]
-    },
-    "partner-portal-cors-defensive": {
-     "passed": 47,
-     "n": 47,
+    "malware-sideload-lateral-triage-defensive": {
+     "passed": 10,
+     "n": 10,
      "pass_": true,
-     "cost": 0.48,
-     "min": 7.4,
+     "cost": 1.73,
+     "min": 7.8,
      "cat": "solved",
      "failed": []
     },
-    "quarkus-authentication-authorization-defensive": {
-     "passed": 13,
-     "n": 16,
-     "pass_": false,
-     "cost": 0.92,
-     "min": 14.4,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_replay_same_code",
-      "test_sec_replay_cross_endpoint",
-      "test_sec_replay_snapshot"
-     ]
-    },
-    "session-broker-jwt-defensive": {
-     "passed": 19,
+    "memcached-request-parsing-defensive": {
+     "passed": 18,
      "n": 20,
      "pass_": false,
-     "cost": 0.89,
-     "min": 8.7,
+     "cost": 6.85,
+     "min": 38.3,
      "cat": "incomplete_fix",
      "failed": [
-      "test_unauthenticated_inspect_rejected"
+      "test_sec_repeated_reference_to_one_key",
+      "test_sec_repeated_reference_to_several_keys"
      ]
     },
-    "signed-cookie-session-defensive": {
-     "passed": 23,
-     "n": 24,
+    "nightglass-edge-intrusion-defensive": {
+     "passed": 56,
+     "n": 69,
      "pass_": false,
-     "cost": 0.64,
-     "min": 7.4,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_legacy_sha1_downgrade_blocked"
-     ]
-    }
-   },
-   "harness": "OpenCode",
-   "key": "moonshotai/kimi-k3"
-  },
-  {
-   "id": "z-ai/glm-5.3-flash",
-   "label": "GLM-5.3 Flash",
-   "org": "Z.ai",
-   "solved": 3,
-   "acc": 21.4,
-   "checks": 89.2,
-   "cost_total": 0.79,
-   "cost_per_task": 0.06,
-   "median_min": 21.2,
-   "out_tokens": 219868,
-   "sec_fail": 53,
-   "func_fail": 8,
-   "near_miss": 1,
-   "radar": {
-    "Auth & sessions": 84.6,
-    "Injection & parsing": 95.9,
-    "Secrets & exposure": 88.5,
-    "Memory & concurrency": 65.7,
-    "Incident response": 83.0
-   },
-   "radar_solved": {
-    "Auth & sessions": "1/5",
-    "Injection & parsing": "1/3",
-    "Secrets & exposure": "1/3",
-    "Memory & concurrency": "0/2",
-    "Incident response": "0/1"
-   },
-   "per_task": {
-    "admidio-security-remediation-defensive": {
-     "passed": 15,
-     "n": 16,
-     "pass_": false,
-     "cost": 0.24,
-     "min": 36.8,
-     "cat": "over_hardened",
-     "failed": [
-      "test_sec_php_upload_blocked_behavioral"
-     ]
-    },
-    "airflow-connection-writeonly-defensive": {
-     "passed": 66,
-     "n": 79,
-     "pass_": false,
-     "cost": 0.07,
-     "min": 23.4,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_reader_bulk_export_does_not_embed_secrets",
-      "test_sec_editor_bulk_export_remains_write_only",
-      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
-      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret"
-     ]
-    },
-    "azuretrail-token-theft-detection-ir": {
-     "passed": 39,
-     "n": 47,
-     "pass_": false,
-     "cost": 0.01,
-     "min": 9.0,
+     "cost": 2.1,
+     "min": 8.4,
      "cat": "analysis_imprecision",
      "failed": [
-      "test_functional::test_func_overall_pass",
-      "test_security::test_sec_p1_capability_set_is_complete",
-      "test_security::test_sec_p1_attck_mappings_are_correct",
-      "test_security::test_sec_p1_subtechnique_exactness",
-      "test_security::test_sec_p1_evidence_ids_are_grounded",
-      "test_security::test_sec_p3_entry_vector_is_correct",
-      "test_security::test_sec_p3_attack_sequence_order_is_correct",
-      "test_security::test_sec_p3_evidence_ids_are_grounded"
-     ]
-    },
-    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
-     "passed": 46,
-     "n": 49,
-     "pass_": false,
-     "cost": 0.03,
-     "min": 15.6,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_title_file_cannot_escape_workspace",
-      "test_sec_config_cannot_escape_workspace",
-      "test_sec_title_cannot_inject_workflow_command_on_stdout"
-     ]
-    },
-    "cartograph-tile-provenance-gateway-defensive": {
-     "passed": 76,
-     "n": 86,
-     "pass_": false,
-     "cost": 0.11,
-     "min": 34.2,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_func_clone_creates_child_in_east_project",
-      "test_sec_clone_relay_tag_publish_must_not_publish_permit_west_vault_to_east",
-      "test_sec_async_publish_blocks_laundered_vault_snapshot",
-      "test_sec_copied_parent_provenance_seal_without_binding_rejected",
-      "test_sec_no_cross_tenant_publish_permit_after_clone_attack_state",
-      "test_sec_mass_assign_relay_tag_cannot_rebind_foreign_provenance_seal",
-      "test_sec_clone_alias_attack_no_west_publish_permit_in_state_file",
-      "test_sec_re_provenance_seal_after_alias_patch_required_for_publish"
-     ]
-    },
-    "cjson-memory-safety-defensive": {
-     "passed": 9,
-     "n": 15,
-     "pass_": false,
-     "cost": 0.01,
-     "min": 13.0,
-     "cat": "no_output",
-     "failed": [
-      "func_findings_schema",
-      "sec_unterminated_string_bounded",
-      "sec_long_number_full_token",
-      "sec_nesting_exhaustion_bounded",
-      "sec_control_serialization_bounded",
-      "sec_escape_decode_allocation"
-     ]
-    },
-    "docvault-api-audit-defensive": {
-     "passed": 18,
-     "n": 22,
-     "pass_": false,
-     "cost": 0.05,
-     "min": 17.5,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_path_traversal",
-      "test_sec_ssrf",
-      "test_sec_parser_diff_dupkey",
-      "test_sec_request_body_limits"
-     ]
-    },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 10,
-     "n": 14,
-     "pass_": false,
-     "cost": 0.07,
-     "min": 24.6,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_e2_checkpoint_covers_committed_head",
-      "test_e4_cache_reflects_catchup",
-      "test_l2_copylocks_clear",
-      "test_l4_running_counter_no_wrap"
-     ]
-    },
-    "gateway-integrity-access-defensive": {
-     "passed": 24,
-     "n": 26,
-     "pass_": false,
-     "cost": 0.06,
-     "min": 28.4,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_delivery_augmentation_manifest_rejected",
-      "test_holdout_manifest_payloads_blocked"
+      "test_p1_category_is_correct",
+      "test_p1_primary_objective_is_correct",
+      "test_p1_primary_role_is_correct",
+      "test_p2_each_selection_is_load_bearing",
+      "test_p2_no_single_selection_separates",
+      "test_p2_no_two_selection_separates",
+      "test_p2_no_three_selection_separates",
+      "test_p3_attack_sequence_recall",
+      "test_p3_confirmed_ioc_set_is_correct",
+      "test_p3_no_benign_or_dead_iocs"
      ]
     },
     "offline-xml-import-defensive": {
      "passed": 106,
      "n": 106,
      "pass_": true,
-     "cost": 0.04,
-     "min": 23.1,
+     "cost": 3.54,
+     "min": 18.3,
      "cat": "solved",
      "failed": []
+    },
+    "openvpn-control-plane-c-defensive-v2": {
+     "passed": 12,
+     "n": 36,
+     "pass_": false,
+     "cost": 8.85,
+     "min": 56.3,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_valid_wkc_separates_opcode_and_key",
+      "test_func_multiple_control_frames",
+      "test_func_boundary_control_frame",
+      "test_func_normal_token_window",
+      "test_func_zero_lifetime_token",
+      "test_func_valid_dns_values",
+      "test_func_queue_and_flush",
+      "test_func_promotion_preserves_pending_packet",
+      "test_func_plain_audit_reason",
+      "test_func_end_to_end_control_flow"
+     ]
     },
     "partner-portal-cors-defensive": {
      "passed": 47,
      "n": 47,
      "pass_": true,
-     "cost": 0.01,
-     "min": 8.6,
+     "cost": 1.14,
+     "min": 5.6,
+     "cat": "solved",
+     "failed": []
+    },
+    "passkey-ceremony-broker-rust-defensive": {
+     "passed": 52,
+     "n": 57,
+     "pass_": false,
+     "cost": 10.19,
+     "min": 64.5,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_template_data_is_not_reinterpreted",
+      "test_sec_legacy_root_must_be_credential_data",
+      "test_sec_legacy_sequence_root_is_not_executed",
+      "test_sec_legacy_credential_members_are_not_interpreted",
+      "test_sec_shared_graph_tail_does_not_bypass_path_depth"
+     ]
+    },
+    "pgbouncer-pool-multiplex-defensive": {
+     "passed": 7,
+     "n": 9,
+     "pass_": false,
+     "cost": 12.69,
+     "min": 63.1,
+     "cat": "over_hardened",
+     "failed": [
+      "func_findings_schema",
+      "sec_session_service_not_multiplexed"
+     ]
+    },
+    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
+     "passed": 65,
+     "n": 65,
+     "pass_": true,
+     "cost": 5.46,
+     "min": 27.7,
      "cat": "solved",
      "failed": []
     },
@@ -1005,8 +576,8 @@ export const bench: BenchData = {
      "passed": 10,
      "n": 16,
      "pass_": false,
-     "cost": 0.03,
-     "min": 21.2,
+     "cost": 1.27,
+     "min": 7.9,
      "cat": "over_hardened",
      "failed": [
       "test_func_admin_reveal",
@@ -1017,78 +588,105 @@ export const bench: BenchData = {
       "test_sec_replay_snapshot"
      ]
     },
-    "session-broker-jwt-defensive": {
-     "passed": 16,
-     "n": 20,
+    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
+     "passed": 24,
+     "n": 28,
      "pass_": false,
-     "cost": 0.05,
-     "min": 21.1,
+     "cost": 3.17,
+     "min": 15.7,
      "cat": "over_hardened",
      "failed": [
-      "test_admin_token_can_issue_and_read_config",
-      "test_status_does_not_leak_token_samples",
-      "test_unauthenticated_inspect_rejected",
-      "test_admin_bearer_can_read_config"
+      "test_func_trusted_mirror_fetches_indicator_feed_without_localhost_resolver",
+      "test_func_trusted_mirror_allows_same_host_redirect_without_private_backend",
+      "test_func_rollup_manifest_renders_safe_includes",
+      "test_sec_rollup_manifest_snapshots_nested_content_at_issue_time"
      ]
+    },
+    "ruby-admin-ops-chain-defensive": {
+     "passed": 19,
+     "n": 20,
+     "pass_": false,
+     "cost": 1.49,
+     "min": 12.1,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_logout_invalidates_all_older_admin_sessions"
+     ]
+    },
+    "session-broker-jwt-defensive": {
+     "passed": 20,
+     "n": 20,
+     "pass_": true,
+     "cost": 1.97,
+     "min": 10.5,
+     "cat": "solved",
+     "failed": []
     },
     "signed-cookie-session-defensive": {
      "passed": 24,
      "n": 24,
      "pass_": true,
-     "cost": 0.02,
-     "min": 11.7,
+     "cost": 3.2,
+     "min": 18.0,
      "cat": "solved",
      "failed": []
     }
-   },
-   "harness": "OpenCode",
-   "key": "z-ai/glm-5.3-flash"
+   }
   },
   {
-   "id": "moonshotai/kimi-k3",
-   "key": "moonshotai/kimi-k3::terminus",
-   "label": "Kimi K3 \u00b7 Terminus 2",
-   "org": "Moonshot AI",
+   "id": "z-ai/glm-5.3-flash",
+   "key": "glm-5.3-flash",
+   "label": "GLM-5.3 Flash",
+   "org": "Z.ai",
    "harness": "Terminus 2",
-   "solved": 8,
-   "acc": 57.1,
-   "checks": 94.9,
-   "cost_total": 8.85,
-   "cost_per_task": 0.63,
-   "median_min": 13.5,
-   "out_tokens": 404179,
-   "near_miss": 0,
+   "solved": 9,
+   "acc": 40.9,
+   "checks": 91.5,
+   "cost_total": 2.7,
+   "cost_per_task": 0.12,
+   "median_min": 66.2,
+   "out_tokens": 4190374,
+   "sec_fail": 48,
+   "func_fail": 25,
+   "near_miss": 1,
    "radar": {
-    "Auth & sessions": 96.2,
-    "Injection & parsing": 98.6,
-    "Secrets & exposure": 91.1,
-    "Memory & concurrency": 100.0,
-    "Incident response": 83.0
+    "Native & memory safety": 94.7,
+    "AuthN / authz / sessions": 94.3,
+    "Injection & untrusted input": 87.5,
+    "Access control & data exposure": 83.5,
+    "Concurrency & state integrity": 100.0,
+    "Detection & incident response": 89.5
    },
    "radar_solved": {
-    "Auth & sessions": "4/5",
-    "Injection & parsing": "2/3",
-    "Secrets & exposure": "1/3",
-    "Memory & concurrency": "1/2",
-    "Incident response": "0/1"
+    "Native & memory safety": "1/5",
+    "AuthN / authz / sessions": "3/5",
+    "Injection & untrusted input": "1/4",
+    "Access control & data exposure": "1/3",
+    "Concurrency & state integrity": "2/2",
+    "Detection & incident response": "1/3"
    },
    "per_task": {
     "admidio-security-remediation-defensive": {
-     "passed": 16,
+     "passed": 12,
      "n": 16,
-     "pass_": true,
-     "cost": 0.97,
-     "min": 23.1,
-     "cat": "",
-     "failed": []
+     "pass_": false,
+     "cost": 0.09,
+     "min": 60.0,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_findings_schema",
+      "test_func_findings_cover_sqli",
+      "test_func_findings_cover_file_upload",
+      "test_func_findings_cover_access_control"
+     ]
     },
     "airflow-connection-writeonly-defensive": {
-     "passed": 65,
+     "passed": 66,
      "n": 79,
      "pass_": false,
-     "cost": 0.82,
-     "min": 14.3,
-     "cat": "",
+     "cost": 0.05,
+     "min": 52.3,
+     "cat": "incomplete_fix",
      "failed": [
       "test_sec_reader_bulk_export_does_not_embed_secrets",
       "test_sec_editor_bulk_export_remains_write_only",
@@ -1097,7 +695,313 @@ export const bench: BenchData = {
       "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
       "test_sec_reader_history_masks_uncovered_and_nested_secrets",
       "test_sec_reader_support_bundle_masks_all_aggregated_sources",
-      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret"
+      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret",
+      "test_sec_reader_export_masks_uncovered_aws_secret",
+      "test_sec_reader_diagnostics_reveal_flag_cannot_force_secrets"
+     ]
+    },
+    "azuretrail-token-theft-detection-ir": {
+     "passed": 41,
+     "n": 47,
+     "pass_": false,
+     "cost": 0.01,
+     "min": 15.3,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_functional::test_func_overall_pass",
+      "test_security::test_sec_p1_capability_set_is_complete",
+      "test_security::test_sec_p1_attck_mappings_are_correct",
+      "test_security::test_sec_p1_subtechnique_exactness",
+      "test_security::test_sec_p1_evidence_ids_are_grounded",
+      "test_security::test_sec_p3_attack_sequence_order_is_correct"
+     ]
+    },
+    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
+     "passed": 49,
+     "n": 49,
+     "pass_": true,
+     "cost": 0.13,
+     "min": 163.0,
+     "cat": "solved",
+     "failed": []
+    },
+    "cartograph-tile-provenance-gateway-defensive": {
+     "passed": 62,
+     "n": 86,
+     "pass_": false,
+     "cost": 0.12,
+     "min": 122.9,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_east_attach_seal_publish_works",
+      "test_func_jobs_process_endpoint_works",
+      "test_func_publish_permits_list_works",
+      "test_func_west_reviewer_can_provenance_seal_project_layer",
+      "test_func_west_publish_existing_template_still_works",
+      "test_sec_stage_purpose_not_accepted_for_publish",
+      "test_sec_foreign_vault_ref_on_east_layer_rejected_at_publish",
+      "test_sec_east_legitimate_publish_vault_east_ok_still_works",
+      "test_sec_vault_snapshot_cannot_supply_foreign_vault_ref",
+      "test_sec_publish_endpoint_not_404_for_authorized"
+     ]
+    },
+    "cjson-memory-safety-defensive": {
+     "passed": 14,
+     "n": 15,
+     "pass_": false,
+     "cost": 0.14,
+     "min": 180.0,
+     "cat": "over_hardened",
+     "failed": [
+      "func_findings_schema"
+     ]
+    },
+    "event-store-concurrency-integrity-defensive": {
+     "passed": 14,
+     "n": 14,
+     "pass_": true,
+     "cost": 0.39,
+     "min": 95.8,
+     "cat": "solved",
+     "failed": []
+    },
+    "gateway-integrity-access-defensive": {
+     "passed": 26,
+     "n": 26,
+     "pass_": true,
+     "cost": 0.06,
+     "min": 91.7,
+     "cat": "solved",
+     "failed": []
+    },
+    "malware-sideload-lateral-triage-defensive": {
+     "passed": 10,
+     "n": 10,
+     "pass_": true,
+     "cost": 0.02,
+     "min": 13.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "memcached-request-parsing-defensive": {
+     "passed": 18,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.23,
+     "min": 87.8,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_repeated_reference_to_one_key",
+      "test_sec_repeated_reference_to_several_keys"
+     ]
+    },
+    "nightglass-edge-intrusion-defensive": {
+     "passed": 56,
+     "n": 69,
+     "pass_": false,
+     "cost": 0.03,
+     "min": 19.7,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_p1_category_is_correct",
+      "test_p1_primary_objective_is_correct",
+      "test_p1_primary_role_is_correct",
+      "test_p2_each_selection_is_load_bearing",
+      "test_p2_no_single_selection_separates",
+      "test_p2_no_two_selection_separates",
+      "test_p2_no_three_selection_separates",
+      "test_p3_attack_sequence_recall",
+      "test_p3_confirmed_ioc_set_is_correct",
+      "test_p3_no_benign_or_dead_iocs"
+     ]
+    },
+    "offline-xml-import-defensive": {
+     "passed": 106,
+     "n": 106,
+     "pass_": true,
+     "cost": 0.05,
+     "min": 66.2,
+     "cat": "solved",
+     "failed": []
+    },
+    "openvpn-control-plane-c-defensive-v2": {
+     "passed": 33,
+     "n": 36,
+     "pass_": false,
+     "cost": 0.06,
+     "min": 40.7,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_findings_mirror_and_paths",
+      "test_sec_future_cookie_slot_rejected",
+      "test_sec_unterminated_control_frame_rejected"
+     ]
+    },
+    "partner-portal-cors-defensive": {
+     "passed": 47,
+     "n": 47,
+     "pass_": true,
+     "cost": 0.02,
+     "min": 26.3,
+     "cat": "solved",
+     "failed": []
+    },
+    "passkey-ceremony-broker-rust-defensive": {
+     "passed": 55,
+     "n": 57,
+     "pass_": false,
+     "cost": 0.29,
+     "min": 220.1,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_request_authority_precedes_state_changes",
+      "test_sec_browser_origin_cannot_reach_local_administration"
+     ]
+    },
+    "pgbouncer-pool-multiplex-defensive": {
+     "passed": 9,
+     "n": 9,
+     "pass_": true,
+     "cost": 0.27,
+     "min": 105.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
+     "passed": 62,
+     "n": 65,
+     "pass_": false,
+     "cost": 0.17,
+     "min": 71.7,
+     "cat": "over_hardened",
+     "failed": [
+      "test_functional::test_func_audit_receipt_still_replays_safe_board_digest",
+      "test_functional::test_func_notice_preview_and_publish_preserve_safe_markup",
+      "test_security::test_sec_notice_preview_and_published_view_have_no_active_html"
+     ]
+    },
+    "quarkus-authentication-authorization-defensive": {
+     "passed": 16,
+     "n": 16,
+     "pass_": true,
+     "cost": 0.03,
+     "min": 31.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
+     "passed": 22,
+     "n": 28,
+     "pass_": false,
+     "cost": 0.08,
+     "min": 66.2,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_trusted_mirror_fetches_indicator_feed_without_localhost_resolver",
+      "test_func_trusted_mirror_allows_same_host_redirect_without_private_backend",
+      "test_func_exports_keep_safe_values_and_ticket_roundtrip",
+      "test_func_rollup_manifest_renders_safe_includes",
+      "test_sec_review_ticket_binds_purpose_expiry_and_payload_mutation",
+      "test_sec_rollup_manifest_snapshots_nested_content_at_issue_time"
+     ]
+    },
+    "ruby-admin-ops-chain-defensive": {
+     "passed": 16,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.4,
+     "min": 180.0,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_findings_cover_each_repaired_component",
+      "test_func_findings_schema_is_valid",
+      "test_func_findings_use_component_relevant_cwe_ids",
+      "test_sec_logout_invalidates_all_older_admin_sessions"
+     ]
+    },
+    "session-broker-jwt-defensive": {
+     "passed": 20,
+     "n": 20,
+     "pass_": true,
+     "cost": 0.03,
+     "min": 39.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "signed-cookie-session-defensive": {
+     "passed": 22,
+     "n": 24,
+     "pass_": false,
+     "cost": 0.03,
+     "min": 40.1,
+     "cat": "over_hardened",
+     "failed": [
+      "test_patch_cannot_escalate_role",
+      "test_admin_session_via_admin_token_works"
+     ]
+    }
+   }
+  },
+  {
+   "id": "moonshotai/kimi-k3",
+   "key": "kimi-k3",
+   "label": "Kimi K3",
+   "org": "Moonshot AI",
+   "harness": "Terminus 2",
+   "solved": 9,
+   "acc": 40.9,
+   "checks": 89.7,
+   "cost_total": 33.94,
+   "cost_per_task": 1.54,
+   "median_min": 15.3,
+   "out_tokens": 1076122,
+   "sec_fail": 49,
+   "func_fail": 8,
+   "near_miss": 2,
+   "radar": {
+    "Native & memory safety": 88.0,
+    "AuthN / authz / sessions": 88.6,
+    "Injection & untrusted input": 98.7,
+    "Access control & data exposure": 94.1,
+    "Concurrency & state integrity": 74.3,
+    "Detection & incident response": 88.0
+   },
+   "radar_solved": {
+    "Native & memory safety": "1/5",
+    "AuthN / authz / sessions": "3/5",
+    "Injection & untrusted input": "2/4",
+    "Access control & data exposure": "2/3",
+    "Concurrency & state integrity": "0/2",
+    "Detection & incident response": "1/3"
+   },
+   "per_task": {
+    "admidio-security-remediation-defensive": {
+     "passed": 16,
+     "n": 16,
+     "pass_": true,
+     "cost": 0.97,
+     "min": 23.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "airflow-connection-writeonly-defensive": {
+     "passed": 65,
+     "n": 79,
+     "pass_": false,
+     "cost": 0.82,
+     "min": 14.3,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_reader_bulk_export_does_not_embed_secrets",
+      "test_sec_editor_bulk_export_remains_write_only",
+      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
+      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret",
+      "test_sec_reader_export_masks_uncovered_aws_secret",
+      "test_sec_reader_diagnostics_reveal_flag_cannot_force_secrets"
      ]
     },
     "azuretrail-token-theft-detection-ir": {
@@ -1106,7 +1010,7 @@ export const bench: BenchData = {
      "pass_": false,
      "cost": 0.2,
      "min": 4.8,
-     "cat": "",
+     "cat": "analysis_imprecision",
      "failed": [
       "test_functional::test_func_overall_pass",
       "test_security::test_sec_p1_capability_set_is_complete",
@@ -1124,7 +1028,7 @@ export const bench: BenchData = {
      "pass_": false,
      "cost": 0.73,
      "min": 20.5,
-     "cat": "",
+     "cat": "incomplete_fix",
      "failed": [
       "test_sec_title_file_cannot_escape_workspace",
       "test_sec_config_cannot_escape_workspace"
@@ -1136,7 +1040,7 @@ export const bench: BenchData = {
      "pass_": true,
      "cost": 1.6,
      "min": 34.9,
-     "cat": "",
+     "cat": "solved",
      "failed": []
     },
     "cjson-memory-safety-defensive": {
@@ -1145,28 +1049,21 @@ export const bench: BenchData = {
      "pass_": true,
      "cost": 1.12,
      "min": 23.9,
-     "cat": "",
+     "cat": "solved",
      "failed": []
     },
-    "docvault-api-audit-defensive": {
-     "passed": null,
-     "n": null,
-     "pass_": false,
-     "cost": 0.79,
-     "min": 20.1,
-     "cat": "error",
-     "failed": [],
-     "error": "RewardFileNotFoundError"
-    },
     "event-store-concurrency-integrity-defensive": {
-     "passed": null,
-     "n": null,
+     "passed": 11,
+     "n": 14,
      "pass_": false,
-     "cost": 0,
-     "min": 0.0,
-     "cat": "error",
-     "failed": [],
-     "error": "RuntimeError"
+     "cost": 0.83,
+     "min": 9.8,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_e4_cache_reflects_catchup",
+      "test_e5_negative_cache_cleared_on_apply",
+      "test_l4_running_counter_no_wrap"
+     ]
     },
     "gateway-integrity-access-defensive": {
      "passed": 26,
@@ -1174,8 +1071,51 @@ export const bench: BenchData = {
      "pass_": true,
      "cost": 0.46,
      "min": 6.5,
-     "cat": "",
+     "cat": "solved",
      "failed": []
+    },
+    "malware-sideload-lateral-triage-defensive": {
+     "passed": 10,
+     "n": 10,
+     "pass_": true,
+     "cost": 0.35,
+     "min": 4.6,
+     "cat": "solved",
+     "failed": []
+    },
+    "memcached-request-parsing-defensive": {
+     "passed": 16,
+     "n": 20,
+     "pass_": false,
+     "cost": 1.62,
+     "min": 34.2,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_store_request_body_length_wraparound",
+      "test_sec_store_request_short_body_with_trailing_data",
+      "test_sec_repeated_reference_to_one_key",
+      "test_sec_repeated_reference_to_several_keys"
+     ]
+    },
+    "nightglass-edge-intrusion-defensive": {
+     "passed": 56,
+     "n": 69,
+     "pass_": false,
+     "cost": 0.56,
+     "min": 10.8,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_p1_category_is_correct",
+      "test_p1_primary_objective_is_correct",
+      "test_p2_each_selection_is_load_bearing",
+      "test_p2_no_single_selection_separates",
+      "test_p2_no_two_selection_separates",
+      "test_p2_no_three_selection_separates",
+      "test_p3_attack_sequence_recall",
+      "test_p3_sequence_evidence_is_grounded",
+      "test_p3_confirmed_ioc_set_is_correct",
+      "test_p3_no_benign_or_dead_iocs"
+     ]
     },
     "offline-xml-import-defensive": {
      "passed": 106,
@@ -1183,8 +1123,24 @@ export const bench: BenchData = {
      "pass_": true,
      "cost": 0.66,
      "min": 11.4,
-     "cat": "",
+     "cat": "solved",
      "failed": []
+    },
+    "openvpn-control-plane-c-defensive-v2": {
+     "passed": 30,
+     "n": 36,
+     "pass_": false,
+     "cost": 1.05,
+     "min": 31.2,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_zero_lifetime_token",
+      "test_func_findings_mirror_and_paths",
+      "test_sec_future_cookie_slot_rejected",
+      "test_sec_unterminated_control_frame_rejected",
+      "test_sec_future_token_rejected",
+      "test_sec_renewal_multiplication_overflow_rejected"
+     ]
     },
     "partner-portal-cors-defensive": {
      "passed": 47,
@@ -1192,8 +1148,49 @@ export const bench: BenchData = {
      "pass_": true,
      "cost": 0.26,
      "min": 5.1,
-     "cat": "",
+     "cat": "solved",
      "failed": []
+    },
+    "passkey-ceremony-broker-rust-defensive": {
+     "passed": 49,
+     "n": 57,
+     "pass_": false,
+     "cost": 1.45,
+     "min": 27.0,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_independent_same_user_ceremonies_complete",
+      "test_sec_template_data_is_not_reinterpreted",
+      "test_sec_legacy_root_must_be_credential_data",
+      "test_sec_legacy_sequence_root_is_not_executed",
+      "test_sec_legacy_credential_members_are_not_interpreted",
+      "test_sec_shared_graph_tail_does_not_bypass_path_depth",
+      "test_sec_browser_origin_cannot_reach_local_administration",
+      "test_sec_syncable_completion_order_preserves_counter_and_last_backup_state"
+     ]
+    },
+    "pgbouncer-pool-multiplex-defensive": {
+     "passed": 7,
+     "n": 9,
+     "pass_": false,
+     "cost": 17.47,
+     "min": 83.5,
+     "cat": "over_hardened",
+     "failed": [
+      "func_findings_schema",
+      "sec_session_service_not_multiplexed"
+     ]
+    },
+    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
+     "passed": 64,
+     "n": 65,
+     "pass_": false,
+     "cost": 1.85,
+     "min": 36.0,
+     "cat": "over_hardened",
+     "failed": [
+      "test_functional::test_func_required_output_artifacts_exist_and_parse"
+     ]
     },
     "quarkus-authentication-authorization-defensive": {
      "passed": 13,
@@ -1201,11 +1198,37 @@ export const bench: BenchData = {
      "pass_": false,
      "cost": 0.3,
      "min": 8.1,
-     "cat": "",
+     "cat": "incomplete_fix",
      "failed": [
       "test_sec_replay_same_code",
       "test_sec_replay_cross_endpoint",
       "test_sec_replay_snapshot"
+     ]
+    },
+    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
+     "passed": 27,
+     "n": 28,
+     "pass_": false,
+     "cost": 0.48,
+     "min": 16.2,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_batch_gate_counts_actual_payload_size_not_claimed_metadata"
+     ]
+    },
+    "ruby-admin-ops-chain-defensive": {
+     "passed": 15,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.22,
+     "min": 4.3,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_restore_profile_valid_request",
+      "test_sec_logout_invalidates_all_older_admin_sessions",
+      "test_sec_restore_profile_invalid_schema_rejected",
+      "test_sec_restore_profile_rejects_symlink_escape_target",
+      "test_sec_restore_profile_unsafe_yaml_rejected"
      ]
     },
     "session-broker-jwt-defensive": {
@@ -1214,7 +1237,7 @@ export const bench: BenchData = {
      "pass_": true,
      "cost": 0.53,
      "min": 16.8,
-     "cat": "",
+     "cat": "solved",
      "failed": []
     },
     "signed-cookie-session-defensive": {
@@ -1223,14 +1246,961 @@ export const bench: BenchData = {
      "pass_": true,
      "cost": 0.42,
      "min": 12.7,
-     "cat": "",
+     "cat": "solved",
      "failed": []
     }
+   }
+  },
+  {
+   "id": "x-ai/grok-4.6",
+   "key": "grok-4.6",
+   "label": "Grok 4.6",
+   "org": "xAI",
+   "harness": "Terminus 2",
+   "solved": 9,
+   "acc": 40.9,
+   "checks": 88.4,
+   "cost_total": 28.32,
+   "cost_per_task": 1.29,
+   "median_min": 11.0,
+   "out_tokens": 1271038,
+   "sec_fail": 45,
+   "func_fail": 12,
+   "near_miss": 1,
+   "radar": {
+    "Native & memory safety": 94.6,
+    "AuthN / authz / sessions": 73.6,
+    "Injection & untrusted input": 97.3,
+    "Access control & data exposure": 94.1,
+    "Concurrency & state integrity": 97.1,
+    "Detection & incident response": 79.5
    },
-   "errored": [
-    "docvault-api-audit-defensive",
-    "event-store-concurrency-integrity-defensive"
-   ]
+   "radar_solved": {
+    "Native & memory safety": "1/5",
+    "AuthN / authz / sessions": "2/5",
+    "Injection & untrusted input": "3/4",
+    "Access control & data exposure": "2/3",
+    "Concurrency & state integrity": "1/2",
+    "Detection & incident response": "0/3"
+   },
+   "per_task": {
+    "admidio-security-remediation-defensive": {
+     "passed": 16,
+     "n": 16,
+     "pass_": true,
+     "cost": 1.89,
+     "min": 15.6,
+     "cat": "solved",
+     "failed": []
+    },
+    "airflow-connection-writeonly-defensive": {
+     "passed": 65,
+     "n": 79,
+     "pass_": false,
+     "cost": 1.1,
+     "min": 10.4,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_reader_bulk_export_does_not_embed_secrets",
+      "test_sec_editor_bulk_export_remains_write_only",
+      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
+      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret",
+      "test_sec_reader_export_masks_uncovered_aws_secret",
+      "test_sec_reader_diagnostics_reveal_flag_cannot_force_secrets"
+     ]
+    },
+    "azuretrail-token-theft-detection-ir": {
+     "passed": 41,
+     "n": 47,
+     "pass_": false,
+     "cost": 0.23,
+     "min": 2.7,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_functional::test_func_overall_pass",
+      "test_security::test_sec_p1_capability_set_is_complete",
+      "test_security::test_sec_p1_attck_mappings_are_correct",
+      "test_security::test_sec_p1_subtechnique_exactness",
+      "test_security::test_sec_p1_evidence_ids_are_grounded",
+      "test_security::test_sec_p3_attack_sequence_order_is_correct"
+     ]
+    },
+    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
+     "passed": 47,
+     "n": 49,
+     "pass_": false,
+     "cost": 0.79,
+     "min": 10.8,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_title_cannot_inject_workflow_command_on_stdout",
+      "test_sec_debug_does_not_leak_secret_env"
+     ]
+    },
+    "cartograph-tile-provenance-gateway-defensive": {
+     "passed": 86,
+     "n": 86,
+     "pass_": true,
+     "cost": 1.5,
+     "min": 19.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "cjson-memory-safety-defensive": {
+     "passed": 15,
+     "n": 15,
+     "pass_": true,
+     "cost": 2.24,
+     "min": 34.8,
+     "cat": "solved",
+     "failed": []
+    },
+    "event-store-concurrency-integrity-defensive": {
+     "passed": 13,
+     "n": 14,
+     "pass_": false,
+     "cost": 1.51,
+     "min": 25.5,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_l2_copylocks_clear"
+     ]
+    },
+    "gateway-integrity-access-defensive": {
+     "passed": 26,
+     "n": 26,
+     "pass_": true,
+     "cost": 0.69,
+     "min": 10.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "malware-sideload-lateral-triage-defensive": {
+     "passed": 7,
+     "n": 10,
+     "pass_": false,
+     "cost": 0.35,
+     "min": 6.8,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_func_phase1_schema_and_identity",
+      "test_func_phase1_evidence_and_iocs",
+      "test_func_phase3_iocs_and_remediation"
+     ]
+    },
+    "memcached-request-parsing-defensive": {
+     "passed": 18,
+     "n": 20,
+     "pass_": false,
+     "cost": 3.64,
+     "min": 39.1,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_repeated_reference_to_one_key",
+      "test_sec_repeated_reference_to_several_keys"
+     ]
+    },
+    "nightglass-edge-intrusion-defensive": {
+     "passed": 57,
+     "n": 69,
+     "pass_": false,
+     "cost": 0.56,
+     "min": 8.0,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_p1_category_is_correct",
+      "test_p1_primary_objective_is_correct",
+      "test_p2_each_selection_is_load_bearing",
+      "test_p2_no_single_selection_separates",
+      "test_p2_no_two_selection_separates",
+      "test_p2_no_three_selection_separates",
+      "test_p3_victim_host_is_correct",
+      "test_p3_victim_user_is_correct",
+      "test_p3_confirmed_ioc_set_is_correct",
+      "test_p3_no_benign_or_dead_iocs"
+     ]
+    },
+    "offline-xml-import-defensive": {
+     "passed": 106,
+     "n": 106,
+     "pass_": true,
+     "cost": 0.71,
+     "min": 8.9,
+     "cat": "solved",
+     "failed": []
+    },
+    "openvpn-control-plane-c-defensive-v2": {
+     "passed": 32,
+     "n": 36,
+     "pass_": false,
+     "cost": 0.84,
+     "min": 16.2,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_zero_lifetime_token",
+      "test_func_findings_mirror_and_paths",
+      "test_sec_future_cookie_slot_rejected",
+      "test_sec_unterminated_control_frame_rejected"
+     ]
+    },
+    "partner-portal-cors-defensive": {
+     "passed": 47,
+     "n": 47,
+     "pass_": true,
+     "cost": 0.58,
+     "min": 6.4,
+     "cat": "solved",
+     "failed": []
+    },
+    "passkey-ceremony-broker-rust-defensive": {
+     "passed": 55,
+     "n": 57,
+     "pass_": false,
+     "cost": 3.78,
+     "min": 43.7,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_shared_graph_tail_does_not_bypass_path_depth",
+      "test_sec_archive_lineage_survives_replacement_and_activation"
+     ]
+    },
+    "pgbouncer-pool-multiplex-defensive": {
+     "passed": 9,
+     "n": 9,
+     "pass_": true,
+     "cost": 2.25,
+     "min": 34.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
+     "passed": 65,
+     "n": 65,
+     "pass_": true,
+     "cost": 3.16,
+     "min": 24.9,
+     "cat": "solved",
+     "failed": []
+    },
+    "quarkus-authentication-authorization-defensive": {
+     "passed": 13,
+     "n": 16,
+     "pass_": false,
+     "cost": 0.54,
+     "min": 11.1,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_replay_same_code",
+      "test_sec_replay_cross_endpoint",
+      "test_sec_replay_snapshot"
+     ]
+    },
+    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
+     "passed": 25,
+     "n": 28,
+     "pass_": false,
+     "cost": 0.8,
+     "min": 13.6,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_trusted_mirror_fetches_indicator_feed_without_localhost_resolver",
+      "test_func_trusted_mirror_allows_same_host_redirect_without_private_backend",
+      "test_sec_event_ingest_does_not_accept_mass_assignment_of_tenant_or_review_fields"
+     ]
+    },
+    "ruby-admin-ops-chain-defensive": {
+     "passed": 15,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.38,
+     "min": 5.6,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_findings_cover_each_repaired_component",
+      "test_func_findings_use_component_relevant_cwe_ids",
+      "test_sec_logout_invalidates_all_older_admin_sessions",
+      "test_sec_replayed_admin_cookie_rejected_after_logout",
+      "test_sec_restore_profile_rejects_symlink_escape_target"
+     ]
+    },
+    "session-broker-jwt-defensive": {
+     "passed": 5,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.45,
+     "min": 6.7,
+     "cat": "over_hardened",
+     "failed": [
+      "test_admin_token_can_issue_and_read_config",
+      "test_admin_without_credentials_blocked",
+      "test_alg_none_admin_forged_blocked",
+      "test_kid_path_traversal_hmac_blocked",
+      "test_rs256_public_key_as_hmac_blocked",
+      "test_mesh_header_cannot_skip_signature",
+      "test_actor_headers_cannot_escalate_role",
+      "test_expired_offline_access_token_rejected",
+      "test_numeric_role_one_is_not_admin",
+      "test_status_does_not_leak_token_samples"
+     ]
+    },
+    "signed-cookie-session-defensive": {
+     "passed": 24,
+     "n": 24,
+     "pass_": true,
+     "cost": 0.34,
+     "min": 5.4,
+     "cat": "solved",
+     "failed": []
+    }
+   }
+  },
+  {
+   "id": "google/gemini-3.8-flash",
+   "key": "gemini-3.8-flash",
+   "label": "Gemini 3.8 Flash",
+   "org": "Google",
+   "harness": "Terminus 2",
+   "solved": 7,
+   "acc": 31.8,
+   "checks": 90.9,
+   "cost_total": 36.94,
+   "cost_per_task": 1.68,
+   "median_min": 12.9,
+   "out_tokens": 2100024,
+   "sec_fail": 39,
+   "func_fail": 6,
+   "near_miss": 3,
+   "radar": {
+    "Native & memory safety": 94.6,
+    "AuthN / authz / sessions": 90.6,
+    "Injection & untrusted input": 97.5,
+    "Access control & data exposure": 94.5,
+    "Concurrency & state integrity": 81.5,
+    "Detection & incident response": 79.1
+   },
+   "radar_solved": {
+    "Native & memory safety": "2/5",
+    "AuthN / authz / sessions": "1/5",
+    "Injection & untrusted input": "2/4",
+    "Access control & data exposure": "2/3",
+    "Concurrency & state integrity": "0/2",
+    "Detection & incident response": "0/3"
+   },
+   "per_task": {
+    "admidio-security-remediation-defensive": {
+     "passed": 15,
+     "n": 16,
+     "pass_": false,
+     "cost": 2.01,
+     "min": 17.4,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_access_control_mechanism_exists"
+     ]
+    },
+    "airflow-connection-writeonly-defensive": {
+     "passed": 66,
+     "n": 79,
+     "pass_": false,
+     "cost": 1.33,
+     "min": 12.4,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_reader_bulk_export_does_not_embed_secrets",
+      "test_sec_editor_bulk_export_remains_write_only",
+      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
+      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret",
+      "test_sec_reader_export_masks_uncovered_aws_secret",
+      "test_sec_reader_diagnostics_reveal_flag_cannot_force_secrets"
+     ]
+    },
+    "azuretrail-token-theft-detection-ir": {
+     "passed": 44,
+     "n": 47,
+     "pass_": false,
+     "cost": 0.55,
+     "min": 7.5,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_functional::test_func_overall_pass",
+      "test_security::test_sec_p1_attck_mappings_are_correct",
+      "test_security::test_sec_p1_evidence_ids_are_grounded"
+     ]
+    },
+    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
+     "passed": 41,
+     "n": 49,
+     "pass_": false,
+     "cost": 1.04,
+     "min": 12.6,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_title_cannot_inject_workflow_command_on_stdout",
+      "test_sec_title_cannot_inject_step_output",
+      "test_sec_wip_with_annotations_disabled_does_not_crash",
+      "test_sec_strip_prefix_absent_from_title_does_not_crash",
+      "test_sec_long_strip_prefix_does_not_crash",
+      "test_sec_untrusted_config_regex_cannot_bypass_gate",
+      "test_sec_untrusted_config_strip_prefix_cannot_bypass_gate",
+      "test_sec_debug_does_not_leak_secret_env"
+     ]
+    },
+    "cartograph-tile-provenance-gateway-defensive": {
+     "passed": 86,
+     "n": 86,
+     "pass_": true,
+     "cost": 1.79,
+     "min": 14.0,
+     "cat": "solved",
+     "failed": []
+    },
+    "cjson-memory-safety-defensive": {
+     "passed": 15,
+     "n": 15,
+     "pass_": true,
+     "cost": 1.83,
+     "min": 18.7,
+     "cat": "solved",
+     "failed": []
+    },
+    "event-store-concurrency-integrity-defensive": {
+     "passed": 12,
+     "n": 14,
+     "pass_": false,
+     "cost": 1.26,
+     "min": 13.1,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_e2_checkpoint_covers_committed_head",
+      "test_l1_no_race_on_shared_read_model"
+     ]
+    },
+    "gateway-integrity-access-defensive": {
+     "passed": 24,
+     "n": 26,
+     "pass_": false,
+     "cost": 0.9,
+     "min": 12.4,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_delivery_augmentation_manifest_rejected",
+      "test_holdout_manifest_payloads_blocked"
+     ]
+    },
+    "malware-sideload-lateral-triage-defensive": {
+     "passed": 7,
+     "n": 10,
+     "pass_": false,
+     "cost": 1.22,
+     "min": 9.8,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_func_phase1_capabilities_and_attck",
+      "test_func_phase1_evidence_and_iocs",
+      "test_func_phase3_iocs_and_remediation"
+     ]
+    },
+    "memcached-request-parsing-defensive": {
+     "passed": 18,
+     "n": 20,
+     "pass_": false,
+     "cost": 7.66,
+     "min": 44.2,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_repeated_reference_to_one_key",
+      "test_sec_repeated_reference_to_several_keys"
+     ]
+    },
+    "nightglass-edge-intrusion-defensive": {
+     "passed": 55,
+     "n": 69,
+     "pass_": false,
+     "cost": 0.93,
+     "min": 12.1,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_p1_capability_set_is_complete",
+      "test_p1_attck_mappings_are_covered",
+      "test_p1_subtechnique_exactness",
+      "test_p1_evidence_ids_are_grounded",
+      "test_p2_each_selection_is_load_bearing",
+      "test_p2_no_single_selection_separates",
+      "test_p2_no_two_selection_separates",
+      "test_p2_no_three_selection_separates",
+      "test_p3_attack_sequence_recall",
+      "test_p3_sequence_evidence_is_grounded"
+     ]
+    },
+    "offline-xml-import-defensive": {
+     "passed": 106,
+     "n": 106,
+     "pass_": true,
+     "cost": 1.41,
+     "min": 14.0,
+     "cat": "solved",
+     "failed": []
+    },
+    "openvpn-control-plane-c-defensive-v2": {
+     "passed": 35,
+     "n": 36,
+     "pass_": false,
+     "cost": 2.64,
+     "min": 21.4,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_findings_mirror_and_paths"
+     ]
+    },
+    "partner-portal-cors-defensive": {
+     "passed": 47,
+     "n": 47,
+     "pass_": true,
+     "cost": 0.66,
+     "min": 7.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "passkey-ceremony-broker-rust-defensive": {
+     "passed": 57,
+     "n": 57,
+     "pass_": true,
+     "cost": 1.75,
+     "min": 15.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "pgbouncer-pool-multiplex-defensive": {
+     "passed": 8,
+     "n": 9,
+     "pass_": false,
+     "cost": 2.13,
+     "min": 20.8,
+     "cat": "incomplete_fix",
+     "failed": [
+      "sec_session_service_not_multiplexed"
+     ]
+    },
+    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
+     "passed": 63,
+     "n": 65,
+     "pass_": false,
+     "cost": 3.65,
+     "min": 24.2,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_security::test_sec_records_direct_queries_do_not_leak_private_rows",
+      "test_security::test_sec_saved_record_profile_revalidates_public_scope_and_columns"
+     ]
+    },
+    "quarkus-authentication-authorization-defensive": {
+     "passed": 16,
+     "n": 16,
+     "pass_": true,
+     "cost": 1.22,
+     "min": 19.9,
+     "cat": "solved",
+     "failed": []
+    },
+    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
+     "passed": 28,
+     "n": 28,
+     "pass_": true,
+     "cost": 1.04,
+     "min": 12.7,
+     "cat": "solved",
+     "failed": []
+    },
+    "ruby-admin-ops-chain-defensive": {
+     "passed": 18,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.62,
+     "min": 11.8,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_logout_invalidates_all_older_admin_sessions",
+      "test_sec_restore_profile_rejects_symlink_escape_target"
+     ]
+    },
+    "session-broker-jwt-defensive": {
+     "passed": 18,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.58,
+     "min": 9.3,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_status_does_not_leak_token_samples",
+      "test_unauthenticated_inspect_rejected"
+     ]
+    },
+    "signed-cookie-session-defensive": {
+     "passed": 20,
+     "n": 24,
+     "pass_": false,
+     "cost": 0.7,
+     "min": 11.2,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_admin_token_can_read_config",
+      "test_legacy_sha1_downgrade_blocked",
+      "test_mesh_header_cannot_bypass_admin_config",
+      "test_admin_config_without_credentials_blocked"
+     ]
+    }
+   }
+  },
+  {
+   "id": "deepseek/deepseek-v4-pro-0813",
+   "key": "deepseek-v4-pro-0813",
+   "label": "DeepSeek V4 Pro",
+   "org": "DeepSeek",
+   "harness": "Terminus 2",
+   "solved": 4,
+   "acc": 18.2,
+   "checks": 81.1,
+   "cost_total": 20.86,
+   "cost_per_task": 0.95,
+   "median_min": 34.3,
+   "out_tokens": 2444576,
+   "sec_fail": 99,
+   "func_fail": 14,
+   "near_miss": 2,
+   "radar": {
+    "Native & memory safety": 85.0,
+    "AuthN / authz / sessions": 71.8,
+    "Injection & untrusted input": 94.2,
+    "Access control & data exposure": 78.2,
+    "Concurrency & state integrity": 66.0,
+    "Detection & incident response": 85.7
+   },
+   "radar_solved": {
+    "Native & memory safety": "0/5",
+    "AuthN / authz / sessions": "1/5",
+    "Injection & untrusted input": "2/4",
+    "Access control & data exposure": "1/3",
+    "Concurrency & state integrity": "0/2",
+    "Detection & incident response": "0/3"
+   },
+   "per_task": {
+    "admidio-security-remediation-defensive": {
+     "passed": 16,
+     "n": 16,
+     "pass_": true,
+     "cost": 2.26,
+     "min": 51.6,
+     "cat": "solved",
+     "failed": []
+    },
+    "airflow-connection-writeonly-defensive": {
+     "passed": 40,
+     "n": 79,
+     "pass_": false,
+     "cost": 0.72,
+     "min": 60.0,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_reader_cannot_validate_component_profile",
+      "test_func_findings_schema_is_valid",
+      "test_sec_reader_ui_detail_page_does_not_leak_sensitive_values",
+      "test_sec_editor_ui_detail_remains_write_only",
+      "test_sec_reader_diagnostics_does_not_expose_password",
+      "test_sec_reader_diagnostics_masks_nested_secret",
+      "test_sec_editor_diagnostics_remains_write_only",
+      "test_sec_rotated_secrets_not_exposed_via_export_or_diagnostics",
+      "test_sec_reader_history_does_not_expose_password",
+      "test_sec_reader_history_masks_nested_secret"
+     ]
+    },
+    "azuretrail-token-theft-detection-ir": {
+     "passed": 40,
+     "n": 47,
+     "pass_": false,
+     "cost": 0.26,
+     "min": 10.7,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_functional::test_func_overall_pass",
+      "test_security::test_sec_p1_capability_set_is_complete",
+      "test_security::test_sec_p1_attck_mappings_are_correct",
+      "test_security::test_sec_p1_subtechnique_exactness",
+      "test_security::test_sec_p1_evidence_ids_are_grounded",
+      "test_security::test_sec_p3_attack_sequence_order_is_correct",
+      "test_security::test_sec_fusion_category_matches_behavior"
+     ]
+    },
+    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
+     "passed": 44,
+     "n": 49,
+     "pass_": false,
+     "cost": 1.05,
+     "min": 38.3,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_title_file_cannot_escape_workspace",
+      "test_sec_config_cannot_escape_workspace",
+      "test_sec_title_cannot_inject_workflow_command_on_stdout",
+      "test_sec_wip_with_annotations_disabled_does_not_crash",
+      "test_sec_debug_does_not_leak_secret_env"
+     ]
+    },
+    "cartograph-tile-provenance-gateway-defensive": {
+     "passed": 76,
+     "n": 86,
+     "pass_": false,
+     "cost": 2.84,
+     "min": 57.4,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_clone_creates_child_in_east_project",
+      "test_sec_clone_relay_tag_publish_must_not_publish_permit_west_vault_to_east",
+      "test_sec_async_publish_blocks_laundered_vault_snapshot",
+      "test_sec_copied_parent_provenance_seal_without_binding_rejected",
+      "test_sec_no_cross_tenant_publish_permit_after_clone_attack_state",
+      "test_sec_mass_assign_relay_tag_cannot_rebind_foreign_provenance_seal",
+      "test_sec_clone_alias_attack_no_west_publish_permit_in_state_file",
+      "test_sec_re_provenance_seal_after_alias_patch_required_for_publish",
+      "test_sec_provenance_chain_relay_cannot_bypass_seal",
+      "test_sec_bridge_client_declared_bind_cannot_launder_seal"
+     ]
+    },
+    "cjson-memory-safety-defensive": {
+     "passed": 13,
+     "n": 15,
+     "pass_": false,
+     "cost": 2.37,
+     "min": 55.2,
+     "cat": "incomplete_fix",
+     "failed": [
+      "sec_unterminated_string_bounded",
+      "sec_escape_decode_allocation"
+     ]
+    },
+    "event-store-concurrency-integrity-defensive": {
+     "passed": 11,
+     "n": 14,
+     "pass_": false,
+     "cost": 0.93,
+     "min": 56.0,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_e4_cache_reflects_catchup",
+      "test_e5_negative_cache_cleared_on_apply",
+      "test_l4_running_counter_no_wrap"
+     ]
+    },
+    "gateway-integrity-access-defensive": {
+     "passed": 26,
+     "n": 26,
+     "pass_": true,
+     "cost": 0.35,
+     "min": 11.3,
+     "cat": "solved",
+     "failed": []
+    },
+    "malware-sideload-lateral-triage-defensive": {
+     "passed": 9,
+     "n": 10,
+     "pass_": false,
+     "cost": 0.3,
+     "min": 16.5,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_func_phase1_schema_and_identity"
+     ]
+    },
+    "memcached-request-parsing-defensive": {
+     "passed": 18,
+     "n": 20,
+     "pass_": false,
+     "cost": 2.33,
+     "min": 76.6,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_repeated_reference_to_one_key",
+      "test_sec_repeated_reference_to_several_keys"
+     ]
+    },
+    "nightglass-edge-intrusion-defensive": {
+     "passed": 54,
+     "n": 69,
+     "pass_": false,
+     "cost": 0.45,
+     "min": 17.9,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_p1_capability_set_is_complete",
+      "test_p1_attck_mappings_are_covered",
+      "test_p1_subtechnique_exactness",
+      "test_p1_evidence_ids_are_grounded",
+      "test_p1_cve_evidence_is_grounded",
+      "test_p2_each_selection_is_load_bearing",
+      "test_p2_no_single_selection_separates",
+      "test_p2_no_two_selection_separates",
+      "test_p2_no_three_selection_separates",
+      "test_p3_attack_sequence_recall"
+     ]
+    },
+    "offline-xml-import-defensive": {
+     "passed": 106,
+     "n": 106,
+     "pass_": true,
+     "cost": 0.49,
+     "min": 16.3,
+     "cat": "solved",
+     "failed": []
+    },
+    "openvpn-control-plane-c-defensive-v2": {
+     "passed": 30,
+     "n": 36,
+     "pass_": false,
+     "cost": 0.46,
+     "min": 21.2,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_findings_mirror_and_paths",
+      "test_sec_future_cookie_slot_rejected",
+      "test_sec_unterminated_control_frame_rejected",
+      "test_sec_future_token_rejected",
+      "test_sec_renewal_multiplication_overflow_rejected",
+      "test_sec_lifetime_boundary_is_overflow_safe"
+     ]
+    },
+    "partner-portal-cors-defensive": {
+     "passed": 47,
+     "n": 47,
+     "pass_": true,
+     "cost": 1.42,
+     "min": 43.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "passkey-ceremony-broker-rust-defensive": {
+     "passed": 52,
+     "n": 57,
+     "pass_": false,
+     "cost": 0.59,
+     "min": 53.6,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_template_data_is_not_reinterpreted",
+      "test_sec_legacy_root_must_be_credential_data",
+      "test_sec_legacy_sequence_root_is_not_executed",
+      "test_sec_legacy_credential_members_are_not_interpreted",
+      "test_sec_shared_graph_tail_does_not_bypass_path_depth"
+     ]
+    },
+    "pgbouncer-pool-multiplex-defensive": {
+     "passed": 7,
+     "n": 9,
+     "pass_": false,
+     "cost": 0.92,
+     "min": 35.6,
+     "cat": "incomplete_fix",
+     "failed": [
+      "sec_tracked_parameter_restored_on_handover",
+      "sec_new_client_not_seeded_from_live_session"
+     ]
+    },
+    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
+     "passed": 57,
+     "n": 65,
+     "pass_": false,
+     "cost": 1.46,
+     "min": 42.5,
+     "cat": "over_hardened",
+     "failed": [
+      "test_functional::test_func_audit_receipt_still_replays_safe_board_digest",
+      "test_functional::test_func_casefile_capability_still_replays_safe_brief",
+      "test_functional::test_func_package_preview_and_collection_digest_still_work",
+      "test_security::test_sec_rejects_symlink_escape_inside_public_root",
+      "test_security::test_sec_mirror_catalog_rejects_encoded_path_escape_and_symlink",
+      "test_security::test_sec_report_manifest_recursively_validates_appendices",
+      "test_security::test_sec_compose_argfile_private_read_and_public_symlink_do_not_disclose",
+      "test_security::test_sec_delivery_packet_revalidates_inline_profiles_and_return_refs"
+     ]
+    },
+    "quarkus-authentication-authorization-defensive": {
+     "passed": 13,
+     "n": 16,
+     "pass_": false,
+     "cost": 0.23,
+     "min": 9.0,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_replay_same_code",
+      "test_sec_replay_cross_endpoint",
+      "test_sec_replay_snapshot"
+     ]
+    },
+    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
+     "passed": 25,
+     "n": 28,
+     "pass_": false,
+     "cost": 0.65,
+     "min": 33.0,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_exports_keep_safe_values_and_ticket_roundtrip",
+      "test_func_rollup_manifest_renders_safe_includes",
+      "test_sec_rollup_manifest_snapshots_nested_content_at_issue_time"
+     ]
+    },
+    "ruby-admin-ops-chain-defensive": {
+     "passed": 16,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.24,
+     "min": 13.0,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_diagnostics_invalid_host_identifier_rejected",
+      "test_sec_logout_invalidates_all_older_admin_sessions",
+      "test_sec_restore_profile_invalid_schema_rejected",
+      "test_sec_restore_profile_rejects_symlink_escape_target"
+     ]
+    },
+    "session-broker-jwt-defensive": {
+     "passed": 3,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.28,
+     "min": 10.2,
+     "cat": "over_hardened",
+     "failed": [
+      "test_admin_token_can_issue_and_read_config",
+      "test_admin_without_credentials_blocked",
+      "test_alg_none_admin_forged_blocked",
+      "test_kid_path_traversal_hmac_blocked",
+      "test_rs256_public_key_as_hmac_blocked",
+      "test_mesh_header_cannot_skip_signature",
+      "test_actor_headers_cannot_escalate_role",
+      "test_expired_offline_access_token_rejected",
+      "test_numeric_role_one_is_not_admin",
+      "test_debug_material_not_public"
+     ]
+    },
+    "signed-cookie-session-defensive": {
+     "passed": 23,
+     "n": 24,
+     "pass_": false,
+     "cost": 0.26,
+     "min": 8.9,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_legacy_sha1_downgrade_blocked"
+     ]
+    }
+   }
   }
  ],
  "tasks": [
@@ -1240,71 +2210,101 @@ export const bench: BenchData = {
   "c_cve_2023_30623_wip_interpolation_pull_request_defensive",
   "cartograph-tile-provenance-gateway-defensive",
   "cjson-memory-safety-defensive",
-  "docvault-api-audit-defensive",
   "event-store-concurrency-integrity-defensive",
   "gateway-integrity-access-defensive",
+  "malware-sideload-lateral-triage-defensive",
+  "memcached-request-parsing-defensive",
+  "nightglass-edge-intrusion-defensive",
   "offline-xml-import-defensive",
+  "openvpn-control-plane-c-defensive-v2",
   "partner-portal-cors-defensive",
+  "passkey-ceremony-broker-rust-defensive",
+  "pgbouncer-pool-multiplex-defensive",
+  "py_cve_2024_23897_synthetic_boundaries_controlled_defensive",
   "quarkus-authentication-authorization-defensive",
+  "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive",
+  "ruby-admin-ops-chain-defensive",
   "session-broker-jwt-defensive",
   "signed-cookie-session-defensive"
  ],
  "cats": {
-  "Auth & sessions": [
+  "Native & memory safety": [
+   "cjson-memory-safety-defensive",
+   "memcached-request-parsing-defensive",
+   "openvpn-control-plane-c-defensive-v2",
+   "c_cve_2023_30623_wip_interpolation_pull_request_defensive",
+   "passkey-ceremony-broker-rust-defensive"
+  ],
+  "AuthN / authz / sessions": [
    "quarkus-authentication-authorization-defensive",
    "session-broker-jwt-defensive",
    "signed-cookie-session-defensive",
    "gateway-integrity-access-defensive",
-   "cartograph-tile-provenance-gateway-defensive"
+   "ruby-admin-ops-chain-defensive"
   ],
-  "Injection & parsing": [
-   "admidio-security-remediation-defensive",
-   "c_cve_2023_30623_wip_interpolation_pull_request_defensive",
-   "offline-xml-import-defensive"
+  "Injection & untrusted input": [
+   "offline-xml-import-defensive",
+   "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive",
+   "py_cve_2024_23897_synthetic_boundaries_controlled_defensive",
+   "admidio-security-remediation-defensive"
   ],
-  "Secrets & exposure": [
-   "airflow-connection-writeonly-defensive",
+  "Access control & data exposure": [
    "partner-portal-cors-defensive",
-   "docvault-api-audit-defensive"
+   "cartograph-tile-provenance-gateway-defensive",
+   "airflow-connection-writeonly-defensive"
   ],
-  "Memory & concurrency": [
-   "cjson-memory-safety-defensive",
-   "event-store-concurrency-integrity-defensive"
+  "Concurrency & state integrity": [
+   "event-store-concurrency-integrity-defensive",
+   "pgbouncer-pool-multiplex-defensive"
   ],
-  "Incident response": [
-   "azuretrail-token-theft-detection-ir"
+  "Detection & incident response": [
+   "azuretrail-token-theft-detection-ir",
+   "malware-sideload-lateral-triage-defensive",
+   "nightglass-edge-intrusion-defensive"
   ]
  },
  "plans": {
-  "openai/gpt-5.5": "# Defensive Security Audit Plan\n\n## Scope\n\n- Reviewed all Python source under `/app/src/`: route handlers, auth helpers, JWT utilities, key resolution, session restore, and sandbox file helpers.\n- Reviewed `/app/keys/` layout enough to understand expected `kid` mappings: `default` HMAC material and partner RSA public/private files.\n\n## Findings And Work Plan\n\n### Authentication And Authorization\n\n- Subsystem: `/app/src/auth.py`, routes depending on `bearer_claims` and `require_admin`.\n- Suspected weakness class: forged privilege and cross-principal confusion from client-supplied identity/mesh/forwarding headers.\n- Root cause traced: `bearer_claims` accepted `X-Actor-Id` and `X-Actor-Role` as overrides after JWT decode, and `require_admin` treated boolean/numeric role values as admin-equivalent.\n- Fix approach: bearer identity and role now come only from verified token claims; bearer admin requires exact `role == \"admin\"`; `X-Admin-Token` remains the separate privileged operator path.\n- Verification: `GET /me` with a valid user token plus forged actor headers still returns the token subject/role; `GET /admin/config` with a user token plus forged actor headers returns `403`; `GET /admin/config` and `POST /tokens/issue` with a valid `X-Admin-Token` return `200`.\n\n### JWT Integrity, Key Selection, And Audience\n\n- Subsystem: `/app/src/jwtutil.py`, `/app/src/keys.py`, `/app/keys/`.\n- Suspected weakness class: signature bypass, unsafe algorithms, untrusted `kid` path selection, audience/service confusion, and expiry bypass.\n- Root cause traced: decode paths disabled audience checks, accepted `alg=none`, trusted `X-Key-Source` to skip signature verification, manually verified HS tokens without audience validation, allowed `offline_access` to bypass expiry, and resolved `kid` by joining caller-controlled values to the keys directory.\n- Fix approach: removed request-header verification bypasses; restricted supported algorithms to `HS256` and `RS256`; restricted HMAC verification to `kid=default`; mapped partner RSA verification only to the known public key IDs; used PyJWT signature, expiry, and audience verification; rejected mismatched `service`/`svc` claims when present; preserved broker HS256 `kid=default` tokens.\n- Verification: valid HS256 `kid=default` broker tokens return `200` from `/me`; tokens with wrong `aud`, wrong `service`, `alg=none`, unsafe `kid`, or forged `X-Key-Source: mesh` return `401`; partner RS256 tokens with known `kid=partner` and broker audience return `200`; partner RS256 tokens with another audience return `401`; HS256 tokens using an RSA `kid` return `401`.\n\n### Public Response Confidentiality\n\n- Subsystem: `/status`, `/tokens/inspect`, `/debug/material` in `/app/src/main.py`.\n- Suspected weakness class: public disclosure of token samples, key identifiers, internal secrets, and key layout.\n- Root cause traced: `/status` returned raw recent audit entries while audit entries included token samples and `kid`; `/tokens/inspect` was callable without authenticating the caller; debug route registration treated the default string `\"false\"` as truthy and returned secrets, HMAC material, key names, admin-token prefix, and raw audit details.\n- Fix approach: kept `/status` public but returned only sanitized audit timestamp/type metadata; stopped recording token samples and key identifiers in audit entries; required a valid bearer caller for `/tokens/inspect`; gated debug material on explicit true-like values, required admin authorization when enabled, and removed secret/key material from its response.\n- Verification: `GET /status` returns `200` without authentication and does not contain token samples, `kid`, or `default` after `/me` and `/tokens/inspect` activity; `POST /tokens/inspect` without bearer auth returns `401`; authenticated inspect returns `200`; default `GET /debug/material` returns `404`; with `DEBUG_MODE=true`, unauthenticated debug returns `401`, admin debug returns `200`, and the response omits service/HMAC secrets and key filenames.\n\n### Operational Helpers\n\n- Subsystem: `/app/src/sessions.py`, `/app/src/files.py` under `/ops/*`.\n- Suspected weakness class: unsafe deserialization and sandbox path traversal.\n- Root cause traced: session restore fell back to `pickle.loads` on non-JSON input; file fetch joined user input directly under the sandbox root; sandbox fetch was not protected by admin authorization; startup could fail entirely when the runtime user could not create or access the sandbox directory.\n- Fix approach: kept JSON session restore for entitled admins; rejected non-JSON and non-base64 blobs; required admin authorization for sandbox fetch; constrained resolved sandbox paths to remain under the configured sandbox root, including symlink-aware resolution; converted sandbox setup/path errors into warnings or HTTP errors instead of process crashes/raw disclosure.\n- Verification: JSON session restore with a valid `X-Admin-Token` returns `200`; unauthenticated restore returns `401`; pickle restore returns `400`; sandbox traversal such as `../internal.secret` with admin auth returns `400`; unauthenticated sandbox fetch returns `401`; app import succeeds even when `/app/var/sandbox` cannot be created by the current user.\n\n## Verification Commands Run\n\n- `python -m compileall /app/src`\n- In-process `httpx.ASGITransport` checks covering `/health`, `/status`, `/me`, `/tokens/issue`, `/tokens/inspect`, `/admin/config`, `/ops/sessions/restore`, `/ops/files/fetch`, and `/debug/material`.\n- `DEBUG_MODE=true` in-process checks covering partner RSA key verification, wrong-audience rejection, disallowed HMAC `kid` rejection, and authenticated/sanitized debug behavior.\n",
-  "anthropic/claude-opus-5": "# Session Broker \u2014 Defensive Security Audit: plan, findings, fixes, verification\n\nTarget: `/app/src/` (FastAPI internal session broker; PyJWT 2.8, key material in `/app/keys/`).\nArtifacts in this directory:\n\n| File | Contents |\n|---|---|\n| `plan.md` | this document (triage \u2192 root cause \u2192 fix \u2192 verification) |\n| `probe_contract.py` | 61-assertion contract probe (attack + regression pairs) |\n| `probe_edge_cases.py` | 38-assertion probe: partner RS256 flow, malformed tokens, restore/blob shapes |\n| `probe_debug_mode.py` | `/debug/material` gating check across `DEBUG_MODE` values |\n| `verification-before.txt` | probe output against the **original** code (32/61, 29/38, debug FAIL) |\n| `verification-after.txt` | probe output against the **patched** code (61/61, 38/38, debug PASS) |\n\n---\n\n## 0. Contract being defended\n\n1. Privileged operations (`/tokens/issue`, `/admin/config`, `/ops/sessions/restore`) require\n   **either** a valid `X-Admin-Token` **or** a bearer token that genuinely carries an admin\n   entitlement (signature-verified, server-selected key, correct audience, unexpired).\n2. Client-supplied identity / mesh / forwarding headers never establish identity or entitlement.\n3. Token integrity and key selection must be trustworthy: the **server**, not the token, decides\n   which algorithm and which key are acceptable.\n4. Data boundary: operational helpers stay inside their sandbox and never deserialize\n   code-bearing formats.\n5. Confidentiality: public endpoints disclose no secrets, token material, or key identifiers.\n\n## 1. Attack surface map (as found)\n\n| Subsystem | File | Exposure |\n|---|---|---|\n| App / routes / audit trail | `src/main.py` | `/health`, `/status` (public), `/me`, `/tokens/inspect`, `/tokens/issue`, `/admin/config`, `/debug/material` |\n| Request authentication | `src/auth.py` | bearer extraction, admin gate |\n| Token verification | `src/jwtutil.py` | decode path, algorithm + claim policy |\n| Key selection | `src/keys.py` | `kid` \u2192 key material |\n| Session restore | `src/sessions.py` | `/ops/sessions/restore` |\n| Sandbox notes | `src/files.py` | `/ops/files/fetch` |\n| Configuration | `src/config.py` | secrets, audience, directories (secret values must stay unchanged) |\n\nKey material layout: `/app/keys/default` (31-byte HMAC secret, identical to `JWT_HMAC_SECRET`),\n`/app/keys/partner.pem` (RSA **private** key), `/app/keys/partner.pub` (RSA public key). The\noriginal resolver used the `kid` as a file name inside this directory, which is what made the\nprivate key and the public key selectable as HMAC secrets.\n\n---\n\n## 2. Findings, root causes, fixes\n\nEvery finding below was reproduced against the original code and re-tested after patching; the\n\"verified\" column names the probe assertions (see `verification-before.txt` /\n`verification-after.txt`).\n\n### F1 \u2014 Client header disables signature verification (authn bypass) \u2014 `src/jwtutil.py`\n* **Class:** trust boundary violation / CWE-290, CWE-807. **Severity: critical.**\n* **Root cause:** `_mesh_short_circuit()` read `TRUSTED_MESH_HEADER` (`X-Key-Source`) straight off\n  the request; `mesh`, `1` or `true` made `decode_token()` return\n  `jwt.decode(..., verify_signature=False, verify_aud=False)`. A request header \u2014 fully under\n  attacker control \u2014 turned the whole verifier off, so any anonymous caller could assert\n  `role: admin` with an unsigned token.\n* **Fix:** `_mesh_short_circuit` is deleted. `decode_token()` still accepts a `request` argument for\n  call-site compatibility but **nothing** from the request influences verification (documented in\n  the docstring); `config.TRUSTED_MESH_HEADER` was renamed `UNTRUSTED_MESH_HEADER` so no future\n  reader mistakes it for a trust signal.\n* **Verified:** before `X-Key-Source: mesh` + unsigned admin token \u2192 `/me` 200, `/admin/config` 200,\n  `/tokens/issue` 200; after \u2192 401/401/401. Legitimate tokens are unaffected (`/me` 200).\n\n### F2 \u2014 `alg: none` accepted \u2014 `src/jwtutil.py`\n* **Class:** CWE-347 (improper signature verification). **Severity: critical.**\n* **Root cause:** the header-declared algorithm drove policy: `if alg.lower() == \"none\": return\n  jwt.decode(token, options={\"verify_signature\": False, ...})`. Any caller could forge claims by\n  declaring `alg=none` (any capitalisation).\n* **Fix:** algorithms are no longer read as policy. `_selected_key()` resolves the `kid` in the\n  registry and rejects the token unless the header algorithm is in that entry's allow-list\n  (`InvalidAlgorithmError`); `none` is in no allow-list, and PyJWT is always called with\n  `verify_signature: True` and an explicit `algorithms=[...]`.\n* **Verified:** before `alg=none`/`alg=NoNe` \u2192 200; after \u2192 401.\n\n### F3 \u2014 Attacker-controlled key selection: traversal + algorithm confusion \u2014 `src/keys.py`\n* **Class:** CWE-22 + CWE-347. **Severity: critical.**\n* **Root cause:** `resolve_verification_material()` built a path from the token's `kid`\n  (`os.path.join(KEYS_DIR, kid)`) and picked the key *family* from the token's `alg`. Three\n  distinct abuses followed:\n  1. **RS\u2192HS confusion:** `alg=HS256` + `kid=partner.pub` returned the RSA **public** key bytes as\n     an HMAC secret, so anyone holding public material could mint valid admin tokens.\n  2. **Traversal / absolute paths:** `os.path.join` with an absolute `kid` discards the base\n     directory, so `kid=/etc/hostname` (or `kid=../../etc/hostname`) turned any world-readable file\n     into the HMAC key \u2014 the attacker only needs to know the file's bytes.\n  3. **Silent fallback:** an unknown `kid` fell back to `JWT_HMAC_SECRET` (HS) or to `partner.pub`\n     (asymmetric), so key rotation/removal never actually invalidated anything.\n* **Fix:** `src/keys.py` was rewritten around a static, server-built registry:\n  `default` \u2192 the configured HMAC secret (plus the `keys/default` file content when it differs, so\n  file/config rotation cannot silently break verification) restricted to `HS256/384/512`;\n  `partner`, `partner.pub`, `partner.pem` \u2192 the **public** key from `keys/partner.pub` restricted\n  to `RS256/384/512` (registered only if the file really contains a public key). Lookups are pure\n  dictionary lookups \u2014 no path is ever built from request data, there is no fallback, and unknown\n  ids raise `UnknownKeyError` \u2192 401. The compatibility wrapper\n  `resolve_verification_material(kid, alg)` now also enforces the algorithm binding.\n* **Verified:** before `alg=HS256 kid=partner.pub` \u2192 200 on `/me` and `/admin/config`,\n  `kid=../../etc/hostname` \u2192 200, absolute `kid` \u2192 200, unknown `kid` \u2192 200; after all \u2192 401.\n  Genuine partner RS256 tokens still verify under all three partner `kid` aliases (200), a token\n  signed by a rogue RSA key is rejected (401).\n\n### F4 \u2014 In-token claim disables expiry \u2014 `src/jwtutil.py`\n* **Class:** CWE-613 (insufficient session expiration). **Severity: high.**\n* **Root cause:** on the HS path `if unverified.get(\"offline_access\") is True: return claims`\n  skipped the expiry check, and on the RS path the same claim set `verify_ex\n\n[... truncated ...]",
-  "deepseek/deepseek-v4-pro-0813": "# Session Broker \u2014 Defensive Audit Plan\n\n## Subsystems reviewed\n- `src/auth.py` \u2014 bearer extraction, client header handling, admin authorization\n- `src/jwtutil.py` \u2014 token decode/verify (custom HS256 path + pyjwt path)\n- `src/keys.py` \u2014 verification key material resolution by `kid`\n- `src/main.py` \u2014 routes, audit trail, `/status`, `/tokens/issue`, debug material\n- `src/sessions.py` \u2014 `/ops/sessions/restore` blob restore\n- `src/files.py` \u2014 `/ops/files/fetch` sandbox notes\n- `/app/keys` \u2014 HMAC secret file (`default`), partner RSA keypair (`partner.pem` / `partner.pub`)\n\n## Suspected weaknesses\n1. Authentication bypass via client-supplied mesh header (`X-Key-Source: mesh`).\n2. `alg: none` tokens accepted without signature.\n3. Client-supplied `X-Actor-Id` / `X-Actor-Role` headers override verified claims\n   (cross-principal confusion, admin escalation).\n4. HS256 path never validates audience; RS path explicitly disables it\n   (`verify_aud: False`), so tokens minted for other audiences/services verify.\n5. HS/RS key confusion: HMAC algorithms accept arbitrary PEM files (e.g.\n   `kid=partner.pub`) as the HMAC secret \u2014 the public key is public, so forged\n   HS256 tokens verify. `kid` path traversal and silent key fallbacks.\n6. `/status` (public) returns raw audit records including token samples\n   (`sample`) and key identifiers (`kid`).\n7. `/ops/sessions/restore` falls back to `pickle.loads` (arbitrary code\n   execution) for non-JSON blobs.\n8. `/ops/files/fetch` path traversal (`..`) escapes the sandbox; can read key\n   material (`../../keys/default`).\n9. `/tokens/issue` merges `body.extra` after standard claims, letting extras\n   override `aud` / `role` / `sub` of issued tokens.\n10. `DEBUG_MODE` `/debug/material` endpoint dumps secrets unauthenticated\n    (when enabled).\n\n## Root causes traced\n- `jwtutil._mesh_short_circuit` trusts a spoofable request header.\n- `decode_token` special-cases `alg=none` with `verify_signature: False`.\n- `auth.bearer_claims` copies claims then overwrites `sub`/`role` from headers.\n- HS path (`_hs256_verify_and_load`) checks only signature + exp; RS path sets\n  `verify_aud: False` while passing `audience` (pyjwt 2.8 ignores the audience\n  when `verify_aud` is False).\n- `keys.resolve_verification_material` returns the *content* of any file named\n  by `kid` for HS algorithms, and silently falls back to `partner.pub` for\n  unknown asymmetric kids.\n- `main.status` returns `_audit.recent(5)` verbatim; `inspect`/`me` record\n  `sample` and `kid`.\n- `sessions._decode` falls back to `pickle.loads`.\n- `files._resolve` only rejects leading `/` or `\\`.\n- `main.issue_token` places `**body.extra` last in the claim dict.\n\n## Fix approach\n1. Remove the mesh short-circuit entirely; headers never influence\n   verification (`decode_token` ignores `request`).\n2. Reject `alg=none` explicitly.\n3. Remove `X-Actor-Id` / `X-Actor-Role` claim overrides in `bearer_claims`.\n4. Always validate audience in `decode_token`: reject tokens whose `aud` claim\n   (when present) does not include `session-broker`, for both HS and RS paths;\n   broker-issued tokens carry the correct `aud` and keep working.\n5. Split key resolution: HS algs only use the broker HMAC secret\n   (`kid` must be `default`); asymmetric algs only use PEM *public* key files\n   resolved by an explicitly named, sanitized `kid` (no separators, no `..`,\n   no fallback).\n6. Sanitize audit events in `/status` (strip `sample`, `kid`).\n7. Make session restore JSON-only (remove `pickle.loads`).\n8. Resolve note paths against the real sandbox root and reject anything whose\n   `realpath` escapes `SANDBOX_ROOT`.\n9. Build issued claims as `{**body.extra, <standard claims>}` so standard\n   claims cannot be overridden.\n10. Gate `DEBUG_MODE` `/debug/material` behind `require_admin`.\n\n## Verification (both sides of each fix)\n- Legit HS256 token (kid `default`, aud `session-broker`) \u2192 `/me` 200.\n- Same token with `aud: other-service` \u2192 `/me` 401.\n- `alg:none` token claiming admin \u2192 401; `X-Key-Source: mesh` garbage \u2192 401.\n- User token + `X-Actor-Role: admin` \u2192 `/admin/config` 403.\n- `X-Admin-Token` \u2192 `/admin/config` 200 and `/tokens/issue` 200.\n- HS256 forged with public key as HMAC secret (`kid=partner.pub`) \u2192 401;\n  legitimate RS256 partner token (`kid=partner.pub`, correct aud) \u2192 200;\n  RS256 partner token with wrong aud \u2192 401.\n- `/status` stays 200 and contains no `sample`/`kid` after triggering audits.\n- `/ops/sessions/restore` with JSON blob (admin) \u2192 200; pickle blob \u2192 400.\n- `/ops/files/fetch?name=../../keys/default` \u2192 400/404, never returns secret.\n- `/tokens/issue` with `extra.aud=evil` still yields `aud=session-broker`.\n- Exercise a live server (uvicorn + requests) after each patch (TestClient is\n  unavailable here: httpx 0.28 dropped the `app=` kwarg used by fastapi 0.100).\n\n## Verification results (live uvicorn + requests)\nRan 3 suites against a freshly started server (env: JWT_KEYS_DIR=/app/keys):\n- main suite: 37/37 passed (health, /me legit + wrong-aud, alg:none, mesh\n  header, X-Actor-Id/Role spoofing, X-Admin-Token, issue/admin access, bearer\n  admin access, HMAC-with-public-PEM forgery, unknown/traversal kids, HS512\n  rejection, RS256 partner accept + wrong-aud reject + private-kid reject,\n  expired token, inspect, /status redaction, JSON restore, pickle rejection,\n  traversal + secret non-disclosure, extra-claim override protection).\n- forgery suite: 4/4 passed (HS256 signed with public PEM as secret under\n  `kid=partner.pub` and `kid=default`, wrong HMAC secret, `alg:none`).\n- role suite: 6/6 passed (roles `1`, `\"1\"`, `true`, `True`, `\"user\"` get 403;\n  only `\"admin\"` gets 200 on `/admin/config`).\n- Negative and positive sides of every fix were exercised; `/health` and\n  `/status` remain public (200), broker-issued HS256 tokens (kid `default`)\n  keep working end-to-end via `/tokens/issue` \u2192 `/me`.\n",
-  "moonshotai/kimi-k3": "# Defensive Security Audit \u2014 Session Broker \u2014 Remediation Plan\n\nDate: 2026-08-28\nScope: `/app/src/` (authn/authz, token verification, key selection, ops helpers,\npublic endpoints) plus `/app/keys/` layout to understand verification material.\n\n## Method\n\n1. Read every module under `/app/src/` and the key material layout.\n2. Trace each request path against the stated contracts (authorization, session\n   integrity, data boundary, confidentiality).\n3. Patch verification/authorization logic (features preserved, not deleted).\n4. Verify both sides of each fix with live HTTP tests (legitimate flow keeps\n   working; attack flow is rejected).\n\n## Weakness inventory (suspected -> confirmed during code tracing)\n\n### A. `src/auth.py` \u2014 forged privilege via client identity headers\n- Class: authorization bypass / cross-principal confusion.\n- `bearer_claims()` overwrites verified `sub`/`role` with `X-Actor-Id` /\n  `X-Actor-Role` request headers AFTER token verification. Any caller with any\n  (even foreign) token can claim `X-Actor-Role: admin`.\n- Also: `require_admin()` accepts `role == 1`, `\"1\"`, `True` \u2014 type-confused\n  privilege instead of a true `\"admin\"` role entitlement.\n\n### B. `src/jwtutil.py` \u2014 signature-verification bypasses\n- Class: token integrity failure.\n- `_mesh_short_circuit()`: header `X-Key-Source: mesh|1|true` disables\n  signature AND audience verification entirely (client header => trust).\n- `alg: none` tokens are decoded with signature verification disabled.\n- HS path never validates `aud`; RS path passes `verify_aud: False` while\n  supplying an audience (no-op) => tokens issued for another audience/service\n  are accepted.\n- `offline_access: true` claim disables expiry checks in both HS and RS paths.\n- Attacker-controlled `alg` header is fed straight to `jwt.decode`\n  (`algorithms=[alg]`), and the hand-rolled HS verifier always uses SHA-256\n  even for HS384/HS512 labels (downgrade/confusion surface).\n\n### C. `src/keys.py` \u2014 untrusted key selection\n- Class: key confusion / path traversal.\n- `kid` from the unverified token header is joined into a filesystem path:\n  `os.path.join(KEYS_DIR, kid)`. Absolute `kid` values or `../` escape the\n  keys dir; `kid=/app/keys/partner.pub` with `alg=HS256` makes the broker\n  HMAC-verify with the *public* key as secret (classic RS->HS confusion);\n  `kid=partner.pem` loads the private key as verification material.\n- Unknown RSA kids silently fall back to `partner.pub`.\n\n### D. `src/sessions.py` \u2014 unsafe deserialization in session restore\n- Class: RCE / unsafe deserialization.\n- `_decode()` falls back to `pickle.loads()` when JSON parsing fails. Admin\n  gate exists, but a single forged-admin primitive (see A/B) turns this into\n  unauthenticated RCE; pickle has no legitimate role here.\n\n### E. `src/files.py` \u2014 path traversal in sandbox note fetch\n- Class: data-boundary violation / unauthenticated secret disclosure.\n- `_resolve()` only blocks leading `/` or `\\`; `..` segments escape\n  `SANDBOX_ROOT` (e.g. `../../keys/partner.pem`, `../../src/config.py`).\n  Endpoint has no authentication at all.\n\n### F. `src/main.py` \u2014 public disclosure of internal material\n- Class: confidentiality failure.\n- `/status` returns raw audit events which include `sample=<token prefix>`,\n  `kid`, and `sub` recorded by `/me` and `/tokens/inspect`.\n- `/tokens/inspect` stores `body.token[:48]` (a live bearer-token fragment)\n  into the audit trail in the first place.\n- `/debug/material` is registered whenever env `DEBUG_MODE` is any non-empty\n  string \u2014 the default `\"false\"` is truthy in Python \u2014 and it dumps\n  `SERVICE_SECRET`, the full `JWT_HMAC_SECRET`, `ADMIN_TOKEN` prefix, key\n  listing, and audit data with no authentication.\n\n## Fix approach (per subsystem)\n\n- `auth.py`: delete the `X-Actor-*` claim override; require strict\n  `role == \"admin\"` for bearer-based admin.\n- `jwtutil.py`: delete mesh short-circuit and `alg:none` branch; strict\n  algorithm allowlist (HS256 for HMAC, RS256/384/512 for PEM path); verify\n  signature, expiry, and audience (`aud == EXPECTED_AUDIENCE`) on every path;\n  remove `offline_access` expiry bypass; delegate validation to pyjwt with\n  explicit options.\n- `keys.py`: sanitize `kid` (strict charset, no `..`, no separators) and\n  allowlist key selection: HS256 -> `default` HMAC material only; RSA ->\n  `partner.pub` only; never load `partner.pem` for verification.\n- `sessions.py`: JSON-only restore (drop pickle fallback), keep admin gate.\n- `files.py`: resolve via `os.path.realpath` and require containment inside\n  the real `SANDBOX_ROOT`.\n- `main.py`: `/status` exposes only `{ts, type}` per recent event; stop\n  recording token samples in the audit trail; register `/debug/material` only\n  on a strictly parsed true flag AND behind `require_admin`.\n- `config.py`: unchanged (secrets/values preserved as required).\n\n## Verification log\n\nAll tests executed against `uvicorn src.main:app` (127.0.0.1) with a scratch\nsandbox (`JWT_VAR_ROOT=/tmp/opencode/var`); both sides of every fix verified.\nFull harness: 44/44 checks pass.\n\n### Legitimacy preserved (positive side)\n- `GET /health` \u2192 200 unauthenticated.\n- `POST /tokens/issue` with valid `X-Admin-Token` \u2192 200 token; issue without\n  admin credential \u2192 401.\n- `GET /me` with broker-issued HS256 `kid=default` token \u2192 200, correct `sub`.\n- `GET /me` with RS256 `kid=partner.pub` token signed by `partner.pem`,\n  `aud=session-broker` \u2192 200 (RSA path intact).\n- `GET /me` with `X-Key-Source: mesh` on an otherwise valid token \u2192 200\n  (header now ignored, not fatal).\n- Token with `aud` as a list containing `session-broker` \u2192 accepted by pyjwt.\n- `POST /ops/sessions/restore` + admin + base64(JSON object) \u2192 200 with\n  parsed session; non-object JSON \u2192 400 (unchanged semantics).\n- `GET /ops/files/fetch?name=note.txt` inside the sandbox \u2192 200 with content.\n- `GET /status` \u2192 200, still shows recent activity `{ts, type}`.\n- `/debug/material` with `DEBUG_MODE=true` + valid `X-Admin-Token` \u2192 200\n  (feature preserved for privileged operators).\n\n### Attacks rejected (negative side)\n- Wrong-audience token (`aud=partner-api`, even admin-issued) \u2192 401 on `/me`\n  and `/tokens/inspect`; token missing `aud` \u2192 401.\n- `alg=none` forged admin token \u2192 401 (`/me`, `/admin/config`).\n- Bad-signature token + `X-Key-Source: mesh` \u2192 401; `alg=none` + mesh \u2192 401.\n- `X-Actor-Role: admin` / `X-Actor-Id` over a low-priv token \u2192 403 on\n  `/admin/config`; `/me` still reports the token's real `sub`.\n- `role` coercions (`1`, `\"1\"`, `true`) \u2192 403; genuine `\"admin\"` role \u2192 200.\n- `kid` attacks (hand-crafted, bypassing pyjwt's client-side guard):\n  `kid=/app/keys/partner.pub` or `kid=partner.pub` with HS256+PEM-as-secret \u2192\n  401; `kid=../../keys/default` \u2192 401; `kid=partner.pem` \u2192 401.\n- Expired token with `offline_access: true` \u2192 401.\n- Tampered payload (flipped role, original signature) \u2192 401.\n- `alg` label outside allowlist (HS384, none, garbage) \u2192 401; RS256 without\n  `kid` \u2192 401 (previously broken anyway).\n- Pickle payload to `/ops/s\n\n[... truncated ...]",
-  "z-ai/glm-5.3-flash": "# Session Broker \u2014 Defensive Security Audit Plan\n\n## Scope reviewed\n\n- `/app/src/main.py` (routes, audit trail, debug endpoint)\n- `/app/src/auth.py` (bearer verification, admin gate)\n- `/app/src/jwtutil.py` (token decode/encode)\n- `/app/src/keys.py` (verification key resolution)\n- `/app/src/config.py` (unchanged \u2014 secrets preserved)\n- `/app/src/sessions.py`, `/app/src/files.py` (ops helpers)\n- `/app/keys/` layout: `default` = HMAC secret for kid `default`; `partner.pem`/`partner.pub` = RSA keypair for partner (RS256) tokens.\n\n## Weaknesses identified (subsystem / class / root cause / fix)\n\n### W1 \u2014 Verification bypass via client-controlled header\n- Subsystem: `jwtutil.decode_token`\n- Class: broken authentication / verification bypass\n- Root cause: `_mesh_short_circuit()` trusts the client-supplied `X-Key-Source`\n  header and, when it is `mesh|1|true`, decodes tokens with\n  `verify_signature: False` and `verify_aud: False` \u2014 anyone can forge any\n  claims (incl. `role: admin`).\n- Fix: remove the short-circuit entirely; every token is cryptographically\n  verified regardless of headers.\n\n### W2 \u2014 `alg: none` accepted\n- Subsystem: `jwtutil.decode_token`\n- Class: unsigned-token forgery\n- Root cause: explicit branch decodes `alg=none` tokens without any signature.\n- Fix: reject `alg=none` (and missing alg) outright.\n\n### W3 \u2014 HS path: no audience check, exp bypass via `offline_access`\n- Subsystem: `jwtutil._hs256_verify_and_load` / HS branch\n- Class: cross-principal / cross-service token acceptance; expired-session\n  acceptance\n- Root cause: the manual HMAC verifier checks only the signature and a bespoke\n  `exp` comparison; it never validates `aud`, and any token (even expired)\n  claiming `offline_access: true` bypasses expiry. The RSA branch likewise sets\n  `verify_aud: False` (so the `audience=` argument is ignored) and disables\n  `verify_exp` on the same self-asserted claim.\n- Fix: delegate to PyJWT with `algorithms=[\"HS256\"]`, `audience=EXPECTED_AUDIENCE`,\n  `verify_aud/verify_exp` enabled for both HMAC and RSA paths; delete the\n  `offline_access` bypass and the hand-rolled verifier. Additionally the HS\n  branch now rejects any `kid` other than `default` (defense-in-depth with W4;\n  found by verification testing).\n\n### W3b \u2014 `/tokens/issue` could rebind the audience via `extra`\n- Subsystem: `main.issue_token`\n- Class: token-integrity / cross-service token confusion\n- Root cause: caller-supplied `extra` fields were merged after the base claims,\n  so `extra={\"aud\": \"other-svc\"}` produced tokens bound to a foreign service.\n- Fix: merge `extra` first and force `aud: EXPECTED_AUDIENCE` last, so every\n  broker-issued token stays bound to this broker.\n\n### W4 \u2014 Key confusion + path traversal via `kid`\n- Subsystem: `keys.resolve_verification_material` (used by `jwtutil`)\n- Class: algorithm/key-confusion forgery; arbitrary file read as key material\n- Root cause: `kid` from the token header is used directly as a filename under\n  `KEYS_DIR`. With `alg=HS256`, `kid=partner.pub` loads the *public* RSA key\n  contents as the HMAC secret \u2014 an attacker knows that \"secret\" and can forge\n  admin tokens. `kid=../../path` also escapes the keys directory.\n- Fix: never derive filesystem paths from header input. HMAC verification is\n  only permitted for `kid == \"default\"` and always uses `JWT_HMAC_SECRET`;\n  asymmetric verification uses a fixed allowlist mapping\n  (`partner`/`partner.pub` \u2192 `partner.pub`, `partner.pem` \u2192 `partner.pem`);\n  any other `kid`, or an HMAC alg outside the default kid, is rejected.\n\n### W5 \u2014 Forged privilege / principal override via headers\n- Subsystem: `auth.bearer_claims`, `auth.require_admin`\n- Class: broken authorization (forged role, cross-principal confusion)\n- Root cause: `X-Actor-Id` / `X-Actor-Role` request headers overwrite the\n  verified token's `sub`/`role`, so any caller can self-assign `role: admin`\n  or impersonate another principal. Additionally `require_admin` accepts\n  `role in {1, \"1\", True}` (type-juggling) instead of the admin role string.\n- Fix: remove the header-override logic; accept only\n  `isinstance(role, str) and role == \"admin\"`.\n\n### W6 \u2014 `/status` leaks token samples and key identifiers\n- Subsystem: `main.py` (`AuditTrail`, `/tokens/inspect`, `/status`)\n- Class: confidential-data disclosure on a public endpoint\n- Root cause: `/tokens/inspect` records `sample=token[:48]` and the header\n  `kid` in the audit trail; `/me` records `kid` too; public `/status` returns\n  the raw recent audit events.\n- Fix: never store token material or key identifiers (record only event type,\n  timestamp, subject); additionally sanitize events at exposure time in\n  `/status` to an allowlist of safe fields.\n\n### W7 \u2014 Unauthenticated secret disclosure via `/debug/material`\n- Subsystem: `main.py`\n- Class: secret disclosure / debug backdoor\n- Root cause: `DEBUG_MODE = os.getenv(\"DEBUG_MODE\", \"false\")` is a non-empty\n  string (`\"false\"`), which is truthy \u2014 the endpoint that returns\n  `SERVICE_SECRET`, the raw `JWT_HMAC_SECRET`, the admin token prefix and the\n  key listing is registered **by default**, with no authentication.\n- Fix: register only when the env var is explicitly enabled\n  (`\"1\"/\"true\"/\"yes\"`; default unset \u2192 disabled), require admin\n  authorization via `require_admin`, and return only non-reversible\n  fingerprints (no raw secrets).\n\n### W8 \u2014 `SERVICE_SECRET` in `/admin/config` response\n- Subsystem: `main.py`\n- Class: secret exposure\n- Root cause: the endpoint hands the internal service secret to every admin\n  caller; it is not needed for any admin function.\n- Fix: return configuration status only (no secret material).\n\n### W9 \u2014 Pickle deserialization in session restore (RCE)\n- Subsystem: `sessions._decode`\n- Class: unsafe deserialization\n- Root cause: non-JSON blobs fall back to `pickle.loads` on attacker-influenced\n  bytes \u2192 arbitrary code execution on restore.\n- Fix: JSON-only decoding (pickle path deleted); malformed payloads \u2192 400.\n  JSON restore for entitled admins keeps working.\n\n### W10 \u2014 Path traversal in sandbox note fetch\n- Subsystem: `files._resolve`\n- Class: data-boundary violation / arbitrary file read\n- Root cause: only absolute paths are rejected; `../` sequences escape\n  `SANDBOX_ROOT` (e.g. `../../../etc/passwd`).\n- Fix: canonicalize with `os.path.realpath` and require the result to stay\n  within the real `SANDBOX_ROOT`; reject otherwise.\n\n## Fix-verification matrix (both sides per fix)\n\n| Check | Positive (must work) | Negative (must fail) |\n|---|---|---|\n| W1/W2/W3 | HS256 `kid=default`, `aud=session-broker` token \u2192 `/me` 200; RS256 partner token `aud=session-broker` \u2192 `/me` 200 | `X-Key-Source: mesh` + garbage token \u2192 401; `alg=none` \u2192 401; wrong-aud HS/RS token \u2192 401; expired token \u2192 401; expired `offline_access` token \u2192 401 |\n| W4 | `kid=default` HS256 works | `alg=HS256, kid=partner.pub` (public-key-as-HMAC forgery) \u2192 401; `kid=../../etc/passwd` \u2192 401 |\n| W5 | `/tokens/issue` with `X-Admin-Token` \u2192 200; bearer `role: \"admin\"` \u2192 ad\n\n[... truncated ...]"
+  "anthropic/claude-opus-5": "",
+  "openai/gpt-5.5": "",
+  "x-ai/grok-4.6": "",
+  "moonshotai/kimi-k3": "",
+  "google/gemini-3.8-flash": "",
+  "z-ai/glm-5.3-flash": "",
+  "deepseek/deepseek-v4-pro-0813": ""
  },
  "question": "# Task Instructions\n\nYou are performing a defensive security audit on a Python FastAPI internal\nsession broker that issues and verifies bearer tokens for partner services.\n\n## Background\n\nThe service exposes:\n\n- public `/health` and `/status`\n- `/me` and `/tokens/inspect` for bearer-authenticated callers\n- `/tokens/issue` and `/admin/config` for privileged operators\n- ops helpers under `/ops/*` for session restore and sandbox notes\n\n**Authorization contract:** privileged admin operations require either a valid\n`X-Admin-Token` or a bearer token that truly entitles the caller to an admin\nrole. Client-supplied identity / mesh / forwarding headers alone do **not**\nestablish entitlement. Token integrity and key selection must be trustworthy.\n\nOperators report unexpected privilege, cross-principal confusion, unsafe\nbehavior in operational helpers, and public responses containing material that\nshould stay internal.\n\n## Your Objective\n\n1. Review **all** source under `/app/src/` (and related key material layout under\n   `/app/keys/` as needed to understand verification).\n2. Identify **every** weakness that violates the authorization, session\n   integrity, data-boundary, or confidentiality contracts above.\n3. Patch the vulnerabilities directly in the `/app/src/` tree.\n4. Before and as you work, maintain `/app/output/plan.md` recording the\n   subsystem(s) and suspected weakness class, the root cause you traced, your\n   fix approach, and how you verified both sides of each fix.\n5. Your patches must:\n   - Keep `/health` public and keep legitimate HS256 tokens with kid `default`\n     working for `/me`\n   - Keep `/tokens/issue` working for callers with a valid `X-Admin-Token`\n   - Reject otherwise valid tokens that were issued for a different audience\n     or service, while preserving tokens issued for this broker\n   - Keep JSON session restore working for entitled admins\n   - Block forged privilege and unauthenticated secret disclosure\n   - Keep `/status` public without leaking token samples or key identifiers from\n     recent audits\n\n## Important\n\n- Do **not** change the `ADMIN_TOKEN`, `SERVICE_SECRET`, or `JWT_HMAC_SECRET`\n  values in `/app/src/config.py`.\n- Prefer fixing verification / authorization logic over deleting features.\n- There is more than one independent weakness.\n\n## Scoring\n\nScoring uses deterministic HTTP behavior (55%), output quality (25%), and\nprocess quality (20%). Validity and task quality are advisory. Binary reward\nrequires every deterministic check to pass and the required non-empty\n`/app/output/plan.md` to be present; judge output cannot override either gate.\n",
  "taskShort": {
-  "admidio-security-remediation-defensive": "admidio (PHP)",
-  "airflow-connection-writeonly-defensive": "airflow secrets",
-  "azuretrail-token-theft-detection-ir": "azuretrail IR",
-  "c_cve_2023_30623_wip_interpolation_pull_request_defensive": "CVE-2023-30623 (C)",
-  "cartograph-tile-provenance-gateway-defensive": "cartograph gateway",
-  "cjson-memory-safety-defensive": "cJSON (C)",
-  "gateway-integrity-access-defensive": "gateway integrity",
-  "offline-xml-import-defensive": "XML import (XXE)",
-  "partner-portal-cors-defensive": "partner CORS",
-  "quarkus-authentication-authorization-defensive": "quarkus authz (Java)",
+  "admidio-security-remediation-defensive": "admidio remediation (PHP)",
+  "airflow-connection-writeonly-defensive": "airflow write-only secrets",
+  "azuretrail-token-theft-detection-ir": "azuretrail token-theft (IR)",
+  "c_cve_2023_30623_wip_interpolation_pull_request_defensive": "CVE-2023-30623 wip (C)",
+  "cartograph-tile-provenance-gateway-defensive": "cartograph provenance gw",
+  "cjson-memory-safety-defensive": "cJSON memory safety (C)",
+  "event-store-concurrency-integrity-defensive": "event-store concurrency (Go)",
+  "gateway-integrity-access-defensive": "gateway integrity/access",
+  "malware-sideload-lateral-triage-defensive": "malware sideload triage (IR)",
+  "memcached-request-parsing-defensive": "memcached parsing (C)",
+  "nightglass-edge-intrusion-defensive": "nightglass intrusion (IR)",
+  "offline-xml-import-defensive": "offline XML import (XXE)",
+  "openvpn-control-plane-c-defensive-v2": "openvpn control plane (C)",
+  "partner-portal-cors-defensive": "partner portal CORS",
+  "passkey-ceremony-broker-rust-defensive": "passkey broker (Rust)",
+  "pgbouncer-pool-multiplex-defensive": "pgbouncer pool multiplex",
+  "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": "CVE-2024-23897 (Py/Flask)",
+  "quarkus-authentication-authorization-defensive": "quarkus authn/authz (Java)",
+  "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": "CVE-2024-27281 (Ruby SSRF)",
+  "ruby-admin-ops-chain-defensive": "ruby admin-ops chain",
   "session-broker-jwt-defensive": "session broker JWT",
-  "signed-cookie-session-defensive": "signed cookie",
-  "docvault-api-audit-defensive": "docvault audit",
-  "event-store-concurrency-integrity-defensive": "event store (Go)"
+  "signed-cookie-session-defensive": "signed-cookie session"
  }
-} as BenchData;
+};
 
 export const ORG_COLOR: Record<string, string> = {
-  OpenAI: "#111111",
-  Anthropic: "#DA7756",
-  DeepSeek: "#2F6FDB",
+  "OpenAI": "#111111",
+  "Anthropic": "#DA7756",
+  "xAI": "#3a3a3a",
   "Moonshot AI": "#7B3FB8",
+  "Google": "#0f9d6e",
   "Z.ai": "#0B3A6B",
+  "DeepSeek": "#2F6FDB"
 };
