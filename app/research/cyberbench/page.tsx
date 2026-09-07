@@ -56,6 +56,7 @@ const notes = [
 
 const sections: Section[] = [
   { id: "overview", label: "Overview" },
+  { id: "background", label: "Background" },
   { id: "complete-result", label: "Methodology" },
   { id: "leaderboard", label: "How the models compare" },
   { id: "no-model-wins", label: "No model wins everywhere", sub: true },
@@ -106,6 +107,32 @@ export default function CyberBenchPage() {
           <div className="bench-article mt-10">
             <SectionNav sections={sections} />
             <div className="bench-article-body">
+              <div className="bench-stats">
+                <div>
+                  <div className="bench-mono-label">Models</div>
+                  <div className="v">7</div>
+                  <div className="k">evaluated with Terminus 2</div>
+                </div>
+                <div>
+                  <div className="bench-mono-label">Tasks</div>
+                  <div className="v">20</div>
+                  <div className="k">defensive security tasks</div>
+                </div>
+                <div>
+                  <div className="bench-mono-label">Attempts</div>
+                  <div className="v">140</div>
+                  <div className="k">selected model-task attempts</div>
+                </div>
+                <div>
+                  <div className="bench-mono-label">Unsolved</div>
+                  <div className="v">5</div>
+                  <div className="k">tasks with no complete solution</div>
+                </div>
+              </div>
+
+              <h2 id="background" className="bench-h2 scroll-mt-24">
+                Background
+              </h2>
               <p className={P}>
                 Security benchmarks already test parts of this process.{" "}
                 <a className="bench-link" href="https://github.com/iris-sast/cwe-bench-java">
@@ -134,29 +161,6 @@ export default function CyberBenchPage() {
                 Opus completed 11, the highest result in the benchmark. Five tasks had no complete solution from
                 any model.
               </p>
-
-              <div className="bench-stats">
-                <div>
-                  <div className="bench-mono-label">Models</div>
-                  <div className="v">7</div>
-                  <div className="k">evaluated with Terminus 2</div>
-                </div>
-                <div>
-                  <div className="bench-mono-label">Tasks</div>
-                  <div className="v">20</div>
-                  <div className="k">defensive security tasks</div>
-                </div>
-                <div>
-                  <div className="bench-mono-label">Attempts</div>
-                  <div className="v">140</div>
-                  <div className="k">selected model-task attempts</div>
-                </div>
-                <div>
-                  <div className="bench-mono-label">Unsolved</div>
-                  <div className="v">5</div>
-                  <div className="k">tasks with no complete solution</div>
-                </div>
-              </div>
 
               <Fig
                 src="/cyberlatch/cyberlatch-playback.gif"
