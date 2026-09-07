@@ -153,6 +153,10 @@
 }
 .bench-link { cursor: pointer; text-decoration: none; }
 .bench-link:hover { color: var(--bench-ink); text-decoration: underline; text-underline-offset: 3px; }
+.bench-article-body a.bench-link,
+.bench header a.bench-link { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--bench-rule-2); }
+.bench-article-body a.bench-link:hover,
+.bench header a.bench-link:hover { text-decoration-color: currentColor; }
 .bench-pill {
   font-family: var(--font-mono);
   font-size: 11px;
