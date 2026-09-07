@@ -16,9 +16,11 @@ export default function VoiceRadar({ rows, dims }: { rows: VoiceRow[]; dims: str
   const visible = ranked.filter((r) => on.has(r.id));
 
   const angle = (i: number) => -Math.PI / 2 + (i / dims.length) * Math.PI * 2;
+  // See VoiceScatter: unrounded floats trigger a React hydration mismatch.
+  const round = (v: number) => Math.round(v * 1000) / 1000;
   const pt = (i: number, v: number) => {
     const r = (v / 100) * R;
-    return [CX + Math.cos(angle(i)) * r, CY + Math.sin(angle(i)) * r] as const;
+    return [round(CX + Math.cos(angle(i)) * r), round(CY + Math.sin(angle(i)) * r)] as const;
   };
   const rings = [25, 50, 75, 100];
 
@@ -34,7 +36,7 @@ export default function VoiceRadar({ rows, dims }: { rows: VoiceRow[]; dims: str
         ))}
         {dims.map((c, i) => {
           const [x, y] = pt(i, 100);
-          const [lx2, ly2] = [CX + Math.cos(angle(i)) * (R + 22), CY + Math.sin(angle(i)) * (R + 20)];
+          const [lx2, ly2] = [round(CX + Math.cos(angle(i)) * (R + 22)), round(CY + Math.sin(angle(i)) * (R + 20))];
           const a = angle(i);
           const anchor = Math.abs(Math.cos(a)) < 0.2 ? "middle" : Math.cos(a) > 0 ? "start" : "end";
           return (

@@ -28,9 +28,15 @@ export default function VoiceArenaPage() {
   const cascade = voice.decomp.find((d) => d.tier === "cascade");
   const native = voice.decomp.find((d) => d.tier === "native");
   const contentGap =
-    cascade && native ? (cascade.content - native.content).toFixed(2) : "—";
+    cascade && native ? (cascade.content - native.content).toFixed(3) : "—";
   const deliveryGap =
-    cascade && native ? (cascade.delivery - native.delivery).toFixed(2) : "—";
+    cascade && native ? (cascade.delivery - native.delivery).toFixed(3) : "—";
+  const gapRatio =
+    cascade && native
+      ? Math.round(
+          (cascade.content - native.content) / (cascade.delivery - native.delivery),
+        )
+      : null;
 
   return (
     <main className="bench flex w-full max-w-[1320px] flex-1 flex-col px-3 py-1 sm:px-4">
@@ -79,7 +85,7 @@ export default function VoiceArenaPage() {
                 </div>
                 <div>
                   <div className="bench-mono-label">Axes</div>
-                  <div className="v">24</div>
+                  <div className="v">36</div>
                   <div className="k">Signal quality, prosody, semantics, latency</div>
                 </div>
                 <div>
@@ -90,7 +96,7 @@ export default function VoiceArenaPage() {
                 <div>
                   <div className="bench-mono-label">Content gap</div>
                   <div className="v">+{contentGap}</div>
-                  <div className="k">Cascade over native on what is said</div>
+                  <div className="k">Cascade over native on what is said, vs {deliveryGap} on how it sounds</div>
                 </div>
               </div>
 
@@ -117,8 +123,8 @@ export default function VoiceArenaPage() {
               </p>
               <blockquote className="bench-quote">
                 <p>
-                  The delivery gap is {deliveryGap}. The content gap is {contentGap}. Cascades win on the
-                  words, not the voice.
+                  The delivery gap is {deliveryGap}. The content gap is {contentGap} — {gapRatio} times
+                  larger. Cascades win on the words, not the voice.
                 </p>
               </blockquote>
               <Decomposition decomp={voice.decomp} />
@@ -138,13 +144,16 @@ export default function VoiceArenaPage() {
                   <h3>What holds up</h3>
                   <ol>
                     <li>
-                      <b>The top of the board is a photo finish.</b> Gemini TTS, ElevenLabs, and Cartesia
-                      Sonic 3.5 sit within 0.006 empathy of each other, all cascades on Claude Sonnet 4.6.
+                      <b>The top three are tied.</b> Gemini TTS, ElevenLabs, and Cartesia Sonic 3.5 sit
+                      within 0.006 empathy of each other — smaller than the {voice.noiseFloor.toFixed(3)}{" "}
+                      the judges disagree by on word-for-word identical text. The ordering between them is
+                      not a result.
                       <span className="bench-tag good">0.895 – 0.889</span>
                     </li>
                     <li>
-                      <b>Native delivery is already competitive.</b> GPT-4o Audio&apos;s vocal delivery is
-                      only {deliveryGap} behind the cascade average; the voice is not the problem.
+                      <b>Native delivery is already competitive.</b> Native vocal delivery trails the
+                      cascade average by just {deliveryGap} — itself inside the noise floor. The voice is
+                      not the problem.
                     </li>
                     <li>
                       <b>Latency and quality are decoupled.</b> ElevenLabs matches the empathy leader at
@@ -180,7 +189,7 @@ export default function VoiceArenaPage() {
               <div className="bench-manifesto">
                 <div>
                   <h3>Paired stimuli</h3>
-                  <p>~100 emotional dialogue turns from the MELD dataset, the same prompt to every system.</p>
+                  <p>100 emotional dialogue turns — 61 from recorded interviews, 39 from the MELD corpus — the same stimulus to every system.</p>
                 </div>
                 <div>
                   <h3>Sound and words, apart</h3>
@@ -197,12 +206,12 @@ export default function VoiceArenaPage() {
               </div>
 
               <p className="bench-foot">
-                Judge agreement (Pearson): empathy Claude–GPT-4 {voice.judge.empathy_claude_gpt4?.toFixed(2)},
+                Judge agreement (Spearman rank): empathy Claude–GPT-4 {voice.judge.empathy_claude_gpt4?.toFixed(2)},
                 Claude–Gemini {voice.judge.empathy_claude_gemini?.toFixed(2)}. Response-quality judges agree less
                 (Claude–Gemini {voice.judge.rq_claude_gemini?.toFixed(2)}), so response-quality figures are read as
                 directional, not exact.
                 <br />
-                Source: physera-ai/voice-evals, Voice Arena V1.2, generated {voice.generated.slice(0, 10)}.
+                Source: physera-ai/voice-evals, Voice Arena V1.2, evaluated {voice.evaluated}.
                 Three pure-TTS baselines without a conversational layer are omitted from the empathy board.
               </p>
             </div>

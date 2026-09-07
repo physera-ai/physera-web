@@ -23,9 +23,12 @@ export default function VoiceScatter({ rows }: { rows: VoiceRow[] }) {
   );
   const tiers = Array.from(new Set(rows.map((r) => r.tier)));
 
+  // Round to 3dp: unrounded floats serialize to different digit counts on server and
+  // client, which React reports as a hydration mismatch.
+  const round = (v: number) => Math.round(v * 1000) / 1000;
   const lx = (v: number) =>
-    PAD.l + ((Math.log10(Math.max(XMIN, v)) - Math.log10(XMIN)) / (Math.log10(XMAX) - Math.log10(XMIN))) * (W - PAD.l - PAD.r);
-  const sy = (v: number) => PAD.t + (1 - (v - YMIN) / (YMAX - YMIN)) * (H - PAD.t - PAD.b);
+    round(PAD.l + ((Math.log10(Math.max(XMIN, v)) - Math.log10(XMIN)) / (Math.log10(XMAX) - Math.log10(XMIN))) * (W - PAD.l - PAD.r));
+  const sy = (v: number) => round(PAD.t + (1 - (v - YMIN) / (YMAX - YMIN)) * (H - PAD.t - PAD.b));
 
   const xTicks = [1, 2, 5, 10, 20, 40];
   const yTicks = [0, 0.25, 0.5, 0.75, 1];
