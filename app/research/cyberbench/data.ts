@@ -1,5 +1,5 @@
 // Generated from the Cyberstrike Terminus-2 runs (Sept 2026).
-// Source of truth: cyber_security_physera/blog/data/trials_all.json (+ taxonomy, stacks).
+// Source of truth: cyber_security_physera/blog/data/trials_20.json (+ taxonomy, stacks).
 // Regenerate with: python3 cyber_security_physera/research/gen_cyberbench_data.py — do not hand-edit.
 
 export type PerTask = {
@@ -52,22 +52,21 @@ export const bench: BenchData = {
    "label": "Claude Opus 5",
    "org": "Anthropic",
    "harness": "Terminus 2",
-   "solved": 12,
-   "acc": 54.5,
-   "checks": 95.9,
-   "cost_total": 3334.4,
-   "cost_per_task": 4.79,
-   "median_min": 29.1,
-   "out_tokens": 2764715,
+   "solved": 11,
+   "acc": 55.0,
+   "checks": 96.3,
+   "cost_total": 3326.46,
+   "cost_per_task": 5.61,
+   "median_min": 30.8,
+   "out_tokens": 2255390,
    "sec_fail": 13,
    "func_fail": 21,
-   "near_miss": 3,
+   "near_miss": 2,
    "radar": {
     "Native & memory safety": 95.7,
     "AuthN / authz / sessions": 97.0,
     "Injection & untrusted input": 94.0,
     "Access control & data exposure": 99.6,
-    "Concurrency & state integrity": 95.6,
     "Detection & incident response": 93.3
    },
    "radar_solved": {
@@ -75,7 +74,6 @@ export const bench: BenchData = {
     "AuthN / authz / sessions": "3/5",
     "Injection & untrusted input": "2/4",
     "Access control & data exposure": "2/3",
-    "Concurrency & state integrity": "1/2",
     "Detection & incident response": "1/3"
    },
    "per_task": {
@@ -139,17 +137,6 @@ export const bench: BenchData = {
      "min": 42.8,
      "cat": "solved",
      "failed": []
-    },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 13,
-     "n": 14,
-     "pass_": false,
-     "cost": 7.98,
-     "min": 67.1,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_e2_checkpoint_covers_committed_head"
-     ]
     },
     "gateway-integrity-access-defensive": {
      "passed": 26,
@@ -243,15 +230,6 @@ export const bench: BenchData = {
      "cat": "solved",
      "failed": []
     },
-    "passkey-ceremony-broker-rust-defensive": {
-     "passed": 57,
-     "n": 57,
-     "pass_": true,
-     "cost": 10.92,
-     "min": 77.5,
-     "cat": "solved",
-     "failed": []
-    },
     "pgbouncer-pool-multiplex-defensive": {
      "passed": 9,
      "n": 9,
@@ -332,22 +310,21 @@ export const bench: BenchData = {
    "label": "GPT-5.5",
    "org": "OpenAI",
    "harness": "Terminus 2",
-   "solved": 10,
-   "acc": 45.5,
-   "checks": 84.9,
-   "cost_total": 102.69,
-   "cost_per_task": 4.67,
-   "median_min": 16.9,
-   "out_tokens": 2442499,
-   "sec_fail": 46,
+   "solved": 8,
+   "acc": 40.0,
+   "checks": 81.9,
+   "cost_total": 86.81,
+   "cost_per_task": 4.34,
+   "median_min": 15.2,
+   "out_tokens": 2171350,
+   "sec_fail": 41,
    "func_fail": 28,
    "near_miss": 2,
    "radar": {
-    "Native & memory safety": 69.6,
+    "Native & memory safety": 66.0,
     "AuthN / authz / sessions": 89.8,
     "Injection & untrusted input": 96.4,
     "Access control & data exposure": 90.2,
-    "Concurrency & state integrity": 67.0,
     "Detection & incident response": 93.7
    },
    "radar_solved": {
@@ -355,7 +332,6 @@ export const bench: BenchData = {
     "AuthN / authz / sessions": "3/5",
     "Injection & untrusted input": "3/4",
     "Access control & data exposure": "1/3",
-    "Concurrency & state integrity": "0/2",
     "Detection & incident response": "2/3"
    },
    "per_task": {
@@ -431,21 +407,6 @@ export const bench: BenchData = {
       "sec_nesting_exhaustion_bounded",
       "sec_control_serialization_bounded",
       "sec_escape_decode_allocation"
-     ]
-    },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 9,
-     "n": 14,
-     "pass_": false,
-     "cost": 4.48,
-     "min": 19.7,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_e2_checkpoint_covers_committed_head",
-      "test_e4_cache_reflects_catchup",
-      "test_e5_negative_cache_cleared_on_apply",
-      "test_l2_copylocks_clear",
-      "test_l4_running_counter_no_wrap"
      ]
     },
     "gateway-integrity-access-defensive": {
@@ -536,21 +497,6 @@ export const bench: BenchData = {
      "cat": "solved",
      "failed": []
     },
-    "passkey-ceremony-broker-rust-defensive": {
-     "passed": 52,
-     "n": 57,
-     "pass_": false,
-     "cost": 10.19,
-     "min": 64.5,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_template_data_is_not_reinterpreted",
-      "test_sec_legacy_root_must_be_credential_data",
-      "test_sec_legacy_sequence_root_is_not_executed",
-      "test_sec_legacy_credential_members_are_not_interpreted",
-      "test_sec_shared_graph_tail_does_not_bypass_path_depth"
-     ]
-    },
     "pgbouncer-pool-multiplex-defensive": {
      "passed": 7,
      "n": 9,
@@ -634,35 +580,591 @@ export const bench: BenchData = {
    }
   },
   {
+   "id": "moonshotai/kimi-k3",
+   "key": "kimi-k3",
+   "label": "Kimi K3",
+   "org": "Moonshot AI",
+   "harness": "Terminus 2",
+   "solved": 7,
+   "acc": 35.0,
+   "checks": 85.2,
+   "cost_total": 32.72,
+   "cost_per_task": 1.64,
+   "median_min": 12.5,
+   "out_tokens": 971087,
+   "sec_fail": 42,
+   "func_fail": 7,
+   "near_miss": 2,
+   "radar": {
+    "Native & memory safety": 85.5,
+    "AuthN / authz / sessions": 88.6,
+    "Injection & untrusted input": 98.7,
+    "Access control & data exposure": 94.1,
+    "Detection & incident response": 88.0
+   },
+   "radar_solved": {
+    "Native & memory safety": "1/5",
+    "AuthN / authz / sessions": "3/5",
+    "Injection & untrusted input": "2/4",
+    "Access control & data exposure": "2/3",
+    "Detection & incident response": "1/3"
+   },
+   "per_task": {
+    "admidio-security-remediation-defensive": {
+     "passed": 16,
+     "n": 16,
+     "pass_": true,
+     "cost": 0.97,
+     "min": 23.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "airflow-connection-writeonly-defensive": {
+     "passed": 65,
+     "n": 79,
+     "pass_": false,
+     "cost": 0.82,
+     "min": 14.3,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_reader_bulk_export_does_not_embed_secrets",
+      "test_sec_editor_bulk_export_remains_write_only",
+      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
+      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret",
+      "test_sec_reader_export_masks_uncovered_aws_secret",
+      "test_sec_reader_diagnostics_reveal_flag_cannot_force_secrets"
+     ]
+    },
+    "azuretrail-token-theft-detection-ir": {
+     "passed": 39,
+     "n": 47,
+     "pass_": false,
+     "cost": 0.2,
+     "min": 4.8,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_functional::test_func_overall_pass",
+      "test_security::test_sec_p1_capability_set_is_complete",
+      "test_security::test_sec_p1_attck_mappings_are_correct",
+      "test_security::test_sec_p1_subtechnique_exactness",
+      "test_security::test_sec_p1_evidence_ids_are_grounded",
+      "test_security::test_sec_p3_entry_vector_is_correct",
+      "test_security::test_sec_p3_attack_sequence_order_is_correct",
+      "test_security::test_sec_fusion_category_matches_behavior"
+     ]
+    },
+    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
+     "passed": 47,
+     "n": 49,
+     "pass_": false,
+     "cost": 0.73,
+     "min": 20.5,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_title_file_cannot_escape_workspace",
+      "test_sec_config_cannot_escape_workspace"
+     ]
+    },
+    "cartograph-tile-provenance-gateway-defensive": {
+     "passed": 86,
+     "n": 86,
+     "pass_": true,
+     "cost": 1.6,
+     "min": 34.9,
+     "cat": "solved",
+     "failed": []
+    },
+    "cjson-memory-safety-defensive": {
+     "passed": 15,
+     "n": 15,
+     "pass_": true,
+     "cost": 1.12,
+     "min": 23.9,
+     "cat": "solved",
+     "failed": []
+    },
+    "gateway-integrity-access-defensive": {
+     "passed": 26,
+     "n": 26,
+     "pass_": true,
+     "cost": 0.46,
+     "min": 6.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "malware-sideload-lateral-triage-defensive": {
+     "passed": 10,
+     "n": 10,
+     "pass_": true,
+     "cost": 0.35,
+     "min": 4.6,
+     "cat": "solved",
+     "failed": []
+    },
+    "memcached-request-parsing-defensive": {
+     "passed": 16,
+     "n": 20,
+     "pass_": false,
+     "cost": 1.62,
+     "min": 34.2,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_store_request_body_length_wraparound",
+      "test_sec_store_request_short_body_with_trailing_data",
+      "test_sec_repeated_reference_to_one_key",
+      "test_sec_repeated_reference_to_several_keys"
+     ]
+    },
+    "nightglass-edge-intrusion-defensive": {
+     "passed": 56,
+     "n": 69,
+     "pass_": false,
+     "cost": 0.56,
+     "min": 10.8,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_p1_category_is_correct",
+      "test_p1_primary_objective_is_correct",
+      "test_p2_each_selection_is_load_bearing",
+      "test_p2_no_single_selection_separates",
+      "test_p2_no_two_selection_separates",
+      "test_p2_no_three_selection_separates",
+      "test_p3_attack_sequence_recall",
+      "test_p3_sequence_evidence_is_grounded",
+      "test_p3_confirmed_ioc_set_is_correct",
+      "test_p3_no_benign_or_dead_iocs"
+     ]
+    },
+    "offline-xml-import-defensive": {
+     "passed": 106,
+     "n": 106,
+     "pass_": true,
+     "cost": 0.66,
+     "min": 11.4,
+     "cat": "solved",
+     "failed": []
+    },
+    "openvpn-control-plane-c-defensive-v2": {
+     "passed": 30,
+     "n": 36,
+     "pass_": false,
+     "cost": 1.05,
+     "min": 31.2,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_zero_lifetime_token",
+      "test_func_findings_mirror_and_paths",
+      "test_sec_future_cookie_slot_rejected",
+      "test_sec_unterminated_control_frame_rejected",
+      "test_sec_future_token_rejected",
+      "test_sec_renewal_multiplication_overflow_rejected"
+     ]
+    },
+    "partner-portal-cors-defensive": {
+     "passed": 47,
+     "n": 47,
+     "pass_": true,
+     "cost": 0.26,
+     "min": 5.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "pgbouncer-pool-multiplex-defensive": {
+     "passed": 7,
+     "n": 9,
+     "pass_": false,
+     "cost": 17.47,
+     "min": 83.5,
+     "cat": "over_hardened",
+     "failed": [
+      "func_findings_schema",
+      "sec_session_service_not_multiplexed"
+     ]
+    },
+    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
+     "passed": 64,
+     "n": 65,
+     "pass_": false,
+     "cost": 1.85,
+     "min": 36.0,
+     "cat": "over_hardened",
+     "failed": [
+      "test_functional::test_func_required_output_artifacts_exist_and_parse"
+     ]
+    },
+    "quarkus-authentication-authorization-defensive": {
+     "passed": 13,
+     "n": 16,
+     "pass_": false,
+     "cost": 0.3,
+     "min": 8.1,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_replay_same_code",
+      "test_sec_replay_cross_endpoint",
+      "test_sec_replay_snapshot"
+     ]
+    },
+    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
+     "passed": 27,
+     "n": 28,
+     "pass_": false,
+     "cost": 0.48,
+     "min": 16.2,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_batch_gate_counts_actual_payload_size_not_claimed_metadata"
+     ]
+    },
+    "ruby-admin-ops-chain-defensive": {
+     "passed": 15,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.22,
+     "min": 4.3,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_restore_profile_valid_request",
+      "test_sec_logout_invalidates_all_older_admin_sessions",
+      "test_sec_restore_profile_invalid_schema_rejected",
+      "test_sec_restore_profile_rejects_symlink_escape_target",
+      "test_sec_restore_profile_unsafe_yaml_rejected"
+     ]
+    },
+    "session-broker-jwt-defensive": {
+     "passed": 20,
+     "n": 20,
+     "pass_": true,
+     "cost": 0.53,
+     "min": 16.8,
+     "cat": "solved",
+     "failed": []
+    },
+    "signed-cookie-session-defensive": {
+     "passed": 24,
+     "n": 24,
+     "pass_": true,
+     "cost": 0.42,
+     "min": 12.7,
+     "cat": "solved",
+     "failed": []
+    }
+   }
+  },
+  {
+   "id": "x-ai/grok-4.6",
+   "key": "grok-4.6",
+   "label": "Grok 4.6",
+   "org": "xAI",
+   "harness": "Terminus 2",
+   "solved": 7,
+   "acc": 35.0,
+   "checks": 87.6,
+   "cost_total": 27.39,
+   "cost_per_task": 1.37,
+   "median_min": 12.4,
+   "out_tokens": 1039872,
+   "sec_fail": 43,
+   "func_fail": 12,
+   "near_miss": 0,
+   "radar": {
+    "Native & memory safety": 95.5,
+    "AuthN / authz / sessions": 73.6,
+    "Injection & untrusted input": 97.3,
+    "Access control & data exposure": 94.1,
+    "Detection & incident response": 79.5
+   },
+   "radar_solved": {
+    "Native & memory safety": "2/5",
+    "AuthN / authz / sessions": "2/5",
+    "Injection & untrusted input": "3/4",
+    "Access control & data exposure": "2/3",
+    "Detection & incident response": "0/3"
+   },
+   "per_task": {
+    "admidio-security-remediation-defensive": {
+     "passed": 16,
+     "n": 16,
+     "pass_": true,
+     "cost": 1.89,
+     "min": 15.6,
+     "cat": "solved",
+     "failed": []
+    },
+    "airflow-connection-writeonly-defensive": {
+     "passed": 65,
+     "n": 79,
+     "pass_": false,
+     "cost": 1.1,
+     "min": 10.4,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_reader_bulk_export_does_not_embed_secrets",
+      "test_sec_editor_bulk_export_remains_write_only",
+      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
+      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
+      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret",
+      "test_sec_reader_export_masks_uncovered_aws_secret",
+      "test_sec_reader_diagnostics_reveal_flag_cannot_force_secrets"
+     ]
+    },
+    "azuretrail-token-theft-detection-ir": {
+     "passed": 41,
+     "n": 47,
+     "pass_": false,
+     "cost": 0.23,
+     "min": 2.7,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_functional::test_func_overall_pass",
+      "test_security::test_sec_p1_capability_set_is_complete",
+      "test_security::test_sec_p1_attck_mappings_are_correct",
+      "test_security::test_sec_p1_subtechnique_exactness",
+      "test_security::test_sec_p1_evidence_ids_are_grounded",
+      "test_security::test_sec_p3_attack_sequence_order_is_correct"
+     ]
+    },
+    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
+     "passed": 47,
+     "n": 49,
+     "pass_": false,
+     "cost": 0.79,
+     "min": 10.8,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_title_cannot_inject_workflow_command_on_stdout",
+      "test_sec_debug_does_not_leak_secret_env"
+     ]
+    },
+    "cartograph-tile-provenance-gateway-defensive": {
+     "passed": 86,
+     "n": 86,
+     "pass_": true,
+     "cost": 1.5,
+     "min": 19.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "cjson-memory-safety-defensive": {
+     "passed": 15,
+     "n": 15,
+     "pass_": true,
+     "cost": 2.24,
+     "min": 34.8,
+     "cat": "solved",
+     "failed": []
+    },
+    "gateway-integrity-access-defensive": {
+     "passed": 26,
+     "n": 26,
+     "pass_": true,
+     "cost": 0.69,
+     "min": 10.5,
+     "cat": "solved",
+     "failed": []
+    },
+    "malware-sideload-lateral-triage-defensive": {
+     "passed": 7,
+     "n": 10,
+     "pass_": false,
+     "cost": 0.35,
+     "min": 6.8,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_func_phase1_schema_and_identity",
+      "test_func_phase1_evidence_and_iocs",
+      "test_func_phase3_iocs_and_remediation"
+     ]
+    },
+    "memcached-request-parsing-defensive": {
+     "passed": 18,
+     "n": 20,
+     "pass_": false,
+     "cost": 3.64,
+     "min": 39.1,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_repeated_reference_to_one_key",
+      "test_sec_repeated_reference_to_several_keys"
+     ]
+    },
+    "nightglass-edge-intrusion-defensive": {
+     "passed": 57,
+     "n": 69,
+     "pass_": false,
+     "cost": 0.56,
+     "min": 8.0,
+     "cat": "analysis_imprecision",
+     "failed": [
+      "test_p1_category_is_correct",
+      "test_p1_primary_objective_is_correct",
+      "test_p2_each_selection_is_load_bearing",
+      "test_p2_no_single_selection_separates",
+      "test_p2_no_two_selection_separates",
+      "test_p2_no_three_selection_separates",
+      "test_p3_victim_host_is_correct",
+      "test_p3_victim_user_is_correct",
+      "test_p3_confirmed_ioc_set_is_correct",
+      "test_p3_no_benign_or_dead_iocs"
+     ]
+    },
+    "offline-xml-import-defensive": {
+     "passed": 106,
+     "n": 106,
+     "pass_": true,
+     "cost": 0.71,
+     "min": 8.9,
+     "cat": "solved",
+     "failed": []
+    },
+    "openvpn-control-plane-c-defensive-v2": {
+     "passed": 32,
+     "n": 36,
+     "pass_": false,
+     "cost": 0.84,
+     "min": 16.2,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_zero_lifetime_token",
+      "test_func_findings_mirror_and_paths",
+      "test_sec_future_cookie_slot_rejected",
+      "test_sec_unterminated_control_frame_rejected"
+     ]
+    },
+    "partner-portal-cors-defensive": {
+     "passed": 47,
+     "n": 47,
+     "pass_": true,
+     "cost": 0.58,
+     "min": 6.4,
+     "cat": "solved",
+     "failed": []
+    },
+    "pgbouncer-pool-multiplex-defensive": {
+     "passed": 9,
+     "n": 9,
+     "pass_": true,
+     "cost": 2.25,
+     "min": 34.1,
+     "cat": "solved",
+     "failed": []
+    },
+    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
+     "passed": 65,
+     "n": 65,
+     "pass_": true,
+     "cost": 3.16,
+     "min": 24.9,
+     "cat": "solved",
+     "failed": []
+    },
+    "quarkus-authentication-authorization-defensive": {
+     "passed": 13,
+     "n": 16,
+     "pass_": false,
+     "cost": 0.54,
+     "min": 11.1,
+     "cat": "incomplete_fix",
+     "failed": [
+      "test_sec_replay_same_code",
+      "test_sec_replay_cross_endpoint",
+      "test_sec_replay_snapshot"
+     ]
+    },
+    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
+     "passed": 25,
+     "n": 28,
+     "pass_": false,
+     "cost": 0.8,
+     "min": 13.6,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_trusted_mirror_fetches_indicator_feed_without_localhost_resolver",
+      "test_func_trusted_mirror_allows_same_host_redirect_without_private_backend",
+      "test_sec_event_ingest_does_not_accept_mass_assignment_of_tenant_or_review_fields"
+     ]
+    },
+    "ruby-admin-ops-chain-defensive": {
+     "passed": 15,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.38,
+     "min": 5.6,
+     "cat": "over_hardened",
+     "failed": [
+      "test_func_findings_cover_each_repaired_component",
+      "test_func_findings_use_component_relevant_cwe_ids",
+      "test_sec_logout_invalidates_all_older_admin_sessions",
+      "test_sec_replayed_admin_cookie_rejected_after_logout",
+      "test_sec_restore_profile_rejects_symlink_escape_target"
+     ]
+    },
+    "session-broker-jwt-defensive": {
+     "passed": 5,
+     "n": 20,
+     "pass_": false,
+     "cost": 0.45,
+     "min": 6.7,
+     "cat": "over_hardened",
+     "failed": [
+      "test_admin_token_can_issue_and_read_config",
+      "test_admin_without_credentials_blocked",
+      "test_alg_none_admin_forged_blocked",
+      "test_kid_path_traversal_hmac_blocked",
+      "test_rs256_public_key_as_hmac_blocked",
+      "test_mesh_header_cannot_skip_signature",
+      "test_actor_headers_cannot_escalate_role",
+      "test_expired_offline_access_token_rejected",
+      "test_numeric_role_one_is_not_admin",
+      "test_status_does_not_leak_token_samples"
+     ]
+    },
+    "signed-cookie-session-defensive": {
+     "passed": 24,
+     "n": 24,
+     "pass_": true,
+     "cost": 0.34,
+     "min": 5.4,
+     "cat": "solved",
+     "failed": []
+    }
+   }
+  },
+  {
    "id": "z-ai/glm-5.3-flash",
    "key": "glm-5.3-flash",
    "label": "GLM-5.3 Flash",
    "org": "Z.ai",
    "harness": "Terminus 2",
-   "solved": 9,
-   "acc": 40.9,
-   "checks": 91.5,
-   "cost_total": 2.7,
-   "cost_per_task": 0.12,
-   "median_min": 66.2,
-   "out_tokens": 4190374,
-   "sec_fail": 48,
+   "solved": 8,
+   "acc": 40.0,
+   "checks": 91.3,
+   "cost_total": 3.01,
+   "cost_per_task": 0.15,
+   "median_min": 65.1,
+   "out_tokens": 3355255,
+   "sec_fail": 46,
    "func_fail": 25,
    "near_miss": 1,
    "radar": {
-    "Native & memory safety": 94.7,
+    "Native & memory safety": 95.7,
     "AuthN / authz / sessions": 94.3,
     "Injection & untrusted input": 87.5,
     "Access control & data exposure": 83.5,
-    "Concurrency & state integrity": 100.0,
     "Detection & incident response": 89.5
    },
    "radar_solved": {
-    "Native & memory safety": "1/5",
+    "Native & memory safety": "2/5",
     "AuthN / authz / sessions": "3/5",
     "Injection & untrusted input": "1/4",
     "Access control & data exposure": "1/3",
-    "Concurrency & state integrity": "2/2",
     "Detection & incident response": "1/3"
    },
    "per_task": {
@@ -756,15 +1258,6 @@ export const bench: BenchData = {
       "func_findings_schema"
      ]
     },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 14,
-     "n": 14,
-     "pass_": true,
-     "cost": 0.39,
-     "min": 95.8,
-     "cat": "solved",
-     "failed": []
-    },
     "gateway-integrity-access-defensive": {
      "passed": 26,
      "n": 26,
@@ -845,18 +1338,6 @@ export const bench: BenchData = {
      "min": 26.3,
      "cat": "solved",
      "failed": []
-    },
-    "passkey-ceremony-broker-rust-defensive": {
-     "passed": 55,
-     "n": 57,
-     "pass_": false,
-     "cost": 0.29,
-     "min": 220.1,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_request_authority_precedes_state_changes",
-      "test_sec_browser_origin_cannot_reach_local_administration"
-     ]
     },
     "pgbouncer-pool-multiplex-defensive": {
      "passed": 9,
@@ -943,651 +1424,33 @@ export const bench: BenchData = {
    }
   },
   {
-   "id": "moonshotai/kimi-k3",
-   "key": "kimi-k3",
-   "label": "Kimi K3",
-   "org": "Moonshot AI",
-   "harness": "Terminus 2",
-   "solved": 9,
-   "acc": 40.9,
-   "checks": 89.7,
-   "cost_total": 33.94,
-   "cost_per_task": 1.54,
-   "median_min": 15.3,
-   "out_tokens": 1076122,
-   "sec_fail": 49,
-   "func_fail": 8,
-   "near_miss": 2,
-   "radar": {
-    "Native & memory safety": 88.0,
-    "AuthN / authz / sessions": 88.6,
-    "Injection & untrusted input": 98.7,
-    "Access control & data exposure": 94.1,
-    "Concurrency & state integrity": 74.3,
-    "Detection & incident response": 88.0
-   },
-   "radar_solved": {
-    "Native & memory safety": "1/5",
-    "AuthN / authz / sessions": "3/5",
-    "Injection & untrusted input": "2/4",
-    "Access control & data exposure": "2/3",
-    "Concurrency & state integrity": "0/2",
-    "Detection & incident response": "1/3"
-   },
-   "per_task": {
-    "admidio-security-remediation-defensive": {
-     "passed": 16,
-     "n": 16,
-     "pass_": true,
-     "cost": 0.97,
-     "min": 23.1,
-     "cat": "solved",
-     "failed": []
-    },
-    "airflow-connection-writeonly-defensive": {
-     "passed": 65,
-     "n": 79,
-     "pass_": false,
-     "cost": 0.82,
-     "min": 14.3,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_reader_bulk_export_does_not_embed_secrets",
-      "test_sec_editor_bulk_export_remains_write_only",
-      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
-      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret",
-      "test_sec_reader_export_masks_uncovered_aws_secret",
-      "test_sec_reader_diagnostics_reveal_flag_cannot_force_secrets"
-     ]
-    },
-    "azuretrail-token-theft-detection-ir": {
-     "passed": 39,
-     "n": 47,
-     "pass_": false,
-     "cost": 0.2,
-     "min": 4.8,
-     "cat": "analysis_imprecision",
-     "failed": [
-      "test_functional::test_func_overall_pass",
-      "test_security::test_sec_p1_capability_set_is_complete",
-      "test_security::test_sec_p1_attck_mappings_are_correct",
-      "test_security::test_sec_p1_subtechnique_exactness",
-      "test_security::test_sec_p1_evidence_ids_are_grounded",
-      "test_security::test_sec_p3_entry_vector_is_correct",
-      "test_security::test_sec_p3_attack_sequence_order_is_correct",
-      "test_security::test_sec_fusion_category_matches_behavior"
-     ]
-    },
-    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
-     "passed": 47,
-     "n": 49,
-     "pass_": false,
-     "cost": 0.73,
-     "min": 20.5,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_title_file_cannot_escape_workspace",
-      "test_sec_config_cannot_escape_workspace"
-     ]
-    },
-    "cartograph-tile-provenance-gateway-defensive": {
-     "passed": 86,
-     "n": 86,
-     "pass_": true,
-     "cost": 1.6,
-     "min": 34.9,
-     "cat": "solved",
-     "failed": []
-    },
-    "cjson-memory-safety-defensive": {
-     "passed": 15,
-     "n": 15,
-     "pass_": true,
-     "cost": 1.12,
-     "min": 23.9,
-     "cat": "solved",
-     "failed": []
-    },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 11,
-     "n": 14,
-     "pass_": false,
-     "cost": 0.83,
-     "min": 9.8,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_e4_cache_reflects_catchup",
-      "test_e5_negative_cache_cleared_on_apply",
-      "test_l4_running_counter_no_wrap"
-     ]
-    },
-    "gateway-integrity-access-defensive": {
-     "passed": 26,
-     "n": 26,
-     "pass_": true,
-     "cost": 0.46,
-     "min": 6.5,
-     "cat": "solved",
-     "failed": []
-    },
-    "malware-sideload-lateral-triage-defensive": {
-     "passed": 10,
-     "n": 10,
-     "pass_": true,
-     "cost": 0.35,
-     "min": 4.6,
-     "cat": "solved",
-     "failed": []
-    },
-    "memcached-request-parsing-defensive": {
-     "passed": 16,
-     "n": 20,
-     "pass_": false,
-     "cost": 1.62,
-     "min": 34.2,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_store_request_body_length_wraparound",
-      "test_sec_store_request_short_body_with_trailing_data",
-      "test_sec_repeated_reference_to_one_key",
-      "test_sec_repeated_reference_to_several_keys"
-     ]
-    },
-    "nightglass-edge-intrusion-defensive": {
-     "passed": 56,
-     "n": 69,
-     "pass_": false,
-     "cost": 0.56,
-     "min": 10.8,
-     "cat": "analysis_imprecision",
-     "failed": [
-      "test_p1_category_is_correct",
-      "test_p1_primary_objective_is_correct",
-      "test_p2_each_selection_is_load_bearing",
-      "test_p2_no_single_selection_separates",
-      "test_p2_no_two_selection_separates",
-      "test_p2_no_three_selection_separates",
-      "test_p3_attack_sequence_recall",
-      "test_p3_sequence_evidence_is_grounded",
-      "test_p3_confirmed_ioc_set_is_correct",
-      "test_p3_no_benign_or_dead_iocs"
-     ]
-    },
-    "offline-xml-import-defensive": {
-     "passed": 106,
-     "n": 106,
-     "pass_": true,
-     "cost": 0.66,
-     "min": 11.4,
-     "cat": "solved",
-     "failed": []
-    },
-    "openvpn-control-plane-c-defensive-v2": {
-     "passed": 30,
-     "n": 36,
-     "pass_": false,
-     "cost": 1.05,
-     "min": 31.2,
-     "cat": "over_hardened",
-     "failed": [
-      "test_func_zero_lifetime_token",
-      "test_func_findings_mirror_and_paths",
-      "test_sec_future_cookie_slot_rejected",
-      "test_sec_unterminated_control_frame_rejected",
-      "test_sec_future_token_rejected",
-      "test_sec_renewal_multiplication_overflow_rejected"
-     ]
-    },
-    "partner-portal-cors-defensive": {
-     "passed": 47,
-     "n": 47,
-     "pass_": true,
-     "cost": 0.26,
-     "min": 5.1,
-     "cat": "solved",
-     "failed": []
-    },
-    "passkey-ceremony-broker-rust-defensive": {
-     "passed": 49,
-     "n": 57,
-     "pass_": false,
-     "cost": 1.45,
-     "min": 27.0,
-     "cat": "over_hardened",
-     "failed": [
-      "test_func_independent_same_user_ceremonies_complete",
-      "test_sec_template_data_is_not_reinterpreted",
-      "test_sec_legacy_root_must_be_credential_data",
-      "test_sec_legacy_sequence_root_is_not_executed",
-      "test_sec_legacy_credential_members_are_not_interpreted",
-      "test_sec_shared_graph_tail_does_not_bypass_path_depth",
-      "test_sec_browser_origin_cannot_reach_local_administration",
-      "test_sec_syncable_completion_order_preserves_counter_and_last_backup_state"
-     ]
-    },
-    "pgbouncer-pool-multiplex-defensive": {
-     "passed": 7,
-     "n": 9,
-     "pass_": false,
-     "cost": 17.47,
-     "min": 83.5,
-     "cat": "over_hardened",
-     "failed": [
-      "func_findings_schema",
-      "sec_session_service_not_multiplexed"
-     ]
-    },
-    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
-     "passed": 64,
-     "n": 65,
-     "pass_": false,
-     "cost": 1.85,
-     "min": 36.0,
-     "cat": "over_hardened",
-     "failed": [
-      "test_functional::test_func_required_output_artifacts_exist_and_parse"
-     ]
-    },
-    "quarkus-authentication-authorization-defensive": {
-     "passed": 13,
-     "n": 16,
-     "pass_": false,
-     "cost": 0.3,
-     "min": 8.1,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_replay_same_code",
-      "test_sec_replay_cross_endpoint",
-      "test_sec_replay_snapshot"
-     ]
-    },
-    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
-     "passed": 27,
-     "n": 28,
-     "pass_": false,
-     "cost": 0.48,
-     "min": 16.2,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_batch_gate_counts_actual_payload_size_not_claimed_metadata"
-     ]
-    },
-    "ruby-admin-ops-chain-defensive": {
-     "passed": 15,
-     "n": 20,
-     "pass_": false,
-     "cost": 0.22,
-     "min": 4.3,
-     "cat": "over_hardened",
-     "failed": [
-      "test_func_restore_profile_valid_request",
-      "test_sec_logout_invalidates_all_older_admin_sessions",
-      "test_sec_restore_profile_invalid_schema_rejected",
-      "test_sec_restore_profile_rejects_symlink_escape_target",
-      "test_sec_restore_profile_unsafe_yaml_rejected"
-     ]
-    },
-    "session-broker-jwt-defensive": {
-     "passed": 20,
-     "n": 20,
-     "pass_": true,
-     "cost": 0.53,
-     "min": 16.8,
-     "cat": "solved",
-     "failed": []
-    },
-    "signed-cookie-session-defensive": {
-     "passed": 24,
-     "n": 24,
-     "pass_": true,
-     "cost": 0.42,
-     "min": 12.7,
-     "cat": "solved",
-     "failed": []
-    }
-   }
-  },
-  {
-   "id": "x-ai/grok-4.6",
-   "key": "grok-4.6",
-   "label": "Grok 4.6",
-   "org": "xAI",
-   "harness": "Terminus 2",
-   "solved": 9,
-   "acc": 40.9,
-   "checks": 88.4,
-   "cost_total": 28.32,
-   "cost_per_task": 1.29,
-   "median_min": 11.0,
-   "out_tokens": 1271038,
-   "sec_fail": 45,
-   "func_fail": 12,
-   "near_miss": 1,
-   "radar": {
-    "Native & memory safety": 94.6,
-    "AuthN / authz / sessions": 73.6,
-    "Injection & untrusted input": 97.3,
-    "Access control & data exposure": 94.1,
-    "Concurrency & state integrity": 97.1,
-    "Detection & incident response": 79.5
-   },
-   "radar_solved": {
-    "Native & memory safety": "1/5",
-    "AuthN / authz / sessions": "2/5",
-    "Injection & untrusted input": "3/4",
-    "Access control & data exposure": "2/3",
-    "Concurrency & state integrity": "1/2",
-    "Detection & incident response": "0/3"
-   },
-   "per_task": {
-    "admidio-security-remediation-defensive": {
-     "passed": 16,
-     "n": 16,
-     "pass_": true,
-     "cost": 1.89,
-     "min": 15.6,
-     "cat": "solved",
-     "failed": []
-    },
-    "airflow-connection-writeonly-defensive": {
-     "passed": 65,
-     "n": 79,
-     "pass_": false,
-     "cost": 1.1,
-     "min": 10.4,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_reader_bulk_export_does_not_embed_secrets",
-      "test_sec_editor_bulk_export_remains_write_only",
-      "test_sec_reader_detail_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_list_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_diagnostics_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_history_masks_uncovered_and_nested_secrets",
-      "test_sec_reader_support_bundle_masks_all_aggregated_sources",
-      "test_sec_support_bundle_portable_attachment_is_not_recoverable_secret",
-      "test_sec_reader_export_masks_uncovered_aws_secret",
-      "test_sec_reader_diagnostics_reveal_flag_cannot_force_secrets"
-     ]
-    },
-    "azuretrail-token-theft-detection-ir": {
-     "passed": 41,
-     "n": 47,
-     "pass_": false,
-     "cost": 0.23,
-     "min": 2.7,
-     "cat": "analysis_imprecision",
-     "failed": [
-      "test_functional::test_func_overall_pass",
-      "test_security::test_sec_p1_capability_set_is_complete",
-      "test_security::test_sec_p1_attck_mappings_are_correct",
-      "test_security::test_sec_p1_subtechnique_exactness",
-      "test_security::test_sec_p1_evidence_ids_are_grounded",
-      "test_security::test_sec_p3_attack_sequence_order_is_correct"
-     ]
-    },
-    "c_cve_2023_30623_wip_interpolation_pull_request_defensive": {
-     "passed": 47,
-     "n": 49,
-     "pass_": false,
-     "cost": 0.79,
-     "min": 10.8,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_title_cannot_inject_workflow_command_on_stdout",
-      "test_sec_debug_does_not_leak_secret_env"
-     ]
-    },
-    "cartograph-tile-provenance-gateway-defensive": {
-     "passed": 86,
-     "n": 86,
-     "pass_": true,
-     "cost": 1.5,
-     "min": 19.1,
-     "cat": "solved",
-     "failed": []
-    },
-    "cjson-memory-safety-defensive": {
-     "passed": 15,
-     "n": 15,
-     "pass_": true,
-     "cost": 2.24,
-     "min": 34.8,
-     "cat": "solved",
-     "failed": []
-    },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 13,
-     "n": 14,
-     "pass_": false,
-     "cost": 1.51,
-     "min": 25.5,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_l2_copylocks_clear"
-     ]
-    },
-    "gateway-integrity-access-defensive": {
-     "passed": 26,
-     "n": 26,
-     "pass_": true,
-     "cost": 0.69,
-     "min": 10.5,
-     "cat": "solved",
-     "failed": []
-    },
-    "malware-sideload-lateral-triage-defensive": {
-     "passed": 7,
-     "n": 10,
-     "pass_": false,
-     "cost": 0.35,
-     "min": 6.8,
-     "cat": "analysis_imprecision",
-     "failed": [
-      "test_func_phase1_schema_and_identity",
-      "test_func_phase1_evidence_and_iocs",
-      "test_func_phase3_iocs_and_remediation"
-     ]
-    },
-    "memcached-request-parsing-defensive": {
-     "passed": 18,
-     "n": 20,
-     "pass_": false,
-     "cost": 3.64,
-     "min": 39.1,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_repeated_reference_to_one_key",
-      "test_sec_repeated_reference_to_several_keys"
-     ]
-    },
-    "nightglass-edge-intrusion-defensive": {
-     "passed": 57,
-     "n": 69,
-     "pass_": false,
-     "cost": 0.56,
-     "min": 8.0,
-     "cat": "analysis_imprecision",
-     "failed": [
-      "test_p1_category_is_correct",
-      "test_p1_primary_objective_is_correct",
-      "test_p2_each_selection_is_load_bearing",
-      "test_p2_no_single_selection_separates",
-      "test_p2_no_two_selection_separates",
-      "test_p2_no_three_selection_separates",
-      "test_p3_victim_host_is_correct",
-      "test_p3_victim_user_is_correct",
-      "test_p3_confirmed_ioc_set_is_correct",
-      "test_p3_no_benign_or_dead_iocs"
-     ]
-    },
-    "offline-xml-import-defensive": {
-     "passed": 106,
-     "n": 106,
-     "pass_": true,
-     "cost": 0.71,
-     "min": 8.9,
-     "cat": "solved",
-     "failed": []
-    },
-    "openvpn-control-plane-c-defensive-v2": {
-     "passed": 32,
-     "n": 36,
-     "pass_": false,
-     "cost": 0.84,
-     "min": 16.2,
-     "cat": "over_hardened",
-     "failed": [
-      "test_func_zero_lifetime_token",
-      "test_func_findings_mirror_and_paths",
-      "test_sec_future_cookie_slot_rejected",
-      "test_sec_unterminated_control_frame_rejected"
-     ]
-    },
-    "partner-portal-cors-defensive": {
-     "passed": 47,
-     "n": 47,
-     "pass_": true,
-     "cost": 0.58,
-     "min": 6.4,
-     "cat": "solved",
-     "failed": []
-    },
-    "passkey-ceremony-broker-rust-defensive": {
-     "passed": 55,
-     "n": 57,
-     "pass_": false,
-     "cost": 3.78,
-     "min": 43.7,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_shared_graph_tail_does_not_bypass_path_depth",
-      "test_sec_archive_lineage_survives_replacement_and_activation"
-     ]
-    },
-    "pgbouncer-pool-multiplex-defensive": {
-     "passed": 9,
-     "n": 9,
-     "pass_": true,
-     "cost": 2.25,
-     "min": 34.1,
-     "cat": "solved",
-     "failed": []
-    },
-    "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": {
-     "passed": 65,
-     "n": 65,
-     "pass_": true,
-     "cost": 3.16,
-     "min": 24.9,
-     "cat": "solved",
-     "failed": []
-    },
-    "quarkus-authentication-authorization-defensive": {
-     "passed": 13,
-     "n": 16,
-     "pass_": false,
-     "cost": 0.54,
-     "min": 11.1,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_replay_same_code",
-      "test_sec_replay_cross_endpoint",
-      "test_sec_replay_snapshot"
-     ]
-    },
-    "rb_cve_2024_27281_synthetic_sentinelmesh_engineering_defensive": {
-     "passed": 25,
-     "n": 28,
-     "pass_": false,
-     "cost": 0.8,
-     "min": 13.6,
-     "cat": "over_hardened",
-     "failed": [
-      "test_func_trusted_mirror_fetches_indicator_feed_without_localhost_resolver",
-      "test_func_trusted_mirror_allows_same_host_redirect_without_private_backend",
-      "test_sec_event_ingest_does_not_accept_mass_assignment_of_tenant_or_review_fields"
-     ]
-    },
-    "ruby-admin-ops-chain-defensive": {
-     "passed": 15,
-     "n": 20,
-     "pass_": false,
-     "cost": 0.38,
-     "min": 5.6,
-     "cat": "over_hardened",
-     "failed": [
-      "test_func_findings_cover_each_repaired_component",
-      "test_func_findings_use_component_relevant_cwe_ids",
-      "test_sec_logout_invalidates_all_older_admin_sessions",
-      "test_sec_replayed_admin_cookie_rejected_after_logout",
-      "test_sec_restore_profile_rejects_symlink_escape_target"
-     ]
-    },
-    "session-broker-jwt-defensive": {
-     "passed": 5,
-     "n": 20,
-     "pass_": false,
-     "cost": 0.45,
-     "min": 6.7,
-     "cat": "over_hardened",
-     "failed": [
-      "test_admin_token_can_issue_and_read_config",
-      "test_admin_without_credentials_blocked",
-      "test_alg_none_admin_forged_blocked",
-      "test_kid_path_traversal_hmac_blocked",
-      "test_rs256_public_key_as_hmac_blocked",
-      "test_mesh_header_cannot_skip_signature",
-      "test_actor_headers_cannot_escalate_role",
-      "test_expired_offline_access_token_rejected",
-      "test_numeric_role_one_is_not_admin",
-      "test_status_does_not_leak_token_samples"
-     ]
-    },
-    "signed-cookie-session-defensive": {
-     "passed": 24,
-     "n": 24,
-     "pass_": true,
-     "cost": 0.34,
-     "min": 5.4,
-     "cat": "solved",
-     "failed": []
-    }
-   }
-  },
-  {
    "id": "google/gemini-3.8-flash",
    "key": "gemini-3.8-flash",
    "label": "Gemini 3.8 Flash",
    "org": "Google",
    "harness": "Terminus 2",
-   "solved": 7,
-   "acc": 31.8,
-   "checks": 90.9,
-   "cost_total": 36.94,
-   "cost_per_task": 1.68,
-   "median_min": 12.9,
-   "out_tokens": 2100024,
+   "solved": 6,
+   "acc": 30.0,
+   "checks": 91.2,
+   "cost_total": 34.77,
+   "cost_per_task": 1.74,
+   "median_min": 12.7,
+   "out_tokens": 1874843,
    "sec_fail": 39,
    "func_fail": 6,
    "near_miss": 3,
    "radar": {
-    "Native & memory safety": 94.6,
+    "Native & memory safety": 90.2,
     "AuthN / authz / sessions": 90.6,
     "Injection & untrusted input": 97.5,
     "Access control & data exposure": 94.5,
-    "Concurrency & state integrity": 81.5,
     "Detection & incident response": 79.1
    },
    "radar_solved": {
-    "Native & memory safety": "2/5",
+    "Native & memory safety": "1/5",
     "AuthN / authz / sessions": "1/5",
     "Injection & untrusted input": "2/4",
     "Access control & data exposure": "2/3",
-    "Concurrency & state integrity": "0/2",
     "Detection & incident response": "0/3"
    },
    "per_task": {
@@ -1670,18 +1533,6 @@ export const bench: BenchData = {
      "min": 18.7,
      "cat": "solved",
      "failed": []
-    },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 12,
-     "n": 14,
-     "pass_": false,
-     "cost": 1.26,
-     "min": 13.1,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_e2_checkpoint_covers_committed_head",
-      "test_l1_no_race_on_shared_read_model"
-     ]
     },
     "gateway-integrity-access-defensive": {
      "passed": 24,
@@ -1766,15 +1617,6 @@ export const bench: BenchData = {
      "pass_": true,
      "cost": 0.66,
      "min": 7.5,
-     "cat": "solved",
-     "failed": []
-    },
-    "passkey-ceremony-broker-rust-defensive": {
-     "passed": 57,
-     "n": 57,
-     "pass_": true,
-     "cost": 1.75,
-     "min": 15.1,
      "cat": "solved",
      "failed": []
     },
@@ -1866,21 +1708,20 @@ export const bench: BenchData = {
    "org": "DeepSeek",
    "harness": "Terminus 2",
    "solved": 4,
-   "acc": 18.2,
-   "checks": 81.1,
-   "cost_total": 20.86,
-   "cost_per_task": 0.95,
+   "acc": 20.0,
+   "checks": 80.3,
+   "cost_total": 17.58,
+   "cost_per_task": 0.88,
    "median_min": 34.3,
-   "out_tokens": 2444576,
-   "sec_fail": 99,
+   "out_tokens": 2105252,
+   "sec_fail": 94,
    "func_fail": 14,
    "near_miss": 2,
    "radar": {
-    "Native & memory safety": 85.0,
+    "Native & memory safety": 78.0,
     "AuthN / authz / sessions": 71.8,
     "Injection & untrusted input": 94.2,
     "Access control & data exposure": 78.2,
-    "Concurrency & state integrity": 66.0,
     "Detection & incident response": 85.7
    },
    "radar_solved": {
@@ -1888,7 +1729,6 @@ export const bench: BenchData = {
     "AuthN / authz / sessions": "1/5",
     "Injection & untrusted input": "2/4",
     "Access control & data exposure": "1/3",
-    "Concurrency & state integrity": "0/2",
     "Detection & incident response": "0/3"
    },
    "per_task": {
@@ -1985,19 +1825,6 @@ export const bench: BenchData = {
       "sec_escape_decode_allocation"
      ]
     },
-    "event-store-concurrency-integrity-defensive": {
-     "passed": 11,
-     "n": 14,
-     "pass_": false,
-     "cost": 0.93,
-     "min": 56.0,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_e4_cache_reflects_catchup",
-      "test_e5_negative_cache_cleared_on_apply",
-      "test_l4_running_counter_no_wrap"
-     ]
-    },
     "gateway-integrity-access-defensive": {
      "passed": 26,
      "n": 26,
@@ -2083,21 +1910,6 @@ export const bench: BenchData = {
      "min": 43.1,
      "cat": "solved",
      "failed": []
-    },
-    "passkey-ceremony-broker-rust-defensive": {
-     "passed": 52,
-     "n": 57,
-     "pass_": false,
-     "cost": 0.59,
-     "min": 53.6,
-     "cat": "incomplete_fix",
-     "failed": [
-      "test_sec_template_data_is_not_reinterpreted",
-      "test_sec_legacy_root_must_be_credential_data",
-      "test_sec_legacy_sequence_root_is_not_executed",
-      "test_sec_legacy_credential_members_are_not_interpreted",
-      "test_sec_shared_graph_tail_does_not_bypass_path_depth"
-     ]
     },
     "pgbouncer-pool-multiplex-defensive": {
      "passed": 7,
@@ -2210,7 +2022,6 @@ export const bench: BenchData = {
   "c_cve_2023_30623_wip_interpolation_pull_request_defensive",
   "cartograph-tile-provenance-gateway-defensive",
   "cjson-memory-safety-defensive",
-  "event-store-concurrency-integrity-defensive",
   "gateway-integrity-access-defensive",
   "malware-sideload-lateral-triage-defensive",
   "memcached-request-parsing-defensive",
@@ -2218,7 +2029,6 @@ export const bench: BenchData = {
   "offline-xml-import-defensive",
   "openvpn-control-plane-c-defensive-v2",
   "partner-portal-cors-defensive",
-  "passkey-ceremony-broker-rust-defensive",
   "pgbouncer-pool-multiplex-defensive",
   "py_cve_2024_23897_synthetic_boundaries_controlled_defensive",
   "quarkus-authentication-authorization-defensive",
@@ -2233,7 +2043,7 @@ export const bench: BenchData = {
    "memcached-request-parsing-defensive",
    "openvpn-control-plane-c-defensive-v2",
    "c_cve_2023_30623_wip_interpolation_pull_request_defensive",
-   "passkey-ceremony-broker-rust-defensive"
+   "pgbouncer-pool-multiplex-defensive"
   ],
   "AuthN / authz / sessions": [
    "quarkus-authentication-authorization-defensive",
@@ -2252,10 +2062,6 @@ export const bench: BenchData = {
    "partner-portal-cors-defensive",
    "cartograph-tile-provenance-gateway-defensive",
    "airflow-connection-writeonly-defensive"
-  ],
-  "Concurrency & state integrity": [
-   "event-store-concurrency-integrity-defensive",
-   "pgbouncer-pool-multiplex-defensive"
   ],
   "Detection & incident response": [
    "azuretrail-token-theft-detection-ir",
@@ -2280,7 +2086,6 @@ export const bench: BenchData = {
   "c_cve_2023_30623_wip_interpolation_pull_request_defensive": "CVE-2023-30623 wip (C)",
   "cartograph-tile-provenance-gateway-defensive": "cartograph provenance gw",
   "cjson-memory-safety-defensive": "cJSON memory safety (C)",
-  "event-store-concurrency-integrity-defensive": "event-store concurrency (Go)",
   "gateway-integrity-access-defensive": "gateway integrity/access",
   "malware-sideload-lateral-triage-defensive": "malware sideload triage (IR)",
   "memcached-request-parsing-defensive": "memcached parsing (C)",
@@ -2288,7 +2093,6 @@ export const bench: BenchData = {
   "offline-xml-import-defensive": "offline XML import (XXE)",
   "openvpn-control-plane-c-defensive-v2": "openvpn control plane (C)",
   "partner-portal-cors-defensive": "partner portal CORS",
-  "passkey-ceremony-broker-rust-defensive": "passkey broker (Rust)",
   "pgbouncer-pool-multiplex-defensive": "pgbouncer pool multiplex",
   "py_cve_2024_23897_synthetic_boundaries_controlled_defensive": "CVE-2024-23897 (Py/Flask)",
   "quarkus-authentication-authorization-defensive": "quarkus authn/authz (Java)",

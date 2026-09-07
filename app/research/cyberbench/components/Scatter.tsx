@@ -56,7 +56,7 @@ export default function Scatter({ models }: { models: ModelRow[] }) {
   return (
     <div className="bench-panel">
       <div className="bench-panel-head">
-        <h3 className="bench-panel-title">CyberBench · Defensive</h3>
+        <h3 className="bench-panel-title">CyberLatch · Defensive</h3>
         <div className="flex flex-wrap gap-2">
           <Select
             glyph="↔"

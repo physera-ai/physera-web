@@ -34,7 +34,7 @@ export function Leaderboard({ models }: { models: ModelRow[] }) {
                   </span>
                 )}
               </td>
-              <td className="num">{m.solved}/22</td>
+              <td className="num">{m.solved}/20</td>
               <td>
                 <div className="bench-bar">
                   <b style={{ width: `${m.acc}%` }} />

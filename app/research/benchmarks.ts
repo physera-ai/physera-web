@@ -23,7 +23,7 @@ export const CATEGORIES = [
 export const benchmarks: Benchmark[] = [
   {
     slug: "cyberbench",
-    name: "CyberBench",
+    name: "CyberLatch",
     category: "Cyber",
     access: "Proprietary",
     updated: "Sep 2026",
@@ -32,7 +32,7 @@ export const benchmarks: Benchmark[] = [
     tags: ["Cyber", "Coding agents", "Defensive", "Deterministic verifier"],
     stats: [
       { label: "Models", value: "7" },
-      { label: "Tasks", value: "22" },
+      { label: "Tasks", value: "20" },
       { label: "Best solve", value: "55%" },
       { label: "Cost span", value: "40×" },
     ],
