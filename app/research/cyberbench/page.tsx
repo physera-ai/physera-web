@@ -56,7 +56,7 @@ const notes = [
 
 const sections: Section[] = [
   { id: "overview", label: "Overview" },
-  { id: "complete-result", label: "What counts as a complete result" },
+  { id: "complete-result", label: "Methodology" },
   { id: "leaderboard", label: "How the models compare" },
   { id: "no-model-wins", label: "No model wins everywhere", sub: true },
   { id: "unsolved", label: "Behaviours in unsolved tasks" },
@@ -165,7 +165,7 @@ export default function CyberBenchPage() {
               />
 
               <h2 id="complete-result" className="bench-h2 scroll-mt-24">
-                What counts as a complete result
+                Methodology
               </h2>
               <p className={P}>
                 We ran 140 evaluations with Terminus 2 through the Harbor framework. Every model attempted the same
