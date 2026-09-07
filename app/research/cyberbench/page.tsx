@@ -387,8 +387,8 @@ export default function CyberBenchPage() {
               </p>
               <p className={P}>
                 Grok, Kimi, and Gemini had median run times of about 12 to 13 minutes. GPT-5.5 took about 15
-                minutes, Opus 31, DeepSeek 34, and GLM 65. GLM was the cheapest model and had the longest median
-                run time.
+                minutes, and the slower models ran longer: Opus about 31 minutes, DeepSeek about 34, and GLM about
+                65. GLM was the cheapest model and had the longest median run time.
               </p>
               <Fig
                 src="/cyberlatch/06_effort.png"
