@@ -129,6 +129,7 @@
   --bench-rule: #e6e6e6;
   --bench-rule-2: #cfcfcf;
   --bench-dot: #d8d8d8;
+  --bench-hover: #f7f7f6;
   --bench-accent: #0f9d6e;         /* manifesto emerald */
   --bench-accent-soft: #dcf0e7;
   --bench-good-fill: #dcf0e7;
@@ -266,22 +267,36 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .bench-article-body > .bench-h2:first-child { margin-top: 0; }
 .bench-toc { display: none; }
 @media (min-width: 1024px) {
-  .bench-article { grid-template-columns: 200px minmax(0, 1fr); gap: 56px; }
-  .bench-toc { display: block; position: sticky; top: 88px; align-self: start; max-height: calc(100vh - 120px); overflow-y: auto; }
+  .bench-article { grid-template-columns: 228px minmax(0, 1fr); gap: 60px; }
+  .bench-toc {
+    display: block; position: sticky; top: 88px; align-self: start;
+    max-height: calc(100vh - 120px); overflow-y: auto; overscroll-behavior: contain;
+    scrollbar-width: thin; scrollbar-color: var(--bench-rule-2) transparent;
+    padding-right: 6px;
+  }
 }
-.bench-toc-head { display: block; margin-bottom: 12px; color: var(--bench-ink-3); }
+.bench-toc-head {
+  display: block; margin-bottom: 14px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--bench-rule); color: var(--bench-ink-3);
+}
 .bench-toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.bench-toc li { line-height: 1; }
-.bench-toc li.sub a { padding-left: 22px; }
+.bench-toc li { line-height: 1.38; }
 .bench-toc a {
-  display: block; padding: 7px 0 7px 12px; margin-left: -1px;
+  display: block; padding: 8px 4px 8px 14px; margin-left: -1px;
   border-left: 1.5px solid var(--bench-rule);
-  font-size: 14px; color: var(--bench-ink-3); text-decoration: none;
-  transition: color .15s ease, border-color .15s ease;
+  font-size: 13.5px; letter-spacing: -0.002em; text-wrap: pretty;
+  color: var(--bench-ink-3); text-decoration: none;
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease;
 }
-.bench-toc a:hover { color: var(--bench-ink-2); border-color: var(--bench-rule-2); }
-.bench-toc a.is-active { color: var(--bench-accent); border-color: var(--bench-accent); border-left-width: 2.5px; font-weight: 600; }
+.bench-toc li.sub a { padding-left: 26px; font-size: 13px; }
+.bench-toc a:hover { color: var(--bench-ink); border-color: var(--bench-rule-2); background: var(--bench-hover); }
+.bench-toc a.is-active {
+  color: var(--bench-accent); border-color: var(--bench-accent);
+  border-left-width: 2.5px; font-weight: 600;
+}
+.bench-toc li.sub a.is-active { font-weight: 500; }
 .bench-toc a:focus-visible { outline: 2px solid var(--bench-good-ink); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .bench-toc a { transition: none; } }
 
 /* ---- Manifesto ---- */
 .manifesto-body > p { max-width: 720px; margin: 0 0 18px; font-size: 17px; line-height: 1.65; color: #3a3a3a; }
