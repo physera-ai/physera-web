@@ -138,12 +138,6 @@ export default function RootLayout({
     >
       <body className="flex min-h-screen flex-col items-center bg-background font-sans text-foreground">
         <script
-          dangerouslySetInnerHTML={{
-            __html:
-              'try{var t=localStorage.getItem("physera-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}',
-          }}
-        />
-        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),

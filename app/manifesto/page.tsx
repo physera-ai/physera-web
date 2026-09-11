@@ -161,14 +161,14 @@ function Kicker({ children }: { children: React.ReactNode }) {
 export default function ManifestoPage() {
   return (
     <main className="bench flex w-full max-w-[1320px] flex-1 flex-col px-3 py-1 sm:px-4">
-      <article className="rounded bg-[var(--bench-panel)] px-5 py-14 sm:px-12 sm:py-16">
+      <article className="rounded bg-white px-5 py-14 sm:px-12 sm:py-16">
         <div className="mx-auto flex max-w-[1180px] flex-col">
           <header id="overview" className="flex scroll-mt-24 flex-col gap-5">
-            <h1 className="font-serif text-[clamp(2.2rem,5vw,3.25rem)] leading-[1.05] tracking-[-0.04em] text-[var(--bench-ink)]">
+            <h1 className="font-serif text-[clamp(2.2rem,5vw,3.25rem)] leading-[1.05] tracking-[-0.04em] text-[#0d0d0d]">
               Manifesto
             </h1>
             <div className="bench-mono-label">Physera AI · physera.ai</div>
-            <p className="max-w-[720px] font-serif text-[22px] leading-[1.35] text-[var(--bench-ink)]">
+            <p className="max-w-[720px] font-serif text-[22px] leading-[1.35] text-[#1f1f1f]">
               An applied research lab building the first calibrated instrument for human
               decision-making.
             </p>
@@ -389,7 +389,7 @@ export default function ManifestoPage() {
               </p>
               <p>
                 For all inquiries, write to{" "}
-                <a href="mailto:himanshu@physera.ai" className="text-[var(--bench-ink)] underline underline-offset-4">
+                <a href="mailto:himanshu@physera.ai" className="text-[#0d0d0d] underline underline-offset-4">
                   himanshu@physera.ai
                 </a>{" "}
                 /{" "}
@@ -397,7 +397,7 @@ export default function ManifestoPage() {
                   href="https://x.com/PhyseraAI"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[var(--bench-ink)] underline underline-offset-4"
+                  className="text-[#0d0d0d] underline underline-offset-4"
                 >
                   @PhyseraAI
                 </a>

@@ -2882,9 +2882,9 @@ export const bench: BenchData = {
 };
 
 export const ORG_COLOR: Record<string, string> = {
-  "OpenAI": "var(--org-openai)",
+  "OpenAI": "#111111",
   "Anthropic": "#DA7756",
-  "xAI": "var(--org-xai)",
+  "xAI": "#3a3a3a",
   "Moonshot AI": "#7B3FB8",
   "Google": "#0f9d6e",
   "Z.ai": "#0B3A6B",

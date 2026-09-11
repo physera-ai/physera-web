@@ -47,13 +47,13 @@ function XIcon() {
 export default function TeamPage() {
   return (
     <main className="flex w-full max-w-[1320px] flex-1 flex-col px-3 py-1 sm:px-4">
-      <section className="rounded bg-[var(--bench-panel)] px-5 py-16 sm:px-16 sm:py-24">
+      <section className="rounded bg-white px-5 py-16 sm:px-16 sm:py-24">
         <div className="mx-auto flex max-w-[620px] flex-col gap-8">
           <div>
-            <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] leading-tight tracking-[-0.04em] text-[var(--bench-ink)]">
+            <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] leading-tight tracking-[-0.04em] text-[#0d0d0d]">
               Team
             </h1>
-            <p className="mt-3 text-[17px] leading-relaxed text-[var(--bench-ink-2)]">
+            <p className="mt-3 text-[17px] leading-relaxed text-[#656565]">
               We’re a remote team based in India and the United States.
             </p>
           </div>
@@ -67,10 +67,10 @@ export default function TeamPage() {
                   rel="noreferrer"
                   className="group flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between"
                 >
-                  <span className="text-[20px] font-medium tracking-[-0.03em] text-[var(--bench-ink)] underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-current">
+                  <span className="text-[20px] font-medium tracking-[-0.03em] text-[#0d0d0d] underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-current">
                     {member.name}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-[16px] text-[var(--bench-ink-2)] transition-colors group-hover:text-[var(--bench-ink)]">
+                  <span className="inline-flex items-center gap-1.5 text-[16px] text-[#656565] transition-colors group-hover:text-[#0d0d0d]">
                     <XIcon />
                     {member.handle}
                   </span>
