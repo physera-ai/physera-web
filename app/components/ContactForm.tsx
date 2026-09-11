@@ -61,12 +61,12 @@ export default function ContactForm() {
 
   if (status === "sent") {
     return (
-      <div className="rounded-md border border-black/10 bg-[#f8f6f2] px-5 py-6 text-[16px] text-[#3a3a3a]">
+      <div className="rounded-md border border-[var(--bench-rule)] bg-[var(--bench-hover)] px-5 py-6 text-[16px] text-[var(--bench-ink-2)]">
         Thanks — your message has been sent. We&apos;ll get back to you at the
         email you shared. You can also reach us directly at{" "}
         <a
           href="mailto:hello@physera.ai"
-          className="text-[#0d0d0d] underline underline-offset-4"
+          className="text-[var(--bench-ink)] underline underline-offset-4"
         >
           hello@physera.ai
         </a>
@@ -88,42 +88,42 @@ export default function ContactForm() {
 
       {fields.map((f) => (
         <label key={f.name} className="flex flex-col gap-1.5">
-          <span className="text-[14px] font-medium text-[#111]">
+          <span className="text-[14px] font-medium text-[var(--bench-ink)]">
             {f.label}
-            {f.required && <span className="text-[#b0a89a]"> *</span>}
+            {f.required && <span className="text-[var(--bench-ink-3)]"> *</span>}
           </span>
           <input
             name={f.name}
             type={f.type}
             required={f.required}
-            className="h-11 rounded-md border border-black/12 bg-white px-3.5 text-[15px] text-[#0d0d0d] outline-none transition-colors placeholder:text-[#9a958c] focus:border-black/40"
+            className="h-11 rounded-md border border-[var(--bench-rule-2)] bg-[var(--bench-panel)] px-3.5 text-[15px] text-[var(--bench-ink)] outline-none transition-colors placeholder:text-[var(--bench-ink-3)] focus:border-[var(--bench-ink-3)]"
           />
         </label>
       ))}
 
       <label className="flex flex-col gap-1.5">
-        <span className="text-[14px] font-medium text-[#111]">
+        <span className="text-[14px] font-medium text-[var(--bench-ink)]">
           Describe your use case or what you&apos;d like to explore with us
-          <span className="text-[#b0a89a]"> *</span>
+          <span className="text-[var(--bench-ink-3)]"> *</span>
         </span>
         <textarea
           name="usecase"
           required
           rows={5}
-          className="resize-y rounded-md border border-black/12 bg-white px-3.5 py-3 text-[15px] leading-relaxed text-[#0d0d0d] outline-none transition-colors placeholder:text-[#9a958c] focus:border-black/40"
+          className="resize-y rounded-md border border-[var(--bench-rule-2)] bg-[var(--bench-panel)] px-3.5 py-3 text-[15px] leading-relaxed text-[var(--bench-ink)] outline-none transition-colors placeholder:text-[var(--bench-ink-3)] focus:border-[var(--bench-ink-3)]"
         />
       </label>
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-1 inline-flex h-11 w-full items-center justify-center rounded-full bg-[#232323] px-6 text-[16px] font-medium tracking-[-0.32px] text-white transition-colors hover:bg-[#3a3a3a] sm:w-auto sm:self-start"
+        className="mt-1 inline-flex h-11 w-full items-center justify-center rounded-full bg-[var(--bench-ink)] px-6 text-[16px] font-medium tracking-[-0.32px] text-[var(--bench-on-ink)] transition-opacity hover:opacity-85 sm:w-auto sm:self-start"
       >
         {status === "sending" ? "Sending..." : "Submit"}
       </button>
 
       {status === "error" && (
-        <p className="text-[14px] leading-relaxed text-[#9a2f2f]">{error}</p>
+        <p className="text-[14px] leading-relaxed text-[var(--bench-bad-ink)]">{error}</p>
       )}
     </form>
   );

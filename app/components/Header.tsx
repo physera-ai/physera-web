@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { label: "Manifesto", href: "/manifesto" },
@@ -67,6 +68,7 @@ export default function Header() {
           <Link href="/contact" className="site-nav-cta">
             Contact
           </Link>
+          <ThemeToggle />
         </nav>
       </div>
     </header>

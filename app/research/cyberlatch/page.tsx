@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/research/cyberlatch" },
 };
 
-const P = "mb-7 max-w-[760px] text-[16px] leading-[1.72] text-[#3a3a3a]";
+const P = "mb-7 max-w-[760px] text-[16px] leading-[1.72] text-[var(--bench-ink-2)]";
 
 const HF_INCIDENT = "https://openai.com/index/hugging-face-model-evaluation-security-incident/";
 const CYBERBENCH = "https://www.vals.ai/benchmarks/cyber";
@@ -68,7 +68,7 @@ const notes = [
 ];
 
 const sections: Section[] = [
-  { id: "overview", label: "Key takeaways" },
+  { id: "overview", label: "Overview" },
   { id: "background", label: "Background" },
   { id: "design-philosophy", label: "Design philosophy" },
   { id: "methodology", label: "Methodology" },
@@ -88,7 +88,7 @@ const sections: Section[] = [
 export default function CyberLatchPage() {
   return (
     <main className="bench flex w-full max-w-[1320px] flex-1 flex-col px-3 py-1 sm:px-4">
-      <article className="rounded bg-white px-5 py-14 sm:px-12 sm:py-16">
+      <article className="rounded bg-[var(--bench-panel)] px-5 py-14 sm:px-12 sm:py-16">
         <div className="mx-auto flex max-w-[1180px] flex-col">
           <Link href="/research" className="bench-mono-label bench-link w-fit">
             ← Research
@@ -101,11 +101,11 @@ export default function CyberLatchPage() {
                 Defensive set
               </span>
             </div>
-            <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] leading-[1.05] tracking-[-0.03em] text-[#0d0d0d]">
+            <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] leading-[1.05] tracking-[-0.03em] text-[var(--bench-ink)]">
               CyberLatch
             </h1>
             <div className="bench-mono-label">Updated 11 September 2026 · v0.5</div>
-            <p className="max-w-[760px] text-[17px] leading-relaxed text-[#3a3a3a]">
+            <p className="max-w-[760px] text-[17px] leading-relaxed text-[var(--bench-ink-2)]">
               As we move into the era of RSI, every gain on a benchmark should tell us something concrete about how
               much useful work a model can do. Scores can remain low for months and then climb close to saturation
               after a single model release. Even new benchmarks can lose their ability to separate the leading
@@ -138,25 +138,6 @@ export default function CyberLatchPage() {
                   <div className="k">tasks with no complete solution</div>
                 </div>
               </div>
-
-              <ul className="bench-list bench-takeaways">
-                <li>
-                  Claude Opus 5 leads with 11 of 18 tasks solved and a 97.1% mean score, and it failed only three
-                  functional checks across all 18 runs.
-                </li>
-                <li>
-                  The two newest entrants, DeepSeek V4.1 Flash and GPT-6 Astra, tie at 10 of 18 with an identical
-                  solved set. DeepSeek did it for $12.17; neither finished an investigation task.
-                </li>
-                <li>
-                  Three tasks have no complete solution. All eleven models leave older administrator sessions valid
-                  after logout and report a staged archive as a confirmed indicator.
-                </li>
-                <li>
-                  89 of 198 attempts are complete. Of the 109 misses, 26 stopped one check short, and the recorded
-                  cost span between the cheapest and dearest model is 80 times.
-                </li>
-              </ul>
 
               <h2 id="background" className="bench-h2 scroll-mt-24">
                 Background

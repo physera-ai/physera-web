@@ -237,7 +237,7 @@ export default function CardsSection() {
       className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4"
     >
       {pillars.map(({ title, body, tint, accent, Illo }) => (
-        <article key={title} className="flex flex-col rounded bg-white p-2">
+        <article key={title} className="flex flex-col rounded bg-[var(--bench-panel)] p-2">
           <div
             className="flex h-[152px] items-center justify-center rounded p-4"
             style={{ backgroundColor: tint }}
@@ -245,10 +245,10 @@ export default function CardsSection() {
             <Illo accent={accent} />
           </div>
           <div className="mt-5 flex flex-1 flex-col gap-2 px-4 py-1 pb-6">
-            <h3 className="text-[18px] font-medium leading-snug tracking-[-0.02em] text-[#0d0d0d]">
+            <h3 className="text-[18px] font-medium leading-snug tracking-[-0.02em] text-[var(--bench-ink)]">
               {title}
             </h3>
-            <p className="text-[14px] leading-relaxed text-[#656565]">{body}</p>
+            <p className="text-[14px] leading-relaxed text-[var(--bench-ink-2)]">{body}</p>
           </div>
         </article>
       ))}

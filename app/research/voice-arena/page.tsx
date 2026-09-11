@@ -40,7 +40,7 @@ export default function VoiceArenaPage() {
 
   return (
     <main className="bench flex w-full max-w-[1320px] flex-1 flex-col px-3 py-1 sm:px-4">
-      <article className="rounded bg-white px-5 py-14 sm:px-12 sm:py-16">
+      <article className="rounded bg-[var(--bench-panel)] px-5 py-14 sm:px-12 sm:py-16">
         <div className="mx-auto flex max-w-[1180px] flex-col">
           <Link href="/research" className="bench-mono-label bench-link w-fit">
             ← Research
@@ -53,14 +53,14 @@ export default function VoiceArenaPage() {
                 Open benchmark
               </span>
             </div>
-            <h1 className="font-serif text-[clamp(2.2rem,5vw,3.25rem)] leading-[1.05] tracking-[-0.04em] text-[#0d0d0d]">
+            <h1 className="font-serif text-[clamp(2.2rem,5vw,3.25rem)] leading-[1.05] tracking-[-0.04em] text-[var(--bench-ink)]">
               Voice Arena
             </h1>
             <div className="bench-mono-label">Voice Arena V1.2 · Updated May 2026</div>
-            <p className="max-w-[720px] font-serif text-[22px] leading-[1.35] text-[#1f1f1f]">
+            <p className="max-w-[720px] font-serif text-[22px] leading-[1.35] text-[var(--bench-ink)]">
               Do voice systems sound human, or just say the right thing?
             </p>
-            <p className="max-w-[720px] text-[17px] leading-relaxed text-[#3a3a3a]">
+            <p className="max-w-[720px] text-[17px] leading-relaxed text-[var(--bench-ink-2)]">
               Seven conversational voice systems answer the same emotional dialogue, scored on empathy,
               response quality, and latency across 24 signal, prosody, and semantic axes. We split every
               score into how a system sounds and what it says, so the two never hide behind one number.
@@ -116,7 +116,7 @@ export default function VoiceArenaPage() {
               <h2 id="decomposition" className="bench-h2 scroll-mt-24">
                 Cascade vs native
               </h2>
-              <p className="mb-4 max-w-[720px] text-[16px] leading-relaxed text-[#3a3a3a]">
+              <p className="mb-4 max-w-[720px] text-[16px] leading-relaxed text-[var(--bench-ink-2)]">
                 A cascade routes a text model into a text-to-speech voice; a native model takes audio in and
                 emits audio out. The interesting question is whether the cascade lead is about sounding better
                 or answering better.

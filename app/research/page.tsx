@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 export default function ResearchIndex() {
   return (
     <main className="bench flex w-full max-w-[1320px] flex-1 flex-col px-3 py-1 sm:px-4">
-      <section className="rounded bg-white px-5 py-14 sm:px-14 sm:py-20">
+      <section className="rounded bg-[var(--bench-panel)] px-5 py-14 sm:px-14 sm:py-20">
         <div className="mx-auto max-w-[1120px]">
           <div className="research-hero">
             <div>
               <span className="research-eyebrow research-eyebrow-lg">Physera Research</span>
-              <h1 className="mt-4 font-serif text-[clamp(2.4rem,5.5vw,3.7rem)] leading-[1.02] tracking-[-0.04em] text-[#0d0d0d]">
+              <h1 className="mt-4 font-serif text-[clamp(2.4rem,5.5vw,3.7rem)] leading-[1.02] tracking-[-0.04em] text-[var(--bench-ink)]">
                 Benchmarks for
                 <br />
                 work that ships.

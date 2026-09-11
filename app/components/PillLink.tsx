@@ -13,8 +13,8 @@ export default function PillLink({
 }: PillLinkProps) {
   const styles =
     variant === "primary"
-      ? "bg-[#232323] text-white hover:bg-[#3a3a3a]"
-      : "bg-[#e8e8e8] text-[#232323] hover:bg-[#dcdcdc]";
+      ? "bg-[var(--bench-ink)] text-[var(--bench-on-ink)] hover:opacity-85"
+      : "bg-[var(--bench-rule)] text-[var(--bench-ink)] hover:bg-[var(--bench-rule-2)]";
 
   return (
     <Link
