@@ -72,7 +72,6 @@ const sections: Section[] = [
   { id: "background", label: "Background" },
   { id: "design-philosophy", label: "Design philosophy" },
   { id: "methodology", label: "Methodology" },
-  { id: "tasks", label: "Tasks", sub: true },
   { id: "results", label: "Results" },
   { id: "gemini", label: "The case of Gemini 3.8 Flash", sub: true },
   { id: "unsolved", label: "Behaviours in unsolved tasks", sub: true },
@@ -85,22 +84,6 @@ const sections: Section[] = [
   { id: "notes", label: "Evaluation notes" },
 ];
 
-const CAT_BLURB: Record<string, string> = {
-  "Systems & memory safety": "C parsers and interpolation, a Go event store, a connection pooler",
-  "AuthN / authz / sessions": "Java authorization, gateway integrity, an admin workflow, a Rust passkey broker",
-  "Injection & untrusted input": "XML import, Ruby SSRF, Python request boundaries, PHP remediation",
-  "Access control & data exposure": "CORS on a partner portal, a provenance gateway, write-only secrets",
-  "Detection & incident response": "token theft in identity logs, malware sideload triage, an edge intrusion",
-};
-
-const catRows = Object.entries(bench.cats).map(([cat, tasks]) => {
-  const attempts = tasks.length * bench.models.length;
-  const solved = bench.models.reduce((n, m) => n + tasks.filter((t) => m.per_task[t]?.pass_).length, 0);
-  const best = bench.models
-    .map((m) => ({ label: m.label, n: tasks.filter((t) => m.per_task[t]?.pass_).length }))
-    .sort((a, b) => b.n - a.n)[0];
-  return { cat, n: tasks.length, blurb: CAT_BLURB[cat] ?? "", solved, attempts, best };
-});
 
 export default function CyberLatchPage() {
   return (
@@ -269,42 +252,6 @@ export default function CyberLatchPage() {
                 inside a task. Each task has the same weight in a model&apos;s overall average. Five runs discussed
                 below scored 98.73% after leaving a security condition unresolved.
               </p>
-
-              <h3 id="tasks" className="bench-h3 scroll-mt-24">
-                Tasks
-              </h3>
-              <p className={P}>
-                The 18 tasks fall into five groups. Each task ships with its own deterministic verifier, and the
-                table shows how often the field completed tasks in each group.
-              </p>
-              <div className="overflow-x-auto">
-                <table className="bench-table my-6 max-w-[880px]">
-                  <thead>
-                    <tr>
-                      <th>Group</th>
-                      <th className="n">Tasks</th>
-                      <th>What the agents worked on</th>
-                      <th className="n">Solved</th>
-                      <th>Best model</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {catRows.map((r) => (
-                      <tr key={r.cat}>
-                        <td className="whitespace-nowrap">{r.cat}</td>
-                        <td className="n">{r.n}</td>
-                        <td className="muted">{r.blurb}</td>
-                        <td className="n">
-                          {r.solved}/{r.attempts}
-                        </td>
-                        <td className="whitespace-nowrap">
-                          {r.best.label} ({r.best.n}/{r.n})
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
 
               <h2 id="results" className="bench-h2 scroll-mt-24">
                 Results
