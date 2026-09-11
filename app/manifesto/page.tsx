@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PillLink from "../components/PillLink";
-import SectionNav, { type Section } from "../research/cyberbench/components/SectionNav";
+import SectionNav, { type Section } from "../research/cyberlatch/components/SectionNav";
 import CalibrationLoop from "./components/CalibrationLoop";
 import SpendChart from "./components/SpendChart";
 import { CompoundingMoat, SufficiencyThreshold, VarianceCollapse } from "./components/Curves";

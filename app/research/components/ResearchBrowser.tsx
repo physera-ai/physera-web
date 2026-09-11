@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { Benchmark } from "../benchmarks";
-import { ORG_COLOR } from "../cyberbench/data";
+import { ORG_COLOR } from "../cyberlatch/data";
 
 function Motif({ points, org }: { points: [number, number][]; org: string }) {
   const c = ORG_COLOR[org] ?? "#1d3b2e";

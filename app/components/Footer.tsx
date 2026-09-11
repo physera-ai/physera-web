@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const research = [
-  { label: "CyberBench", href: "/research/cyberbench" },
+  { label: "CyberLatch", href: "/research/cyberlatch" },
   { label: "Voice Arena", href: "/research/voice-arena" },
   { label: "All benchmarks", href: "/research" },
 ];

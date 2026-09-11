@@ -4,7 +4,7 @@ import { voice } from "./data";
 import VoiceScatter from "./components/VoiceScatter";
 import VoiceRadar from "./components/VoiceRadar";
 import { Decomposition, VoiceLeaderboard } from "./components/VoiceTables";
-import SectionNav, { type Section } from "../cyberbench/components/SectionNav";
+import SectionNav, { type Section } from "../cyberlatch/components/SectionNav";
 
 export const metadata: Metadata = {
   title: "Voice Arena",

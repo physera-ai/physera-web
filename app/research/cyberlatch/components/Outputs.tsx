@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { ModelRow } from "../data";
 
-const TASK = "session-broker-jwt-defensive";
+const TASK = "ruby-admin-ops-chain-defensive";
 
 export default function Outputs({
   models,

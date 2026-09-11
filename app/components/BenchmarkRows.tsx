@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { benchmarks } from "../research/benchmarks";
-import { ORG_COLOR } from "../research/cyberbench/data";
+import { ORG_COLOR } from "../research/cyberlatch/data";
 
 function Motif({ points, org }: { points: [number, number][]; org: string }) {
   const c = ORG_COLOR[org] ?? "#1d3b2e";

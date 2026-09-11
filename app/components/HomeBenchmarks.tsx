@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { benchmarks } from "../research/benchmarks";
-import { ORG_COLOR } from "../research/cyberbench/data";
+import { ORG_COLOR } from "../research/cyberlatch/data";
 
 export default function HomeBenchmarks() {
   const live = benchmarks.filter((b) => b.live);
