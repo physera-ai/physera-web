@@ -68,7 +68,7 @@ const notes = [
 ];
 
 const sections: Section[] = [
-  { id: "overview", label: "Key takeaways" },
+  { id: "overview", label: "Overview" },
   { id: "background", label: "Background" },
   { id: "design-philosophy", label: "Design philosophy" },
   { id: "methodology", label: "Methodology" },
@@ -138,25 +138,6 @@ export default function CyberLatchPage() {
                   <div className="k">tasks with no complete solution</div>
                 </div>
               </div>
-
-              <ul className="bench-list bench-takeaways">
-                <li>
-                  Claude Opus 5 leads with 11 of 18 tasks solved and a 97.1% mean score, and it failed only three
-                  functional checks across all 18 runs.
-                </li>
-                <li>
-                  The two newest entrants, DeepSeek V4.1 Flash and GPT-6 Astra, tie at 10 of 18 with an identical
-                  solved set. DeepSeek did it for $12.17; neither finished an investigation task.
-                </li>
-                <li>
-                  Three tasks have no complete solution. All eleven models leave older administrator sessions valid
-                  after logout and report a staged archive as a confirmed indicator.
-                </li>
-                <li>
-                  89 of 198 attempts are complete. Of the 109 misses, 26 stopped one check short, and the recorded
-                  cost span between the cheapest and dearest model is 80 times.
-                </li>
-              </ul>
 
               <h2 id="background" className="bench-h2 scroll-mt-24">
                 Background
