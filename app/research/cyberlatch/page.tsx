@@ -70,6 +70,7 @@ const notes = [
 const sections: Section[] = [
   { id: "overview", label: "Key takeaways" },
   { id: "background", label: "Background" },
+  { id: "design-philosophy", label: "Design philosophy" },
   { id: "methodology", label: "Methodology" },
   { id: "tasks", label: "Tasks", sub: true },
   { id: "results", label: "Results" },
@@ -78,7 +79,7 @@ const sections: Section[] = [
   { id: "secure-repair", label: "A secure repair must still work", sub: true },
   { id: "final-report", label: "What gets lost in the report", sub: true },
   { id: "near-miss", label: "A near miss is not one thing", sub: true },
-  { id: "cost", label: "Where time and money went", sub: true },
+  { id: "cost", label: "Frontier cost & speed", sub: true },
   { id: "profiles", label: "Model profiles" },
   { id: "discussion", label: "Discussion" },
   { id: "notes", label: "Evaluation notes" },
@@ -209,7 +210,9 @@ export default function CyberLatchPage() {
                 increasingly important as offensive capabilities scale.
               </p>
 
-              <h3 className="bench-h3">Design philosophy</h3>
+              <h2 id="design-philosophy" className="bench-h2 scroll-mt-24">
+                Design philosophy
+              </h2>
               <p className={P}>
                 We chose to evaluate source-audit, remediation, and incident-analysis work. Across the 18 tasks,
                 agents worked with parsers, web services, authentication systems, concurrent software, malware
@@ -511,7 +514,7 @@ export default function CyberLatchPage() {
               </p>
 
               <h3 id="cost" className="bench-h3 scroll-mt-24">
-                Where the time and money went
+                Frontier cost &amp; speed analysis
               </h3>
               <p className={P}>
                 GLM completed eight tasks and spent $2.72 across its 18 runs. DeepSeek V4.1 Flash completed ten for
