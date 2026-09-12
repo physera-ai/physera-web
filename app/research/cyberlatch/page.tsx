@@ -178,7 +178,7 @@ export default function CyberLatchPage() {
                 Design philosophy
               </h2>
               <p className={P}>
-                We chose to evaluate source-audit, remediation, and incident-analysis work. Across the 18 tasks,
+                We chose to evaluate source auditing, security repair, and incident analysis. Across the 18 tasks,
                 agents worked with parsers, web services, authentication systems, concurrent software, malware
                 evidence, and cloud identity records. They had to investigate the supplied material, find the root
                 cause, make the repair, preserve expected behavior, and submit the required findings. The
