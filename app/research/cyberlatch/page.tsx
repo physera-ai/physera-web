@@ -55,7 +55,7 @@ const notes = [
   },
   {
     k: "Scoring",
-    body: "The final deterministic evaluation decides whether a run is solved. Partial scores come from weighted checks within each task and are averaged over a model's 18 attempts. The leaderboard excludes separate judge assessments. The behavioral observations come from verifier output and saved reviews.",
+    body: "The final deterministic evaluation decides whether a run is solved. Partial scores come from weighted checks within each task. The leaderboard excludes separate judge assessments. The behavioral observations come from verifier output and saved reviews.",
   },
   {
     k: "Scoring caveats",
@@ -229,8 +229,7 @@ export default function CyberLatchPage() {
                 that the run was incomplete.
               </p>
               <p className={P}>
-                Partial scores show how much of the task the agent completed. Checks can have different weights
-                inside a task. Each task has the same weight in a model&apos;s overall average. Five runs discussed
+                Partial scores show how much of the task the agent completed. Checks can have different weights inside a task. Five runs discussed
                 below scored 98.73% after leaving a security condition unresolved.
               </p>
 
@@ -270,26 +269,21 @@ export default function CyberLatchPage() {
                 and Kimi K3 finished seven. Gemini 3.8 Flash finished six and DeepSeek V4 Pro finished four.
               </p>
               <p className={P}>
-                Opus solved the widest range of tasks and recorded the highest mean score, 97.1%. Its completed work
+                Opus solved the widest range of tasks. Its completed work
                 included memory safety fixes, authentication, connection pooling, and malware triage.
               </p>
               <p className={P}>
                 DeepSeek V4.1 Flash and GPT-6 Astra solved exactly the same ten tasks: two C repairs, a concurrent
                 event store, a passkey broker, a connection pooler, four web services, and a single-use
-                authorization scheme. Neither completed any of the three investigation tasks. DeepSeek V4.1 Flash
-                did this for $12.17 across its 18 runs, and its mean score of 93.0% sits above Astra&apos;s 89.5%.
-                Astra&apos;s average carries one zero: on a Python hardening task it left its own test file inside
+                authorization scheme. Neither completed any of the three investigation tasks. DeepSeek V4.1 Flash did this for $12.17 across its 18 runs. Astra&apos;s record carries one zero: on a Python hardening task it left its own test file inside
                 the workspace, and a preflight check rejected the submission before its repair was evaluated.
               </p>
               <p className={P}>
-                Fable and Sol both completed nine tasks. Fable&apos;s mean of 96.6% is the second highest in the
-                set, and four of its nine incomplete runs missed only one check. Sol averaged 94.6% and also had
-                four one-check misses. Its successful repairs covered memory safety, concurrent updates, passkeys,
+                Fable and Sol both completed nine tasks, and each had four incomplete runs that missed only one check. Sol&apos;s successful repairs covered memory safety, concurrent updates, passkeys,
                 and authorization.
               </p>
               <p className={P}>
-                GLM completed eight tasks for $2.72. Gemini completed six and recorded a mean score of 90.8%, close
-                to GLM at 91.4%. Several incomplete Gemini runs passed almost every check.
+                GLM completed eight tasks for $2.72. Gemini completed six, and several of its incomplete runs passed almost every check.
               </p>
 
               <h3 id="gemini" className="bench-h3 scroll-mt-24">
@@ -311,8 +305,7 @@ export default function CyberLatchPage() {
                 Gemini release as the same model.
               </p>
               <p className={P}>
-                Gemini completed six of our 18 tasks and averaged 90.8% across all of them. Three incomplete runs
-                missed a single check. Its successful work covered memory safety, XML imports, access control,
+                Gemini completed six of our 18 tasks. Three incomplete runs missed a single check. Its successful work covered memory safety, XML imports, access control,
                 passkeys, outbound request validation in a threat-intelligence service, and single-use
                 authorization. It was the only model to finish that threat-intelligence repair.
               </p>
@@ -328,20 +321,19 @@ export default function CyberLatchPage() {
               <p className={P}>
                 Gemini also sounded more certain than its results justified. All 12 incomplete runs ended with a
                 claim that the work was complete or fully verified. Its own checks often covered the main repair and
-                missed the condition that later failed. That pattern helps explain how the model could average 90.8%
-                while completing six tasks.
+                missed the condition that later failed. That pattern helps explain how the model could pass almost every check while completing only six tasks.
               </p>
 
               <h3 id="unsolved" className="bench-h3 scroll-mt-24">
                 Model behaviours in unsolved tasks
               </h3>
               <p className={P}>
-                Three tasks remained unsolved by every model. Their average scores ranged from 83.3% to 87.2%.
+                Three tasks remained unsolved by every model. Five models came within one check on the credentials exercise, four on the administration workflow, and none on the intrusion analysis.
               </p>
               <Fig
                 src="/cyberlatch/04_unsolved_tasks.png"
-                alt="Three exercises remain unsolved across secret handling, session management, and incident analysis. Their mean scores are 87.2, 86.4, and 83.3 percent."
-                caption="Mean scores for the three unsolved tasks across all 11 models."
+                alt="Three exercises remain unsolved across secret handling, session management, and incident analysis. Five of 11 models finished one check short on secret handling, four on session management, and none on incident analysis."
+                caption="How close the field came on the three tasks no model solved."
               />
               <ul className="bench-list">
                 <li>
