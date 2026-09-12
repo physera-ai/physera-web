@@ -27,17 +27,17 @@ function Fig({ src, alt, caption }: { src: string; alt: string; caption: string 
 }
 
 const leaderboard = [
-  { model: "Claude Opus 5", solved: "11/18", rate: "61%", cost: "$97.53", lead: true },
-  { model: "DeepSeek V4.1 Flash", solved: "10/18", rate: "56%", cost: "$12.17" },
-  { model: "GPT-6 Astra", solved: "10/18", rate: "56%", cost: "$81.53" },
-  { model: "Claude Fable 5.1", solved: "9/18", rate: "50%", cost: "$217.58" },
-  { model: "GPT-5.6 Sol", solved: "9/18", rate: "50%", cost: "$27.30" },
-  { model: "GLM-5.3 Flash", solved: "8/18", rate: "44%", cost: "$2.72" },
-  { model: "GPT-5.5", solved: "8/18", rate: "44%", cost: "$74.43" },
-  { model: "Grok 4.6", solved: "7/18", rate: "39%", cost: "$22.91" },
-  { model: "Kimi K3", solved: "7/18", rate: "39%", cost: "$30.05" },
-  { model: "Gemini 3.8 Flash", solved: "6/18", rate: "33%", cost: "$24.47" },
-  { model: "DeepSeek V4 Pro", solved: "4/18", rate: "22%", cost: "$14.79" },
+  { model: "Claude Opus 5", solved: "11/18", cost: "$97.53", lead: true },
+  { model: "DeepSeek V4.1 Flash", solved: "10/18", cost: "$12.17" },
+  { model: "GPT-6 Astra", solved: "10/18", cost: "$81.53" },
+  { model: "Claude Fable 5.1", solved: "9/18", cost: "$217.58" },
+  { model: "GPT-5.6 Sol", solved: "9/18", cost: "$27.30" },
+  { model: "GLM-5.3 Flash", solved: "8/18", cost: "$2.72" },
+  { model: "GPT-5.5", solved: "8/18", cost: "$74.43" },
+  { model: "Grok 4.6", solved: "7/18", cost: "$22.91" },
+  { model: "Kimi K3", solved: "7/18", cost: "$30.05" },
+  { model: "Gemini 3.8 Flash", solved: "6/18", cost: "$24.47" },
+  { model: "DeepSeek V4 Pro", solved: "4/18", cost: "$14.79" },
 ];
 
 const notes = [
@@ -59,7 +59,7 @@ const notes = [
   },
   {
     k: "Scoring caveats",
-    body: "One authorization exercise has an unusual scoring record. Four final records contain zeros, while the underlying test logs show 54%, 68%, 68%, and 68%. One GPT-6 Astra run was zeroed by a preflight check after the agent left its own test file inside the workspace; its repair was never evaluated. We use the final recorded values throughout. They lower the partial score averages and leave the solve counts unchanged.",
+    body: "One authorization exercise has an unusual scoring record. Four final records contain zeros even though the underlying test logs show that some checks passed. One GPT-6 Astra run was zeroed by a preflight check after the agent left its own test file inside the workspace; its repair was never evaluated. We use the final recorded values throughout, and the solve counts are unchanged.",
   },
   {
     k: "Cost & timing",
@@ -229,8 +229,9 @@ export default function CyberLatchPage() {
                 that the run was incomplete.
               </p>
               <p className={P}>
-                Partial scores show how much of the task the agent completed. Checks can have different weights inside a task. Five runs discussed
-                below scored 98.73% after leaving a security condition unresolved.
+                We report completed tasks and check-level behavior rather than treating partial completion as a
+                successful result. Five runs discussed below missed the same security condition despite passing
+                every other check in that exercise.
               </p>
 
               <h2 id="results" className="bench-h2 scroll-mt-24">
@@ -247,7 +248,6 @@ export default function CyberLatchPage() {
                     <tr>
                       <th>Model</th>
                       <th className="n">Solved</th>
-                      <th className="n">Solve rate</th>
                       <th className="n">Recorded API cost</th>
                     </tr>
                   </thead>
@@ -256,7 +256,6 @@ export default function CyberLatchPage() {
                       <tr key={r.model} className={r.lead ? "lead" : ""}>
                         <td className="whitespace-nowrap">{r.model}</td>
                         <td className="n">{r.solved}</td>
-                        <td className="n">{r.rate}</td>
                         <td className="n">{r.cost}</td>
                       </tr>
                     ))}
@@ -295,8 +294,8 @@ export default function CyberLatchPage() {
                   CyberBench
                 </a>{" "}
                 is the only one that reports a result for Gemini 3.8 Flash itself. Gemini leads its patch table with
-                a score of 87.5%. It passed 49 of the 56 patch cases that could be measured. Its proof-of-concept
-                score is 0%, which leaves its overall CyberBench score at 43.75%.
+                49 of the 56 patch cases that could be measured. It completed none of the proof-of-concept cases,
+                so the two parts of that benchmark tell very different stories.
               </p>
               <p className={P}>
                 The other benchmarks used different Gemini models. Cybench tested Gemini 1.5 Pro. AutoPenBench
@@ -310,7 +309,7 @@ export default function CyberLatchPage() {
                 authorization. It was the only model to finish that threat-intelligence repair.
               </p>
               <p className={P}>
-                The difference between its CyberBench patch score and its 33% solve rate here comes from what each
+                The difference between its strong CyberBench patch result and its six completed tasks here comes from what each
                 evaluation asks the model to finish. Our checks continue beyond the main patch. Connected routes,
                 saved state, existing workflows, required files, and final reports can all decide the result. One
                 Gemini repair passed 85 of 86 checks while still allowing project policy to override vault
@@ -337,8 +336,8 @@ export default function CyberLatchPage() {
               />
               <ul className="bench-list">
                 <li>
-                  Opus, Astra, Fable, Sol, and GPT-5.5 each scored 98.73% on a credentials exercise. All five
-                  mistakenly accepted a target sent in the request body. Six models exposed nested provider
+                  Opus, Astra, Fable, Sol, and GPT-5.5 each missed only one check on a credentials exercise. All
+                  five mistakenly accepted a target sent in the request body. Six models exposed nested provider
                   secrets in detail views, exports, or diagnostics.
                 </li>
                 <li>
@@ -447,7 +446,7 @@ export default function CyberLatchPage() {
               <p className={P}>
                 Fable&apos;s most expensive run took 1,024 agent turns over 82 minutes and cost $40.40, and it passed
                 every check. Astra&apos;s longest run was the same task: 140 minutes and $30.25, also solved. GPT-5.5
-                spent 93 minutes and $15.18 on it and recorded a score of 30%.
+                spent 93 minutes and $15.18 on it but still crashed on malformed input.
               </p>
               <p className={P}>
                 Kimi, Grok, and Gemini had median run times of about 11 to 13 minutes. GPT-5.5 took 13 and Astra 15.
