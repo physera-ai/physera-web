@@ -474,8 +474,8 @@ export default function CyberLatchPage() {
               </h2>
               <p className={P}>
                 A solve count says little about how a model works. The profiles below summarise each model&apos;s
-                recurring patterns across its 18 runs: what it finishes, where it stops, and what it costs. Bars
-                show the mean recorded score by task group, with the solved count for that group alongside.
+                recurring patterns across its 18 runs. What it finishes, where it stops, and what it costs. Bars
+                show how many tasks it solved in each task group.
               </p>
               <ModelProfiles bench={bench} />
 

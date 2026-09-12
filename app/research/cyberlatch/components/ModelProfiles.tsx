@@ -55,10 +55,6 @@ function ProfileCard({
             </dd>
           </div>
           <div>
-            <dt>Mean score</dt>
-            <dd>{model.checks.toFixed(1)}%</dd>
-          </div>
-          <div>
             <dt>API cost</dt>
             <dd>{money(model.cost_total)}</dd>
           </div>
@@ -68,18 +64,18 @@ function ProfileCard({
           </div>
         </dl>
 
-        <div className="bench-profile-bars" role="list" aria-label="Mean score by task category">
+        <div className="bench-profile-bars" role="list" aria-label="Tasks solved by task category">
           {cats.map((c) => {
-            const v = model.radar[c] ?? 0;
+            const solved = model.radar_solved[c] ?? "0/0";
+            const [done, of] = solved.split("/").map(Number);
+            const width = of > 0 ? (100 * done) / of : 0;
             return (
               <div key={c} className="bench-profile-bar" role="listitem">
                 <span className="bench-profile-bar-label">{CAT_SHORT[c] ?? c}</span>
                 <span className="bench-profile-bar-track">
-                  <span className="bench-profile-bar-fill" style={{ width: `${v}%`, background: color }} />
+                  <span className="bench-profile-bar-fill" style={{ width: `${width}%`, background: color }} />
                 </span>
-                <span className="bench-profile-bar-value">
-                  {v.toFixed(0)}% <span className="muted">· {model.radar_solved[c]}</span>
-                </span>
+                <span className="bench-profile-bar-value">{solved}</span>
               </div>
             );
           })}
