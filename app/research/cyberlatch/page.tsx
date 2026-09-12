@@ -43,27 +43,27 @@ const leaderboard = [
 const notes = [
   {
     k: "Agent & settings",
-    body: "All evaluations used Terminus 2 through the Harbor framework with models served through OpenRouter. Claude Opus 5, Claude Fable 5.1, GPT-6 Astra, GPT-5.6 Sol, DeepSeek V4.1 Flash, DeepSeek V4 Pro 0813, Kimi K3, and GLM-5.3 Flash ran at max effort. GPT-5.5 and Grok 4.6 ran at xhigh. Gemini 3.8 Flash ran at high.",
+    body: "All evaluations ran with Terminus 2 through the Harbor framework. Models were accessed through OpenRouter. Claude Opus 5, Claude Fable 5.1, GPT-6 Astra, GPT-5.6 Sol, DeepSeek V4.1 Flash, DeepSeek V4 Pro 0813, Kimi K3 and GLM-5.3 Flash used max effort. GPT-5.5 and Grok 4.6 used xhigh. Gemini 3.8 Flash used high.",
   },
   {
     k: "Task set",
-    body: "This release reports 18 tasks. Two tasks from the previous 20-task set, a memcached request parser and an OpenVPN control-plane exercise, were withdrawn from the reported set. The remaining tasks and their selected runs are unchanged.",
+    body: "This release includes 18 tasks. The earlier 20-task set also included a memcached request parser and an OpenVPN control plane exercise. Both were removed. The selected runs for the remaining tasks have not changed.",
   },
   {
     k: "Reported set",
-    body: "The reported set contains one run for every model and task, a fixed comparison of 198 attempts. Four GPT-6 Astra runs were repeated after a Docker build deadlock stopped them before the agent started. Four Claude Fable 5.1 runs that timed out or stalled in retry loops were repeated, and the latest rerun is reported; two of those reruns are solved. No other model's runs were repeated, including three GLM-5.3 Flash runs that reached the agent timeout. Estimating variation between attempts or a production success rate would require repeated trials for every model.",
+    body: "The reported set includes one run for each model and task pair. This gives 198 attempts. Four GPT-6 Astra runs were repeated because Docker builds stopped before the agent started. Four Claude Fable 5.1 runs were also repeated after they timed out or stalled in retry loops. The latest rerun is used in each case. Two of these reruns were solved. No runs from other models were repeated. This includes three GLM-5.3 Flash runs that reached the time limit. Measuring variation between attempts or estimating production success would require repeated trials for every model.",
   },
   {
     k: "Scoring",
-    body: "The final deterministic evaluation decides whether a run is solved. Partial scores come from weighted checks within each task. The leaderboard excludes separate judge assessments. The behavioral observations come from verifier output and saved reviews.",
+    body: "A final fixed evaluation determines whether a run is solved. Each task has weighted checks that can also produce a partial result. The leaderboard does not include separate judge assessments. The descriptions are based on checker output and saved reviews.",
   },
   {
     k: "Scoring caveats",
-    body: "One authorization exercise has an unusual scoring record. Four final records contain zeros even though the underlying test logs show that some checks passed. One GPT-6 Astra run was zeroed by a preflight check after the agent left its own test file inside the workspace; its repair was never evaluated. We use the final recorded values throughout, and the solve counts are unchanged.",
+    body: "One authorization exercise produced unusual scores. Four final records are zero even though the test logs show that some checks passed. One GPT-6 Astra run received zero because an initial workspace check found the agent's own test file. Its repair was not evaluated. We use the final recorded values. The solve counts are unchanged.",
   },
   {
     k: "Cost & timing",
-    body: "Costs include model API usage only. Infrastructure and separate judge calls are excluded. Execution time leaves out environment setup and final verification. A near miss is a run with exactly one failed check. Task names and identifying project labels are omitted.",
+    body: "Costs cover model API use only. Infrastructure and separate judge calls are not included. Run time does not include environment setup or final verification. We call a run a near miss when exactly one check failed. Task names and project labels are not shown.",
   },
 ];
 
@@ -474,20 +474,22 @@ export default function CyberLatchPage() {
                 Discussion
               </h2>
               <p className={P}>
-                Across the 18 tasks, the models found security problems in unfamiliar code, wrote repairs, and
-                reviewed incident evidence. They completed 89 of the 198 runs. The newest models moved the top of
-                the table without changing its shape: DeepSeek V4.1 Flash and GPT-6 Astra finished the same ten
-                repairs, and neither finished an investigation. Every model still left older administrator sessions
-                alive after logout, and every model still reported a staged archive as a confirmed indicator.
+                Our team was particularly impressed by the latest model from DeepSeek, DeepSeek V4.1 Flash, and we
+                believe upcoming models will be better at defensive tasks. The pace of model improvement is
+                unprecedented, and we believe models released in the next 1-2 months may be able to saturate our
+                benchmark. Our team is actively working towards creating difficult problems and more benchmarks for
+                future releases.
               </p>
               <p className={P}>
-                A real incident can produce far more evidence. After an agent escaped an{" "}
+                We also believe that real incidents can produce more evidence than benchmark tasks alone. After an
+                agent escaped an{" "}
                 <a className="bench-link" href={HF_INCIDENT}>
                   OpenAI evaluation sandbox
                 </a>
-                , Hugging Face had roughly 17,600 recorded actions to review. The team ran a quantized GLM-5.2 on
-                its own infrastructure. It used the model to decode staged payloads and trace exposed credentials.
-                This helped the responders piece together what had happened.
+                , Hugging Face reviewed roughly 17,600 recorded actions. The team ran a quantized GLM-5.2 on its own
+                infrastructure. The model decoded staged payloads and traced exposed credentials, which helped their
+                team reconstruct the incident. We expect the number of such incidents to rise in the future, and we
+                believe that benchmarking models in real-world situations is the only way forward.
               </p>
 
               <h2 id="notes" className="bench-h2 scroll-mt-24">
