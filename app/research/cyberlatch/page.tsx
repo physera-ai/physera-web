@@ -50,10 +50,6 @@ const notes = [
     body: "This release includes 18 tasks. The earlier 20-task set also included a memcached request parser and an OpenVPN control plane exercise. Both were removed. The selected runs for the remaining tasks have not changed.",
   },
   {
-    k: "Reported set",
-    body: "The reported set includes one run for each model and task pair. This gives 198 attempts. Four GPT-6 Astra runs were repeated because Docker builds stopped before the agent started. Four Claude Fable 5.1 runs were also repeated after they timed out or stalled in retry loops. The latest rerun is used in each case. Two of these reruns were solved. No runs from other models were repeated. This includes three GLM-5.3 Flash runs that reached the time limit. Measuring variation between attempts or estimating production success would require repeated trials for every model.",
-  },
-  {
     k: "Scoring",
     body: "A final fixed evaluation determines whether a run is solved. Each task has weighted checks that can also produce a partial result. The leaderboard does not include separate judge assessments. The descriptions are based on checker output and saved reviews.",
   },
