@@ -328,12 +328,12 @@ export default function CyberLatchPage() {
                 Model behaviours in unsolved tasks
               </h3>
               <p className={P}>
-                Three tasks remained unsolved by every model. Five models came within one check on the credentials exercise, four on the administration workflow, and none on the intrusion analysis.
+                Three tasks remained unsolved by every model. The chart shows how many of the 11 models failed exactly one verifier check on each task. Five models came within one check on the credentials exercise, and four did so on the administration workflow. No model came within one check on the intrusion reconstruction. The closest result passed 63 of 69 checks.
               </p>
               <Fig
                 src="/cyberlatch/04_unsolved_tasks.png"
-                alt="Three exercises remain unsolved across secret handling, session management, and incident analysis. Five of 11 models finished one check short on secret handling, four on session management, and none on incident analysis."
-                caption="How close the field came on the three tasks no model solved."
+                alt="Three tasks have no complete solution. Of 11 models, five finished one check short on secret handling, four on session management, and none on intrusion reconstruction. The closest intrusion-reconstruction result passed 63 of 69 checks."
+                caption="Models that finished exactly one verifier check short on the three unsolved tasks."
               />
               <ul className="bench-list">
                 <li>
@@ -347,7 +347,7 @@ export default function CyberLatchPage() {
                   that was the only failed check.
                 </li>
                 <li>
-                  In the intrusion analysis, every model listed a staged archive among confirmed indicators even
+                  In the intrusion reconstruction, every model listed a staged archive among confirmed indicators even
                   though both attempts to send it out had failed. Nine of the eleven also submitted detection rules
                   with stages that were not needed to separate the malicious records from normal ones.
                 </li>
