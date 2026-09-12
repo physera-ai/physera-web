@@ -15,9 +15,9 @@ export const profiles: Profile[] = [
     effort: "max",
     tagline: "Completes the widest range of repairs and usually keeps normal use working.",
     body: [
-      "Opus completed 11 of 18 tasks, more than any other model. It solved three of four tasks in the systems group. It did the same in authentication and injection. Across 18 runs, it failed only three checks of normal operation. GPT-5.5 was the only model to match that result. When Opus secured a route, normal traffic kept working.",
-      "Most of its misses were small. Three of its seven incomplete runs stopped one check short. Another stopped two checks short. In one systems task, a checkpoint relied on a background process that could fall behind. A checkpoint taken at the wrong time could then leave out events that were already committed. Its weakest run was in incident response. The detection rule included stages it did not need, and the report wrongly listed a staged archive as a confirmed sign of attack.",
-      "Opus is not fast. Its median run took 27 minutes, and its longest took 78. One systems repair alone cost $14.35. No run looped or timed out. Its 18 runs cost $97.53 in total and completed more tasks than any other model.",
+      "Opus completed 11 of 18 tasks, more than any other model. It solved three of four tasks in the systems group. It did the same in authentication and injection. Across 18 runs, it failed only three checks of normal operation. GPT-5.5 was the only model to match that result.",
+      "Three of its seven incomplete runs stopped one check short. Another stopped two checks short. In one systems task, a checkpoint relied on a background process that could fall behind. In incident response, the detection rule included stages it did not need. The report also listed a staged archive as a confirmed sign of attack.",
+      "Its median run took 27 minutes, and its longest took 78. One systems repair alone cost $14.35. No run looped or timed out. Its 18 runs cost $97.53 in total and completed more tasks than any other model.",
     ],
   },
   {
@@ -26,8 +26,8 @@ export const profiles: Profile[] = [
     tagline: "Completed the same ten tasks as Astra for one-seventh of the cost.",
     body: [
       "DeepSeek V4.1 Flash solved the same ten tasks as GPT-6 Astra. Its 18 runs cost $12.17 in total, or 68 cents per attempted task. It finished every systems and memory safety task. One of those repairs took 120 minutes, 223 turns and 26 million input tokens. It produced 6.8 million output tokens across all 18 runs, more than any other model.",
-      "Its two one-check misses came from paperwork rather than code. One injection repair passed every behavior check but failed the required findings format. One session run left older sessions active after logout and passed everything else.",
-      "Investigation was its weak area. It solved none of the three detection and incident response tasks. In one analysis, it identified the wrong malware category and objective in the first phase. Another report had incomplete evidence and recommended actions. On an access control task, it also exposed nested provider secrets in detail views and exports.",
+      "One injection repair passed every behavior check but failed the required findings format. One session run left older sessions active after logout and passed everything else.",
+      "It solved none of the three detection and incident response tasks. In one analysis, it identified the wrong malware category and objective in the first phase. On an access control task, it also exposed nested provider secrets in detail views and exports.",
     ],
   },
   {
@@ -36,8 +36,7 @@ export const profiles: Profile[] = [
     tagline: "Fast on systems code. Careless with workspace files.",
     body: [
       "Astra completed ten tasks with a median run time of 15 minutes. That was the fastest time among the top five models. Only Astra and DeepSeek V4.1 Flash finished all four systems and memory safety tasks. Astra's longest and most expensive run was one of those. It took 140 minutes and cost $30.25.",
-      "Its largest miss was recorded as zero. On one injection task, Astra wrote its own regression tests into the workspace and left them there. An initial workspace check rejected the submission before any of the 65 real checks ran. It had another large miss in access control. That repair stopped both tenants from publishing normally but still accepted a staging credential for publishing.",
-      "Astra did not solve any investigation tasks. It came close on two of the three. Like most models, it missed checks on attack classification and staged evidence. Four runs were repeated because Docker builds froze before the agent started.",
+      "Astra did not solve any investigation tasks. Like most models, it missed checks on attack classification and staged evidence. Four runs were repeated because Docker builds froze before the agent started.",
     ],
   },
   {
@@ -56,8 +55,8 @@ export const profiles: Profile[] = [
     tagline: "Strong repairs. Reports remain a weak point.",
     body: [
       "Sol completed nine tasks for $27.30. No run took longer than 47 minutes. It solved three of four systems and memory safety tasks. It also solved three of four authentication tasks. On one repair involving simultaneous updates, Sol passed all 14 checks while Opus and Grok passed 13.",
-      "Four of its nine misses were one check short. Three failed during normal use rather than on security. One access control repair stopped an existing publishing workflow. One injection repair produced an audit receipt that could no longer be replayed. One systems repair still shared a session service across clients. Sol failed ten checks of normal operation in total, the most among the five leading models. Its repairs were often too restrictive.",
-      "Reports were another recurring problem. On one authentication task, the code passed but the findings file failed three checks. It lacked coverage, used the wrong format and omitted vulnerability codes. One investigation ended with incomplete evidence and recommended actions.",
+      "Four of its nine misses were one check short. Three failed during normal use rather than on security. One access control repair stopped an existing publishing workflow. One injection repair produced an audit receipt that could no longer be replayed. One systems repair still shared a session service across clients. Sol failed ten checks of normal operation in total, the most among the five leading models.",
+      "On one authentication task, the code passed but the findings file failed three checks. It lacked coverage, used the wrong format and omitted vulnerability codes. One investigation ended with incomplete evidence and recommended actions.",
     ],
   },
   {
@@ -76,8 +75,8 @@ export const profiles: Profile[] = [
     tagline: "Best investigation results. Unreliable on systems code.",
     body: [
       "GPT-5.5 completed eight tasks. It was the only model to pass every check on one of the three investigations. It solved two of the three detection and incident response tasks, the best result in the set. It also finished three of four injection tasks.",
-      "Systems code was its weak area. It solved one of four systems and memory safety tasks. Its longest systems run took 93 minutes and cost $15.18, yet it still crashed on malformed input. The other two systems misses each failed about one-third of their checks.",
-      "The scoring system recorded one authentication task as zero. GPT-5.5 rejected new codes on their first use, so the checks for reused codes never reached a successful request. Its other misses were small. Two runs stopped one check short.",
+      "It solved one of four systems and memory safety tasks. Its longest systems run took 93 minutes and cost $15.18, yet it still crashed on malformed input. The other two systems misses each failed about one-third of their checks.",
+      "The scoring system recorded one authentication task as zero. GPT-5.5 rejected new codes on their first use, so the checks for reused codes never reached a successful request. Two runs stopped one check short.",
     ],
   },
   {
@@ -86,8 +85,8 @@ export const profiles: Profile[] = [
     tagline: "Quick and inexpensive, with one of the two best access control results.",
     body: [
       "Grok completed seven tasks for $22.91. No run took longer than 44 minutes. Grok and Kimi were the only models to pass all 86 checks on the largest access control task. Grok also solved two of four systems and memory safety tasks.",
-      "Its near misses came from code. One repair involving simultaneous updates passed 13 of 14 checks because a method copied a lock instead of sharing it. One injection repair passed 105 of 106 checks after a harmless data conversion stopped working. Another closed an unsafe server-request route but broke same-host redirects from a trusted mirror.",
-      "Authentication and investigation were weaker. The scoring system recorded one authentication run as zero. The first request worked, but Grok accepted both attempts to reuse it. It solved none of the three investigations. In one report, the evidence and recommended actions were incomplete.",
+      "One repair involving simultaneous updates passed 13 of 14 checks because a method copied a lock instead of sharing it. One injection repair passed 105 of 106 checks after a harmless data conversion stopped working. Another closed an unsafe server-request route but broke same-host redirects from a trusted mirror.",
+      "The scoring system recorded one authentication run as zero. The first request worked, but Grok accepted both attempts to reuse it. It solved none of the three investigations. In one report, the evidence and recommended actions were incomplete.",
     ],
   },
   {
@@ -96,8 +95,8 @@ export const profiles: Profile[] = [
     tagline: "Fastest in the set. Tied with Grok on access control.",
     body: [
       "Kimi completed seven tasks with a median run of under 11 minutes, the shortest in the set. It was one of two models to pass all 86 checks on the largest access control task. Its access control result tied Grok for the best record at two of three solved. It also solved one systems task and two injection tasks.",
-      "Both of its one-check misses concerned the submission rather than the fix. One injection run passed 64 of 65 checks but omitted a required file. Another passed 27 of 28 because a batch check trusted reported metadata instead of measuring the real payload size.",
-      "Authentication was its weak category, with one of four tasks solved. The scoring system recorded one run as zero. Logs showed that both attempts to reuse a request were accepted. Another run passed 15 of 20 checks. It left unsafe configuration parsing, a linked path that could escape its folder and old sessions unaddressed. Its most expensive run was a systems repair. It cost $17.47 and took 83 minutes across 326 turns, yet still finished two checks short.",
+      "One injection run passed 64 of 65 checks but omitted a required file. Another passed 27 of 28 because a batch check trusted reported metadata instead of measuring the real payload size.",
+      "Kimi solved one of four authentication tasks. The scoring system recorded one run as zero. Logs showed that both attempts to reuse a request were accepted. Another run passed 15 of 20 checks. It left unsafe configuration parsing, a linked path that could escape its folder and old sessions unaddressed. Its most expensive run was a systems repair. It cost $17.47 and took 83 minutes across 326 turns, yet still finished two checks short.",
     ],
   },
   {
@@ -107,7 +106,7 @@ export const profiles: Profile[] = [
     body: [
       "Gemini completed six tasks. No run took longer than 24 minutes. It also used more agent turns per run than any other model, with a median of 97. Gemini was the only model to finish one injection repair that most models broke. It also solved two of four authentication tasks.",
       "Three runs missed one check. One injection repair lacked an access control safeguard that the checker expected. One access control repair still let a project policy overrule who owned the vault. One systems repair still shared a session service across clients. Gemini was also the only model to miss an authentication task that every other model solved. It finished that task two checks short.",
-      "All 12 incomplete runs ended with a claim that the work was complete or fully checked. Gemini's own checks often covered the main repair but missed the condition that later failed. Investigation was its weakest category, with none of the three tasks solved. A malware analysis was its lowest-scoring run.",
+      "All 12 incomplete runs ended with a claim that the work was complete or fully checked. Gemini solved none of the three investigation tasks. A malware analysis was its lowest-scoring run.",
     ],
   },
   {
@@ -116,7 +115,7 @@ export const profiles: Profile[] = [
     tagline: "Finds the main issue but misses related paths.",
     body: [
       "DeepSeek V4 Pro completed four tasks, all of them web services. It solved two injection tasks. It also solved one authentication task and one access control task. It solved none of the four systems and memory safety tasks or the three investigations.",
-      "It failed 76 security checks across 18 runs, the most in the set. The next model failed 47. Its repairs often closed the reported path but missed related ones. On one access control task, it reached the 60-minute limit with about half the checks passed. Several ways to change data were still open. On another task, it passed 76 of 86 checks. The remaining failures involved copying data and publishing across tenants.",
+      "It failed 76 security checks across 18 runs, the most in the set. The next model failed 47. On one access control task, it reached the 60-minute limit with about half the checks passed. Several ways to change data were still open. On another task, it passed 76 of 86 checks. The remaining failures involved copying data and publishing across tenants.",
       "Its only near miss was an investigation that passed 9 of 10 checks. It failed only a format check in the first phase. The scoring system recorded one authentication run as zero. Both attempts to reuse a request were accepted.",
     ],
   },
