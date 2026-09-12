@@ -27,17 +27,17 @@ function Fig({ src, alt, caption }: { src: string; alt: string; caption: string 
 }
 
 const leaderboard = [
-  { model: "Claude Opus 5", solved: "11/18", rate: "61%", score: "97.1%", cost: "$97.53", lead: true },
-  { model: "DeepSeek V4.1 Flash", solved: "10/18", rate: "56%", score: "93.0%", cost: "$12.17" },
-  { model: "GPT-6 Astra", solved: "10/18", rate: "56%", score: "89.5%", cost: "$81.53" },
-  { model: "Claude Fable 5.1", solved: "9/18", rate: "50%", score: "96.6%", cost: "$217.58" },
-  { model: "GPT-5.6 Sol", solved: "9/18", rate: "50%", score: "94.6%", cost: "$27.30" },
-  { model: "GLM-5.3 Flash", solved: "8/18", rate: "44%", score: "91.4%", cost: "$2.72" },
-  { model: "GPT-5.5", solved: "8/18", rate: "44%", score: "81.4%", cost: "$74.43" },
-  { model: "Grok 4.6", solved: "7/18", rate: "39%", score: "87.2%", cost: "$22.91" },
-  { model: "Kimi K3", solved: "7/18", rate: "39%", score: "85.9%", cost: "$30.05" },
-  { model: "Gemini 3.8 Flash", solved: "6/18", rate: "33%", score: "90.8%", cost: "$24.47" },
-  { model: "DeepSeek V4 Pro", solved: "4/18", rate: "22%", score: "79.7%", cost: "$14.79" },
+  { model: "Claude Opus 5", solved: "11/18", rate: "61%", cost: "$97.53", lead: true },
+  { model: "DeepSeek V4.1 Flash", solved: "10/18", rate: "56%", cost: "$12.17" },
+  { model: "GPT-6 Astra", solved: "10/18", rate: "56%", cost: "$81.53" },
+  { model: "Claude Fable 5.1", solved: "9/18", rate: "50%", cost: "$217.58" },
+  { model: "GPT-5.6 Sol", solved: "9/18", rate: "50%", cost: "$27.30" },
+  { model: "GLM-5.3 Flash", solved: "8/18", rate: "44%", cost: "$2.72" },
+  { model: "GPT-5.5", solved: "8/18", rate: "44%", cost: "$74.43" },
+  { model: "Grok 4.6", solved: "7/18", rate: "39%", cost: "$22.91" },
+  { model: "Kimi K3", solved: "7/18", rate: "39%", cost: "$30.05" },
+  { model: "Gemini 3.8 Flash", solved: "6/18", rate: "33%", cost: "$24.47" },
+  { model: "DeepSeek V4 Pro", solved: "4/18", rate: "22%", cost: "$14.79" },
 ];
 
 const notes = [
@@ -239,8 +239,8 @@ export default function CyberLatchPage() {
               </h2>
               <Fig
                 src="/cyberlatch/01_leaderboard.png"
-                alt="Opus solves 11 of 18 tasks. DeepSeek V4.1 Flash and GPT-6 Astra solve 10. Fable and GPT-5.6 Sol solve 9. GLM and GPT-5.5 solve 8. Grok and Kimi solve 7. Gemini solves 6 and DeepSeek V4 Pro solves 4. Mean recorded scores range from 79.7 to 97.1 percent."
-                caption="Solved tasks and mean deterministic scores across the selected runs."
+                alt="Opus solves 11 of 18 tasks. DeepSeek V4.1 Flash and GPT-6 Astra solve 10. Fable and GPT-5.6 Sol solve 9. GLM and GPT-5.5 solve 8. Grok and Kimi solve 7. Gemini solves 6 and DeepSeek V4 Pro solves 4."
+                caption="Tasks solved out of 18 by each model across the selected runs."
               />
               <div className="overflow-x-auto">
                 <table className="bench-table my-6 max-w-[760px]">
@@ -249,7 +249,6 @@ export default function CyberLatchPage() {
                       <th>Model</th>
                       <th className="n">Solved</th>
                       <th className="n">Solve rate</th>
-                      <th className="n">Mean recorded score</th>
                       <th className="n">Recorded API cost</th>
                     </tr>
                   </thead>
@@ -259,7 +258,6 @@ export default function CyberLatchPage() {
                         <td className="whitespace-nowrap">{r.model}</td>
                         <td className="n">{r.solved}</td>
                         <td className="n">{r.rate}</td>
-                        <td className="n">{r.score}</td>
                         <td className="n">{r.cost}</td>
                       </tr>
                     ))}
@@ -455,10 +453,9 @@ export default function CyberLatchPage() {
                 caption="Recorded API cost per model over the 18 selected runs."
               />
               <p className={P}>
-                Fable&apos;s most expensive run was the memory-safety repair of a C JSON library. It took 1,024 agent
-                turns over 82 minutes and cost $40.40, and it passed every check. Astra&apos;s longest run was the
-                same task: 140 minutes and $30.25, also solved. GPT-5.5 spent 93 minutes and $15.18 on it and
-                recorded a score of 30%.
+                Fable&apos;s most expensive run took 1,024 agent turns over 82 minutes and cost $40.40, and it passed
+                every check. Astra&apos;s longest run was the same task: 140 minutes and $30.25, also solved. GPT-5.5
+                spent 93 minutes and $15.18 on it and recorded a score of 30%.
               </p>
               <p className={P}>
                 Kimi, Grok, and Gemini had median run times of about 11 to 13 minutes. GPT-5.5 took 13 and Astra 15.
