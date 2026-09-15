@@ -80,6 +80,30 @@ export const benchmarks: Benchmark[] = [
     ],
     live: true,
   },
+  {
+    slug: "animation-bench",
+    name: "Animation Bench",
+    category: "Agents",
+    access: "Proprietary",
+    updated: "Sep 2026",
+    blurb:
+      "Three computer-use agents rebuild real-website animations from reference frames and a HAR. Every reproduction is replayed and scored mechanically on four axes.",
+    tags: ["Agents", "Computer use", "Web", "Deterministic verifier"],
+    stats: [
+      { label: "Models", value: "3" },
+      { label: "Tasks", value: "15" },
+      { label: "Best mean", value: "0.727" },
+      { label: "Cost span", value: "13×" },
+    ],
+    topModel: { org: "Anthropic", name: "Claude Opus 5" },
+    // [cost 0-1, mean score 0-1] per model; cost normalised to Opus's $26.13/task
+    spark: [
+      [1.0, 0.727],
+      [0.08, 0.509],
+      [0.29, 0.483],
+    ],
+    live: true,
+  },
 ];
 
 export const ALL_TAGS = Array.from(

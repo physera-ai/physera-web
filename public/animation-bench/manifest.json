@@ -1,0 +1,302 @@
+{
+ "altitude101-loading-to-tubes": {
+  "opus": {
+   "score": 0.8996546253448151,
+   "hash": "yttwgmt",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-000753/altitude101-loading-to-tubes__yTtWgmt",
+   "score_file": "results/scores/altitude101-loading-to-tubes__claude-opus-5__anthropic-cua-lean__yttwgmt.json"
+  },
+  "deepseek": {
+   "score": 0.7877155785134328,
+   "hash": "emnbjdg",
+   "run": "results/runs/adhoc-deepseek-altitude101-loading-buildfirst__emnbjdg",
+   "score_file": "results/scores/altitude101-loading-to-tubes__deepseek-deepseek-v4-1-flash__generic-cua__emnbjdg.json"
+  },
+  "kimi": {
+   "score": 0.4989639287843119,
+   "hash": "ata683m",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-212911/altitude101-loading-to-tubes__aTa683m",
+   "score_file": "results/scores/altitude101-loading-to-tubes__moonshotai-kimi-k3__generic-cua__ata683m.json"
+  }
+ },
+ "altitude101-words-scroll-rates": {
+  "opus": {
+   "score": 0.4802547645395977,
+   "hash": "s9xb2nu",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-000753/altitude101-words-scroll-rates__S9xb2nU",
+   "score_file": "results/scores/altitude101-words-scroll-rates__claude-opus-5__anthropic-cua-lean__s9xb2nu.json"
+  },
+  "deepseek": {
+   "score": 0.3949329141247788,
+   "hash": "fcv6eny",
+   "run": "results/runs/harbor-generic-cua-deepseek-deepseek-v4-1-flash-20260914-142301/altitude101-words-scroll-rates__fCv6EnY",
+   "score_file": "results/scores/altitude101-words-scroll-rates__deepseek-deepseek-v4-1-flash__generic-cua__fcv6eny.json"
+  },
+  "kimi": {
+   "score": 0.34579277590855817,
+   "hash": "qwrbfbh",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-212911/altitude101-words-scroll-rates__qWRBFBH",
+   "score_file": "results/scores/altitude101-words-scroll-rates__moonshotai-kimi-k3__generic-cua__qwrbfbh.json"
+  }
+ },
+ "basement-studio-graffiti-hero": {
+  "opus": {
+   "score": 0.62678035674914,
+   "hash": "6bxbg7l",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-000753/basement-studio-graffiti-hero__6BxbG7L",
+   "score_file": "results/scores/basement-studio-graffiti-hero__claude-opus-5__anthropic-cua-lean__6bxbg7l.json"
+  },
+  "deepseek": {
+   "score": 0.41302281361781906,
+   "hash": "554ytpc",
+   "run": "results/runs/harbor-generic-cua-deepseek-deepseek-v4-1-flash-20260914-142301/basement-studio-graffiti-hero__554yTPC",
+   "score_file": "results/scores/basement-studio-graffiti-hero__deepseek-deepseek-v4-1-flash__generic-cua__554ytpc.json"
+  },
+  "kimi": {
+   "score": 0.38560763772357326,
+   "hash": "v9gqlyk",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-212911/basement-studio-graffiti-hero__v9gqLyK",
+   "score_file": "results/scores/basement-studio-graffiti-hero__moonshotai-kimi-k3__generic-cua__v9gqlyk.json"
+  }
+ },
+ "berd-window-morphs-into-app": {
+  "opus": {
+   "score": 0.9245185386034692,
+   "hash": "eynzeac",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-000753/berd-window-morphs-into-app__EYnZEaC",
+   "score_file": "results/scores/berd-window-morphs-into-app__claude-opus-5__anthropic-cua-lean__eynzeac.json"
+  },
+  "deepseek": {
+   "score": 0.9041550716807697,
+   "hash": "ahteeyg",
+   "run": "results/runs/harbor-generic-cua-deepseek-deepseek-v4-1-flash-20260914-162139/berd-window-morphs-into-app__ahTeEyg",
+   "score_file": "results/scores/berd-window-morphs-into-app__deepseek-deepseek-v4-1-flash__generic-cua__ahteeyg.json"
+  },
+  "kimi": {
+   "score": 0.745495712409977,
+   "hash": "br9ogni",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-130528/berd-window-morphs-into-app__br9oGni",
+   "score_file": "results/scores/berd-window-morphs-into-app__moonshotai-kimi-k3__generic-cua__br9ogni.json"
+  }
+ },
+ "benxrun-skyline-chapter-scroll": {
+  "opus": {
+   "score": 0.8121951091924512,
+   "hash": "lfksus2",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-000753/benxrun-skyline-chapter-scroll__LfksUs2",
+   "score_file": "results/scores/benxrun-skyline-chapter-scroll__claude-opus-5__anthropic-cua-lean__lfksus2.json"
+  },
+  "deepseek": {
+   "score": 0.7910049168032122,
+   "hash": "g5vftbs",
+   "run": "results/runs/harbor-generic-cua-deepseek-deepseek-v4-1-flash-20260914-162139/benxrun-skyline-chapter-scroll__G5vFtBs",
+   "score_file": "results/scores/benxrun-skyline-chapter-scroll__deepseek-deepseek-v4-1-flash__generic-cua__g5vftbs.json"
+  },
+  "kimi": {
+   "score": 0.8990451512201467,
+   "hash": "f556ys7",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-225157/benxrun-skyline-chapter-scroll__F556ys7",
+   "score_file": "results/scores/benxrun-skyline-chapter-scroll__moonshotai-kimi-k3__generic-cua__f556ys7.json"
+  }
+ },
+ "charmling-99-charms-flythrough": {
+  "opus": {
+   "score": 0.5229080512450974,
+   "hash": "83stplk",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-064532/charmling-99-charms-flythrough__83StPLk",
+   "score_file": "results/scores/charmling-99-charms-flythrough__claude-opus-5__anthropic-cua-lean__83stplk.json"
+  },
+  "deepseek": {
+   "score": 0.5252430445658186,
+   "hash": "k7thwcp",
+   "run": "results/runs/harbor-generic-cua-deepseek-deepseek-v4-1-flash-20260914-162139/charmling-99-charms-flythrough__K7THwcp",
+   "score_file": "results/scores/charmling-99-charms-flythrough__deepseek-deepseek-v4-1-flash__generic-cua__k7thwcp.json"
+  },
+  "kimi": {
+   "score": 0.18683322840766967,
+   "hash": "tydxtz2",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-225157/charmling-99-charms-flythrough__TYDxtz2",
+   "score_file": "results/scores/charmling-99-charms-flythrough__moonshotai-kimi-k3__generic-cua__tydxtz2.json"
+  }
+ },
+ "ciaoenergy-cans-fan-scroll-spin": {
+  "opus": {
+   "score": 0.7392080635962688,
+   "hash": "megtjxv",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-064532/ciaoenergy-cans-fan-scroll-spin__MEGtjxV",
+   "score_file": "results/scores/ciaoenergy-cans-fan-scroll-spin__claude-opus-5__anthropic-cua-lean__megtjxv.json"
+  },
+  "deepseek": {
+   "score": 0.40920093371015087,
+   "hash": "dfw8xam",
+   "run": "results/runs/adhoc-deepseek-ciaoenergy-cans-fan-scroll-spin-buildfirst__dfw8xam",
+   "score_file": "results/scores/ciaoenergy-cans-fan-scroll-spin__deepseek-deepseek-v4-1-flash__generic-cua__dfw8xam.json"
+  },
+  "kimi": {
+   "score": 0.39942984921217434,
+   "hash": "eeffyr9",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-225157/ciaoenergy-cans-fan-scroll-spin__eefFyR9",
+   "score_file": "results/scores/ciaoenergy-cans-fan-scroll-spin__moonshotai-kimi-k3__generic-cua__eeffyr9.json"
+  }
+ },
+ "ciaoenergy-cans-sideways-selection": {
+  "opus": {
+   "score": 0.7753889567361513,
+   "hash": "mmtkyqp",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-064702/ciaoenergy-cans-sideways-selecti__mmtkyqP",
+   "score_file": "results/scores/ciaoenergy-cans-sideways-selection__claude-opus-5__anthropic-cua-lean__mmtkyqp.json"
+  },
+  "deepseek": {
+   "score": 0.3633955298959895,
+   "hash": "k68kvaf",
+   "run": "results/runs/adhoc-deepseek-ciaoenergy-cans-sideways-selection-buildfirst__k68kvaf",
+   "score_file": "results/scores/ciaoenergy-cans-sideways-selection__deepseek-deepseek-v4-1-flash__generic-cua__k68kvaf.json"
+  },
+  "kimi": {
+   "score": 0.49580955590924186,
+   "hash": "uwiktpu",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-233524/ciaoenergy-cans-sideways-selecti__UwikTPu",
+   "score_file": "results/scores/ciaoenergy-cans-sideways-selection__moonshotai-kimi-k3__generic-cua__uwiktpu.json"
+  }
+ },
+ "ciaoenergy-text-dancing-scroll": {
+  "opus": {
+   "score": 0.4831305827331864,
+   "hash": "aqnskei",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260913-225700/ciaoenergy-text-dancing-scroll__AqNSkei",
+   "score_file": "results/scores/ciaoenergy-text-dancing-scroll__claude-opus-5__anthropic-cua-lean__aqnskei.json"
+  },
+  "deepseek": {
+   "score": 0.38708554881141743,
+   "hash": "b6s75ap",
+   "run": "results/runs/adhoc-deepseek-ciaoenergy-text-dancing-scroll-buildfirst__b6s75ap",
+   "score_file": "results/scores/ciaoenergy-text-dancing-scroll__deepseek-deepseek-v4-1-flash__generic-cua__b6s75ap.json"
+  },
+  "kimi": {
+   "score": 0.4016896799268931,
+   "hash": "gvbvvax",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-233524/ciaoenergy-text-dancing-scroll__gvbVvAX",
+   "score_file": "results/scores/ciaoenergy-text-dancing-scroll__moonshotai-kimi-k3__generic-cua__gvbvvax.json"
+  }
+ },
+ "cipher-loader-stills-ring": {
+  "opus": {
+   "score": 0.7847108824145983,
+   "hash": "oe5mbyk",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-014429/cipher-loader-stills-ring__oe5mbyk",
+   "score_file": "results/scores/cipher-loader-stills-ring__claude-opus-5__anthropic-cua-lean__oe5mbyk.json"
+  },
+  "deepseek": {
+   "score": 0.23947076737693496,
+   "hash": "wujmx6r",
+   "run": "results/runs/adhoc-deepseek-cipher-loader-stills-ring-buildfirst__wujmx6r",
+   "score_file": "results/scores/cipher-loader-stills-ring__deepseek-deepseek-v4-1-flash__generic-cua__wujmx6r.json"
+  },
+  "kimi": {
+   "score": 0.46747485942902356,
+   "hash": "eskwfoc",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-233524/cipher-loader-stills-ring__eskwfoc",
+   "score_file": "results/scores/cipher-loader-stills-ring__moonshotai-kimi-k3__generic-cua__eskwfoc.json"
+  }
+ },
+ "dialkit-dials-shape-headline": {
+  "opus": {
+   "score": 0.8383672717186461,
+   "hash": "vuiw6qh",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-014429/dialkit-dials-shape-headline__vuiw6Qh",
+   "score_file": "results/scores/dialkit-dials-shape-headline__claude-opus-5__anthropic-cua-lean__vuiw6qh.json"
+  },
+  "deepseek": {
+   "score": 0.6850108841361919,
+   "hash": "evtx6cf",
+   "run": "results/runs/adhoc-deepseek-dialkit-dials-shape-headline-buildfirst__evtx6cf",
+   "score_file": "results/scores/dialkit-dials-shape-headline__deepseek-deepseek-v4-1-flash__generic-cua__evtx6cf.json"
+  },
+  "kimi": {
+   "score": 0.569700244469648,
+   "hash": "9ft3obr",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260915-003712/dialkit-dials-shape-headline__9ft3obR",
+   "score_file": "results/scores/dialkit-dials-shape-headline__moonshotai-kimi-k3__generic-cua__9ft3obr.json"
+  }
+ },
+ "driftime-2025-pinned-scroll-morph": {
+  "opus": {
+   "score": 0.5927035912508462,
+   "hash": "udphrt6",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-064702/driftime-2025-pinned-scroll-morp__UDPHrT6",
+   "score_file": "results/scores/driftime-2025-pinned-scroll-morph__claude-opus-5__anthropic-cua-lean__udphrt6.json"
+  },
+  "deepseek": {
+   "score": 0.15169766577869376,
+   "hash": "msdqiky",
+   "run": "results/runs/harbor-generic-cua-deepseek-deepseek-v4-1-flash-20260914-212858/driftime-2025-pinned-scroll-morp__MsdQiKy",
+   "score_file": "results/scores/driftime-2025-pinned-scroll-morph__deepseek-deepseek-v4-1-flash__generic-cua__msdqiky.json"
+  },
+  "kimi": {
+   "score": 0.3842856980949703,
+   "hash": "npctxgv",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260915-003712/driftime-2025-pinned-scroll-morp__NpctXgv",
+   "score_file": "results/scores/driftime-2025-pinned-scroll-morph__moonshotai-kimi-k3__generic-cua__npctxgv.json"
+  }
+ },
+ "kavieng-cards-fly-to-grid-drag": {
+  "opus": {
+   "score": 0.7884423433806557,
+   "hash": "zabrp96",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260913-230222/kavieng-cards-fly-to-grid-drag__zABrp96",
+   "score_file": "results/scores/kavieng-cards-fly-to-grid-drag__claude-opus-5__anthropic-cua-lean__zabrp96.json"
+  },
+  "deepseek": {
+   "score": 0.7363795671412234,
+   "hash": "6mjuou7",
+   "run": "results/runs/harbor-generic-cua-deepseek-deepseek-v4-1-flash-20260914-191421/kavieng-cards-fly-to-grid-drag__6MjUou7",
+   "score_file": "results/scores/kavieng-cards-fly-to-grid-drag__deepseek-deepseek-v4-1-flash__generic-cua__6mjuou7.json"
+  },
+  "kimi": {
+   "score": 0.486673106593967,
+   "hash": "ihjsaot",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-130528/kavieng-cards-fly-to-grid-drag__iHJSAot",
+   "score_file": "results/scores/kavieng-cards-fly-to-grid-drag__moonshotai-kimi-k3__generic-cua__ihjsaot.json"
+  }
+ },
+ "maxima-splash-curtain-whale-scene": {
+  "opus": {
+   "score": 0.8532670350751012,
+   "hash": "tt9fgo6",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260914-014429/maxima-splash-curtain-whale-scen__tt9Fgo6",
+   "score_file": "results/scores/maxima-splash-curtain-whale-scene__claude-opus-5__anthropic-cua-lean__tt9fgo6.json"
+  },
+  "deepseek": {
+   "score": 0.6917547734690884,
+   "hash": "coanpax",
+   "run": "results/runs/harbor-generic-cua-deepseek-deepseek-v4-1-flash-20260914-212858/maxima-splash-curtain-whale-scen__coANPaX",
+   "score_file": "results/scores/maxima-splash-curtain-whale-scene__deepseek-deepseek-v4-1-flash__generic-cua__coanpax.json"
+  },
+  "kimi": {
+   "score": 0.5670726409026039,
+   "hash": "fgmyfgh",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260915-003712/maxima-splash-curtain-whale-scen__FGmYfGH",
+   "score_file": "results/scores/maxima-splash-curtain-whale-scene__moonshotai-kimi-k3__generic-cua__fgmyfgh.json"
+  }
+ },
+ "maxima-splash-curtain-whale-part2": {
+  "opus": {
+   "score": 0.7831435708092226,
+   "hash": "7zii5pq",
+   "run": "results/runs/harbor-cua-claude-opus-5-20260913-234307/maxima-splash-curtain-whale-part__7zii5PQ",
+   "score_file": "results/scores/maxima-splash-curtain-whale-part2__claude-opus-5__anthropic-cua-lean__7zii5pq.json"
+  },
+  "deepseek": {
+   "score": 0.15422812032699584,
+   "hash": "qgoztsi",
+   "run": "results/runs/harbor-generic-cua-deepseek-deepseek-v4-1-flash-20260914-191421/maxima-splash-curtain-whale-part__QgoZTSi",
+   "score_file": "results/scores/maxima-splash-curtain-whale-part2__deepseek-deepseek-v4-1-flash__generic-cua__qgoztsi.json"
+  },
+  "kimi": {
+   "score": 0.4048845111783688,
+   "hash": "hpjzwrv",
+   "run": "results/runs/harbor-generic-cua-moonshotai-kimi-k3-20260914-130528/maxima-splash-curtain-whale-part__HpJzwRV",
+   "score_file": "results/scores/maxima-splash-curtain-whale-part2__moonshotai-kimi-k3__generic-cua__hpjzwrv.json"
+  }
+ }
+}
