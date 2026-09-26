@@ -23,55 +23,55 @@ const SHORT: Record<string, string> = {
 const COLOR: Record<string, string> = {
   "gpt-6-astra": "#0f9d6e", "claude-fable-5-1": "#5170c9", "claude-opus-5-5": "#ad7545", "gpt-6-sol": "#9b71a3",
 };
-const TASK_META: Record<string, [site: string, trigger: string, difficulty: string]> = {
-  "adcker-menu-services-hover": ["adcker.com", "hover", "medium"],
-  "altitude101-glass-ring-word-swap": ["altitude101.com", "scroll", "hard"],
-  "altitude101-words-scroll-rates": ["altitude101.com", "scroll", "hard"],
-  "ausify-vibe-canvas-carousel": ["ausify.com.au", "drag / click", "hard"],
-  "basement-studio-graffiti-hero": ["basement.studio", "plays by itself", "hard"],
-  "benxrun-skyline-chapter-scroll": ["benxrun.com", "scroll", "hard"],
-  "berd-window-morphs-into-app": ["berd.xyz", "plays by itself", "hard"],
-  "charmling-99-charms-flythrough": ["charmling.app", "scroll", "hard"],
-  "ciaoenergy-cans-fan-scroll-spin": ["ciaoenergy.com", "plays by itself", "hard"],
-  "ciaoenergy-cans-sideways-selection": ["ciaoenergy.com", "scroll", "hard"],
-  "ciaoenergy-text-dancing-scroll": ["ciaoenergy.com", "scroll", "hard"],
-  "cipher-loader-stills-ring": ["cipher.tv", "plays by itself", "hard"],
-  "dialkit-dials-shape-headline": ["dialkit.dev", "drag / click", "hard"],
-  "driftime-2025-pinned-scroll-morph": ["2025.driftime.com", "scroll", "hard"],
-  "gufram-zero-gravity-collage-hero": ["gufram.it", "plays by itself", "hard"],
-  "kavieng-cards-fly-to-grid-drag": ["kaviengcreative.com", "drag / click", "hard"],
-  "maxima-splash-curtain-whale-part2": ["maximatherapy.com", "plays by itself", "hard"],
-  "maxima-splash-curtain-whale-scene": ["maximatherapy.com", "plays by itself", "medium"],
-  "monopo-london-webgl-sections": ["monopo.london", "hover", "hard"],
-  "motion-dev-animation": ["examples.motion.dev", "drag / click", "easy"],
-  "neutomni-preloader-cut-along-line": ["neutomni.com", "plays by itself", "hard"],
-  "neutomni-process-rolling-shape": ["neutomni.com", "scroll", "hard"],
-  "otsuka-zeroz-intro-reveal": ["otsuka-air.jp", "plays by itself", "hard"],
-  "oxigen-voxel-palm-pinned": ["oxigen.sa", "scroll", "hard"],
-  "palmo-coconut-crack-scroll": ["palmo.co.in", "scroll", "hard"],
-  "palmo-pure-fresh-clean-words": ["palmo.co.in", "scroll", "medium"],
-  "papertiger-card-stack-to-fullbleed": ["papertiger.com", "scroll", "hard"],
-  "papumba-play-explore-ipad-transition": ["papumba.com", "opens / changes", "medium"],
-  "pixel-melbourne-crafty-bunch-scroll": ["pixel.melbourne", "scroll", "medium"],
-  "pixel-melbourne-menu-directors-hover": ["pixel.melbourne", "hover", "hard"],
-  "pudding-essential-words-pinned-cloud": ["pudding.cool", "scroll", "hard"],
-  "rapidkert-soil-dive-pinned": ["rapidkert.com", "scroll", "hard"],
-  "raycast-animation": ["raycast.com", "plays by itself", "hard"],
-  "rebelliously-optimistic-four-commitments": ["rebelliously-optimistic.com", "scroll", "hard"],
-  "rebelliously-optimistic-pinned-hero": ["rebelliously-optimistic.com", "scroll", "hard"],
-  "slowdown-featured-work-view-work-cursor": ["slowdowncreative.com", "cursor-follow", "medium"],
-  "slowdown-footer-services-rolling-labels": ["slowdowncreative.com", "scroll", "medium"],
-  "slowdown-footer-slow-down-reveal": ["slowdowncreative.com", "scroll", "medium"],
-  "slowdown-nav-hover-bullets": ["slowdowncreative.com", "hover", "easy"],
-  "slowdown-process-experience-reveal": ["slowdowncreative.com", "hover", "easy"],
-  "squarespace-brand-logo-hover-reveal": ["brand.squarespace.com", "hover", "medium"],
-  "truus-letters-scatter-along-path": ["truus.co", "scroll", "hard"],
-  "victor-furuya-core-values-scroll": ["victorfuruya.com", "scroll", "medium"],
-  "victor-furuya-make-it-matter-collapse": ["victorfuruya.com", "opens / changes", "medium"],
-  "victor-furuya-manifesto-text": ["victorfuruya.com", "plays by itself", "medium"],
-  "victor-furuya-work-index-transition": ["victorfuruya.com", "opens / changes", "medium"],
-  "wisprflow-dictation-notetaker-toggle": ["wisprflow.ai", "opens / changes", "medium"],
-  "wisprflow-hero-text-ribbons": ["wisprflow.ai", "plays by itself", "hard"],
+const TASK_META: Record<string, [site: string, trigger: string, difficulty: string, genre: string]> = {
+  "adcker-menu-services-hover": ["adcker.com", "hover", "medium", "portfolio"],
+  "altitude101-glass-ring-word-swap": ["altitude101.com", "scroll", "hard", "portfolio"],
+  "altitude101-words-scroll-rates": ["altitude101.com", "scroll", "hard", "portfolio"],
+  "ausify-vibe-canvas-carousel": ["ausify.com.au", "drag / click", "hard", "saas"],
+  "basement-studio-graffiti-hero": ["basement.studio", "plays by itself", "hard", "portfolio"],
+  "benxrun-skyline-chapter-scroll": ["benxrun.com", "scroll", "hard", "portfolio"],
+  "berd-window-morphs-into-app": ["berd.xyz", "plays by itself", "hard", "saas"],
+  "charmling-99-charms-flythrough": ["charmling.app", "scroll", "hard", "ecommerce"],
+  "ciaoenergy-cans-fan-scroll-spin": ["ciaoenergy.com", "plays by itself", "hard", "ecommerce"],
+  "ciaoenergy-cans-sideways-selection": ["ciaoenergy.com", "scroll", "hard", "ecommerce"],
+  "ciaoenergy-text-dancing-scroll": ["ciaoenergy.com", "scroll", "hard", "ecommerce"],
+  "cipher-loader-stills-ring": ["cipher.tv", "plays by itself", "hard", "portfolio"],
+  "dialkit-dials-shape-headline": ["dialkit.dev", "drag / click", "hard", "app-ui"],
+  "driftime-2025-pinned-scroll-morph": ["2025.driftime.com", "scroll", "hard", "brand"],
+  "gufram-zero-gravity-collage-hero": ["gufram.it", "plays by itself", "hard", "ecommerce"],
+  "kavieng-cards-fly-to-grid-drag": ["kaviengcreative.com", "drag / click", "hard", "portfolio"],
+  "maxima-splash-curtain-whale-part2": ["maximatherapy.com", "plays by itself", "hard", "brand"],
+  "maxima-splash-curtain-whale-scene": ["maximatherapy.com", "plays by itself", "medium", "brand"],
+  "monopo-london-webgl-sections": ["monopo.london", "hover", "hard", "portfolio"],
+  "motion-dev-animation": ["examples.motion.dev", "drag / click", "easy", "app-ui"],
+  "neutomni-preloader-cut-along-line": ["neutomni.com", "plays by itself", "hard", "portfolio"],
+  "neutomni-process-rolling-shape": ["neutomni.com", "scroll", "hard", "portfolio"],
+  "otsuka-zeroz-intro-reveal": ["otsuka-air.jp", "plays by itself", "hard", "ecommerce"],
+  "oxigen-voxel-palm-pinned": ["oxigen.sa", "scroll", "hard", "brand"],
+  "palmo-coconut-crack-scroll": ["palmo.co.in", "scroll", "hard", "ecommerce"],
+  "palmo-pure-fresh-clean-words": ["palmo.co.in", "scroll", "medium", "ecommerce"],
+  "papertiger-card-stack-to-fullbleed": ["papertiger.com", "scroll", "hard", "portfolio"],
+  "papumba-play-explore-ipad-transition": ["papumba.com", "opens / changes", "medium", "saas"],
+  "pixel-melbourne-crafty-bunch-scroll": ["pixel.melbourne", "scroll", "medium", "portfolio"],
+  "pixel-melbourne-menu-directors-hover": ["pixel.melbourne", "hover", "hard", "portfolio"],
+  "pudding-essential-words-pinned-cloud": ["pudding.cool", "scroll", "hard", "editorial"],
+  "rapidkert-soil-dive-pinned": ["rapidkert.com", "scroll", "hard", "brand"],
+  "raycast-animation": ["raycast.com", "plays by itself", "hard", "saas"],
+  "rebelliously-optimistic-four-commitments": ["rebelliously-optimistic.com", "scroll", "hard", "brand"],
+  "rebelliously-optimistic-pinned-hero": ["rebelliously-optimistic.com", "scroll", "hard", "brand"],
+  "slowdown-featured-work-view-work-cursor": ["slowdowncreative.com", "cursor-follow", "medium", "portfolio"],
+  "slowdown-footer-services-rolling-labels": ["slowdowncreative.com", "scroll", "medium", "portfolio"],
+  "slowdown-footer-slow-down-reveal": ["slowdowncreative.com", "scroll", "medium", "portfolio"],
+  "slowdown-nav-hover-bullets": ["slowdowncreative.com", "hover", "easy", "portfolio"],
+  "slowdown-process-experience-reveal": ["slowdowncreative.com", "hover", "easy", "portfolio"],
+  "squarespace-brand-logo-hover-reveal": ["brand.squarespace.com", "hover", "medium", "brand"],
+  "truus-letters-scatter-along-path": ["truus.co", "scroll", "hard", "portfolio"],
+  "victor-furuya-core-values-scroll": ["victorfuruya.com", "scroll", "medium", "portfolio"],
+  "victor-furuya-make-it-matter-collapse": ["victorfuruya.com", "opens / changes", "medium", "portfolio"],
+  "victor-furuya-manifesto-text": ["victorfuruya.com", "plays by itself", "medium", "portfolio"],
+  "victor-furuya-work-index-transition": ["victorfuruya.com", "opens / changes", "medium", "portfolio"],
+  "wisprflow-dictation-notetaker-toggle": ["wisprflow.ai", "opens / changes", "medium", "saas"],
+  "wisprflow-hero-text-ribbons": ["wisprflow.ai", "plays by itself", "hard", "saas"],
 };
 const sections: Section[] = [
   { id: "overview", label: "Overview" },
@@ -406,7 +406,7 @@ timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},
                 <p className={P}>Animation Bench is the first body of work to come from Physera that attempts to bridge the gap for the next succession of frontier models, so that they can improve on the axes people actually perceive: motion, timing, and layout. If you are working on frontend generation, or environments for agents that build software, we’d love to hear from you.</p>
 
               <h2 id="tasks" className="bench-h2 scroll-mt-24">Appendix: Tasks</h2>
-                <p className={P}>All 48 tasks with their site, trigger and difficulty, and each model’s overall score. One selected generation per task and model, scored against one reference capture. Differences under ~0.02 should not be read as capability differences.</p>
+                <p className={P}>All 48 tasks with each model’s overall score, site, genre, trigger and difficulty. One selected generation per task and model, scored against one reference capture. Differences under ~0.02 should not be read as capability differences.</p>
                 <div className="overflow-x-auto">
                 <table className="bench-table bench-grid my-6">
                   <thead>
@@ -418,6 +418,7 @@ timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},
                         </th>
                       ))}
                       <th>Site</th>
+                      <th>Genre</th>
                       <th>Trigger</th>
                       <th>Difficulty</th>
                     </tr>
@@ -425,7 +426,7 @@ timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},
                   <tbody>
                     {results.tasks.map((t) => {
                       const best = Math.max(...results.models.map((m) => t.scores[m.id as keyof typeof t.scores].score));
-                      const [site, trigger, difficulty] = TASK_META[t.id] ?? ["", "", ""];
+                      const [site, trigger, difficulty, genre] = TASK_META[t.id] ?? ["", "", "", ""];
                       return (
                         <tr key={t.id}>
                           <td className="whitespace-nowrap">{t.id}</td>
@@ -438,6 +439,7 @@ timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},
                             );
                           })}
                           <td className="muted whitespace-nowrap">{site}</td>
+                          <td className="muted whitespace-nowrap">{genre}</td>
                           <td className="muted whitespace-nowrap">{trigger}</td>
                           <td className="muted">{difficulty}</td>
                         </tr>
