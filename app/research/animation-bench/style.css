@@ -1,2 +1,1 @@
-.ab-strip{overflow-x:auto}.ab-strip img{min-width:1100px}
-.ab-charts{display:grid;grid-template-columns:1fr 1fr;gap:18px}.ab-chart{width:100%;height:auto;display:block}.ab-tick{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#888}.ab-lab{font-size:12px;fill:#333}.ab-val{font:600 12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#111}@media(max-width:700px){.ab-charts{grid-template-columns:1fr}}
+.ab-video{width:100%;height:auto;display:block;background:#f4f4f1}
