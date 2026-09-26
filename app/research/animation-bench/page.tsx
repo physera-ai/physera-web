@@ -80,7 +80,6 @@ const sections: Section[] = [
   { id: "methodology", label: "Methodology" },
   { id: "task", label: "Tasks" },
   { id: "scoring", label: "Scoring" },
-  { id: "examples", label: "Scores in practice", sub: true },
   { id: "results", label: "Results" },
   { id: "failures", label: "What models get wrong" },
   { id: "timeline", label: "The timeline", sub: true },
@@ -108,171 +107,6 @@ function Fig({ src, alt, caption, strip }: { src: string; alt: string; caption: 
       </div>
       <figcaption>{caption}</figcaption>
     </figure>
-  );
-}
-
-type ExampleRow = { model: string; overall: number; visual: number; motion: number; layout?: number; energy: number; sub: string };
-type Example = {
-  id: string;
-  title: string;
-  task: string;
-  what: string;
-  rows: ExampleRow[];
-  code: { label: string; src: string }[];
-  takeaway: string;
-};
-
-const EXAMPLES: Example[] = [
-  {
-    id: "ex-manifesto",
-    title: "Looks right, barely moves",
-    task: "victor-furuya-manifesto-text",
-    what: "A manifesto paragraph reveals word by word: each word appears as a grey block, then its text fades in, in a slow wave.",
-    rows: [
-      { model: "claude-opus-5-5", overall: 0.56, visual: 0.75, motion: 0.14, layout: 0.93, energy: 0.2, sub: "energy 0.19 · flow 0.20 · trajectory 0.49" },
-      { model: "gpt-6-astra", overall: 0.72, visual: 0.81, motion: 0.61, layout: 0.75, energy: 0.69, sub: "energy 0.75 · flow 0.79 · trajectory 0.66" },
-    ],
-    code: [
-      {
-        label: "Claude Opus 5.5: a 150 ms stagger with a 1 s fade, opacity only",
-        src: "var D0=300,ST=150,DUR=1000,t0=performance.now();\nws.forEach(function(w,i){w.style.opacity=e((t-D0-i*ST)/DUR).toFixed(3)});",
-      },
-      {
-        label: "GPT-6 Astra: the original’s two-layer fade, on a slower schedule",
-        src: "// The original two-layer opacity and highlight fade, driven by elapsed time.\nconst frame=(now-start)/500; const lead=Math.max(0,(frame-1.35)*.132);\nword.style.opacity=u; word.style.backgroundColor=`rgba(60,60,60,${1-text})`;",
-      },
-    ],
-    takeaway:
-      "Opus 5.5 gets the page almost exactly right as a still (text presence 0.86, box alignment 0.91) and carries a fifth of the reference’s motion. Layout prefers Opus; motion strongly prefers Astra. A screenshot score would call Opus the better page.",
-  },
-  {
-    id: "ex-wispr",
-    title: "Right parts, wrong schedule",
-    task: "wisprflow-dictation-notetaker-toggle",
-    what: "A two-option pill: the white thumb slides to Notetaker, the letters ripple, and a second or so later the thumb slides back.",
-    rows: [
-      { model: "claude-opus-5-5", overall: 0.75, visual: 0.8, motion: 0.53, layout: 0.95, energy: 0.74, sub: "flow 0.32 · trajectory 0.84" },
-      { model: "claude-fable-5-1", overall: 0.75, visual: 0.84, motion: 0.46, layout: 0.96, energy: 0.48, sub: "flow 0.31 · trajectory 0.83" },
-      { model: "gpt-6-sol", overall: 0.68, visual: 0.83, motion: 0.27, layout: 0.96, energy: 0.34, sub: "flow 0.26 · trajectory 0.69" },
-      { model: "gpt-6-astra", overall: 0.69, visual: 0.85, motion: 0.29, layout: 0.96, energy: 0.27, sub: "flow 0.37 · trajectory 0.71" },
-    ],
-    code: [
-      {
-        label: "Claude Opus 5.5: the right ripple, on an invented clock that repeats every 3.5 s",
-        src: "animation: wave .9s ease-in-out both; animation-delay: calc(var(--i)*70ms);\nfunction cycle(){ setTimeout(()=>go(true),400);\n  setTimeout(()=>{t.classList.remove('right');b.classList.remove('wave');},2200); }\ncycle(); setInterval(cycle,3500);",
-      },
-      {
-        label: "Claude Fable 5.1: a hand-written three-stage keyframe per character, 60 ms apart",
-        src: "var total=1000+(n-1)*60;\nt._chars.forEach(function(c,i){var p=(el-i*60)/1000; var v=kf(p);\n  c.style.transform='translateY('+v[0]+'%) rotate('+v[1]+'deg)';});",
-      },
-    ],
-    takeaway:
-      "Layout is about 0.96 for everyone: the component is solved. Trajectory is high (up to 0.84) while flow stays low (0.26–0.37). The right thing moves along the right path, at the wrong time. Opus and Fable tie on overall with different halves of the sequence right.",
-  },
-  {
-    id: "ex-flipbook",
-    title: "The flipbook",
-    task: "squarespace-brand-logo-hover-reveal",
-    what: "Hovering the Squarespace logo plays a reveal effect that reverses when the pointer leaves.",
-    rows: [
-      { model: "gpt-6-sol", overall: 0.59, visual: 0.69, motion: 0.48, layout: 0.55, energy: 0.71, sub: "flow 0.54 · trajectory 0.56" },
-      { model: "gpt-6-astra", overall: 0.7, visual: 0.75, motion: 0.78, layout: 0.55, energy: 0.92, sub: "flow 0.77 · trajectory 0.84" },
-    ],
-    code: [
-      {
-        label: "GPT-6 Sol: an 855 KB page of sixteen screenshots and a timer",
-        src: "const frames=[/* 16 base64 PNGs */].map(s=>'data:image/png;base64,'+s);\nfunction show(n){index=Math.max(0,Math.min(15,n));art.src=frames[index]}\nfunction forward(){ if(!hovered)return; if(index<15)show(index+1);\n  timer=setTimeout(forward,index<4?220:index<8?290:index<11?250:220) }",
-      },
-    ],
-    takeaway:
-      "Replaying the reference frames doesn’t buy visual score (0.69 vs 0.75), and motion drops sharply (0.48 vs 0.78) because nothing moves between the stored frames. Correct at sixteen instants, wrong everywhere else.",
-  },
-  {
-    id: "ex-loop",
-    title: "An intro that never ends",
-    task: "neutomni-preloader-cut-along-line",
-    what: "A preloader: a counter runs, scissors cut along a line, the page opens, and the wordmark flips into the navigation. It plays once.",
-    rows: [
-      { model: "claude-opus-5-5", overall: 0.56, visual: 0.63, motion: 0.52, layout: 0.48, energy: 1.01, sub: "ms-ssim 0.65 · colour 0.98 · edge 0.18" },
-      { model: "gpt-6-astra", overall: 0.59, visual: 0.7, motion: 0.55, layout: 0.48, energy: 0.98, sub: "ms-ssim 0.68 · colour 0.98 · edge 0.68" },
-    ],
-    code: [
-      {
-        label: "Claude Opus 5.5: the whole sequence as a 10-second loop",
-        src: "const CYCLE=10000; let t0=performance.now();\nfunction frame(now){ let t=(now-t0)%CYCLE/1000; /* loading 0.2..3.2s … */ }",
-      },
-    ],
-    takeaway:
-      "The amount of motion is right for both (energy × ≈ 1.0), so the loop doesn’t register inside a short capture; you only see it by waiting. What separates them is geometry: identical palettes (colour 0.98), but Astra’s outlines line up (edge 0.68) and Opus’s mostly don’t (0.18). Right colours, wrong shapes.",
-  },
-  {
-    id: "ex-pudding",
-    title: "What a good one looks like",
-    task: "pudding-essential-words-pinned-cloud",
-    what: "A pinned section on pudding.cool: as you scroll, a cloud of words builds, reorganises and drops away in stages while the section stays fixed.",
-    rows: [
-      { model: "claude-fable-5-1", overall: 0.83, visual: 0.74, motion: 0.9, layout: 0.85, energy: 1.0, sub: "energy 0.94 · flow 0.96 · trajectory 0.93" },
-      { model: "gpt-6-sol", overall: 0.49, visual: 0.5, motion: 0.39, layout: 0.64, energy: 0.56, sub: "energy 0.70 · flow 0.74 · trajectory 0.74" },
-    ],
-    code: [
-      {
-        label: "Claude Fable 5.1: every stage derived from scroll progress through the pinned track",
-        src: "var prog=clamp(-r.top/Math.max(1,r.height-window.innerHeight));\nvar m=prog*total; var stage=m>=s2?3:(m>=s1?2:1);\ntog(l1,'is-visible',stage===1); tog(l2,'is-visible',stage===2);\nwindow.addEventListener('scroll',onScroll,{passive:true});",
-      },
-    ],
-    takeaway:
-      "The only example here with every motion sub-score above 0.9 and exactly the reference’s amount of movement. Sol moves a similar amount but in the wrong places (structure gate 0.66), inside a letterboxed frame (coverage 0.31, box alignment 0.01).",
-  },
-];
-
-function ScoreExample({ ex, n }: { ex: Example; n: number }) {
-  const f2 = (v?: number) => (v === undefined ? "–" : v.toFixed(2));
-  return (
-    <div id={ex.id} className="scroll-mt-24">
-      <h4 className="ab-ex-title">
-        {n}. {ex.title} <span className="bench-mono-label">{ex.task}</span>
-      </h4>
-      <p className={P}>{ex.what}</p>
-      <div className="overflow-x-auto">
-        <table className="bench-table my-4">
-          <thead>
-            <tr>
-              <th>Model</th>
-              <th className="num">Overall</th>
-              <th className="num">Visual</th>
-              <th className="num">Motion</th>
-              <th className="num">Layout</th>
-              <th className="num">Energy ×</th>
-              <th>Sub-scores</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ex.rows.map((r) => (
-              <tr key={r.model}>
-                <td className="whitespace-nowrap">{LABEL[r.model]}</td>
-                <td className="n">{f2(r.overall)}</td>
-                <td className="n">{f2(r.visual)}</td>
-                <td className="n">{f2(r.motion)}</td>
-                <td className="n">{f2(r.layout)}</td>
-                <td className="n">{f2(r.energy)}</td>
-                <td className="whitespace-nowrap text-[12px] text-[#666]">{r.sub}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      {ex.code.map((c) => (
-        <figure key={c.label} className="ab-code">
-          <figcaption>{c.label}</figcaption>
-          <pre>
-            <code>{c.src}</code>
-          </pre>
-        </figure>
-      ))}
-      <p className={P}>
-        <strong>What the metrics show.</strong> {ex.takeaway}
-      </p>
-    </div>
   );
 }
 
@@ -492,12 +326,14 @@ export default function AnimationBenchPage() {
                   <li><strong>Colour:</strong> do the foreground colours match? A hue histogram, so the palette counts without dominating.</li>
                   <li><strong>Edges:</strong> do outlines and borders line up? Catches shapes that are the right colour but the wrong geometry.</li>
                 </ul>
+                <Fig src="/animation-bench/axis-visual.webp" alt="pudding.cool word cloud: reference, Fable 5.1 and Sol" caption="pudding.cool word cloud. Fable 5.1 (visual 0.74) fills the page like the original; Sol (0.50) letterboxes it into a column with dark side bars, so coverage drops to 0.31." />
                 <h3 className="bench-h3">Motion consistency: does it move right over time?</h3>
                 <ul className="bench-list list-disc">
                   <li><strong>Energy:</strong> how much does the screen change from frame to frame? Catches pages that barely move, or move too much.</li>
                   <li><strong>Flow:</strong> how far do pixels actually travel? Optical flow separates real movement from simple fades or flicker.</li>
                   <li><strong>Trajectory:</strong> does the main moving element follow the same path, in the same direction and order?</li>
                 </ul>
+                <Fig src="/animation-bench/axis-motion.webp" alt="Manifesto text reveal: reference, Astra and Opus 5.5" caption="Manifesto text reveal. Astra (motion 0.61) fades the words in over time like the original; Opus 5.5 (0.14) has the full text on screen almost from the first frame, carrying a fifth of the reference’s motion." />
                 <p className={P}>Motion is also gated by how much moves and where. A page that sits still, or moves in the wrong part of the screen, can’t earn motion credit elsewhere.</p>
                 <h3 className="bench-h3">Layout correctness: is it built like the original?</h3>
                 <ul className="bench-list list-disc">
@@ -506,6 +342,7 @@ export default function AnimationBenchPage() {
                   <li><strong>Box alignment:</strong> do the words sit in the same positions?</li>
                   <li><strong>Reading order:</strong> do they appear in the same top-to-bottom order?</li>
                 </ul>
+                <Fig src="/animation-bench/axis-layout.webp" alt="DialKit headline: reference, Fable 5.1 and Opus 5.5" caption="DialKit headline. Fable 5.1 (layout 0.94) sets the headline at the original’s size and position; Opus 5.5 (0.63) has the right words in a smaller, lighter setting, so they no longer line up with the original’s text boxes (box alignment 0.02)." />
                 <p className={P}>Text is the most reliable anchor for structure. A page can match in colour and shape and still put the headline in the wrong place or drop half the copy.</p>
                 <h3 className="bench-h3">Interaction fidelity (reported separately)</h3>
                 <ul className="bench-list list-disc">
@@ -517,11 +354,6 @@ export default function AnimationBenchPage() {
                 </ul>
                 <p className={P}>We keep this axis out of the overall score until it can be checked against a live replay of the original.</p>
                 <p className={P}>The overall score combines visual, motion and layout with trigger-aware weights (a scroll task, for example, weights motion more heavily). All scores are reproduction scores on a 0–1 scale, not success rates.</p>
-                <h3 id="examples" className="bench-h3 scroll-mt-24">Scores in practice</h3>
-                <p className={P}>Five reconstructions read through the metrics. Each pairs models on the same animation, so the task is held constant and only the code differs. “Energy ×” is the reconstruction’s total motion divided by the reference’s; 1.0 means the same amount of movement.</p>
-                {EXAMPLES.map((ex, i) => (
-                  <ScoreExample key={ex.id} ex={ex} n={i + 1} />
-                ))}
 
               <h2 id="results" className="bench-h2 scroll-mt-24">Results</h2>
                 <figure className="bench-fig">
