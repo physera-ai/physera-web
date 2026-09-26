@@ -119,6 +119,31 @@ function Vid({ src, label, caption }: { src: string; label: string; caption: str
   );
 }
 
+const RUN_STEPS = [
+  { k: "Input", v: "12–24 frames", s: "+ the page’s network capture" },
+  { k: "Agent", v: "Computer-1", s: "run through Harbor · max reasoning" },
+  { k: "Sandbox", v: "1280×720", s: "desktop + bash shell" },
+  { k: "Output", v: "index.html", s: "one self-contained file" },
+  { k: "Scored", v: "3 axes", s: "visual · motion · layout" },
+];
+
+function RunPipeline() {
+  return (
+    <figure className="ab-run" aria-label="Run configuration">
+      <ol>
+        {RUN_STEPS.map((step, i) => (
+          <li key={step.k} style={{ ["--i" as string]: i }}>
+            <span className="bench-mono-label">{step.k}</span>
+            <b>{step.v}</b>
+            <small>{step.s}</small>
+          </li>
+        ))}
+      </ol>
+      <figcaption className="bench-mono-label">4 models × 48 tasks = 192 runs · one selected run per pair</figcaption>
+    </figure>
+  );
+}
+
 export default function AnimationBenchPage() {
   return (
     <main className="bench flex w-full max-w-[1320px] flex-1 flex-col px-3 py-1 sm:px-4">
@@ -190,12 +215,7 @@ export default function AnimationBenchPage() {
 
               <h2 id="methodology" className="bench-h2 scroll-mt-24">Methodology</h2>
                 <p className={P}>We ran 192 evaluations with Computer-1 through the Harbor framework, four models on the same 48 tasks, all at maximum reasoning effort. Each model worked in its own sandbox with a 1280×720 desktop, a shell, the task’s reference frames and the page’s network capture, and had to deliver a single self-contained HTML file. The reported results contain one selected run for each model and task pair.</p>
-                <ul className="bench-list list-disc">
-                  <li><strong>Agent:</strong> Computer-1, run through Harbor</li>
-                  <li><strong>Reasoning effort:</strong> max</li>
-                  <li><strong>Viewport:</strong> a 1280×720 desktop</li>
-                  <li><strong>Tools:</strong> a shell (bash) alongside the computer-use tools</li>
-                </ul>
+                <RunPipeline />
 
               <h2 id="task" className="bench-h2 scroll-mt-24">Tasks</h2>
                 <p className={P}>Each task is one precise animation on one real, deployed page, with a fixed start and end state.</p>
