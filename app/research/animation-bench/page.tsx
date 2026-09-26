@@ -93,9 +93,9 @@ const sections: Section[] = [
   { id: "text", label: "Right words, wrong places", sub: true },
   { id: "flipbook", label: "Screenshot flipbook", sub: true },
   { id: "conclusion", label: "Conclusion" },
-  { id: "implications", label: "What this implies", sub: true },
-  { id: "final", label: "Final thoughts" },
-  { id: "tasks", label: "All 48 tasks" },
+  { id: "implications", label: "Implications", sub: true },
+  { id: "final", label: "Final thoughts", sub: true },
+  { id: "tasks", label: "Appendix: Tasks" },
 ];
 const fmt = (v: number) => v.toFixed(3);
 const P = "mb-7 max-w-[760px] text-[16px] leading-[1.72] text-[#3a3a3a]";
@@ -396,16 +396,16 @@ timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},
                   <Vid src="/animation-bench/ab-flipbook-squarespace.mp4" label="brand.squarespace.com hover: the reference beside GPT-6 Sol and GPT-6 Astra" caption="brand.squarespace.com. GPT-6 Sol’s page is sixteen stored screenshots swapped on a timer (motion 0.48); GPT-6 Astra animates the reveal itself (motion 0.78)." />
 
               <h2 id="conclusion" className="bench-h2 scroll-mt-24">Conclusion</h2>
-                <h3 id="implications" className="bench-h3 scroll-mt-24">What this implies</h3>
+                <h3 id="implications" className="bench-h3 scroll-mt-24">Implications</h3>
                 <p className={P}><strong>For model builders.</strong> The shortfall is not in seeing the page or writing the code. It lies in turning a handful of stills into a schedule: order, delay, duration, overlap, return. That is a narrow, nameable failure of temporal reasoning, and a narrow failure can be trained against.</p>
                 <p className={P}><strong>For benchmarks.</strong> Similarity scores tell you how far a page is from the original, not what went wrong. The natural next unit is the event: “thumb slides at t₁ ✓, ripple follows the slide ✗, thumb returns at t₂ ✓”. A list of events is something an engineer can act on and a training loop can reward.</p>
                 <p className={P}><strong>For environments.</strong> Every failure described above can be checked in a browser without a person in the loop. Does the section pin? Does the intro stop? Does the drag move the cards? Does the thumb come back? That makes frontend reconstruction an unusually clean domain in which to train agents that build, run and revise their own work.</p>
 
-              <h2 id="final" className="bench-h2 scroll-mt-24">Final thoughts</h2>
+              <h3 id="final" className="bench-h3 scroll-mt-24">Final thoughts</h3>
                 <p className={P}>So, can frontier models rebuild a web animation, not just its first frame? Not yet. They reproduce its palette, its typography and its layout, and they usually recognise what kind of component they are looking at. More often than not they reach for the right technique. What they do not recover is time: the order in which things happen, the pause before the next thing, how long each movement lasts, and whether the page returns to where it began. Every model scored lower on motion than on appearance, and the pages they built were, for the most part, right at a glance and wrong over the following few seconds. That is precisely the gap a screenshot cannot see, and precisely the part a user notices first.</p>
                 <p className={P}>Animation Bench is the first body of work to come from Physera that attempts to bridge the gap for the next succession of frontier models, so that they can improve on the axes people actually perceive: motion, timing, and layout. If you are working on frontend generation, or environments for agents that build software, we’d love to hear from you.</p>
 
-              <h2 id="tasks" className="bench-h2 scroll-mt-24">Every task, every model</h2>
+              <h2 id="tasks" className="bench-h2 scroll-mt-24">Appendix: Tasks</h2>
                 <p className={P}>All 48 tasks with their site, trigger and difficulty, and each model’s overall score. One selected generation per task and model, scored against one reference capture. Differences under ~0.02 should not be read as capability differences.</p>
                 <div className="overflow-x-auto">
                 <table className="bench-table bench-grid my-6">
