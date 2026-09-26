@@ -7,7 +7,7 @@ import "./style.css";
 export const metadata: Metadata = {
   title: "Animation Bench",
   description:
-    "Four frontier models rebuild 48 real web animations from 12 frames and a network capture. Appearance is close to solved; the timeline is not. What models get wrong, observable and counted.",
+    "Four frontier models rebuild 48 real web animations from 12 to 24 frames and a network capture. Appearance is close to solved; the timeline is not. What models get wrong, observable and counted.",
   alternates: { canonical: "/research/animation-bench" },
 };
 
@@ -265,7 +265,7 @@ export default function AnimationBenchPage() {
                   <li>Text presence 0.32 (weight 0.35) · spelling 0.49 (0.25) · reading order 1.00 (0.15) · box alignment 0.03 (0.25)</li>
                 </ul>
                 <p className={P}>The copy exists in the page, but at most moments it’s somewhere else: scrolled away, or stacked under the logo. Only a third of the reference’s text is on screen when it should be, and almost none of it in the right place.</p>
-                <p className={P}><strong>Overall: 0.423</strong> (0.353 × 0.475 + 0.412 × 0.384 + 0.059 × 0.391)</p>
+                <p className={P}><strong>Overall: 0.423</strong> = (0.353 × 0.475 + 0.412 × 0.384 + 0.059 × 0.391) / 0.824. Weights depend on the task: this one is mostly a 3D scene, so layout counts for little, and interaction’s 0.18 is held out and the rest rescaled.</p>
 
               <h2 id="results" className="bench-h2 scroll-mt-24">Results</h2>
                 <div className="overflow-x-auto">
@@ -368,7 +368,7 @@ export default function AnimationBenchPage() {
                   <Vid src="/animation-bench/ab-layout-dialkit.mp4" label="dialkit.dev headline: the reference beside Claude Fable 5.1 and Claude Opus 5.5" caption="dialkit.dev. Claude Fable 5.1 sets the headline at the original’s size and position (layout 0.94); Claude Opus 5.5 has the same words, smaller and lighter, so they no longer sit where the original’s do (layout 0.63, box alignment 0.02)." />
 
                 <h3 id="flipbook" className="bench-h3 scroll-mt-24">The screenshot flipbook</h3>
-                  <p className={P}>Fourteen reconstructions solved the task by embedding the reference frames themselves as images and stepping through them on a timer, on scroll, or on hover (Sol 10, Astra 3, Opus 5.5 1). It is the purest form of screenshot mimicry: correct at twelve instants by construction, and wrong everywhere between them. It does not pay. Within the same task, flipbooks score 0.07 lower on motion than reconstructions that rebuild the animation, and slightly lower overall.</p>
+                  <p className={P}>Fourteen reconstructions solved the task by embedding the reference frames themselves as images and stepping through them on a timer, on scroll, or on hover (Sol 10, Astra 3, Opus 5.5 1). It is the purest form of screenshot mimicry: correct at every stored frame by construction, and wrong everywhere between them. It does not pay. Within the same task, flipbooks score 0.07 lower on motion than reconstructions that rebuild the animation, and slightly lower overall.</p>
                   <Vid src="/animation-bench/ab-flipbook-squarespace.mp4" label="brand.squarespace.com hover: the reference beside GPT-6 Sol and GPT-6 Astra" caption="brand.squarespace.com. GPT-6 Sol’s page is sixteen stored screenshots swapped on a timer (motion 0.48); GPT-6 Astra animates the reveal itself (motion 0.78)." />
 
               <h2 id="conclusion" className="bench-h2 scroll-mt-24">Conclusion</h2>
