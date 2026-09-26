@@ -22,6 +22,27 @@ export const CATEGORIES = [
 
 export const benchmarks: Benchmark[] = [
   {
+    slug: "animation-bench",
+    name: "Animation Bench",
+    category: "Agents",
+    access: "Open",
+    updated: "Sep 2026",
+    blurb:
+      "Four frontier models rebuild 48 real web animations from 12 frames and a network capture. They reproduce what an animation looks like and what it is made of—but not when things happen.",
+    tags: ["Agents", "Coding agents", "Animation", "Visual evaluation"],
+    stats: [
+      { label: "Models", value: "4" },
+      { label: "Tasks", value: "48" },
+      { label: "Sites", value: "32" },
+      { label: "Reconstructions", value: "192" },
+      { label: "Top mean", value: "0.550" },
+    ],
+    topModel: { org: "OpenAI", name: "GPT-6 Astra" },
+    // [recorded 48-task generation cost normalized to $3.9, 48-task reproduction score]
+    spark: [[0.78, 0.550], [1.0, 0.519], [0.29, 0.498], [0.12, 0.470]],
+    live: true,
+  },
+  {
     slug: "cyberlatch",
     name: "CyberLatch",
     category: "Cyber",
@@ -77,30 +98,6 @@ export const benchmarks: Benchmark[] = [
       [0.20, 0.83],
       [0.95, 0.82],
       [1.0, 0.02],
-    ],
-    live: true,
-  },
-  {
-    slug: "animation-bench",
-    name: "Animation Bench",
-    category: "Agents",
-    access: "Proprietary",
-    updated: "Sep 2026",
-    blurb:
-      "Three computer-use agents rebuild real-website animations from reference frames and a HAR. Every reproduction is replayed and scored mechanically on four axes.",
-    tags: ["Agents", "Computer use", "Web", "Deterministic verifier"],
-    stats: [
-      { label: "Models", value: "3" },
-      { label: "Tasks", value: "15" },
-      { label: "Best mean", value: "0.727" },
-      { label: "Cost span", value: "13×" },
-    ],
-    topModel: { org: "Anthropic", name: "Claude Opus 5" },
-    // [cost 0-1, mean score 0-1] per model; cost normalised to Opus's $26.13/task
-    spark: [
-      [1.0, 0.727],
-      [0.08, 0.509],
-      [0.29, 0.483],
     ],
     live: true,
   },
