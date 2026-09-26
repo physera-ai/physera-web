@@ -35,11 +35,11 @@ export const benchmarks: Benchmark[] = [
       { label: "Tasks", value: "48" },
       { label: "Sites", value: "32" },
       { label: "Reconstructions", value: "192" },
-      { label: "Top mean", value: "0.550" },
+      { label: "Top mean", value: "0.594" },
     ],
     topModel: { org: "OpenAI", name: "GPT-6 Astra" },
     // [recorded 48-task generation cost normalized to $3.9, 48-task reproduction score]
-    spark: [[0.78, 0.550], [1.0, 0.519], [0.29, 0.498], [0.12, 0.470]],
+    spark: [[0.78, 0.594], [1.0, 0.548], [0.29, 0.507], [0.12, 0.516]],
     live: true,
   },
   {
