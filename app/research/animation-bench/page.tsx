@@ -276,6 +276,72 @@ function ScoreExample({ ex, n }: { ex: Example; n: number }) {
   );
 }
 
+// 95% bootstrap interval of each model's mean over the 48 tasks (10,000 resamples)
+const CI: Record<string, [number, number]> = {
+  "gpt-6-astra": [0.508, 0.591],
+  "claude-fable-5-1": [0.48, 0.559],
+  "claude-opus-5-5": [0.46, 0.536],
+  "gpt-6-sol": [0.434, 0.506],
+};
+
+function LeaderboardChart() {
+  const W = 420, H = 300, padL = 40, padB = 46, padT = 16;
+  const yMax = 0.7;
+  const y = (v: number) => padT + (1 - v / yMax) * (H - padT - padB);
+  const slot = (W - padL - 10) / results.models.length;
+  const ticks = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7];
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="ab-chart" role="img" aria-label="Mean overall score per model with 95% intervals">
+      {ticks.map((t) => (
+        <g key={t}>
+          <line x1={padL} x2={W - 10} y1={y(t)} y2={y(t)} stroke="#ecece8" />
+          <text x={padL - 8} y={y(t) + 4} textAnchor="end" className="ab-tick">{t.toFixed(1)}</text>
+        </g>
+      ))}
+      {results.models.map((m, i) => {
+        const cx = padL + slot * i + slot / 2, bw = slot * 0.56, [lo, hi] = CI[m.id];
+        return (
+          <g key={m.id}>
+            <rect x={cx - bw / 2} y={y(m.mean)} width={bw} height={y(0) - y(m.mean)} fill={COLOR[m.id]} rx="2" />
+            <line x1={cx} x2={cx} y1={y(hi)} y2={y(lo)} stroke="#222" strokeWidth="1.4" />
+            <line x1={cx - 7} x2={cx + 7} y1={y(hi)} y2={y(hi)} stroke="#222" strokeWidth="1.4" />
+            <line x1={cx - 7} x2={cx + 7} y1={y(lo)} y2={y(lo)} stroke="#222" strokeWidth="1.4" />
+            <text x={cx} y={y(hi) - 7} textAnchor="middle" className="ab-val">{fmt(m.mean)}</text>
+            <text x={cx} y={H - padB + 18} textAnchor="middle" className="ab-lab">{SHORT[m.id]}</text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+function CostChart() {
+  const W = 420, H = 300, padL = 40, padB = 46, padT = 16, padR = 20;
+  const xMin = Math.log10(0.3), xMax = Math.log10(6), yMin = 0.44, yMax = 0.58;
+  const x = (c: number) => padL + ((Math.log10(c) - xMin) / (xMax - xMin)) * (W - padL - padR);
+  const y = (v: number) => padT + (1 - (v - yMin) / (yMax - yMin)) * (H - padT - padB);
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="ab-chart" role="img" aria-label="Mean overall score against recorded cost per task">
+      {[0.46, 0.5, 0.54, 0.58].map((t) => (
+        <g key={t}>
+          <line x1={padL} x2={W - padR} y1={y(t)} y2={y(t)} stroke="#ecece8" />
+          <text x={padL - 8} y={y(t) + 4} textAnchor="end" className="ab-tick">{t.toFixed(2)}</text>
+        </g>
+      ))}
+      {[0.5, 1, 2, 4].map((c) => (
+        <text key={c} x={x(c)} y={H - padB + 18} textAnchor="middle" className="ab-tick">${c}</text>
+      ))}
+      <text x={(W + padL) / 2} y={H - 8} textAnchor="middle" className="ab-lab">cost per task (log scale)</text>
+      {results.models.map((m) => (
+        <g key={m.id}>
+          <circle cx={x(m.cost)} cy={y(m.mean)} r="7" fill={COLOR[m.id]} />
+          <text x={x(m.cost) + 11} y={y(m.mean) + 4} className="ab-lab">{SHORT[m.id]}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 function AxisChart() {
   const axes = [
     { key: "visual" as const, label: "Visual similarity" },
@@ -458,6 +524,13 @@ export default function AnimationBenchPage() {
                 ))}
 
               <h2 id="results" className="bench-h2 scroll-mt-24">Results</h2>
+                <figure className="bench-fig">
+                  <div className="ab-charts">
+                    <LeaderboardChart />
+                    <CostChart />
+                  </div>
+                  <figcaption>Left: mean overall score over 48 tasks, with 95% bootstrap intervals. Right: the same score against recorded model cost per task.</figcaption>
+                </figure>
                 <div className="overflow-x-auto">
                 <table className="bench-table my-6">
                   <thead>
@@ -571,14 +644,14 @@ export default function AnimationBenchPage() {
                   <thead>
                     <tr>
                       <th>Task</th>
-                      <th>Site</th>
-                      <th>Trigger</th>
-                      <th>Difficulty</th>
                       {results.models.map((m) => (
                         <th key={m.id} className="center" title={LABEL[m.id]}>
                           {SHORT[m.id]}
                         </th>
                       ))}
+                      <th>Site</th>
+                      <th>Trigger</th>
+                      <th>Difficulty</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -588,9 +661,6 @@ export default function AnimationBenchPage() {
                       return (
                         <tr key={t.id}>
                           <td className="whitespace-nowrap">{t.id}</td>
-                          <td className="muted whitespace-nowrap">{site}</td>
-                          <td className="muted whitespace-nowrap">{trigger}</td>
-                          <td className="muted">{difficulty}</td>
                           {results.models.map((m) => {
                             const r = t.scores[m.id as keyof typeof t.scores];
                             return (
@@ -599,6 +669,9 @@ export default function AnimationBenchPage() {
                               </td>
                             );
                           })}
+                          <td className="muted whitespace-nowrap">{site}</td>
+                          <td className="muted whitespace-nowrap">{trigger}</td>
+                          <td className="muted">{difficulty}</td>
                         </tr>
                       );
                     })}
