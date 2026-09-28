@@ -175,6 +175,7 @@ export default function Leaderboard() {
             <div className="bench-mono-label ab-lb-subtitle">Reproduction score · 4 models × 48 tasks</div>
           </div>
         </div>
+        <LeaderboardTable />
         <div className="ab-ch-grid">
           <OverallCI />
           <AxisProfile />
@@ -187,8 +188,6 @@ export default function Leaderboard() {
           <li key={t}>{t}</li>
         ))}
       </ul>
-
-      <LeaderboardTable />
       <p className="ab-note">
         One selected run per model and task. Scores are reproduction scores on a 0–1 scale, not success rates. Two
         tasks (raycast, Squarespace logo hover) keep their 24 September scores; the rest use the corrected 26

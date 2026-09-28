@@ -7,7 +7,6 @@ import "./style.css";
 import Leaderboard from "./Leaderboard";
 import CopyBlock from "./CopyBlock";
 import AutoVideo from "./AutoVideo";
-import Wall from "./Wall";
 import { ByTrigger, SubScoreRadar, TaskStrips, TimingFigure, VisualMotionScatter } from "./Charts";
 
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -218,7 +217,6 @@ export default function AnimationBenchPage() {
                 </div>
               </div>
 
-              <Wall />
               <Leaderboard />
 
               <h2 id="background" className="bench-h2 scroll-mt-24">Background</h2>
