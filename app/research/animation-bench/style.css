@@ -7,29 +7,43 @@
 .ab-lb-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
 .ab-lb-title{font-family:var(--font-serif);font-size:22px;line-height:1.15;letter-spacing:-0.01em;color:var(--bench-ink);margin:0 0 4px}
 .ab-lb-subtitle{margin:0}
-.ab-lb-toggle{display:inline-flex;border:1px solid var(--bench-rule-2);flex:none}
-.ab-lb-toggle button{all:unset;cursor:pointer;padding:6px 12px;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bench-ink-2);border-right:1px solid var(--bench-rule-2);transition:background .12s ease,color .12s ease}
-.ab-lb-toggle button:last-child{border-right:0}
-.ab-lb-toggle button.is-active{background:var(--bench-ink);color:#fff}
-.ab-lb-toggle button:hover:not(.is-active){background:var(--bench-hover);color:var(--bench-ink)}
-.ab-lb-toggle button:focus-visible{outline:2px solid var(--bench-good-ink);outline-offset:-2px}
-.ab-lb-chart{width:100%}
-.ab-lb-svg{width:100%;display:block;aspect-ratio:1140/380}
-.ab-lb-grid{stroke:var(--bench-rule);stroke-dasharray:2 3}
-.ab-lb-tick{font:13px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#888}
-.ab-lb-axis-label{font:13px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#999}
-.ab-lb-corner{font:600 12px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em}
-.ab-lb-corner.good{fill:var(--bench-good-ink)}
-.ab-lb-corner.bad{fill:var(--bench-bad-ink)}
-.ab-lb-chip-g{transition:transform 500ms ease}
-.ab-lb-ci{stroke:#00000055;stroke-width:1.3}
-.ab-lb-chip-label{font:600 15px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#1b1b1b}
 .ab-lb-ci-inline{font-family:var(--font-mono);font-size:11px;color:var(--bench-ink-3)}
 @media(max-width:760px){
   .ab-lb-panel{padding:16px}
-  .ab-lb-svg{aspect-ratio:1140/300}
 }
-@media(prefers-reduced-motion:reduce){.ab-lb-chip-g{transition:none}}
+
+.ab-ch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;align-items:start}
+.ab-ch-grid>.bench-fig{margin:34px 0 0}
+.ab-ch{margin:0;min-width:0}
+.ab-ch-fig{margin:34px 0 30px}
+.ab-ch-body{padding:16px 16px 12px}
+.ab-ch-body.ab-ch-grid{gap:28px 32px}
+.ab-ch-title{margin:0 0 10px}
+.ab-ch-frame{position:relative;width:100%}
+.ab-ch-svg{display:block;overflow:visible}
+.ab-ch-t{font:11px var(--font-mono),ui-monospace,monospace;fill:var(--bench-ink-3)}
+.ab-ch-l{font:12px var(--font-mono),ui-monospace,monospace;fill:var(--bench-ink-2)}
+.ab-ch-v{font:11px var(--font-mono),ui-monospace,monospace;fill:var(--bench-ink)}
+.ab-ch-caps{text-transform:uppercase;letter-spacing:.08em}
+.ab-ch-halo{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+.ab-ch-rule{stroke:var(--bench-rule);stroke-width:1;shape-rendering:crispEdges}
+.ab-ch-axis{stroke:var(--bench-rule-2);stroke-width:1;shape-rendering:crispEdges}
+.ab-ch-diag{stroke:var(--bench-ink-3);stroke-width:1;stroke-dasharray:3 3}
+.ab-ch-dot{fill-opacity:.8;transition:fill-opacity .12s ease}
+.ab-ch-dot:hover{fill-opacity:1;stroke:var(--bench-ink);stroke-width:1.5}
+.ab-ch-dot-ring{fill-opacity:1;stroke:#fff;stroke-width:1}
+.ab-ch-median{stroke:var(--bench-ink);stroke-width:2.5}
+.ab-ch-mean{stroke:var(--bench-ink);stroke-width:1.25}
+.ab-ch-dashed{stroke-dasharray:3 3}
+.ab-ch-bar{fill:var(--bench-rule-2)}
+.ab-ch-step{fill:none;stroke:var(--bench-ink);stroke-width:1.25}
+.ab-ch-cap{margin:10px 0 0;font-family:var(--font-mono);font-size:12px;line-height:1.5;letter-spacing:.02em;color:var(--bench-ink-3)}
+.ab-ch-note{margin:8px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.5;color:var(--bench-ink-3)}
+.ab-ch-key{padding:10px 16px}
+.ab-ch-tip{position:absolute;transform:translate(-50%,calc(-100% - 10px));pointer-events:none;background:var(--bench-ink);color:#fff;font:11px/1.4 var(--font-mono),ui-monospace,monospace;padding:4px 7px;max-width:220px;width:max-content;z-index:2}
+.ab-lb .ab-ch-grid{margin-top:14px;gap:28px 32px}
+@media(max-width:760px){.ab-ch-grid{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.ab-ch-dot{transition:none}}
 
 .ab-wall{margin:0 0 44px}
 .ab-wall-panel{border:1px solid var(--bench-rule);background:#fff;border-radius:4px;padding:20px 22px 22px}

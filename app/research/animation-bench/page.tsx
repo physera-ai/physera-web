@@ -8,6 +8,7 @@ import Leaderboard from "./Leaderboard";
 import CopyBlock from "./CopyBlock";
 import AutoVideo from "./AutoVideo";
 import Wall from "./Wall";
+import { ByTrigger, TaskStrips, TimingFigure, VisualMotionScatter } from "./Charts";
 
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
@@ -355,7 +356,11 @@ export default function AnimationBenchPage() {
 
               <h2 id="results" className="bench-h2 scroll-mt-24">5. Results</h2>
                 <p className={P}><strong>Every model is weakest on motion.</strong> Each reconstruction scores higher on visual similarity than it does on motion consistency (between 0.38 and 0.47). Visual exceeds motion in 177 of the 192 reconstructions, by 0.24 on average, and the two are only moderately related (r = 0.44). A page that looks right is only somewhat more likely to move right.</p>
-                <Fig src="/animation-bench/ab-visual-vs-motion.webp" alt="Four small scatter plots, one per model, of visual similarity against motion consistency; most points fall below the diagonal." caption="Each dot is one page a model built. Dots below the diagonal look better than they move: 177 of 192 do." />
+                <div className="ab-ch-grid">
+                  <VisualMotionScatter />
+                  <TaskStrips />
+                </div>
+                <ByTrigger />
                 <p className={P}><strong>Cost per task has a marginal impact.</strong> Mean spend per task ranges from $0.45 for GPT-6 Sol to $3.89 for Fable 5.1, close to a ninefold difference, against a spread in score of 0.087. Within each model, the tasks it spent more on did not score reliably higher (Spearman ρ from −0.24 to +0.24).</p>
                 <p className="ab-note">Scores use the corrected scoring of 26 September, which records reference and model identically. Two tasks, raycast and the Squarespace logo hover, could not be re-recorded and keep their 24 September scores.</p>
 
@@ -365,6 +370,7 @@ export default function AnimationBenchPage() {
                 <h3 id="timing" className="bench-h3 scroll-mt-24">6.1 Timing problem</h3>
                   <p className={P}>We believe this is the central finding. Looking more granular into the motion score, we can see a pattern emerge. Models do well on capturing motion location (location gate averages 0.88). However, across the 183 animations where motion has been captured, the timing term averages 0.57, against 0.50 when each reconstruction is paired with the reference from a different task. Put simply, the models reproduce which parts of the page should move; they have a low attentiveness to capturing the temporal consistency of animation.</p>
                   <p className={P}>Instead, the motion tends to arrive all at once. In a typical reconstruction the single biggest change between two frames accounts for 29% of all its movement; in the original it is 19%.</p>
+                  <TimingFigure />
                   <p className={P}>Nine of the 32 intros that should play once were written as loops that restart forever. On one eight-second sequence, three of the four models finished everything they had to show within about a second.</p>
                   <Vid src="/animation-bench/ab-timing-neutomni.mp4" label="neutomni.com timing: the reference beside GPT-6 Astra and GPT-6 Sol" caption="neutomni.com. As you scroll, a white outline rolls along a track above four red cards, turning from a square into a pentagon and then a circle. GPT-6 Astra keeps pace with the reference (motion 0.56). GPT-6 Sol builds the same shape inside a narrow column, rolls it ahead of the scroll and runs out of page before the end (motion 0.39)." />
 
