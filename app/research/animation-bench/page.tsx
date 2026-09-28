@@ -4,7 +4,7 @@ import SectionNav, { type Section } from "../components/SectionNav";
 import results from "./data.json";
 import "./bench.css";
 import "./style.css";
-import Leaderboard from "./Leaderboard";
+import Leaderboard, { Takeaways } from "./Leaderboard";
 import CopyBlock from "./CopyBlock";
 import AutoVideo from "./AutoVideo";
 import { ByTrigger, SubScoreRadar, TaskStrips, TimingFigure, VisualMotionScatter } from "./Charts";
@@ -191,33 +191,37 @@ export default function AnimationBenchPage() {
             </p>
           </header>
 
-          <div className="bench-article mt-10">
+          <section className="ab-top">
+          <div className="bench-stats mt-12">
+            <div>
+              <div className="bench-mono-label">Models</div>
+              <div className="v">4</div>
+              <div className="k">frontier models, same harness</div>
+            </div>
+            <div>
+              <div className="bench-mono-label">Tasks</div>
+              <div className="v">48</div>
+              <div className="k">real web animations</div>
+            </div>
+            <div>
+              <div className="bench-mono-label">Reconstructions</div>
+              <div className="v">192</div>
+              <div className="k">one per model and task</div>
+            </div>
+            <div>
+              <div className="bench-mono-label">Sites</div>
+              <div className="v">32</div>
+              <div className="k">live commercial websites</div>
+            </div>
+          </div>
+
+          <Leaderboard />
+          </section>
+
+          <div className="bench-article">
             <SectionNav sections={sections} />
             <div className="bench-article-body">
-              <div className="bench-stats mb-10">
-                <div>
-                  <div className="bench-mono-label">Models</div>
-                  <div className="v">4</div>
-                  <div className="k">frontier models, same harness</div>
-                </div>
-                <div>
-                  <div className="bench-mono-label">Tasks</div>
-                  <div className="v">48</div>
-                  <div className="k">real web animations</div>
-                </div>
-                <div>
-                  <div className="bench-mono-label">Reconstructions</div>
-                  <div className="v">192</div>
-                  <div className="k">one per model and task</div>
-                </div>
-                <div>
-                  <div className="bench-mono-label">Sites</div>
-                  <div className="v">32</div>
-                  <div className="k">live commercial websites</div>
-                </div>
-              </div>
-
-              <Leaderboard />
+              <Takeaways />
 
               <h2 id="background" className="bench-h2 scroll-mt-24">Background</h2>
                 <p className={P}>Frontend generation is one of the most sought-after commercial coding agent use cases. Current coding agents will easily capture a web page and fully reproduce its visual palette, typography, and layout. But a production page is not merely a single frame. It is a sequence of highly-versatile frames, state transitions, and numerous user interactions like hovers, scrolls, clicks, drags, etc. Are frontier models actually capable of rebuilding the full animation, not just the first frame?</p>

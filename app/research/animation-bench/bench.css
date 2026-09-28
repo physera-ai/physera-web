@@ -22,7 +22,7 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--bench-ink);
-  margin: 56px 0 14px;
+  margin: 64px 0 18px;
 }
 .bench-mono-label {
   font-family: var(--font-mono);

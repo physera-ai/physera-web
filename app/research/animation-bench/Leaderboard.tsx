@@ -181,7 +181,13 @@ export default function Leaderboard() {
           <AxisProfile />
         </div>
       </div>
+    </section>
+  );
+}
 
+export function Takeaways() {
+  return (
+    <>
       <h2 className="bench-h2">Key takeaways</h2>
       <ul className="bench-list list-disc">
         {TAKEAWAYS.map((t) => (
@@ -193,6 +199,6 @@ export default function Leaderboard() {
         tasks (raycast, Squarespace logo hover) keep their 24 September scores; the rest use the corrected 26
         September scoring.
       </p>
-    </section>
+    </>
   );
 }
