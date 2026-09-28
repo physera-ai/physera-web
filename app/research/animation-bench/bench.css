@@ -309,3 +309,4 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
   .bench-profile-bar{grid-template-columns:104px 1fr 80px;gap:10px}
 }
 .bench-h3{font-family:var(--font-serif);font-size:23px;line-height:1.15;letter-spacing:-0.01em;color:var(--bench-ink);margin:40px 0 12px}
+.bench-eq{display:block;width:100%;max-width:620px;height:auto;margin:6px 0 26px}
