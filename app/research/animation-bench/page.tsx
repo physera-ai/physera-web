@@ -183,12 +183,34 @@ export default function AnimationBenchPage() {
               Frontier multimodal coding agents can already recreate visually plausible web animations, but current
               evaluation methods fail to discriminate between screenshot parity and shippable frontend reconstruction.
             </p>
-            <div className="bench-mono-label">4 models · 48 tasks · 192 reconstructions · 32 sites · Computer-1 harness</div>
           </header>
 
           <div className="bench-article mt-10">
             <SectionNav sections={sections} />
             <div className="bench-article-body">
+              <div className="bench-stats mb-10">
+                <div>
+                  <div className="bench-mono-label">Models</div>
+                  <div className="v">4</div>
+                  <div className="k">frontier models, same harness</div>
+                </div>
+                <div>
+                  <div className="bench-mono-label">Tasks</div>
+                  <div className="v">48</div>
+                  <div className="k">real web animations</div>
+                </div>
+                <div>
+                  <div className="bench-mono-label">Reconstructions</div>
+                  <div className="v">192</div>
+                  <div className="k">one per model and task</div>
+                </div>
+                <div>
+                  <div className="bench-mono-label">Sites</div>
+                  <div className="v">32</div>
+                  <div className="k">live commercial websites</div>
+                </div>
+              </div>
+
               <Wall />
               <Leaderboard />
 
