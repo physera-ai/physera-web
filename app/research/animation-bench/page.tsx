@@ -3,6 +3,7 @@ import Link from "next/link";
 import SectionNav, { type Section } from "../cyberlatch/components/SectionNav";
 import results from "./data.json";
 import "./style.css";
+import TopCharts from "./TopCharts";
 import CopyBlock from "./CopyBlock";
 import AutoVideo from "./AutoVideo";
 
@@ -205,6 +206,8 @@ export default function AnimationBenchPage() {
                   <div className="k">live commercial websites</div>
                 </div>
               </div>
+
+              <TopCharts models={results.models} />
 
               <h2 id="background" className="bench-h2 scroll-mt-24">Background</h2>
                 <p className={P}>Frontend generation is one of the most sought-after commercial coding agent use cases. Current design-to-code agents will happily take a picture of a page and fully reproduce its visual palette, typography, and layout. But a production page is not merely a single frame. It is a sequence of highly-versatile frames, state transitions, and numerous user interactions: hovers, scrolls, clicks, drags. Are models capable of rebuilding the full animation, not just the first frame?</p>
