@@ -6,6 +6,7 @@ import "./style.css";
 import Leaderboard from "./Leaderboard";
 import CopyBlock from "./CopyBlock";
 import AutoVideo from "./AutoVideo";
+import Wall from "./Wall";
 
 export const metadata: Metadata = {
   title: "Animation Bench",
@@ -186,6 +187,7 @@ export default function AnimationBenchPage() {
           <div className="bench-article mt-10">
             <SectionNav sections={sections} />
             <div className="bench-article-body">
+              <Wall />
               <Leaderboard />
 
               <h2 id="background" className="bench-h2 scroll-mt-24">Background</h2>
