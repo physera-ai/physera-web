@@ -150,7 +150,7 @@ function RunPipeline() {
 
 const CITATION = `@misc{physera2026animationbench,
   title        = {Animation Bench: Evaluating Frontier Models on Web Animation Reconstruction},
-  author       = {Cvetko, Tim},
+  author       = {{The Team at Physera}},
   year         = {2026},
   month        = sep,
   howpublished = {Physera},
