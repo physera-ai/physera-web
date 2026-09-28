@@ -1,0 +1,1659 @@
+{
+  "models": [
+    {
+      "id": "gpt-6-astra",
+      "mean": 0.594,
+      "visual": 0.71,
+      "motion": 0.473,
+      "layout": 0.628,
+      "wins": 27,
+      "cost": 3.038192,
+      "clean": 0.555539,
+      "cleanWins": 18,
+      "cleanCost": 3.132304,
+      "cleanVisual": 0.677196,
+      "cleanMotion": 0.412293,
+      "cleanLayout": 0.617853
+    },
+    {
+      "id": "claude-fable-5-1",
+      "mean": 0.548,
+      "visual": 0.662,
+      "motion": 0.43,
+      "layout": 0.565,
+      "wins": 7,
+      "cost": 3.893884,
+      "clean": 0.523147,
+      "cleanWins": 9,
+      "cleanCost": 4.039504,
+      "cleanVisual": 0.627031,
+      "cleanMotion": 0.39503,
+      "cleanLayout": 0.587748
+    },
+    {
+      "id": "gpt-6-sol",
+      "mean": 0.516,
+      "visual": 0.64,
+      "motion": 0.381,
+      "layout": 0.539,
+      "wins": 8,
+      "cost": 0.451889,
+      "clean": 0.472247,
+      "cleanWins": 6,
+      "cleanCost": 0.454583,
+      "cleanVisual": 0.615651,
+      "cleanMotion": 0.294783,
+      "cleanLayout": 0.538252
+    },
+    {
+      "id": "claude-opus-5-5",
+      "mean": 0.507,
+      "visual": 0.631,
+      "motion": 0.383,
+      "layout": 0.517,
+      "wins": 6,
+      "cost": 1.120479,
+      "clean": 0.500402,
+      "cleanWins": 11,
+      "cleanCost": 1.151691,
+      "cleanVisual": 0.623883,
+      "cleanMotion": 0.347805,
+      "cleanLayout": 0.558814
+    }
+  ],
+  "tasks": [
+    {
+      "id": "adcker-menu-services-hover",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.472605,
+          "visual": 0.556647,
+          "motion": 0.136761,
+          "layout": 0.682386,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.460348,
+          "visual": 0.498874,
+          "motion": 0.142172,
+          "layout": 0.720737,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.450652,
+          "visual": 0.526535,
+          "motion": 0.123194,
+          "layout": 0.664286,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.478214,
+          "visual": 0.564994,
+          "motion": 0.138895,
+          "layout": 0.687363,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "altitude101-glass-ring-word-swap",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.515413,
+          "visual": 0.52227,
+          "motion": 0.499083,
+          "layout": 0.588573,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.416332,
+          "visual": 0.486042,
+          "motion": 0.344263,
+          "layout": 0.50256,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.472212,
+          "visual": 0.510204,
+          "motion": 0.424764,
+          "layout": 0.576401,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.361439,
+          "visual": 0.419577,
+          "motion": 0.323359,
+          "layout": 0.279167,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "altitude101-words-scroll-rates",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.317379,
+          "visual": 0.566669,
+          "motion": 0.098925,
+          "layout": 0.350816,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.294366,
+          "visual": 0.488094,
+          "motion": 0.096536,
+          "layout": 0.5168,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.354367,
+          "visual": 0.656485,
+          "motion": 0.059334,
+          "layout": 0.606885,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.407206,
+          "visual": 0.688423,
+          "motion": 0.151969,
+          "layout": 0.506561,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "ausify-vibe-canvas-carousel",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.588932,
+          "visual": 0.718259,
+          "motion": 0.416599,
+          "layout": 0.502304,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.549521,
+          "visual": 0.705718,
+          "motion": 0.298899,
+          "layout": 0.614826,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.628143,
+          "visual": 0.79844,
+          "motion": 0.390768,
+          "layout": 0.555864,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.531205,
+          "visual": 0.701145,
+          "motion": 0.269411,
+          "layout": 0.558745,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "basement-studio-graffiti-hero",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.461249,
+          "visual": 0.479573,
+          "motion": 0.429645,
+          "layout": 0.554212,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.564415,
+          "visual": 0.636331,
+          "motion": 0.462652,
+          "layout": 0.773337,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.620735,
+          "visual": 0.630392,
+          "motion": 0.588973,
+          "layout": 0.775473,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.581085,
+          "visual": 0.612468,
+          "motion": 0.525322,
+          "layout": 0.751744,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "benxrun-skyline-chapter-scroll",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.390196,
+          "visual": 0.664441,
+          "motion": 0.094146,
+          "layout": 0.817072,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.357877,
+          "visual": 0.6063,
+          "motion": 0.123798,
+          "layout": 0.505894,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.463718,
+          "visual": 0.655272,
+          "motion": 0.247019,
+          "layout": 0.831292,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.415586,
+          "visual": 0.599356,
+          "motion": 0.229863,
+          "layout": 0.613022,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "berd-window-morphs-into-app",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.618365,
+          "visual": 0.779942,
+          "motion": 0.448235,
+          "layout": 0.633333,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.569728,
+          "visual": 0.708102,
+          "motion": 0.395007,
+          "layout": 0.633333,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.538863,
+          "visual": 0.742378,
+          "motion": 0.453159,
+          "layout": 0.332692,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.670909,
+          "visual": 0.776794,
+          "motion": 0.586497,
+          "layout": 0.633333,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "charmling-99-charms-flythrough",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.459764,
+          "visual": 0.495948,
+          "motion": 0.452816,
+          "layout": 0.291289,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.386524,
+          "visual": 0.496702,
+          "motion": 0.311923,
+          "layout": 0.247669,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.547186,
+          "visual": 0.560027,
+          "motion": 0.565331,
+          "layout": 0.343117,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.432724,
+          "visual": 0.562488,
+          "motion": 0.345483,
+          "layout": 0.264831,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "ciaoenergy-cans-fan-scroll-spin",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.523185,
+          "visual": 0.677742,
+          "motion": 0.353356,
+          "layout": 0.63009,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.520692,
+          "visual": 0.589665,
+          "motion": 0.424179,
+          "layout": 0.713466,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.514746,
+          "visual": 0.62763,
+          "motion": 0.371523,
+          "layout": 0.727112,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.582701,
+          "visual": 0.703921,
+          "motion": 0.46726,
+          "layout": 0.54225,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "ciaoenergy-cans-sideways-selection",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.264331,
+          "visual": 0.496496,
+          "motion": 0.0,
+          "layout": 0.721665,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.360851,
+          "visual": 0.544253,
+          "motion": 0.181229,
+          "layout": 0.517794,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.315809,
+          "visual": 0.595175,
+          "motion": 0.0,
+          "layout": 0.850277,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.337579,
+          "visual": 0.497533,
+          "motion": 0.182987,
+          "layout": 0.46,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "ciaoenergy-text-dancing-scroll",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.381343,
+          "visual": 0.654176,
+          "motion": 0.145235,
+          "layout": 0.397105,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.489442,
+          "visual": 0.72087,
+          "motion": 0.303386,
+          "layout": 0.403256,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.546806,
+          "visual": 0.751096,
+          "motion": 0.381694,
+          "layout": 0.476854,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.552042,
+          "visual": 0.778397,
+          "motion": 0.351655,
+          "layout": 0.596616,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "cipher-loader-stills-ring",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.643365,
+          "visual": 0.689576,
+          "motion": 0.56136,
+          "layout": 0.893921,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.582938,
+          "visual": 0.660073,
+          "motion": 0.492137,
+          "layout": 0.678598,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.627931,
+          "visual": 0.695026,
+          "motion": 0.527551,
+          "layout": 0.860917,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.579048,
+          "visual": 0.681793,
+          "motion": 0.436713,
+          "layout": 0.856188,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "dialkit-dials-shape-headline",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.763363,
+          "visual": 0.722745,
+          "motion": 0.648949,
+          "layout": 0.938703,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.681588,
+          "visual": 0.762821,
+          "motion": 0.611796,
+          "layout": 0.629531,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.769396,
+          "visual": 0.727045,
+          "motion": 0.694359,
+          "layout": 0.907959,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.619549,
+          "visual": 0.764907,
+          "motion": 0.385857,
+          "layout": 0.635204,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "driftime-2025-pinned-scroll-morph",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.457086,
+          "visual": 0.51305,
+          "motion": 0.410471,
+          "layout": 0.447607,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.458979,
+          "visual": 0.511814,
+          "motion": 0.422291,
+          "layout": 0.398781,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.432313,
+          "visual": 0.544935,
+          "motion": 0.333262,
+          "layout": 0.449933,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.369947,
+          "visual": 0.466269,
+          "motion": 0.289275,
+          "layout": 0.356712,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "gufram-zero-gravity-collage-hero",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.582886,
+          "visual": 0.708008,
+          "motion": 0.527764,
+          "layout": 0.460387,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.717137,
+          "visual": 0.807586,
+          "motion": 0.773402,
+          "layout": 0.460387,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.63357,
+          "visual": 0.75517,
+          "motion": 0.610931,
+          "layout": 0.460387,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.609427,
+          "visual": 0.768569,
+          "motion": 0.544515,
+          "layout": 0.444524,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "kavieng-cards-fly-to-grid-drag",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.628075,
+          "visual": 0.629237,
+          "motion": 0.67164,
+          "layout": 0.582768,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.378552,
+          "visual": 0.53535,
+          "motion": 0.184681,
+          "layout": 0.337228,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.657845,
+          "visual": 0.648402,
+          "motion": 0.724669,
+          "layout": 0.605186,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.425105,
+          "visual": 0.567616,
+          "motion": 0.294274,
+          "layout": 0.342169,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "maxima-splash-curtain-whale-part2",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.590932,
+          "visual": 0.584046,
+          "motion": 0.642786,
+          "layout": 0.512238,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.605703,
+          "visual": 0.534277,
+          "motion": 0.736107,
+          "layout": 0.502491,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.536474,
+          "visual": 0.612808,
+          "motion": 0.496853,
+          "layout": 0.472226,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.510828,
+          "visual": 0.58148,
+          "motion": 0.447435,
+          "layout": 0.498125,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "maxima-splash-curtain-whale-scene",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.629568,
+          "visual": 0.688156,
+          "motion": 0.646795,
+          "layout": 0.496893,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.596745,
+          "visual": 0.690291,
+          "motion": 0.561063,
+          "layout": 0.495481,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.714833,
+          "visual": 0.723859,
+          "motion": 0.767267,
+          "layout": 0.607276,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.686488,
+          "visual": 0.697867,
+          "motion": 0.811824,
+          "layout": 0.447237,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "monopo-london-webgl-sections",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.553249,
+          "visual": 0.622341,
+          "motion": 0.398966,
+          "layout": 0.755835,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.446454,
+          "visual": 0.621442,
+          "motion": 0.131361,
+          "layout": 0.656903,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.599279,
+          "visual": 0.648178,
+          "motion": 0.5184,
+          "layout": 0.629405,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.431982,
+          "visual": 0.562628,
+          "motion": 0.179301,
+          "layout": 0.658832,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "motion-dev-animation",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.490462,
+          "visual": 0.57285,
+          "motion": 0.0,
+          "layout": 0.85734,
+          "skip": true
+        },
+        "claude-opus-5-5": {
+          "score": 0.310806,
+          "visual": 0.547435,
+          "motion": 0.0,
+          "layout": 0.266667,
+          "skip": true
+        },
+        "gpt-6-astra": {
+          "score": 0.277313,
+          "visual": 0.547063,
+          "motion": 0.0,
+          "layout": 0.15,
+          "skip": true
+        },
+        "gpt-6-sol": {
+          "score": 0.429729,
+          "visual": 0.547146,
+          "motion": 0.0,
+          "layout": 0.683333,
+          "skip": true
+        }
+      }
+    },
+    {
+      "id": "neutomni-preloader-cut-along-line",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.640505,
+          "visual": 0.740904,
+          "motion": 0.652704,
+          "layout": 0.44346,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.556816,
+          "visual": 0.633471,
+          "motion": 0.524096,
+          "layout": 0.479931,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.593926,
+          "visual": 0.70092,
+          "motion": 0.551366,
+          "layout": 0.481164,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.603526,
+          "visual": 0.631664,
+          "motion": 0.674854,
+          "layout": 0.429462,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "neutomni-process-rolling-shape",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.633033,
+          "visual": 0.682057,
+          "motion": 0.58015,
+          "layout": 0.652044,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.657566,
+          "visual": 0.672729,
+          "motion": 0.665234,
+          "layout": 0.621401,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.562276,
+          "visual": 0.686548,
+          "motion": 0.387883,
+          "layout": 0.681055,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.14457,
+          "visual": 0.309616,
+          "motion": 0.0,
+          "layout": 0.15,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "otsuka-zeroz-intro-reveal",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.355757,
+          "visual": 0.482492,
+          "motion": 0.207226,
+          "layout": 0.508333,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.51734,
+          "visual": 0.631076,
+          "motion": 0.377509,
+          "layout": 0.7,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.517234,
+          "visual": 0.554929,
+          "motion": 0.472563,
+          "layout": 0.566071,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.501163,
+          "visual": 0.62715,
+          "motion": 0.387485,
+          "layout": 0.415,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "oxigen-voxel-palm-pinned",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.43129,
+          "visual": 0.484489,
+          "motion": 0.376837,
+          "layout": 0.493264,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.42334,
+          "visual": 0.474709,
+          "motion": 0.383872,
+          "layout": 0.391395,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.677535,
+          "visual": 0.616935,
+          "motion": 0.754739,
+          "layout": 0.500713,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.371825,
+          "visual": 0.538883,
+          "motion": 0.221646,
+          "layout": 0.420728,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "palmo-coconut-crack-scroll",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.21663,
+          "visual": 0.321517,
+          "motion": 0.123502,
+          "layout": 0.239204,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.300134,
+          "visual": 0.63485,
+          "motion": 0.0,
+          "layout": 0.392772,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.287301,
+          "visual": 0.611017,
+          "motion": 0.0,
+          "layout": 0.356116,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.29324,
+          "visual": 0.623742,
+          "motion": 0.0,
+          "layout": 0.362907,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "palmo-pure-fresh-clean-words",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.282443,
+          "visual": 0.602524,
+          "motion": 0.022637,
+          "layout": 0.256979,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.269798,
+          "visual": 0.591604,
+          "motion": 0.0,
+          "layout": 0.259234,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.31953,
+          "visual": 0.566412,
+          "motion": 0.0,
+          "layout": 0.508385,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.263153,
+          "visual": 0.563903,
+          "motion": 0.018193,
+          "layout": 0.240707,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "papertiger-card-stack-to-fullbleed",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.246,
+          "visual": 0.348032,
+          "motion": 0.153891,
+          "layout": 0.254141,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.18233,
+          "visual": 0.416602,
+          "motion": 0.0,
+          "layout": 0.15,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.307977,
+          "visual": 0.45149,
+          "motion": 0.132165,
+          "layout": 0.40038,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.231373,
+          "visual": 0.451391,
+          "motion": 0.0,
+          "layout": 0.306247,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "papumba-play-explore-ipad-transition",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.750716,
+          "visual": 0.702211,
+          "motion": 0.809494,
+          "layout": 0.75,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.55605,
+          "visual": 0.638407,
+          "motion": 0.302063,
+          "layout": 0.75,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.618822,
+          "visual": 0.702469,
+          "motion": 0.413502,
+          "layout": 0.75,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.611318,
+          "visual": 0.628033,
+          "motion": 0.480314,
+          "layout": 0.75,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "pixel-melbourne-crafty-bunch-scroll",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.377784,
+          "visual": 0.512179,
+          "motion": 0.234456,
+          "layout": 0.427015,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.376856,
+          "visual": 0.508066,
+          "motion": 0.230768,
+          "layout": 0.435695,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.378969,
+          "visual": 0.518037,
+          "motion": 0.232313,
+          "layout": 0.427015,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.3745,
+          "visual": 0.504251,
+          "motion": 0.228317,
+          "layout": 0.435695,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "pixel-melbourne-menu-directors-hover",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.439827,
+          "visual": 0.342202,
+          "motion": 0.276093,
+          "layout": 0.75,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.504815,
+          "visual": 0.468999,
+          "motion": 0.313353,
+          "layout": 0.75,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.279841,
+          "visual": 0.304814,
+          "motion": 0.0,
+          "layout": 0.522222,
+          "skip": true
+        },
+        "gpt-6-sol": {
+          "score": 0.281324,
+          "visual": 0.308274,
+          "motion": 0.0,
+          "layout": 0.522222,
+          "skip": true
+        }
+      }
+    },
+    {
+      "id": "pudding-essential-words-pinned-cloud",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.829685,
+          "visual": 0.741117,
+          "motion": 0.896399,
+          "layout": 0.845787,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.56629,
+          "visual": 0.528075,
+          "motion": 0.540226,
+          "layout": 0.669224,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.82315,
+          "visual": 0.755218,
+          "motion": 0.868767,
+          "layout": 0.845219,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.487426,
+          "visual": 0.5002,
+          "motion": 0.388396,
+          "layout": 0.641567,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "rapidkert-soil-dive-pinned",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.342942,
+          "visual": 0.426417,
+          "motion": 0.256251,
+          "layout": 0.448936,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.29836,
+          "visual": 0.426814,
+          "motion": 0.182825,
+          "layout": 0.336379,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.228574,
+          "visual": 0.447667,
+          "motion": 0.0,
+          "layout": 0.514026,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.211196,
+          "visual": 0.419504,
+          "motion": 0.0,
+          "layout": 0.439715,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "raycast-animation",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.454664,
+          "visual": 0.649468,
+          "motion": 0.272035,
+          "layout": 0.433354,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.487548,
+          "visual": 0.649234,
+          "motion": 0.340528,
+          "layout": 0.461882,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.545562,
+          "visual": 0.765497,
+          "motion": 0.367988,
+          "layout": 0.471428,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.428935,
+          "visual": 0.623428,
+          "motion": 0.2456,
+          "layout": 0.409409,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "rebelliously-optimistic-four-commitments",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.664049,
+          "visual": 0.671739,
+          "motion": 0.826734,
+          "layout": 0.367814,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.613337,
+          "visual": 0.668554,
+          "motion": 0.711151,
+          "layout": 0.359338,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.578614,
+          "visual": 0.686229,
+          "motion": 0.523737,
+          "layout": 0.513227,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.357305,
+          "visual": 0.665526,
+          "motion": 0.0,
+          "layout": 0.520259,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "rebelliously-optimistic-pinned-hero",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.412567,
+          "visual": 0.871696,
+          "motion": 0.0,
+          "layout": 0.445868,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.408869,
+          "visual": 0.867643,
+          "motion": 0.0,
+          "layout": 0.436229,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.389761,
+          "visual": 0.837169,
+          "motion": 0.0,
+          "layout": 0.400729,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.401621,
+          "visual": 0.848287,
+          "motion": 0.0,
+          "layout": 0.434461,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "slowdown-featured-work-view-work-cursor",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.399482,
+          "visual": 0.549537,
+          "motion": 0.0,
+          "layout": 0.632013,
+          "skip": true
+        },
+        "claude-opus-5-5": {
+          "score": 0.366186,
+          "visual": 0.454355,
+          "motion": 0.0,
+          "layout": 0.678094,
+          "skip": true
+        },
+        "gpt-6-astra": {
+          "score": 0.638877,
+          "visual": 0.957218,
+          "motion": 0.0,
+          "layout": 0.854031,
+          "skip": true
+        },
+        "gpt-6-sol": {
+          "score": 0.624851,
+          "visual": 0.934568,
+          "motion": 0.0,
+          "layout": 0.838552,
+          "skip": true
+        }
+      }
+    },
+    {
+      "id": "slowdown-footer-services-rolling-labels",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.479402,
+          "visual": 0.760647,
+          "motion": 0.188276,
+          "layout": 0.567008,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.386734,
+          "visual": 0.493293,
+          "motion": 0.188918,
+          "layout": 0.573072,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.745077,
+          "visual": 0.910763,
+          "motion": 0.609036,
+          "layout": 0.73462,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.452458,
+          "visual": 0.680384,
+          "motion": 0.195279,
+          "layout": 0.560635,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "slowdown-footer-slow-down-reveal",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.675409,
+          "visual": 0.763975,
+          "motion": 0.514421,
+          "layout": 0.824291,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.779336,
+          "visual": 0.821168,
+          "motion": 0.721622,
+          "layout": 0.817586,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.707366,
+          "visual": 0.832427,
+          "motion": 0.492015,
+          "layout": 0.89664,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.503428,
+          "visual": 0.546221,
+          "motion": 0.360472,
+          "layout": 0.689412,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "slowdown-nav-hover-bullets",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.566341,
+          "visual": 0.721568,
+          "motion": 0.176836,
+          "layout": 0.723005,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.708387,
+          "visual": 0.916606,
+          "motion": 0.176132,
+          "layout": 0.928312,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.737498,
+          "visual": 0.941307,
+          "motion": 0.233302,
+          "layout": 0.935979,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.448868,
+          "visual": 0.574752,
+          "motion": 0.0,
+          "layout": 0.708909,
+          "skip": true
+        }
+      }
+    },
+    {
+      "id": "slowdown-process-experience-reveal",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.529981,
+          "visual": 0.663272,
+          "motion": 0.0,
+          "layout": 0.860025,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.560139,
+          "visual": 0.663161,
+          "motion": 0.0,
+          "layout": 0.965744,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.478908,
+          "visual": 0.623944,
+          "motion": 0.0,
+          "layout": 0.74026,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.55263,
+          "visual": 0.649094,
+          "motion": 0.0,
+          "layout": 0.960565,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "squarespace-brand-logo-hover-reveal",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.55241,
+          "visual": 0.648669,
+          "motion": 0.48667,
+          "layout": 0.473761,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.503724,
+          "visual": 0.614849,
+          "motion": 0.387983,
+          "layout": 0.452778,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.702415,
+          "visual": 0.751832,
+          "motion": 0.779539,
+          "layout": 0.551165,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.592745,
+          "visual": 0.694598,
+          "motion": 0.479934,
+          "layout": 0.552778,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "truus-letters-scatter-along-path",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.546391,
+          "visual": 0.680543,
+          "motion": 0.301901,
+          "layout": 0.77302,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.492368,
+          "visual": 0.635597,
+          "motion": 0.340438,
+          "layout": 0.543404,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.544895,
+          "visual": 0.68071,
+          "motion": 0.338646,
+          "layout": 0.702108,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.450798,
+          "visual": 0.61816,
+          "motion": 0.220599,
+          "layout": 0.602603,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "victor-furuya-core-values-scroll",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.612965,
+          "visual": 0.707849,
+          "motion": 0.538858,
+          "layout": 0.600324,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.571805,
+          "visual": 0.756011,
+          "motion": 0.356074,
+          "layout": 0.673023,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.663927,
+          "visual": 0.725358,
+          "motion": 0.610413,
+          "layout": 0.665431,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.558033,
+          "visual": 0.670737,
+          "motion": 0.408485,
+          "layout": 0.650688,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "victor-furuya-make-it-matter-collapse",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.686616,
+          "visual": 0.767071,
+          "motion": 0.539363,
+          "layout": 0.75,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.616042,
+          "visual": 0.740766,
+          "motion": 0.37254,
+          "layout": 0.733333,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.646926,
+          "visual": 0.831061,
+          "motion": 0.343505,
+          "layout": 0.75,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.688569,
+          "visual": 0.774002,
+          "motion": 0.536903,
+          "layout": 0.75,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "victor-furuya-manifesto-text",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.592161,
+          "visual": 0.764669,
+          "motion": 0.190121,
+          "layout": 0.99384,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.555066,
+          "visual": 0.754509,
+          "motion": 0.142817,
+          "layout": 0.927473,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.718689,
+          "visual": 0.806329,
+          "motion": 0.613157,
+          "layout": 0.75,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.494153,
+          "visual": 0.724667,
+          "motion": 0.240662,
+          "layout": 0.534363,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "victor-furuya-work-index-transition",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.476086,
+          "visual": 0.308652,
+          "motion": 0.494441,
+          "layout": 0.704293,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.476266,
+          "visual": 0.533446,
+          "motion": 0.315032,
+          "layout": 0.592037,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.697808,
+          "visual": 0.759196,
+          "motion": 0.586093,
+          "layout": 0.74537,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.480302,
+          "visual": 0.402023,
+          "motion": 0.362181,
+          "layout": 0.74537,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "wisprflow-dictation-notetaker-toggle",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.746414,
+          "visual": 0.84228,
+          "motion": 0.463529,
+          "layout": 0.956221,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.752462,
+          "visual": 0.803542,
+          "motion": 0.530509,
+          "layout": 0.953283,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.693149,
+          "visual": 0.854654,
+          "motion": 0.286204,
+          "layout": 0.959574,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.682225,
+          "visual": 0.833956,
+          "motion": 0.274756,
+          "layout": 0.963967,
+          "skip": false
+        }
+      }
+    },
+    {
+      "id": "wisprflow-hero-text-ribbons",
+      "scores": {
+        "claude-fable-5-1": {
+          "score": 0.641284,
+          "visual": 0.675584,
+          "motion": 0.667879,
+          "layout": 0.534716,
+          "skip": false
+        },
+        "claude-opus-5-5": {
+          "score": 0.670939,
+          "visual": 0.688085,
+          "motion": 0.692318,
+          "layout": 0.603518,
+          "skip": false
+        },
+        "gpt-6-astra": {
+          "score": 0.590446,
+          "visual": 0.710764,
+          "motion": 0.498214,
+          "layout": 0.541296,
+          "skip": false
+        },
+        "gpt-6-sol": {
+          "score": 0.459323,
+          "visual": 0.562996,
+          "motion": 0.284459,
+          "layout": 0.583908,
+          "skip": false
+        }
+      }
+    }
+  ],
+  "flagged": [
+    "motion-dev-animation",
+    "pixel-melbourne-menu-directors-hover",
+    "slowdown-featured-work-view-work-cursor",
+    "slowdown-nav-hover-bullets"
+  ],
+  "primaryTaskCount": 44,
+  "primaryCandidateCount": 176,
+  "selection": "Primary results exclude every model on the four tasks with at least one logged driver skip; appendix retains all 48 with flags."
+}

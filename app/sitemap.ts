@@ -12,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${SITE_URL}/research/animation-bench`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/careers`,
       lastModified,
       changeFrequency: "monthly",
