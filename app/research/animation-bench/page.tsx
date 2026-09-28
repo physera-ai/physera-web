@@ -3,6 +3,7 @@ import Link from "next/link";
 import SectionNav, { type Section } from "../cyberlatch/components/SectionNav";
 import results from "./data.json";
 import "./style.css";
+import AutoVideo from "./AutoVideo";
 
 export const metadata: Metadata = {
   title: "Animation Bench",
@@ -113,7 +114,7 @@ function Fig({ src, alt, caption }: { src: string; alt: string; caption: string 
 function Vid({ src, label, caption }: { src: string; label: string; caption: string }) {
   return (
     <figure className="bench-fig">
-      <video src={src} aria-label={label} autoPlay loop muted playsInline preload="metadata" className="ab-video" />
+      <AutoVideo src={src} label={label} />
       <figcaption>{caption}</figcaption>
     </figure>
   );
