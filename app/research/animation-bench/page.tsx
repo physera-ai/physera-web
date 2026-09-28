@@ -4,6 +4,7 @@ import SectionNav, { type Section } from "../components/SectionNav";
 import results from "./data.json";
 import "./bench.css";
 import "./style.css";
+import CopyBlock from "./CopyBlock";
 import AutoVideo from "./AutoVideo";
 
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -100,6 +101,8 @@ const sections: Section[] = [
   { id: "implications", label: "Implications", sub: true },
   { id: "final", label: "Final thoughts", sub: true },
   { id: "tasks", label: "Appendix: Tasks" },
+  { id: "citation", label: "Citation" },
+  { id: "partner", label: "Partner with us" },
 ];
 const fmt = (v: number) => v.toFixed(3);
 const P = "mb-7 max-w-[760px] text-[16px] leading-[1.72] text-[#3a3a3a]";
@@ -147,6 +150,15 @@ function RunPipeline() {
     </figure>
   );
 }
+
+const CITATION = `@misc{physera2026animationbench,
+  title        = {Animation Bench: Evaluating Frontier Models on Web Animation Reconstruction},
+  author       = {Cvetko, Tim},
+  year         = {2026},
+  month        = sep,
+  howpublished = {Physera},
+  url          = {https://physera.ai/research/animation-bench}
+}`;
 
 export default function AnimationBenchPage() {
   return (
@@ -459,6 +471,20 @@ timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},
                 </a>
                 .
               </p>
+
+              <h2 id="citation" className="bench-h2 scroll-mt-24">Citation</h2>
+                <p className={P}>If you use Animation Bench, cite this post as:</p>
+                <CopyBlock text={CITATION} />
+
+              <h2 id="partner" className="bench-h2 scroll-mt-24">Excited to partner</h2>
+                <p className={P}>
+                  We&rsquo;re excited to partner with teams working on frontend generation, or on environments for
+                  agents that build software. Reach us at{" "}
+                  <a className="bench-link" href="mailto:tim@physera.ai">
+                    tim@physera.ai
+                  </a>
+                  .
+                </p>
             </div>
           </div>
         </div>
