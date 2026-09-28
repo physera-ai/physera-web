@@ -90,4 +90,35 @@
   .ab-wall-title{font-size:22px}
   .ab-wall-transport{flex-wrap:wrap}
   .ab-wall-readout{width:100%;order:3}
-}
+}.ab-ch-chips{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 8px}
+.ab-ch-chips .bench-legend-item{background:none;border:0;padding:2px 0}
+.ab-ch-chips .bench-legend-item.is-off{opacity:.4}
+.ab-ch-arc{stroke:var(--bench-ink-3);stroke-width:1}
+.ab-ch-poly{transition:opacity .15s ease}
+.ab-lt{margin:24px 0 0}
+.ab-lt-view{margin:0 0 10px}
+.ab-lt-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ab-lt-table{margin:0}
+.ab-lt-table th,.ab-lt-table td{padding-left:6px;padding-right:6px}
+.ab-lt-table th{white-space:normal;vertical-align:bottom;line-height:1.35;letter-spacing:.04em}
+.ab-lt-table td{font-size:12.5px}
+.ab-lt+.ab-note{margin-top:0}
+.ab-lt-table th button{all:unset;cursor:pointer;display:inline-flex;gap:4px;align-items:baseline}
+.ab-lt-table th button:focus-visible{outline:2px solid var(--bench-good-ink);outline-offset:2px}
+.ab-lt-table th button:hover{color:var(--bench-ink)}
+.ab-lt-arrow{opacity:0}
+.ab-lt-arrow.is-on{opacity:1;color:var(--bench-ink)}
+.ab-lt-table th button:hover .ab-lt-arrow:not(.is-on){opacity:.4}
+.ab-lt-table th.is-view{color:var(--bench-ink)}
+.ab-lt-table td.is-view{font-weight:600}
+.ab-lt-table td{font-family:var(--font-mono);font-size:13px;white-space:nowrap}
+.ab-lt-table td.ab-lt-model{font-family:inherit;font-size:14px;padding-right:12px}
+.ab-lt-rank,.ab-lt-model{position:sticky;background:#fff;z-index:1}
+.ab-lt-rank{left:0;width:44px;min-width:44px}
+.ab-lt-model{left:44px;border-right:1px solid var(--bench-rule)}
+.ab-lt-table tr.lead .ab-lt-rank,.ab-lt-table tr.lead .ab-lt-model{background:var(--bench-good-fill)}
+.ab-lt-mark{display:inline-block;vertical-align:-2px;margin-right:8px}
+.ab-lt-mark text{font:700 9px var(--font-mono),ui-monospace,monospace;fill:var(--bench-ink-2)}
+.ab-lt-mark polygon{fill:none;stroke:var(--bench-ink-2);stroke-width:1.4}
+.ab-lt-note{margin:10px 0 8px}
+@media(prefers-reduced-motion:reduce){.ab-ch-poly{transition:none}}

@@ -8,7 +8,7 @@ import Leaderboard from "./Leaderboard";
 import CopyBlock from "./CopyBlock";
 import AutoVideo from "./AutoVideo";
 import Wall from "./Wall";
-import { ByTrigger, TaskStrips, TimingFigure, VisualMotionScatter } from "./Charts";
+import { ByTrigger, SubScoreRadar, TaskStrips, TimingFigure, VisualMotionScatter } from "./Charts";
 
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
@@ -360,6 +360,7 @@ export default function AnimationBenchPage() {
                   <VisualMotionScatter />
                   <TaskStrips />
                 </div>
+                <SubScoreRadar />
                 <ByTrigger />
                 <p className={P}><strong>Cost per task has a marginal impact.</strong> Mean spend per task ranges from $0.45 for GPT-6 Sol to $3.89 for Fable 5.1, close to a ninefold difference, against a spread in score of 0.087. Within each model, the tasks it spent more on did not score reliably higher (Spearman ρ from −0.24 to +0.24).</p>
                 <p className="ab-note">Scores use the corrected scoring of 26 September, which records reference and model identically. Two tasks, raycast and the Squarespace logo hover, could not be re-recorded and keep their 24 September scores.</p>

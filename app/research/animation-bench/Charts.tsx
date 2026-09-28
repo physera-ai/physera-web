@@ -2,6 +2,7 @@
 
 import { useCallback, useState, useSyncExternalStore, type ReactNode } from "react";
 import data from "./charts.json";
+import usage from "./models.json";
 
 type Triple = [mean: number, lo: number, hi: number];
 
@@ -360,8 +361,8 @@ export function TaskStrips() {
                           />
                         );
                       })}
-                      <line x1={cx - colW * 0.34} x2={cx + colW * 0.34} y1={y(med)} y2={y(med)} className="ab-ch-median" />
-                      <text x={cx} y={y(med) - 6} textAnchor="middle" className="ab-ch-v ab-ch-halo">{f3(med)}</text>
+                      <line x1={cx - colW * 0.26} x2={cx + colW * 0.26} y1={y(med)} y2={y(med)} className="ab-ch-median" />
+                      <text x={cx + colW * 0.26 + 4} y={y(med) + 4} className="ab-ch-v ab-ch-halo">{f3(med).slice(1)}</text>
                       <text x={cx} y={h - 8} textAnchor="middle" className="ab-ch-l">{m.short}</text>
                     </g>
                   );
@@ -372,6 +373,118 @@ export function TaskStrips() {
         </Frame>
       </div>
       <figcaption>Astra’s lead is a shift of the whole distribution, not a few tasks: its median and both quartiles sit above every other model’s.</figcaption>
+    </figure>
+  );
+}
+
+const SPOKES = [
+  { axis: "Visual", items: [["vis.ms_ssim", "MS-SSIM"], ["vis.lpips", "LPIPS"], ["vis.color", "Colour"], ["vis.edge", "Edges"], ["vis.coverage", "Coverage"]] },
+  { axis: "Motion", items: [["mot.energy", "Energy"], ["mot.flow", "Flow"], ["mot.trajectory", "Trajectory"]] },
+  { axis: "Layout", items: [["lay.text_presence", "Presence"], ["lay.text_accuracy", "Accuracy"], ["lay.ordering", "Order"], ["lay.box_alignment", "Alignment"]] },
+] as const;
+type SubKey = (typeof SPOKES)[number]["items"][number][0];
+const GROUP_GAP = 0.8;
+const SLOTS = SPOKES.reduce((n, g) => n + g.items.length, 0) + GROUP_GAP * SPOKES.length;
+const SPOKE_LIST = SPOKES.flatMap((g, gi) => {
+  const before = SPOKES.slice(0, gi).reduce((n, x) => n + x.items.length, 0) + GROUP_GAP * gi + GROUP_GAP / 2;
+  return g.items.map(([key, label], i) => ({ key: key as SubKey, label, group: gi, angle: ((before + i + 0.5) / SLOTS) * 2 * Math.PI }));
+});
+const subOf = (id: string) => usage[id as keyof typeof usage].sub;
+const SPOKE_MEANS = SPOKE_LIST.map((sp) => ({ ...sp, v: mean(RANKED.map((m) => subOf(m.id)[sp.key])) })).sort((a, b) => a.v - b.v);
+
+const spokeMax = (key: SubKey) => Math.max(...RANKED.map((m) => subOf(m.id)[key]));
+const GROUP_LABEL_ANGLE = SPOKES.map((_, gi) => {
+  const own = SPOKE_LIST.filter((sp) => sp.group === gi);
+  const pairs = own.slice(1).map((sp, i) => ({ a: (own[i].angle + sp.angle) / 2, v: Math.max(spokeMax(own[i].key), spokeMax(sp.key)) }));
+  return pairs.sort((x, y) => x.v - y.v)[0].a;
+});
+const radarR = (w: number) => Math.min(w / 2 - 64, 200);
+
+export function SubScoreRadar() {
+  const [off, setOff] = useState<Record<string, boolean>>({});
+  const { tip, bind } = useTip();
+  const [lo1, lo2] = SPOKE_MEANS;
+  const hi = SPOKE_MEANS[SPOKE_MEANS.length - 1];
+  return (
+    <figure className="bench-fig ab-ch-fig">
+      <div className="ab-ch-body">
+        <div className="bench-mono-label ab-ch-title">Sub-scores · mean over 48 tasks</div>
+        <div className="ab-ch-chips">
+          {RANKED.map((m) => (
+            <button
+              key={m.id}
+              type="button"
+              className={off[m.id] ? "bench-legend-item is-off" : "bench-legend-item"}
+              aria-pressed={!off[m.id]}
+              onClick={() => setOff((o) => ({ ...o, [m.id]: !o[m.id] }))}
+            >
+              <i style={{ background: m.color, borderRadius: "50%" }} />
+              {m.short}
+            </button>
+          ))}
+        </div>
+        <Frame fallback={560} height={(w) => 2 * radarR(w) + 72} tip={tip} label="Radar of the twelve sub-score means per model">
+          {(w) => {
+            const R = radarR(w);
+            const cx = w / 2, cy = R + 36;
+            const pt = (a: number, r: number) => [cx + Math.sin(a) * r, cy - Math.cos(a) * r] as const;
+            const arc = (a0: number, a1: number, r: number) => {
+              const [x0, y0] = pt(a0, r), [x1, y1] = pt(a1, r);
+              return `M${x0},${y0}A${r},${r} 0 ${a1 - a0 > Math.PI ? 1 : 0} 1 ${x1},${y1}`;
+            };
+            const step = (2 * Math.PI) / SLOTS;
+            return (
+              <g>
+                {[0.25, 0.5, 0.75, 1].map((r) => (
+                  <circle key={r} cx={cx} cy={cy} r={r * R} fill="none" className="ab-ch-rule" />
+                ))}
+                {[0.25, 0.5, 0.75].map((r) => (
+                  <text key={r} x={cx + 3} y={cy - r * R - 3} className="ab-ch-t">{r}</text>
+                ))}
+                {SPOKE_LIST.map((sp) => {
+                  const [x1, y1] = pt(sp.angle, R);
+                  const [lx, ly] = pt(sp.angle, R + 12);
+                  const sin = Math.sin(sp.angle);
+                  return (
+                    <g key={sp.key}>
+                      <line x1={cx} y1={cy} x2={x1} y2={y1} className="ab-ch-rule" />
+                      <text x={lx} y={ly + 4 + Math.cos(sp.angle) * -4} textAnchor={Math.abs(sin) < 0.2 ? "middle" : sin > 0 ? "start" : "end"} className="ab-ch-l">
+                        {sp.label}
+                      </text>
+                    </g>
+                  );
+                })}
+                {SPOKES.map((g, gi) => {
+                  const own = SPOKE_LIST.filter((sp) => sp.group === gi);
+                  const a0 = own[0].angle - step * 0.4, a1 = own[own.length - 1].angle + step * 0.4;
+                  const [gx, gy] = pt(GROUP_LABEL_ANGLE[gi], R * 0.88);
+                  return (
+                    <g key={g.axis}>
+                      <path d={arc(a0, a1, R + 5)} fill="none" className="ab-ch-arc" />
+                      <text x={gx} y={gy + 4} textAnchor="middle" className="ab-ch-t ab-ch-caps ab-ch-halo">{g.axis}</text>
+                    </g>
+                  );
+                })}
+                {[...RANKED].reverse().map((m) => {
+                  const sub = subOf(m.id);
+                  const pts = SPOKE_LIST.map((sp) => pt(sp.angle, sub[sp.key] * R));
+                  return (
+                    <g key={m.id} className="ab-ch-poly" style={{ opacity: off[m.id] ? 0.15 : 1 }}>
+                      <polygon points={pts.map((p) => p.join(",")).join(" ")} fill={m.color} fillOpacity={0.08} stroke={m.color} strokeWidth={1.5} />
+                      {pts.map(([x, y], i) => (
+                        <circle key={i} cx={x} cy={y} r={2.5} fill={m.color} {...bind(x, y, `${m.short} · ${SPOKE_LIST[i].label} ${f2(sub[SPOKE_LIST[i].key])}`)} />
+                      ))}
+                    </g>
+                  );
+                })}
+              </g>
+            );
+          }}
+        </Frame>
+      </div>
+      <figcaption>
+        Lowest on average across models: {lo1.label} ({f2(lo1.v)}) and {lo2.label} ({f2(lo2.v)}); highest: {hi.label} ({f2(hi.v)}).
+      </figcaption>
     </figure>
   );
 }
@@ -430,7 +543,6 @@ export function ByTrigger() {
 }
 
 const TIMING_BINS = bins(TIMING, 0.05);
-const TIMING_WRONG_BINS = bins(TIMING_WRONG, 0.05);
 const STEP_REF_BINS = bins(STEP_REF, 0.05);
 const STEP_CAND_BINS = bins(STEP_CAND, 0.05);
 
@@ -474,23 +586,22 @@ function XAxis({ w, y, l }: { w: number; y: number; l: number }) {
 
 function TimingPanel() {
   const h = 200, top = 6, plotH = h - top - 26;
-  const max = Math.max(...TIMING_BINS, ...TIMING_WRONG_BINS);
+  const max = Math.max(...TIMING_BINS);
   const mT = CHART_STATS.timingMean, mW = CHART_STATS.timingWrongMean;
   return (
     <div className="ab-ch">
       <div className="bench-mono-label ab-ch-title">Timing term · {TIMING.length} reconstructions that move</div>
-      <Frame fallback={360} height={h} label={`Histograms of the timing term: same task mean ${f2(mT)}, different-task baseline mean ${f2(mW)}`}>
+      <Frame fallback={360} height={h} label={`Histograms of the timing term: same task mean ${f2(mT)}, dashed line at the different-task baseline mean ${f2(mW)}`}>
         {(w) => (
           <g>
             <Hist w={w} y0={top} hgt={plotH} counts={TIMING_BINS} max={max} filled />
-            <Hist w={w} y0={top} hgt={plotH} counts={TIMING_WRONG_BINS} max={max} filled={false} />
             <MeanLine x={mT * w} y1={top} y2={top + plotH} label={`${f2(mT)} same task`} anchor="start" />
             <MeanLine x={mW * w} y1={top + 14} y2={top + plotH} label={`${f2(mW)} other task`} anchor="end" dashed />
             <XAxis w={w} y={top + plotH} l={0} />
           </g>
         )}
       </Frame>
-      <p className="ab-ch-note">Grey bars: scored against its own reference. Outline: against a different task’s reference.</p>
+      <p className="ab-ch-note">Bars: each reconstruction scored against its own reference. Dashed line: mean when scored against a different task’s reference (chance).</p>
     </div>
   );
 }
