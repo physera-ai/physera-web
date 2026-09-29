@@ -18,8 +18,23 @@ type TaskEntry = {
 };
 
 const WALL = wallData as Record<string, TaskEntry>;
-const TASK_IDS = Object.keys(WALL);
-const DEFAULT_TASK_ID = "wisprflow-dictation-notetaker-toggle";
+const FEATURED = [
+  "neutomni-process-rolling-shape",
+  "rapidkert-soil-dive-pinned",
+  "palmo-pure-fresh-clean-words",
+  "neutomni-preloader-cut-along-line",
+  "motion-dev-animation",
+  "monopo-london-webgl-sections",
+  "maxima-splash-curtain-whale-scene",
+  "ciaoenergy-cans-sideways-selection",
+  "ciaoenergy-cans-fan-scroll-spin",
+  "altitude101-glass-ring-word-swap",
+  "kavieng-cards-fly-to-grid-drag",
+  "pudding-essential-words-pinned-cloud",
+  "wisprflow-dictation-notetaker-toggle",
+];
+const TASK_IDS = FEATURED.filter((id) => id in WALL);
+const DEFAULT_TASK_ID = TASK_IDS[0];
 
 const MODEL_ROWS: { key: ModelKey; name: string; color: string }[] = [
   { key: "astra", name: "GPT-6 Astra", color: "#0f9d6e" },
@@ -296,7 +311,8 @@ export default function Wall() {
           <div>
             <h2 className="ab-wall-title">Reference vs. four reconstructions</h2>
             <p className="bench-mono-label ab-wall-subtitle">
-              Frame-locked to the same moments, on any of the 46 tasks. Hover a model to overlay the reference.
+              Frame-locked to the same moments. Hover a model to overlay the reference. For every task, see the{" "}
+              <a className="bench-link" href="#tasks">appendix</a>.
             </p>
           </div>
           <div className="ab-wall-step" role="group" aria-label="Switch task">
