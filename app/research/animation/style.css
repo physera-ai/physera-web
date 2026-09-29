@@ -811,3 +811,45 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-editorial .ab-toc .ab-toc-subs { margin: 0 0 0 22px; padding: 1px 0 5px; }
 .ab-editorial .ab-toc .ab-toc-subs a.ab-toc-sub { grid-template-columns: 12px 34px 1fr; }
 @media (min-width: 1024px) { .ab-toc-row { grid-template-columns: 1fr 26px; } }
+
+/* readability: more air between sections and blocks */
+.ab-editorial .bench-article-body .bench-h2 { margin-top: 104px; margin-bottom: 30px; padding-top: 38px; }
+.ab-editorial .bench-article-body .bench-h2::before { content: ""; display: block; width: 28px; height: 2px; margin-bottom: 22px; background: var(--bench-accent); }
+.ab-editorial .bench-article-body > .bench-h2:first-of-type { margin-top: 72px; }
+.ab-editorial .bench-article-body .bench-h3 { margin-top: 56px; margin-bottom: 18px; }
+.ab-editorial .bench-article-body > p { margin-bottom: 30px; }
+.ab-editorial .bench-article-body figure { margin-top: 36px; margin-bottom: 48px; }
+.ab-editorial .ab-case + .ab-case { margin-top: 48px; padding-top: 40px; }
+.ab-editorial .ab-case .bench-h3 { margin-top: 0; }
+.ab-editorial .ab-disclosure + .ab-disclosure { margin-top: 10px; }
+.ab-editorial .bench-list { margin-bottom: 30px; }
+@media (max-width: 640px) {
+  .ab-editorial .bench-article-body .bench-h2 { margin-top: 64px; padding-top: 28px; }
+  .ab-editorial .bench-article-body .bench-h3 { margin-top: 40px; }
+}
+
+/* brand colour in more places */
+.ab-editorial .ab-body .bench-stats > div { border-top: 2px solid var(--bench-accent); }
+.ab-editorial .bench-list li::marker { color: var(--bench-accent); }
+.ab-editorial .bench-fig > figcaption::before { content: "—"; margin-right: 8px; color: var(--bench-accent); }
+.ab-editorial .ab-disclosure summary:hover h3.bench-h3 { color: var(--bench-accent); }
+.ab-editorial .ab-wall-tile[data-row="ref"] { border-top-color: var(--bench-accent); }
+.ab-editorial .ab-taskscores-row:hover { color: var(--bench-accent); }
+
+/* run pipeline: animated, step by step, in the brand colour */
+.ab-editorial .ab-run ol { overflow: hidden; border-radius: 8px; }
+.ab-editorial .ab-run li { --ab-run-cycle: 9s; --ab-run-step: 1.5s; background: #fff; overflow: hidden; }
+.ab-editorial .ab-run li::before { display: none; }
+.ab-editorial .ab-run li::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--bench-accent); transform: scaleX(0); transform-origin: left; animation: ab-run-fill var(--ab-run-cycle) linear infinite; animation-delay: calc(var(--i) * var(--ab-run-step)); }
+.ab-editorial .ab-run li b, .ab-editorial .ab-run li .bench-mono-label { transition: color .3s; animation: ab-run-glow var(--ab-run-cycle) linear infinite; animation-delay: calc(var(--i) * var(--ab-run-step)); }
+.ab-editorial .ab-run li { animation: ab-run-bg var(--ab-run-cycle) linear infinite; animation-delay: calc(var(--i) * var(--ab-run-step)); }
+@keyframes ab-run-fill { 0% { transform: scaleX(0); } 16.6% { transform: scaleX(1); } 83.3% { transform: scaleX(1); opacity: 1; } 90% { opacity: 0; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(0); } }
+@keyframes ab-run-glow { 0%, 2% { color: inherit; } 8%, 24% { color: var(--bench-accent); } 34%, 100% { color: inherit; } }
+@keyframes ab-run-bg { 0%, 2% { background-color: #fff; } 8%, 24% { background-color: #f1f4fd; } 36%, 100% { background-color: #fff; } }
+.ab-editorial .ab-run figcaption { margin-top: 12px; }
+@media (prefers-reduced-motion: reduce) {
+  .ab-editorial .ab-run li, .ab-editorial .ab-run li::after, .ab-editorial .ab-run li b, .ab-editorial .ab-run li .bench-mono-label { animation: none; }
+  .ab-editorial .ab-run li::after { transform: scaleX(1); }
+}
+.ab-editorial .bench-list > li + li { margin-top: 10px; }
+.ab-editorial .bench-list .bench-list { margin: 8px 0 0; }
