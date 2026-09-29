@@ -312,7 +312,7 @@ export default function AnimationBenchPage() {
                 <p className={P}>All scores are reproduction scores on a 0–1 scale. The code also applies a nominal 0.99 ceiling to the overall score; it never binds (the highest score in the set is 0.888).</p>
                 </Disclosure>
 
-                <h3 id="example" className="bench-h3 scroll-mt-24">Scoring example: oxigen-voxel-palm-pinned task, oxigen.sa</h3>
+                <h3 id="example" className="bench-h3 scroll-mt-24">Scoring example: oxigen-voxel-palm-pinned</h3>
                 <p className={P}>To show the purposes of how our scoring algorithm works, here is one reconstruction from the <a className="bench-link" href="http://oxigen.sa">oxigen.sa</a> scored end to end. In the original, a palm tree made of glowing voxels grows over a voxel landscape while the section stays pinned and the copy changes as you scroll. Opus 5.5 built something recognisable, and very different.</p>
                 <Vid src="/animation-bench/ab-scoring-example-oxigen.mp4" label="oxigen.sa voxel palm: the reference beside Claude Opus 5.5’s reconstruction" caption="The original's palm assembles, grows and fills the frame as you scroll. Opus 5.5 draws a cyan fountain that barely changes, and its copy scrolls up under the logo instead of staying pinned." />
                 <p className={P}><strong>Visual similarity: 0.453</strong></p>
