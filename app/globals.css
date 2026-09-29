@@ -538,3 +538,12 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
   .bench-profile-bar{grid-template-columns:104px 1fr 80px;gap:10px}
 }
 .bench-h3{font-family:var(--font-serif);font-size:23px;line-height:1.15;letter-spacing:-0.01em;color:var(--bench-ink);margin:40px 0 12px}
+
+/* one button style site-wide: the header CTA */
+.btn-cta { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 38px; padding: 0 15px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--bench-ink); border: 1px solid var(--bench-ink); text-decoration: none; cursor: pointer; transition: background .15s ease, color .15s ease, border-color .15s ease; }
+.btn-cta::after { content: "→"; transition: transform .15s ease; }
+.btn-cta:hover { background: var(--bench-accent); border-color: var(--bench-accent); color: #fff; }
+.btn-cta:hover::after { transform: translateX(2px); }
+.btn-cta:disabled { opacity: .55; cursor: default; }
+.btn-cta-secondary { background: transparent; color: var(--bench-ink); }
+.btn-cta-secondary:hover { background: var(--bench-ink); border-color: var(--bench-ink); }

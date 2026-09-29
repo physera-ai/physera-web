@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: SITE_URL, lastModified, changeFrequency: "weekly", priority: 1 },
     {
-      url: `${SITE_URL}/manifesto`,
+      url: `${SITE_URL}/thesis`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.8,

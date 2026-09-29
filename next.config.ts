@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.1.38", "192.168.0.200", "10.190.244.22"],
   async redirects() {
     return [
-      { source: "/thesis", destination: "/manifesto", permanent: true },
       { source: "/research/cyberbench", destination: "/research/cyberlatch", permanent: true },
       { source: "/research/animation-bench", destination: "/research/animation", permanent: true },
     ];

@@ -10,7 +10,7 @@ const groups = [
   {
     title: "Company",
     links: [
-      { label: "Manifesto", href: "/manifesto" },
+      { label: "Thesis", href: "/thesis" },
       { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/contact" },
     ],
