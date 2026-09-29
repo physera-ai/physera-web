@@ -170,7 +170,7 @@ function ScoreTable({ rows, total, totalValue, totalWeight, head = ["Sub-score",
 
 const CITATION = `@misc{physera2026animationbench,
   title        = {Animation Bench: Evaluating Frontier Models on Web Animation Reconstruction},
-  author       = {Cvetko, Tim and Parekh, Soham and Dubey, Himanshu and Maratha, Ashwarya},
+  author       = {Ashwarya Maratha and Tim Cvetko and Himanshu Dubey and Soham Parekh},
   year         = {2026},
   month        = sep,
   howpublished = {Physera},
