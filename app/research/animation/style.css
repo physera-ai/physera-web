@@ -908,3 +908,4 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
   .ab-editorial .ab-body .bench-stats .v { font-size: 32px; }
 }
 .ab-hero-reel { mask-image: none; }
+.ab-editorial .ab-toc .ab-toc-subs a.ab-toc-sub { grid-template-columns: 12px 38px 1fr; column-gap: 8px; }
