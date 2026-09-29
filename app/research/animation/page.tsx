@@ -423,7 +423,6 @@ timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},
 
               <h3 id="final" className="bench-h3 scroll-mt-24">Final thoughts</h3>
                 <p className={P}>So, can frontier models rebuild a web animation, not just its first frame? Not yet. They reproduce its palette, its typography and its layout, and they usually recognise what kind of component they are looking at. More often than not they reach for the right technique. What they do not recover is time: the order in which things happen, the pause before the next thing, how long each movement lasts, and whether the page returns to where it began. Every model scored lower on motion than on appearance, and the pages they built were, for the most part, right at a glance and wrong over the following few seconds. That is precisely the gap a screenshot cannot see, and precisely the part a user notices first.</p>
-                <p className={P}>Animation Bench is the first body of work to come from Physera that attempts to bridge the gap for the next succession of frontier models, so that they can improve on the axes people actually perceive. If you are working on frontend generation, or environments for agents that build software, we’d love to hear from you.</p>
 
               <h2 id="tasks" className="bench-h2 scroll-mt-24">Appendix: Tasks</h2>
                 <p className={P}>All 48 tasks with each model’s overall score, site, trigger and difficulty. One selected generation per task and model, scored against one reference capture; the best score on each task is in bold. Differences under ~0.02 should not be read as capability differences.</p>
@@ -433,14 +432,13 @@ timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},
                 <p className={P}>If you use Animation Bench, cite this post as:</p>
                 <CopyBlock text={CITATION} />
 
-              <h2 id="partner" className="bench-h2 scroll-mt-24">Excited to partner</h2>
+              <h2 id="partner" className="bench-h2 scroll-mt-24">Partner with us</h2>
                 <p className={P}>
-                  We&rsquo;re excited to partner with teams working on frontend generation, or on environments for
-                  agents that build software. Reach us at{" "}
-                  <a className="bench-link" href="mailto:hello@physera.ai">
-                    hello@physera.ai
-                  </a>
-                  .
+                  Animation Bench is the first body of work to come from Physera that attempts to bridge the gap for the
+                  next succession of frontier models, so that they can improve on the axes people actually perceive. If
+                  you are working on frontend generation, or environments for agents that build software, we&rsquo;d love
+                  to hear from you. Reach us at{" "}
+                  <a className="bench-link" href="mailto:hello@physera.ai">hello@physera.ai</a>.
                 </p>
             </div>
           </div>
