@@ -8,12 +8,13 @@ const MODELS = [
   { id: "gpt-6-sol", name: "GPT-6 Sol", color: "#9b71a3" },
 ] as const;
 
-const W = 1000, H = 452, L = 56, R = 20, T = 30, B = 48;
+const W = 1000, H = 420, L = 56, R = 20, T = 18, B = 48;
+const YMIN = 0.1;
 const XMIN = 0.2, XMAX = 8;
 const x = (v: number) => L + (Math.log(v / XMIN) / Math.log(XMAX / XMIN)) * (W - L - R);
-const y = (v: number) => T + (1 - v) * (H - T - B);
+const y = (v: number) => T + (1 - (v - YMIN) / (1 - YMIN)) * (H - T - B);
 const XT = [0.25, 0.5, 1, 2, 4, 8];
-const YT = [0, 0.25, 0.5, 0.75, 1];
+const YT = [0.25, 0.5, 0.75, 1];
 
 function rank(v: number[]) {
   const order = v.map((_, i) => i).sort((a, b) => v[a] - v[b]);
@@ -42,11 +43,6 @@ export default function CostVsScore({ caption }: { caption: string }) {
     const meanS = pts.reduce((a, p) => a + p.s, 0) / pts.length;
     return { ...m, pts, meanC, meanS, rho: spearman(pts.map((p) => p.c), pts.map((p) => p.s)) };
   });
-  // Labels whose mean costs sit within ~90 units of a neighbour take the row above so they never collide.
-  const labelRow = series.map(() => 0);
-  series.map((m, i) => ({ i, px: x(m.meanC) })).sort((a, b) => a.px - b.px).forEach((cur, k, arr) => {
-    if (k > 0 && cur.px - arr[k - 1].px < 90) labelRow[cur.i] = labelRow[arr[k - 1].i] === 0 ? 1 : 0;
-  });
   return (
     <figure className="bench-fig ab-vvm ab-cvs">
       <div className="ab-cvs-legend" aria-label="Models">
@@ -60,8 +56,8 @@ export default function CostVsScore({ caption }: { caption: string }) {
       <svg viewBox={`0 0 ${W} ${H}`} className="ab-cvs-svg" role="img" aria-label="Cost per task against overall score for all four models, 192 tasks, cost on a log scale.">
         {XT.map((t) => (
           <g key={t} className="ab-vvm-grid">
-            <line x1={x(t)} y1={y(0)} x2={x(t)} y2={y(1)} />
-            <text x={x(t)} y={y(0) + 18} textAnchor="middle">${t < 1 ? t.toFixed(2) : t}</text>
+            <line x1={x(t)} y1={y(YMIN)} x2={x(t)} y2={y(1)} />
+            <text x={x(t)} y={y(YMIN) + 18} textAnchor="middle">${t < 1 ? t.toFixed(2) : t}</text>
           </g>
         ))}
         {YT.map((t) => (
@@ -71,16 +67,15 @@ export default function CostVsScore({ caption }: { caption: string }) {
           </g>
         ))}
         {series.map((m) => m.pts.map((p) => (
-          <circle key={`${m.id}-${p.task}`} cx={x(Math.min(Math.max(p.c, XMIN), XMAX))} cy={y(p.s)} r="4" fill={m.color} fillOpacity=".62" stroke="#fff" strokeWidth=".8">
+          <circle key={`${m.id}-${p.task}`} cx={x(Math.min(Math.max(p.c, XMIN), XMAX))} cy={y(Math.max(p.s, YMIN))} r="4" fill={m.color} fillOpacity=".62" stroke="#fff" strokeWidth=".8">
             <title>{`${m.name} · ${p.task}: $${p.c.toFixed(2)}, overall ${p.s.toFixed(3)}`}</title>
           </circle>
         )))}
-        {series.map((m, i) => (
+        {series.map((m) => (
           <g key={`${m.id}-mean`} className="ab-cvs-mean" style={{ color: m.color }}>
-            <line x1={x(m.meanC)} y1={y(0)} x2={x(m.meanC)} y2={y(1)} stroke="currentColor" />
             <circle cx={x(m.meanC)} cy={y(m.meanS)} r="9" fill="#fff" stroke="currentColor" strokeWidth="2.2" />
             <circle cx={x(m.meanC)} cy={y(m.meanS)} r="3" fill="currentColor" />
-            <text x={x(m.meanC)} y={y(1) - 6 - labelRow[i] * 14} textAnchor="middle">{m.meanS.toFixed(3)} · ${m.meanC.toFixed(2)}</text>
+            <title>{`${m.name} mean: $${m.meanC.toFixed(2)}, overall ${m.meanS.toFixed(3)}`}</title>
           </g>
         ))}
         <text className="ab-vvm-axis" x={(x(XMIN) + x(XMAX)) / 2} y={H - 8} textAnchor="middle">cost per task (USD, log scale)</text>
