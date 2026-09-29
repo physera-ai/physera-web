@@ -391,8 +391,8 @@
 .ab-radial-spoke line { stroke: #c7d4c5; stroke-dasharray: 3 5; }
 .ab-radial-spoke circle { fill: #b8cbb6; }
 .ab-radial-model { transition: opacity .25s; }
-.ab-radial-model polygon { fill-opacity: .045; stroke-width: 1.7; stroke-linejoin: round; transition: fill-opacity .2s, stroke-width .2s; }
-.ab-radial-model.is-highlighted polygon { fill-opacity: .14; stroke-width: 2.5; }
+.ab-radial-model polygon, .ab-radial-model path { fill-opacity: .045; stroke-width: 1.7; stroke-linejoin: round; transition: fill-opacity .2s, stroke-width .2s; }
+.ab-radial-model.is-highlighted polygon, .ab-radial-model.is-highlighted path { fill-opacity: .14; stroke-width: 2.5; }
 .ab-radial-model.is-muted { opacity: .2; }
 .ab-radial-model.is-hidden { opacity: 0; pointer-events: none; }
 .ab-radial-label text { fill: #344b3b; font: 500 13px var(--font-geist-sans), sans-serif; letter-spacing: -.2px; }
@@ -722,3 +722,4 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 @media (max-width: 640px) { .ab-vvm-grid-2x2 { grid-template-columns: 1fr; } }
 .ab-editorial .bench-article-body .ab-vvm-panel { margin: 0; padding: 14px 14px 8px; }
 .ab-editorial .ab-vvm > .ab-vvm-grid-2x2 { margin: 0 0 12px; }
+.ab-vvm-mean { stroke-dasharray: 3 4; stroke-opacity: .55; }

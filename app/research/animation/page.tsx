@@ -10,6 +10,7 @@ import Wall from "./Wall";
 import Flipbook from "./Flipbook";
 import HeroReel from "./HeroReel";
 import VisualVsMotion from "./VisualVsMotion";
+import CostVsScore from "./CostVsScore";
 import Disclosure from "./Disclosure";
 
 export const metadata: Metadata = {
@@ -332,6 +333,7 @@ export default function AnimationBenchPage() {
                 <p className={P}><strong>Every model is weakest on motion.</strong> Each reconstruction scores higher on visual similarity than it does on motion consistency (between 0.38 and 0.47). Visual exceeds motion in 177 of the 192 reconstructions, by 0.24 on average, and the two are only moderately related (r = 0.44). A page that looks right is only somewhat more likely to move right.</p>
                 <VisualVsMotion caption="Each dot is one page a model built. Dots below the diagonal look better than they move: 177 of 192 do." />
                 <p className={P}><strong>Cost per task has a marginal impact.</strong> Mean spend per task ranges from $0.45 for GPT-6 Sol to $3.89 for Fable 5.1, close to a ninefold difference, against a spread in score of 0.087. Within each model, the tasks it spent more on did not score reliably higher (Spearman ρ from −0.24 to +0.24).</p>
+                <CostVsScore caption="Each dot is one task. Spend on a task is what the model cost for that run; the vertical line is the model’s mean. Within every model the correlation between spend and score is weak, from −0.24 to +0.24." />
 
               <h2 id="failures" className="bench-h2 scroll-mt-24">What frontier models get wrong</h2>
                 <p className={P}>The final results indicate that motion is the gap. We deeply investigated all 192 generated pages and replayed a subset side by side with the reference. Each failure below is observable in the output, countable across the set, and has a named example to follow along.</p>
@@ -363,8 +365,6 @@ export default function AnimationBenchPage() {
                   </tbody></table></div>
                   <p className={P}><strong>What makes this case so hard?</strong> The pill is small, and each letter of the ripple lifts by only a few pixels. The stills are unevenly spaced: the first is taken almost seven seconds into the recording, a full second passes before the slide, eight quick frames about 150 ms apart catch the ripple, and a second and a half passes before the return. To rebuild it, a model has to read the timestamps as well as the pictures, and turn a few pixels of difference into a sequence with an order, a pause and a return. No single frame shows any of that.</p>
                   <p className={P}><strong>GPT-6 Sol shows what happens when that reading fails.</strong> Its page slides the thumb 0.9 seconds after load, then flips it back and forth every 3.3 seconds, indefinitely. There is no ripple at all: the letters are never split apart, so they cannot move one at a time. Every frame of it looks right (visual 0.94, layout 0.95), and it scores 0.36 on motion.</p>
-                  <pre className="ab-pre"><code>{`setTimeout(()=>{setState('right');restartTimer()},900);
-timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},3300);`}</code></pre>
                 </section>
 
                 <section className="ab-case">

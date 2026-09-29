@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ModelLogo from "./ModelLogo";
 
 type Axis = "overall" | "visual" | "motion" | "layout";
@@ -144,28 +144,67 @@ function Dimensions({ active, onActive }: { active: string | null; onActive: (id
   const round = (value: number) => Math.round(value * 1000) / 1000;
   const selected = MODELS.find((m) => m.id === active && visible.has(m.id));
 
-  // The shapes can be tugged with the pointer, resist, and spring back on release.
-  const [pull, setPull] = useState({ x: 0, y: 0, live: false });
-  const dragStart = useRef<{ x: number; y: number; scale: number } | null>(null);
-  const resist = (v: number) => (v * 0.55) / (1 + Math.abs(v) / 220);
-  const onPointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
+  // Pull on an edge and it bows toward the pointer like a bowstring; vertices stay anchored and it springs back on release.
+  const [bow, setBow] = useState({ x: 0, y: 0, ox: cx, oy: cy, live: false });
+  const drag = useRef<{ x: number; y: number; scale: number; ox: number; oy: number } | null>(null);
+  const spring = useRef<{ raf: number; vx: number; vy: number } | null>(null);
+  const resist = (v: number) => (v * 0.7) / (1 + Math.abs(v) / 260);
+  const toSvg = (e: React.PointerEvent<SVGSVGElement>) => {
     const box = e.currentTarget.getBoundingClientRect();
-    dragStart.current = { x: e.clientX, y: e.clientY, scale: 1000 / box.width };
+    const scale = 1000 / box.width;
+    return { x: (e.clientX - box.left) * scale, y: (e.clientY - box.top) * scale, scale };
+  };
+  const onPointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
+    if (spring.current) { cancelAnimationFrame(spring.current.raf); spring.current = null; }
+    const pt = toSvg(e);
+    drag.current = { x: e.clientX, y: e.clientY, scale: pt.scale, ox: pt.x, oy: pt.y };
     e.currentTarget.setPointerCapture(e.pointerId);
-    setPull({ x: 0, y: 0, live: true });
+    setBow({ x: 0, y: 0, ox: pt.x, oy: pt.y, live: true });
   };
   const onPointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
-    const start = dragStart.current;
-    if (!start) return;
-    setPull({ x: resist((e.clientX - start.x) * start.scale), y: resist((e.clientY - start.y) * start.scale), live: true });
+    const d = drag.current;
+    if (!d) return;
+    setBow({ x: resist((e.clientX - d.x) * d.scale), y: resist((e.clientY - d.y) * d.scale), ox: d.ox, oy: d.oy, live: true });
   };
   const release = (e: React.PointerEvent<SVGSVGElement>) => {
-    if (!dragStart.current) return;
-    dragStart.current = null;
+    if (!drag.current) return;
+    drag.current = null;
     if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
-    setPull({ x: 0, y: 0, live: false });
+    setBow((b) => ({ ...b, live: false }));
   };
-  const stretch = 1 + Math.hypot(pull.x, pull.y) / 700;
+  useEffect(() => {
+    if (bow.live || (bow.x === 0 && bow.y === 0)) return;
+    let { x, y } = bow;
+    let vx = 0, vy = 0, last = performance.now();
+    const step = (now: number) => {
+      const dt = Math.min(0.032, (now - last) / 1000); last = now;
+      const k = 180, c = 7;
+      vx += (-k * x - c * vx) * dt; vy += (-k * y - c * vy) * dt;
+      x += vx * dt; y += vy * dt;
+      if (Math.abs(x) < 0.05 && Math.abs(y) < 0.05 && Math.abs(vx) < 1 && Math.abs(vy) < 1) {
+        spring.current = null;
+        setBow((b) => ({ ...b, x: 0, y: 0 }));
+        return;
+      }
+      setBow((b) => ({ ...b, x, y }));
+      spring.current = { raf: requestAnimationFrame(step), vx, vy };
+    };
+    spring.current = { raf: requestAnimationFrame(step), vx: 0, vy: 0 };
+    return () => { if (spring.current) cancelAnimationFrame(spring.current.raf); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bow.live]);
+  const bowedPath = (pts: number[][]) => {
+    const seg = (a: number[], b: number[]) => {
+      const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
+      const dx = b[0] - a[0], dy = b[1] - a[1], len2 = dx * dx + dy * dy || 1;
+      const t = Math.max(0, Math.min(1, ((bow.ox - a[0]) * dx + (bow.oy - a[1]) * dy) / len2));
+      const nx = a[0] + t * dx, ny = a[1] + t * dy;
+      const dist = Math.hypot(bow.ox - nx, (bow.oy - ny) * 1.6);
+      const w = Math.exp(-(dist * dist) / (2 * 70 * 70));
+      return `Q ${round(mx + 2 * w * bow.x)} ${round(my + 2 * w * bow.y)} ${round(b[0])} ${round(b[1])}`;
+    };
+    return `M ${round(pts[0][0])} ${round(pts[0][1])} ${seg(pts[0], pts[1])} ${seg(pts[1], pts[2])} ${seg(pts[2], pts[0])} Z`;
+  };
 
   return (
     <div className="ab-dimensions">
@@ -185,7 +224,7 @@ function Dimensions({ active, onActive }: { active: string | null; onActive: (id
         ))}
       </div>
       <div className="ab-radial-stage">
-        <svg className={`ab-radial${pull.live ? " is-dragging" : ""}`} viewBox="0 0 1000 450" role="group" aria-label="Model reproduction scores across visual similarity, motion consistency, and layout correctness. Each spoke uses the same zero to one scale."
+        <svg className={`ab-radial${bow.live ? " is-dragging" : ""}`} viewBox="0 0 1000 450" role="group" aria-label="Model reproduction scores across visual similarity, motion consistency, and layout correctness. Each spoke uses the same zero to one scale."
           onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={release} onPointerCancel={release} onLostPointerCapture={release}>
           <defs>
             <pattern id="ab-radial-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#99aaa3" opacity=".26" /></pattern>
@@ -202,14 +241,13 @@ function Dimensions({ active, onActive }: { active: string | null; onActive: (id
               <circle cx={round(x)} cy={round(y)} r="3" />
             </g>;
           })}
-          <g className="ab-radial-shapes" style={{ transform: `translate(${pull.x}px, ${pull.y}px) scale(${stretch})`, transformOrigin: `${cx}px ${cy}px`, transition: pull.live ? "none" : "transform .75s cubic-bezier(.18, 1.9, .3, 1)" }}>
+          <g className="ab-radial-shapes">
           {MODELS.map((m) => {
             const shown = visible.has(m.id);
             const highlighted = selected?.id === m.id;
             return <g key={m.id} className={`ab-radial-model${highlighted ? " is-highlighted" : ""}${selected && !highlighted ? " is-muted" : ""}${shown ? "" : " is-hidden"}`}
               style={{ color: m.color }} aria-hidden={!shown}>
-              <polygon points={DIMENSIONS.map((d) => point(d.angle, m[d.key][0]).map(round).join(",")).join(" ")}
-                fill="currentColor" stroke="currentColor" />
+              <path d={bowedPath(DIMENSIONS.map((d) => point(d.angle, m[d.key][0])))} fill="currentColor" stroke="currentColor" />
               {DIMENSIONS.map((d) => {
                 const [x, y] = point(d.angle, m[d.key][0]);
                 return <circle key={d.key} cx={round(x)} cy={round(y)} r={highlighted ? 5 : 3.5} fill="currentColor" stroke="white" strokeWidth="1.5" />;

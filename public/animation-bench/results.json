@@ -70,28 +70,32 @@
      "visual": 0.704286,
      "motion": 0.425454,
      "layout": 0.682178,
-     "skip": false
+     "skip": false,
+     "cost": 1.8962
     },
     "claude-opus-5-5": {
      "score": 0.496556,
      "visual": 0.6102,
      "motion": 0.306156,
      "layout": 0.516491,
-     "skip": false
+     "skip": false,
+     "cost": 1.257
     },
     "gpt-6-astra": {
      "score": 0.384549,
      "visual": 0.571377,
      "motion": 0.0,
      "layout": 0.488857,
-     "skip": false
+     "skip": false,
+     "cost": 2.2508
     },
     "gpt-6-sol": {
      "score": 0.465236,
      "visual": 0.597066,
      "motion": 0.243871,
      "layout": 0.488857,
-     "skip": false
+     "skip": false,
+     "cost": 0.4754
     }
    }
   },
@@ -103,28 +107,32 @@
      "visual": 0.564737,
      "motion": 0.423236,
      "layout": 0.634666,
-     "skip": false
+     "skip": false,
+     "cost": 3.4122
     },
     "claude-opus-5-5": {
      "score": 0.517744,
      "visual": 0.53234,
      "motion": 0.502018,
      "layout": 0.540245,
-     "skip": false
+     "skip": false,
+     "cost": 1.1555
     },
     "gpt-6-astra": {
      "score": 0.540646,
      "visual": 0.593668,
      "motion": 0.503927,
      "layout": 0.47955,
-     "skip": false
+     "skip": false,
+     "cost": 5.6072
     },
     "gpt-6-sol": {
      "score": 0.509573,
      "visual": 0.593271,
      "motion": 0.41475,
      "layout": 0.671147,
-     "skip": false
+     "skip": false,
+     "cost": 0.5401
     }
    }
   },
@@ -136,28 +144,32 @@
      "visual": 0.632573,
      "motion": 0.59134,
      "layout": 0.542507,
-     "skip": false
+     "skip": false,
+     "cost": 4.8053
     },
     "claude-opus-5-5": {
      "score": 0.451331,
      "visual": 0.511763,
      "motion": 0.388225,
      "layout": 0.530484,
-     "skip": false
+     "skip": false,
+     "cost": 0.7741
     },
     "gpt-6-astra": {
      "score": 0.634509,
      "visual": 0.750271,
      "motion": 0.535715,
      "layout": 0.631496,
-     "skip": false
+     "skip": false,
+     "cost": 5.3566
     },
     "gpt-6-sol": {
      "score": 0.680999,
      "visual": 0.77503,
      "motion": 0.608826,
      "layout": 0.622019,
-     "skip": false
+     "skip": false,
+     "cost": 0.4041
     }
    }
   },
@@ -169,28 +181,32 @@
      "visual": 0.712104,
      "motion": 0.506727,
      "layout": 0.446563,
-     "skip": false
+     "skip": false,
+     "cost": 2.3332
     },
     "claude-opus-5-5": {
      "score": 0.575439,
      "visual": 0.706733,
      "motion": 0.366941,
      "layout": 0.621666,
-     "skip": false
+     "skip": false,
+     "cost": 0.9202
     },
     "gpt-6-astra": {
      "score": 0.697416,
      "visual": 0.803965,
      "motion": 0.508245,
      "layout": 0.814799,
-     "skip": false
+     "skip": false,
+     "cost": 2.5717
     },
     "gpt-6-sol": {
      "score": 0.610828,
      "visual": 0.700636,
      "motion": 0.492894,
      "layout": 0.543718,
-     "skip": false
+     "skip": false,
+     "cost": 0.3548
     }
    }
   },
@@ -202,28 +218,32 @@
      "visual": 0.490908,
      "motion": 0.51857,
      "layout": 0.631111,
-     "skip": false
+     "skip": false,
+     "cost": 3.3603
     },
     "claude-opus-5-5": {
      "score": 0.569972,
      "visual": 0.554127,
      "motion": 0.533864,
      "layout": 0.933644,
-     "skip": false
+     "skip": false,
+     "cost": 1.0904
     },
     "gpt-6-astra": {
      "score": 0.478417,
      "visual": 0.48056,
      "motion": 0.404772,
      "layout": 0.978927,
-     "skip": false
+     "skip": false,
+     "cost": 2.2852
     },
     "gpt-6-sol": {
      "score": 0.53984,
      "visual": 0.611799,
      "motion": 0.404678,
      "layout": 0.982266,
-     "skip": false
+     "skip": false,
+     "cost": 0.4732
     }
    }
   },
@@ -235,28 +255,32 @@
      "visual": 0.942191,
      "motion": 0.548184,
      "layout": 1.0,
-     "skip": false
+     "skip": false,
+     "cost": 5.7028
     },
     "claude-opus-5-5": {
      "score": 0.607603,
      "visual": 0.799426,
      "motion": 0.425543,
      "layout": 0.731085,
-     "skip": false
+     "skip": false,
+     "cost": 0.812
     },
     "gpt-6-astra": {
      "score": 0.616034,
      "visual": 0.84836,
      "motion": 0.362345,
      "layout": 0.997898,
-     "skip": false
+     "skip": false,
+     "cost": 3.014
     },
     "gpt-6-sol": {
      "score": 0.703393,
      "visual": 0.868568,
      "motion": 0.569009,
      "layout": 0.653042,
-     "skip": false
+     "skip": false,
+     "cost": 0.6818
     }
    }
   },
@@ -268,28 +292,32 @@
      "visual": 0.878837,
      "motion": 0.501,
      "layout": 0.508333,
-     "skip": false
+     "skip": false,
+     "cost": 4.7583
     },
     "claude-opus-5-5": {
      "score": 0.559249,
      "visual": 0.786486,
      "motion": 0.361107,
      "layout": 0.508333,
-     "skip": false
+     "skip": false,
+     "cost": 0.9355
     },
     "gpt-6-astra": {
      "score": 0.674437,
      "visual": 0.899291,
      "motion": 0.544498,
      "layout": 0.508333,
-     "skip": false
+     "skip": false,
+     "cost": 1.8239
     },
     "gpt-6-sol": {
      "score": 0.634652,
      "visual": 0.872518,
      "motion": 0.468969,
      "layout": 0.508333,
-     "skip": false
+     "skip": false,
+     "cost": 0.3316
     }
    }
   },
@@ -301,28 +329,32 @@
      "visual": 0.601774,
      "motion": 0.582772,
      "layout": 0.644341,
-     "skip": false
+     "skip": false,
+     "cost": 3.1887
     },
     "claude-opus-5-5": {
      "score": 0.447759,
      "visual": 0.544381,
      "motion": 0.356653,
      "layout": 0.505774,
-     "skip": false
+     "skip": false,
+     "cost": 1.6663
     },
     "gpt-6-astra": {
      "score": 0.604489,
      "visual": 0.660728,
      "motion": 0.549975,
      "layout": 0.648647,
-     "skip": false
+     "skip": false,
+     "cost": 3.7185
     },
     "gpt-6-sol": {
      "score": 0.432744,
      "visual": 0.553623,
      "motion": 0.319294,
      "layout": 0.501616,
-     "skip": false
+     "skip": false,
+     "cost": 0.5823
     }
    }
   },
@@ -334,28 +366,32 @@
      "visual": 0.675025,
      "motion": 0.291144,
      "layout": 0.712078,
-     "skip": false
+     "skip": false,
+     "cost": 2.6965
     },
     "claude-opus-5-5": {
      "score": 0.537094,
      "visual": 0.632504,
      "motion": 0.407925,
      "layout": 0.773395,
-     "skip": false
+     "skip": false,
+     "cost": 1.0383
     },
     "gpt-6-astra": {
      "score": 0.337714,
      "visual": 0.534482,
      "motion": 0.100765,
      "layout": 0.618979,
-     "skip": false
+     "skip": false,
+     "cost": 3.3441
     },
     "gpt-6-sol": {
      "score": 0.48638,
      "visual": 0.707749,
      "motion": 0.24683,
      "layout": 0.613651,
-     "skip": false
+     "skip": false,
+     "cost": 0.2957
     }
    }
   },
@@ -367,28 +403,32 @@
      "visual": 0.590201,
      "motion": 0.333177,
      "layout": 0.598922,
-     "skip": false
+     "skip": false,
+     "cost": 4.0135
     },
     "claude-opus-5-5": {
      "score": 0.488931,
      "visual": 0.609791,
      "motion": 0.389573,
      "layout": 0.459267,
-     "skip": false
+     "skip": false,
+     "cost": 0.7554
     },
     "gpt-6-astra": {
      "score": 0.545575,
      "visual": 0.73017,
      "motion": 0.356441,
      "layout": 0.761943,
-     "skip": false
+     "skip": false,
+     "cost": 3.9461
     },
     "gpt-6-sol": {
      "score": 0.52149,
      "visual": 0.609559,
      "motion": 0.451304,
      "layout": 0.484375,
-     "skip": false
+     "skip": false,
+     "cost": 0.4886
     }
    }
   },
@@ -400,28 +440,32 @@
      "visual": 0.675291,
      "motion": 0.489679,
      "layout": 0.38613,
-     "skip": false
+     "skip": false,
+     "cost": 3.6946
     },
     "claude-opus-5-5": {
      "score": 0.517785,
      "visual": 0.718163,
      "motion": 0.348588,
      "layout": 0.499889,
-     "skip": false
+     "skip": false,
+     "cost": 1.7509
     },
     "gpt-6-astra": {
      "score": 0.55738,
      "visual": 0.776814,
      "motion": 0.379236,
      "layout": 0.487785,
-     "skip": false
+     "skip": false,
+     "cost": 5.255
     },
     "gpt-6-sol": {
      "score": 0.581679,
      "visual": 0.82383,
      "motion": 0.385304,
      "layout": 0.503393,
-     "skip": false
+     "skip": false,
+     "cost": 0.4548
     }
    }
   },
@@ -433,28 +477,32 @@
      "visual": 0.747792,
      "motion": 0.552261,
      "layout": 0.998656,
-     "skip": false
+     "skip": false,
+     "cost": 5.0264
     },
     "claude-opus-5-5": {
      "score": 0.52806,
      "visual": 0.621551,
      "motion": 0.404054,
      "layout": 0.741667,
-     "skip": false
+     "skip": false,
+     "cost": 1.1197
     },
     "gpt-6-astra": {
      "score": 0.798635,
      "visual": 0.765833,
      "motion": 0.807578,
      "layout": 0.965652,
-     "skip": false
+     "skip": false,
+     "cost": 3.0461
     },
     "gpt-6-sol": {
      "score": 0.730248,
      "visual": 0.790273,
      "motion": 0.636021,
      "layout": 0.969661,
-     "skip": false
+     "skip": false,
+     "cost": 0.4069
     }
    }
   },
@@ -466,28 +514,32 @@
      "visual": 0.898078,
      "motion": 0.562117,
      "layout": 0.908274,
-     "skip": false
+     "skip": false,
+     "cost": 7.3368
     },
     "claude-opus-5-5": {
      "score": 0.619038,
      "visual": 0.715841,
      "motion": 0.474747,
      "layout": 0.618124,
-     "skip": false
+     "skip": false,
+     "cost": 0.862
     },
     "gpt-6-astra": {
      "score": 0.74455,
      "visual": 0.930102,
      "motion": 0.297824,
      "layout": 0.912947,
-     "skip": false
+     "skip": false,
+     "cost": 3.2669
     },
     "gpt-6-sol": {
      "score": 0.573706,
      "visual": 0.701065,
      "motion": 0.339245,
      "layout": 0.617127,
-     "skip": false
+     "skip": false,
+     "cost": 0.4296
     }
    }
   },
@@ -499,28 +551,32 @@
      "visual": 0.680739,
      "motion": 0.497261,
      "layout": 0.404069,
-     "skip": false
+     "skip": false,
+     "cost": 6.651
     },
     "claude-opus-5-5": {
      "score": 0.552327,
      "visual": 0.620938,
      "motion": 0.508839,
      "layout": 0.445069,
-     "skip": false
+     "skip": false,
+     "cost": 2.0324
     },
     "gpt-6-astra": {
      "score": 0.609132,
      "visual": 0.686545,
      "motion": 0.55438,
      "layout": 0.527909,
-     "skip": false
+     "skip": false,
+     "cost": 5.3147
     },
     "gpt-6-sol": {
      "score": 0.466892,
      "visual": 0.477252,
      "motion": 0.462885,
      "layout": 0.432784,
-     "skip": false
+     "skip": false,
+     "cost": 0.4906
     }
    }
   },
@@ -532,28 +588,32 @@
      "visual": 0.840851,
      "motion": 0.793256,
      "layout": 0.937421,
-     "skip": false
+     "skip": false,
+     "cost": 2.8
     },
     "claude-opus-5-5": {
      "score": 0.719415,
      "visual": 0.801057,
      "motion": 0.513859,
      "layout": 0.936265,
-     "skip": false
+     "skip": false,
+     "cost": 1.1496
     },
     "gpt-6-astra": {
      "score": 0.887799,
      "visual": 0.902047,
      "motion": 0.845196,
      "layout": 0.937421,
-     "skip": false
+     "skip": false,
+     "cost": 3.4202
     },
     "gpt-6-sol": {
      "score": 0.673433,
      "visual": 0.838708,
      "motion": 0.368277,
      "layout": 0.918225,
-     "skip": false
+     "skip": false,
+     "cost": 0.2929
     }
    }
   },
@@ -565,28 +625,32 @@
      "visual": 0.585663,
      "motion": 0.348981,
      "layout": 0.398287,
-     "skip": false
+     "skip": false,
+     "cost": 5.3619
     },
     "claude-opus-5-5": {
      "score": 0.384451,
      "visual": 0.537949,
      "motion": 0.172681,
      "layout": 0.365973,
-     "skip": false
+     "skip": false,
+     "cost": 1.3349
     },
     "gpt-6-astra": {
      "score": 0.572053,
      "visual": 0.652857,
      "motion": 0.323988,
      "layout": 0.698913,
-     "skip": false
+     "skip": false,
+     "cost": 2.8405
     },
     "gpt-6-sol": {
      "score": 0.392458,
      "visual": 0.577654,
      "motion": 0.141151,
      "layout": 0.365973,
-     "skip": false
+     "skip": false,
+     "cost": 0.4968
     }
    }
   },
@@ -598,28 +662,32 @@
      "visual": 0.625518,
      "motion": 0.442886,
      "layout": 0.621345,
-     "skip": false
+     "skip": false,
+     "cost": 4.7856
     },
     "claude-opus-5-5": {
      "score": 0.551804,
      "visual": 0.593673,
      "motion": 0.503336,
      "layout": 0.563353,
-     "skip": false
+     "skip": false,
+     "cost": 1.1917
     },
     "gpt-6-astra": {
      "score": 0.535769,
      "visual": 0.676709,
      "motion": 0.379758,
      "layout": 0.562144,
-     "skip": false
+     "skip": false,
+     "cost": 3.2769
     },
     "gpt-6-sol": {
      "score": 0.528293,
      "visual": 0.645499,
      "motion": 0.355034,
      "layout": 0.626385,
-     "skip": false
+     "skip": false,
+     "cost": 0.3505
     }
    }
   },
@@ -631,28 +699,32 @@
      "visual": 0.659673,
      "motion": 0.334827,
      "layout": 0.487011,
-     "skip": false
+     "skip": false,
+     "cost": 3.0381
     },
     "claude-opus-5-5": {
      "score": 0.603599,
      "visual": 0.723846,
      "motion": 0.464386,
      "layout": 0.636791,
-     "skip": false
+     "skip": false,
+     "cost": 1.0465
     },
     "gpt-6-astra": {
      "score": 0.669396,
      "visual": 0.813792,
      "motion": 0.490868,
      "layout": 0.729127,
-     "skip": false
+     "skip": false,
+     "cost": 1.7896
     },
     "gpt-6-sol": {
      "score": 0.742623,
      "visual": 0.765384,
      "motion": 0.810222,
      "layout": 0.584492,
-     "skip": false
+     "skip": false,
+     "cost": 0.3085
     }
    }
   },
@@ -664,28 +736,32 @@
      "visual": 0.694028,
      "motion": 0.339626,
      "layout": 0.817436,
-     "skip": false
+     "skip": false,
+     "cost": 4.3945
     },
     "claude-opus-5-5": {
      "score": 0.546058,
      "visual": 0.682313,
      "motion": 0.290997,
      "layout": 0.748768,
-     "skip": false
+     "skip": false,
+     "cost": 1.1844
     },
     "gpt-6-astra": {
      "score": 0.633477,
      "visual": 0.730429,
      "motion": 0.460104,
      "layout": 0.745251,
-     "skip": false
+     "skip": false,
+     "cost": 4.906
     },
     "gpt-6-sol": {
      "score": 0.469157,
      "visual": 0.636242,
      "motion": 0.140334,
      "layout": 0.781942,
-     "skip": false
+     "skip": false,
+     "cost": 0.9149
     }
    }
   },
@@ -697,28 +773,32 @@
      "visual": 0.739145,
      "motion": 0.0,
      "layout": 0.313333,
-     "skip": false
+     "skip": false,
+     "cost": 1.0611
     },
     "claude-opus-5-5": {
      "score": 0.565369,
      "visual": 0.769082,
      "motion": 0.646281,
      "layout": 0.178889,
-     "skip": false
+     "skip": false,
+     "cost": 0.4072
     },
     "gpt-6-astra": {
      "score": 0.576996,
      "visual": 0.763549,
      "motion": 0.724163,
      "layout": 0.15,
-     "skip": false
+     "skip": false,
+     "cost": 1.632
     },
     "gpt-6-sol": {
      "score": 0.550489,
      "visual": 0.765582,
      "motion": 0.475005,
      "layout": 0.303333,
-     "skip": false
+     "skip": false,
+     "cost": 0.2451
     }
    }
   },
@@ -730,28 +810,32 @@
      "visual": 0.753673,
      "motion": 0.427966,
      "layout": 0.531126,
-     "skip": false
+     "skip": false,
+     "cost": 6.9853
     },
     "claude-opus-5-5": {
      "score": 0.62742,
      "visual": 0.70205,
      "motion": 0.569399,
      "layout": 0.598356,
-     "skip": false
+     "skip": false,
+     "cost": 0.8599
     },
     "gpt-6-astra": {
      "score": 0.529115,
      "visual": 0.672576,
      "motion": 0.370989,
      "layout": 0.554778,
-     "skip": false
+     "skip": false,
+     "cost": 3.306
     },
     "gpt-6-sol": {
      "score": 0.521829,
      "visual": 0.678054,
      "motion": 0.488746,
      "layout": 0.306331,
-     "skip": false
+     "skip": false,
+     "cost": 0.3151
     }
    }
   },
@@ -763,28 +847,32 @@
      "visual": 0.923087,
      "motion": 0.537877,
      "layout": 0.895307,
-     "skip": false
+     "skip": false,
+     "cost": 2.1243
     },
     "claude-opus-5-5": {
      "score": 0.74164,
      "visual": 0.899211,
      "motion": 0.567184,
      "layout": 0.810582,
-     "skip": false
+     "skip": false,
+     "cost": 1.0725
     },
     "gpt-6-astra": {
      "score": 0.766184,
      "visual": 0.936681,
      "motion": 0.555227,
      "layout": 0.879613,
-     "skip": false
+     "skip": false,
+     "cost": 3.3497
     },
     "gpt-6-sol": {
      "score": 0.500636,
      "visual": 0.521789,
      "motion": 0.386578,
      "layout": 0.668505,
-     "skip": false
+     "skip": false,
+     "cost": 0.491
     }
    }
   },
@@ -796,28 +884,32 @@
      "visual": 0.460997,
      "motion": 0.18722,
      "layout": 0.75,
-     "skip": false
+     "skip": false,
+     "cost": 2.7447
     },
     "claude-opus-5-5": {
      "score": 0.447606,
      "visual": 0.562741,
      "motion": 0.299271,
      "layout": 0.68,
-     "skip": false
+     "skip": false,
+     "cost": 0.949
     },
     "gpt-6-astra": {
      "score": 0.57544,
      "visual": 0.656238,
      "motion": 0.438244,
      "layout": 0.97023,
-     "skip": false
+     "skip": false,
+     "cost": 2.3999
     },
     "gpt-6-sol": {
      "score": 0.57526,
      "visual": 0.729197,
      "motion": 0.39636,
      "layout": 0.75,
-     "skip": false
+     "skip": false,
+     "cost": 0.4481
     }
    }
   },
@@ -829,28 +921,32 @@
      "visual": 0.484987,
      "motion": 0.415993,
      "layout": 0.255603,
-     "skip": false
+     "skip": false,
+     "cost": 6.1665
     },
     "claude-opus-5-5": {
      "score": 0.395195,
      "visual": 0.453051,
      "motion": 0.361631,
      "layout": 0.283007,
-     "skip": false
+     "skip": false,
+     "cost": 0.628
     },
     "gpt-6-astra": {
      "score": 0.426915,
      "visual": 0.440096,
      "motion": 0.431392,
      "layout": 0.316484,
-     "skip": false
+     "skip": false,
+     "cost": 4.066
     },
     "gpt-6-sol": {
      "score": 0.479437,
      "visual": 0.634495,
      "motion": 0.344075,
      "layout": 0.496625,
-     "skip": false
+     "skip": false,
+     "cost": 0.437
     }
    }
   },
@@ -862,28 +958,32 @@
      "visual": 0.680163,
      "motion": 0.467956,
      "layout": 0.334764,
-     "skip": false
+     "skip": false,
+     "cost": 7.0108
     },
     "claude-opus-5-5": {
      "score": 0.537416,
      "visual": 0.698231,
      "motion": 0.418128,
      "layout": 0.407543,
-     "skip": false
+     "skip": false,
+     "cost": 1.6869
     },
     "gpt-6-astra": {
      "score": 0.566021,
      "visual": 0.750222,
      "motion": 0.422475,
      "layout": 0.465627,
-     "skip": false
+     "skip": false,
+     "cost": 5.1166
     },
     "gpt-6-sol": {
      "score": 0.552936,
      "visual": 0.757069,
      "motion": 0.388464,
      "layout": 0.479434,
-     "skip": false
+     "skip": false,
+     "cost": 0.5819
     }
    }
   },
@@ -895,28 +995,32 @@
      "visual": 0.566156,
      "motion": 0.526127,
      "layout": 0.458605,
-     "skip": false
+     "skip": false,
+     "cost": 2.6661
     },
     "claude-opus-5-5": {
      "score": 0.466995,
      "visual": 0.578481,
      "motion": 0.496075,
      "layout": 0.248874,
-     "skip": false
+     "skip": false,
+     "cost": 0.9634
     },
     "gpt-6-astra": {
      "score": 0.634148,
      "visual": 0.746565,
      "motion": 0.4952,
      "layout": 0.708683,
-     "skip": false
+     "skip": false,
+     "cost": 2.6712
     },
     "gpt-6-sol": {
      "score": 0.451761,
      "visual": 0.543784,
      "motion": 0.462196,
      "layout": 0.295463,
-     "skip": false
+     "skip": false,
+     "cost": 0.4898
     }
    }
   },
@@ -928,28 +1032,32 @@
      "visual": 0.489602,
      "motion": 0.614568,
      "layout": 0.56073,
-     "skip": false
+     "skip": false,
+     "cost": 2.5797
     },
     "claude-opus-5-5": {
      "score": 0.498414,
      "visual": 0.431293,
      "motion": 0.515054,
      "layout": 0.569976,
-     "skip": false
+     "skip": false,
+     "cost": 1.4672
     },
     "gpt-6-astra": {
      "score": 0.559475,
      "visual": 0.605379,
      "motion": 0.557057,
      "layout": 0.494848,
-     "skip": false
+     "skip": false,
+     "cost": 3.4249
     },
     "gpt-6-sol": {
      "score": 0.490021,
      "visual": 0.497484,
      "motion": 0.48585,
      "layout": 0.486125,
-     "skip": false
+     "skip": false,
+     "cost": 0.6208
     }
    }
   },
@@ -961,28 +1069,32 @@
      "visual": 0.693769,
      "motion": 0.611048,
      "layout": 0.531179,
-     "skip": false
+     "skip": false,
+     "cost": 3.5949
     },
     "claude-opus-5-5": {
      "score": 0.252275,
      "visual": 0.530687,
      "motion": 0.0,
      "layout": 0.15,
-     "skip": false
+     "skip": false,
+     "cost": 1.2275
     },
     "gpt-6-astra": {
      "score": 0.582035,
      "visual": 0.622638,
      "motion": 0.573996,
      "layout": 0.531179,
-     "skip": false
+     "skip": false,
+     "cost": 3.3179
     },
     "gpt-6-sol": {
      "score": 0.528343,
      "visual": 0.553966,
      "motion": 0.495327,
      "layout": 0.531179,
-     "skip": false
+     "skip": false,
+     "cost": 0.3426
     }
    }
   },
@@ -994,28 +1106,32 @@
      "visual": 0.539221,
      "motion": 0.352244,
      "layout": 0.519397,
-     "skip": false
+     "skip": false,
+     "cost": 3.0137
     },
     "claude-opus-5-5": {
      "score": 0.472498,
      "visual": 0.546352,
      "motion": 0.381502,
      "layout": 0.52096,
-     "skip": false
+     "skip": false,
+     "cost": 1.3187
     },
     "gpt-6-astra": {
      "score": 0.517074,
      "visual": 0.556781,
      "motion": 0.442696,
      "layout": 0.587673,
-     "skip": false
+     "skip": false,
+     "cost": 3.1792
     },
     "gpt-6-sol": {
      "score": 0.439945,
      "visual": 0.544719,
      "motion": 0.345695,
      "layout": 0.447719,
-     "skip": false
+     "skip": false,
+     "cost": 0.4512
     }
    }
   },
@@ -1027,28 +1143,32 @@
      "visual": 0.380762,
      "motion": 0.350383,
      "layout": 0.175926,
-     "skip": false
+     "skip": false,
+     "cost": 1.7462
     },
     "claude-opus-5-5": {
      "score": 0.299596,
      "visual": 0.551661,
      "motion": 0.04517,
      "layout": 0.175926,
-     "skip": false
+     "skip": false,
+     "cost": 1.1983
     },
     "gpt-6-astra": {
      "score": 0.401845,
      "visual": 0.39713,
      "motion": 0.430021,
      "layout": 0.380741,
-     "skip": false
+     "skip": false,
+     "cost": 1.7706
     },
     "gpt-6-sol": {
      "score": 0.408583,
      "visual": 0.407345,
      "motion": 0.438283,
      "layout": 0.380741,
-     "skip": false
+     "skip": false,
+     "cost": 0.4951
     }
    }
   },
@@ -1060,28 +1180,32 @@
      "visual": 0.900747,
      "motion": 0.647712,
      "layout": 0.941847,
-     "skip": false
+     "skip": false,
+     "cost": 3.4774
     },
     "claude-opus-5-5": {
      "score": 0.537498,
      "visual": 0.524754,
      "motion": 0.44144,
      "layout": 0.724718,
-     "skip": false
+     "skip": false,
+     "cost": 1.6485
     },
     "gpt-6-astra": {
      "score": 0.827754,
      "visual": 0.912915,
      "motion": 0.687019,
      "layout": 0.946299,
-     "skip": false
+     "skip": false,
+     "cost": 2.8756
     },
     "gpt-6-sol": {
      "score": 0.511791,
      "visual": 0.52494,
      "motion": 0.410172,
      "layout": 0.669899,
-     "skip": false
+     "skip": false,
+     "cost": 0.6251
     }
    }
   },
@@ -1093,28 +1217,32 @@
      "visual": 0.519135,
      "motion": 0.286283,
      "layout": 0.640809,
-     "skip": false
+     "skip": false,
+     "cost": 3.0957
     },
     "claude-opus-5-5": {
      "score": 0.47301,
      "visual": 0.525909,
      "motion": 0.42698,
      "layout": 0.477823,
-     "skip": false
+     "skip": false,
+     "cost": 1.8164
     },
     "gpt-6-astra": {
      "score": 0.714586,
      "visual": 0.697834,
      "motion": 0.703078,
      "layout": 0.895647,
-     "skip": false
+     "skip": false,
+     "cost": 5.4939
     },
     "gpt-6-sol": {
      "score": 0.460861,
      "visual": 0.52434,
      "motion": 0.393159,
      "layout": 0.553906,
-     "skip": false
+     "skip": false,
+     "cost": 0.4742
     }
    }
   },
@@ -1126,28 +1254,32 @@
      "visual": 0.649468,
      "motion": 0.272035,
      "layout": 0.433354,
-     "skip": false
+     "skip": false,
+     "cost": 7.0174
     },
     "claude-opus-5-5": {
      "score": 0.487548,
      "visual": 0.649234,
      "motion": 0.340528,
      "layout": 0.461882,
-     "skip": false
+     "skip": false,
+     "cost": 1.2674
     },
     "gpt-6-astra": {
      "score": 0.545562,
      "visual": 0.765497,
      "motion": 0.367988,
      "layout": 0.471428,
-     "skip": false
+     "skip": false,
+     "cost": 2.7105
     },
     "gpt-6-sol": {
      "score": 0.428935,
      "visual": 0.623428,
      "motion": 0.2456,
      "layout": 0.409409,
-     "skip": false
+     "skip": false,
+     "cost": 0.3702
     }
    }
   },
@@ -1159,28 +1291,32 @@
      "visual": 0.822982,
      "motion": 0.575954,
      "layout": 0.514323,
-     "skip": false
+     "skip": false,
+     "cost": 3.6559
     },
     "claude-opus-5-5": {
      "score": 0.641467,
      "visual": 0.789491,
      "motion": 0.614791,
      "layout": 0.466116,
-     "skip": false
+     "skip": false,
+     "cost": 1.3163
     },
     "gpt-6-astra": {
      "score": 0.851125,
      "visual": 0.936667,
      "motion": 0.847327,
      "layout": 0.729459,
-     "skip": false
+     "skip": false,
+     "cost": 2.3256
     },
     "gpt-6-sol": {
      "score": 0.586529,
      "visual": 0.738296,
      "motion": 0.460542,
      "layout": 0.579357,
-     "skip": false
+     "skip": false,
+     "cost": 0.4042
     }
    }
   },
@@ -1192,28 +1328,32 @@
      "visual": 0.888568,
      "motion": 0.443651,
      "layout": 0.445868,
-     "skip": false
+     "skip": false,
+     "cost": 3.3003
     },
     "claude-opus-5-5": {
      "score": 0.635698,
      "visual": 0.864662,
      "motion": 0.553427,
      "layout": 0.436229,
-     "skip": false
+     "skip": false,
+     "cost": 1.1569
     },
     "gpt-6-astra": {
      "score": 0.886661,
      "visual": 0.972946,
      "motion": 0.896932,
      "layout": 0.73926,
-     "skip": false
+     "skip": false,
+     "cost": 2.2544
     },
     "gpt-6-sol": {
      "score": 0.617053,
      "visual": 0.873489,
      "motion": 0.501589,
      "layout": 0.434461,
-     "skip": false
+     "skip": false,
+     "cost": 0.3982
     }
    }
   },
@@ -1225,28 +1365,32 @@
      "visual": 0.444389,
      "motion": 0.660073,
      "layout": 0.587013,
-     "skip": false
+     "skip": false,
+     "cost": 2.6275
     },
     "claude-opus-5-5": {
      "score": 0.493617,
      "visual": 0.426403,
      "motion": 0.49906,
      "layout": 0.620787,
-     "skip": false
+     "skip": false,
+     "cost": 0.501
     },
     "gpt-6-astra": {
      "score": 0.60884,
      "visual": 0.531716,
      "motion": 0.70483,
      "layout": 0.635102,
-     "skip": false
+     "skip": false,
+     "cost": 2.3706
     },
     "gpt-6-sol": {
      "score": 0.633116,
      "visual": 0.537262,
      "motion": 0.770944,
      "layout": 0.641054,
-     "skip": false
+     "skip": false,
+     "cost": 0.4202
     }
    }
   },
@@ -1258,28 +1402,32 @@
      "visual": 0.45761,
      "motion": 0.11748,
      "layout": 0.478438,
-     "skip": false
+     "skip": false,
+     "cost": 2.186
     },
     "claude-opus-5-5": {
      "score": 0.346502,
      "visual": 0.4971,
      "motion": 0.133245,
      "layout": 0.493804,
-     "skip": false
+     "skip": false,
+     "cost": 1.16
     },
     "gpt-6-astra": {
      "score": 0.296733,
      "visual": 0.437676,
      "motion": 0.076005,
      "layout": 0.471592,
-     "skip": false
+     "skip": false,
+     "cost": 1.9929
     },
     "gpt-6-sol": {
      "score": 0.326429,
      "visual": 0.457228,
      "motion": 0.135322,
      "layout": 0.464666,
-     "skip": false
+     "skip": false,
+     "cost": 0.4248
     }
    }
   },
@@ -1291,28 +1439,32 @@
      "visual": 0.393455,
      "motion": 0.180935,
      "layout": 0.217243,
-     "skip": false
+     "skip": false,
+     "cost": 2.7796
     },
     "claude-opus-5-5": {
      "score": 0.277776,
      "visual": 0.385101,
      "motion": 0.218232,
      "layout": 0.220991,
-     "skip": false
+     "skip": false,
+     "cost": 1.2752
     },
     "gpt-6-astra": {
      "score": 0.287952,
      "visual": 0.39993,
      "motion": 0.231978,
      "layout": 0.217937,
-     "skip": false
+     "skip": false,
+     "cost": 2.5041
     },
     "gpt-6-sol": {
      "score": 0.264489,
      "visual": 0.391801,
      "motion": 0.182173,
      "layout": 0.217575,
-     "skip": false
+     "skip": false,
+     "cost": 0.5001
     }
    }
   },
@@ -1324,28 +1476,32 @@
      "visual": 0.721601,
      "motion": 0.649521,
      "layout": 0.726091,
-     "skip": false
+     "skip": false,
+     "cost": 3.7335
     },
     "claude-opus-5-5": {
      "score": 0.882177,
      "visual": 0.917411,
      "motion": 0.775745,
      "layout": 0.935757,
-     "skip": false
+     "skip": false,
+     "cost": 1.0022
     },
     "gpt-6-astra": {
      "score": 0.870279,
      "visual": 0.943132,
      "motion": 0.687821,
      "layout": 0.943457,
-     "skip": false
+     "skip": false,
+     "cost": 2.2386
     },
     "gpt-6-sol": {
      "score": 0.484671,
      "visual": 0.574511,
      "motion": 0.126832,
      "layout": 0.707752,
-     "skip": false
+     "skip": false,
+     "cost": 0.5287
     }
    }
   },
@@ -1357,28 +1513,32 @@
      "visual": 0.544543,
      "motion": 0.195994,
      "layout": 0.189014,
-     "skip": false
+     "skip": false,
+     "cost": 2.162
     },
     "claude-opus-5-5": {
      "score": 0.342346,
      "visual": 0.538861,
      "motion": 0.199125,
      "layout": 0.190793,
-     "skip": false
+     "skip": false,
+     "cost": 0.5916
     },
     "gpt-6-astra": {
      "score": 0.340021,
      "visual": 0.548214,
      "motion": 0.177696,
      "layout": 0.190056,
-     "skip": false
+     "skip": false,
+     "cost": 2.2245
     },
     "gpt-6-sol": {
      "score": 0.337684,
      "visual": 0.533195,
      "motion": 0.192046,
      "layout": 0.190056,
-     "skip": false
+     "skip": false,
+     "cost": 0.3869
     }
    }
   },
@@ -1390,28 +1550,32 @@
      "visual": 0.648669,
      "motion": 0.48667,
      "layout": 0.473761,
-     "skip": false
+     "skip": false,
+     "cost": 4.7566
     },
     "claude-opus-5-5": {
      "score": 0.503724,
      "visual": 0.614849,
      "motion": 0.387983,
      "layout": 0.452778,
-     "skip": false
+     "skip": false,
+     "cost": 1.0839
     },
     "gpt-6-astra": {
      "score": 0.702415,
      "visual": 0.751832,
      "motion": 0.779539,
      "layout": 0.551165,
-     "skip": false
+     "skip": false,
+     "cost": 2.1188
     },
     "gpt-6-sol": {
      "score": 0.592745,
      "visual": 0.694598,
      "motion": 0.479934,
      "layout": 0.552778,
-     "skip": false
+     "skip": false,
+     "cost": 0.4904
     }
    }
   },
@@ -1423,28 +1587,32 @@
      "visual": 0.747711,
      "motion": 0.364872,
      "layout": 0.681304,
-     "skip": false
+     "skip": false,
+     "cost": 6.0937
     },
     "claude-opus-5-5": {
      "score": 0.526564,
      "visual": 0.741605,
      "motion": 0.409123,
      "layout": 0.409522,
-     "skip": false
+     "skip": false,
+     "cost": 1.7492
     },
     "gpt-6-astra": {
      "score": 0.593701,
      "visual": 0.84009,
      "motion": 0.315591,
      "layout": 0.71081,
-     "skip": false
+     "skip": false,
+     "cost": 2.3502
     },
     "gpt-6-sol": {
      "score": 0.426967,
      "visual": 0.5686,
      "motion": 0.242785,
      "layout": 0.536836,
-     "skip": false
+     "skip": false,
+     "cost": 0.4961
     }
    }
   },
@@ -1456,28 +1624,32 @@
      "visual": 0.586442,
      "motion": 0.294183,
      "layout": 0.446327,
-     "skip": false
+     "skip": false,
+     "cost": 6.1704
     },
     "claude-opus-5-5": {
      "score": 0.430968,
      "visual": 0.597672,
      "motion": 0.317418,
      "layout": 0.379624,
-     "skip": false
+     "skip": false,
+     "cost": 0.8697
     },
     "gpt-6-astra": {
      "score": 0.48127,
      "visual": 0.604207,
      "motion": 0.455068,
      "layout": 0.342718,
-     "skip": false
+     "skip": false,
+     "cost": 2.2858
     },
     "gpt-6-sol": {
      "score": 0.48127,
      "visual": 0.554549,
      "motion": 0.475837,
      "layout": 0.380861,
-     "skip": false
+     "skip": false,
+     "cost": 0.5341
     }
    }
   },
@@ -1489,28 +1661,32 @@
      "visual": 0.652281,
      "motion": 0.284393,
      "layout": 0.158863,
-     "skip": false
+     "skip": false,
+     "cost": 3.0763
     },
     "claude-opus-5-5": {
      "score": 0.408386,
      "visual": 0.758796,
      "motion": 0.194602,
      "layout": 0.15,
-     "skip": false
+     "skip": false,
+     "cost": 0.8685
     },
     "gpt-6-astra": {
      "score": 0.408386,
      "visual": 0.758796,
      "motion": 0.194602,
      "layout": 0.15,
-     "skip": false
+     "skip": false,
+     "cost": 1.8353
     },
     "gpt-6-sol": {
      "score": 0.469624,
      "visual": 0.75811,
      "motion": 0.372051,
      "layout": 0.158863,
-     "skip": false
+     "skip": false,
+     "cost": 0.5153
     }
    }
   },
@@ -1522,28 +1698,32 @@
      "visual": 0.733849,
      "motion": 0.0,
      "layout": 0.453372,
-     "skip": false
+     "skip": false,
+     "cost": 3.1455
     },
     "claude-opus-5-5": {
      "score": 0.382287,
      "visual": 0.723954,
      "motion": 0.0,
      "layout": 0.453372,
-     "skip": false
+     "skip": false,
+     "cost": 0.6002
     },
     "gpt-6-astra": {
      "score": 0.363557,
      "visual": 0.675792,
      "motion": 0.0,
      "layout": 0.453372,
-     "skip": false
+     "skip": false,
+     "cost": 1.7772
     },
     "gpt-6-sol": {
      "score": 0.359551,
      "visual": 0.739304,
      "motion": 0.0,
      "layout": 0.324197,
-     "skip": false
+     "skip": false,
+     "cost": 0.3334
     }
    }
   },
@@ -1555,28 +1735,32 @@
      "visual": 0.365188,
      "motion": 0.476677,
      "layout": 0.552569,
-     "skip": false
+     "skip": false,
+     "cost": 4.2867
     },
     "claude-opus-5-5": {
      "score": 0.391138,
      "visual": 0.393852,
      "motion": 0.257828,
      "layout": 0.553704,
-     "skip": false
+     "skip": false,
+     "cost": 1.0948
     },
     "gpt-6-astra": {
      "score": 0.481608,
      "visual": 0.427255,
      "motion": 0.455642,
      "layout": 0.595597,
-     "skip": false
+     "skip": false,
+     "cost": 2.6244
     },
     "gpt-6-sol": {
      "score": 0.298606,
      "visual": 0.377379,
      "motion": 0.0,
      "layout": 0.553704,
-     "skip": false
+     "skip": false,
+     "cost": 0.2978
     }
    }
   },
@@ -1588,28 +1772,32 @@
      "visual": 0.953453,
      "motion": 0.512752,
      "layout": 0.94471,
-     "skip": false
+     "skip": false,
+     "cost": 2.9234
     },
     "claude-opus-5-5": {
      "score": 0.815137,
      "visual": 0.897206,
      "motion": 0.615268,
      "layout": 0.94187,
-     "skip": false
+     "skip": false,
+     "cost": 0.4418
     },
     "gpt-6-astra": {
      "score": 0.783096,
      "visual": 0.970347,
      "motion": 0.423787,
      "layout": 0.951354,
-     "skip": false
+     "skip": false,
+     "cost": 2.2851
     },
     "gpt-6-sol": {
      "score": 0.750409,
      "visual": 0.942616,
      "motion": 0.358278,
      "layout": 0.952261,
-     "skip": false
+     "skip": false,
+     "cost": 0.4387
     }
    }
   },
@@ -1621,28 +1809,32 @@
      "visual": 0.850661,
      "motion": 0.597323,
      "layout": 0.56316,
-     "skip": false
+     "skip": false,
+     "cost": 3.4696
     },
     "claude-opus-5-5": {
      "score": 0.19425,
      "visual": 0.413785,
      "motion": 0.0,
      "layout": 0.15,
-     "skip": false
+     "skip": false,
+     "cost": 1.4843
     },
     "gpt-6-astra": {
      "score": 0.831383,
      "visual": 0.962969,
      "motion": 0.833918,
      "layout": 0.596671,
-     "skip": false
+     "skip": false,
+     "cost": 2.2978
     },
     "gpt-6-sol": {
      "score": 0.486812,
      "visual": 0.551038,
      "motion": 0.38814,
      "layout": 0.547095,
-     "skip": false
+     "skip": false,
+     "cost": 0.3615
     }
    }
   }
