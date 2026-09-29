@@ -734,3 +734,22 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-cvs-mean line { stroke-dasharray: 3 5; stroke-opacity: .45; }
 .ab-cvs-mean text { font: 10px var(--font-mono); fill: currentColor; }
 @media (max-width: 640px) { .ab-cvs-legend { gap: 6px 14px; } .ab-cvs-key small { display: none; } }
+
+/* contents rail v2: subsections nest under their parent and unfold for the current section */
+.ab-editorial .ab-toc > ul { gap: 2px; }
+.ab-editorial .ab-toc .ab-toc-group > a { grid-template-columns: 30px 1fr; padding: 9px 10px 9px 12px; font-size: 14.5px; font-weight: 500; color: var(--bench-ink-2); border-left: 2px solid transparent; }
+.ab-editorial .ab-toc .ab-toc-group.is-open > a { color: var(--bench-ink); }
+.ab-editorial .ab-toc .ab-toc-group > a.is-active { color: var(--bench-accent); border-left-color: var(--bench-accent); background: linear-gradient(90deg, #edf1fb, transparent); }
+.ab-toc-subwrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s cubic-bezier(.2, .7, .2, 1); }
+.ab-toc-group.is-open .ab-toc-subwrap { grid-template-rows: 1fr; }
+.ab-toc-subs { min-height: 0; overflow: hidden; margin: 0 0 0 26px; padding: 2px 0 6px 0; border-left: 1.5px solid var(--bench-rule); list-style: none; }
+.ab-editorial .ab-toc .ab-toc-subs li { line-height: 1.35; }
+.ab-editorial .ab-toc .ab-toc-subs a.ab-toc-sub { position: relative; display: grid; grid-template-columns: 30px 1fr; column-gap: 8px; align-items: baseline; margin-left: -1.5px; padding: 6px 8px 6px 14px; font-size: 13px; color: var(--bench-ink-3); border-left: 1.5px solid transparent; border-radius: 0 4px 4px 0; background: none; }
+.ab-editorial .ab-toc .ab-toc-subs a.ab-toc-sub:hover { color: var(--bench-ink); background: #f6f8f5; }
+.ab-editorial .ab-toc .ab-toc-subs a.ab-toc-sub.is-active { color: var(--bench-accent); border-left-color: var(--bench-accent); font-weight: 550; background: none; }
+.ab-editorial .ab-toc .ab-toc-subs .ab-toc-num { font-size: 10.5px; }
+.ab-editorial .ab-toc .ab-toc-group.is-open .ab-toc-subs { border-left-color: #c5cff1; }
+@media (max-width: 1023px) {
+  .ab-toc-subwrap { display: none; }
+  .ab-editorial .ab-toc .ab-toc-group > a { border-left: 0; padding: 14px 0; font-size: 12px; }
+}

@@ -3,29 +3,30 @@
 import { useEffect, useState } from "react";
 
 export type Section = { id: string; label: string; sub?: boolean };
+type Group = Section & { num: string; subs: (Section & { num: string })[] };
 
-function numbered(sections: Section[]): (Section & { num: string })[] {
-  let major = 0;
-  let minor = 0;
-  return sections.map((s) => {
-    if (s.sub) {
-      minor += 1;
-      return { ...s, num: `${major}.${minor}` };
+function groups(sections: Section[]): Group[] {
+  const out: Group[] = [];
+  for (const s of sections) {
+    if (s.sub && out.length) {
+      const parent = out[out.length - 1];
+      parent.subs.push({ ...s, num: `${parent.num}.${parent.subs.length + 1}` });
+    } else {
+      out.push({ ...s, num: String(out.length + 1), subs: [] });
     }
-    major += 1;
-    minor = 0;
-    return { ...s, num: String(major) };
-  });
+  }
+  return out;
 }
 
 export default function SectionNav({ sections }: { sections: Section[] }) {
   const [active, setActive] = useState(sections[0]?.id);
+  const tree = groups(sections);
+  const openGroup = tree.find((g) => g.id === active || g.subs.some((s) => s.id === active))?.id;
 
   useEffect(() => {
     const els = sections
       .map((s) => document.getElementById(s.id))
       .filter((el): el is HTMLElement => el !== null);
-
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -39,20 +40,27 @@ export default function SectionNav({ sections }: { sections: Section[] }) {
     return () => observer.disconnect();
   }, [sections]);
 
+  const link = (s: Section & { num: string }, cls = "") => (
+    <a href={`#${s.id}`} aria-current={active === s.id ? "true" : undefined} className={`${cls}${active === s.id ? " is-active" : ""}`}>
+      <span className="ab-toc-num">{s.num}</span>
+      {s.label}
+    </a>
+  );
+
   return (
     <nav className="bench-toc ab-toc" aria-label="On this page">
       <span className="bench-mono-label bench-toc-head">Contents</span>
       <ul>
-        {numbered(sections).map((s) => (
-          <li key={s.id} className={s.sub ? "sub" : ""}>
-            <a
-              href={`#${s.id}`}
-              aria-current={active === s.id ? "true" : undefined}
-              className={active === s.id ? "is-active" : ""}
-            >
-              <span className="ab-toc-num">{s.num}</span>
-              {s.label}
-            </a>
+        {tree.map((g) => (
+          <li key={g.id} className={`ab-toc-group${openGroup === g.id ? " is-open" : ""}`}>
+            {link(g)}
+            {g.subs.length > 0 && (
+              <div className="ab-toc-subwrap">
+                <ul className="ab-toc-subs">
+                  {g.subs.map((s) => <li key={s.id} className="sub">{link(s, "ab-toc-sub")}</li>)}
+                </ul>
+              </div>
+            )}
           </li>
         ))}
       </ul>
