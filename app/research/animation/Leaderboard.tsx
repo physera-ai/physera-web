@@ -200,17 +200,109 @@ function Dimensions({ active, onActive }: { active: string | null; onActive: (id
   );
 }
 
-export function ResultsCharts() {
-  const [active, setActive] = useState<string | null>(null);
+type View = "dimensions" | "cost" | "wins";
+
+const CX = { W: 1000, H: 430, L: 64, R: 200, T: 40, B: 56 };
+const COST_LOG = { min: 0.3, max: 6 };
+const SCORE_RANGE = { min: 0.44, max: 0.66 };
+const cxScale = (c: number) => CX.L + (Math.log(c / COST_LOG.min) / Math.log(COST_LOG.max / COST_LOG.min)) * (CX.W - CX.L - CX.R);
+const cyScale = (v: number) => CX.T + (1 - (v - SCORE_RANGE.min) / (SCORE_RANGE.max - SCORE_RANGE.min)) * (CX.H - CX.T - CX.B);
+
+function CostFrontier({ active, onActive }: { active: string | null; onActive: (id: string | null) => void }) {
+  const dominatedBy = (m: ModelRow) => MODELS.find((o) => o.id !== m.id && o.cost <= m.cost && o.overall[0] >= m.overall[0]);
+  const frontier = MODELS.filter((m) => !dominatedBy(m)).sort((a, b) => a.cost - b.cost);
+  const path = frontier.map((m, i) => `${i ? "L" : "M"} ${cxScale(m.cost).toFixed(1)} ${cyScale(m.overall[0]).toFixed(1)}`).join(" ");
+  const last = frontier[frontier.length - 1];
+  const spread = Math.max(...MODELS.map((m) => m.overall[0])) - Math.min(...MODELS.map((m) => m.overall[0]));
+  const costRatio = Math.max(...MODELS.map((m) => m.cost)) / Math.min(...MODELS.map((m) => m.cost));
   return (
-    <section className="ab-results-charts" aria-label="Model scores across the three dimensions">
+    <div className="ab-cost-frontier">
+      <svg viewBox={`0 0 ${CX.W} ${CX.H}`} className="ab-cf-svg" role="img" aria-label={`Mean cost per task against mean overall score with 95% intervals for four models. Scores span ${spread.toFixed(3)} while cost spans ${costRatio.toFixed(0)} times.`}>
+        {[0.45, 0.5, 0.55, 0.6, 0.65].map((t) => (
+          <g key={t} className="ab-vvm-grid">
+            <line x1={cxScale(COST_LOG.min)} y1={cyScale(t)} x2={cxScale(COST_LOG.max)} y2={cyScale(t)} />
+            <text x={cxScale(COST_LOG.min) - 10} y={cyScale(t) + 3} textAnchor="end">{t.toFixed(2)}</text>
+          </g>
+        ))}
+        {[0.5, 1, 2, 4].map((t) => (
+          <g key={t} className="ab-vvm-grid">
+            <line x1={cxScale(t)} y1={cyScale(SCORE_RANGE.min)} x2={cxScale(t)} y2={cyScale(SCORE_RANGE.max)} />
+            <text x={cxScale(t)} y={cyScale(SCORE_RANGE.min) + 18} textAnchor="middle">${t < 1 ? t.toFixed(2) : t}</text>
+          </g>
+        ))}
+        <path className="ab-cf-frontier" d={`${path} L ${cxScale(COST_LOG.max)} ${cyScale(last.overall[0]).toFixed(1)}`} />
+        <text className="ab-cf-frontier-label" x={cxScale(COST_LOG.max) - 4} y={cyScale(last.overall[0]) + 16} textAnchor="end">cost frontier</text>
+        {MODELS.map((m) => {
+          const dom = dominatedBy(m);
+          const x = cxScale(m.cost), y = cyScale(m.overall[0]);
+          const isActive = active === m.id;
+          const labelAbove = m.id === "gpt-6-astra" || m.id === "gpt-6-sol";
+          return (
+            <g key={m.id} className={`ab-cf-model${isActive ? " is-active" : ""}${active && !isActive ? " is-muted" : ""}`} style={{ color: m.color }}
+              tabIndex={0} onMouseEnter={() => onActive(m.id)} onMouseLeave={() => onActive(null)} onFocus={() => onActive(m.id)} onBlur={() => onActive(null)}>
+              <line x1={x} y1={cyScale(m.overall[1])} x2={x} y2={cyScale(m.overall[2])} stroke="currentColor" strokeWidth="2.2" />
+              {dom
+                ? <rect x={x - 6} y={y - 6} width="12" height="12" fill="#fff" stroke="currentColor" strokeWidth="2.2" transform={`rotate(45 ${x} ${y})`} />
+                : <circle cx={x} cy={y} r="7" fill="currentColor" stroke="#fff" strokeWidth="2" />}
+              <text className="ab-cf-name" x={x + 14} y={labelAbove ? y - 22 : y + 30}>{m.full}</text>
+              <text className="ab-cf-meta" x={x + 14} y={labelAbove ? y - 8 : y + 44}>${m.cost.toFixed(2)} · {m.overall[0].toFixed(3)}{dom ? ` · dominated by ${dom.short}` : ""}</text>
+              <title>{`${m.full}: $${m.cost.toFixed(2)} per task, overall ${m.overall[0].toFixed(3)} (95% CI ${m.overall[1].toFixed(3)}–${m.overall[2].toFixed(3)})`}</title>
+            </g>
+          );
+        })}
+        <text className="ab-vvm-axis" x={(cxScale(COST_LOG.min) + cxScale(COST_LOG.max)) / 2} y={CX.H - 10} textAnchor="middle">mean cost per task (USD, log scale)</text>
+        <text className="ab-vvm-axis" transform={`translate(16, ${cyScale((SCORE_RANGE.min + SCORE_RANGE.max) / 2)}) rotate(-90)`} textAnchor="middle">overall score · axis zoomed to {SCORE_RANGE.min}–{SCORE_RANGE.max}</text>
+      </svg>
+      <p className="ab-cf-note">
+        Means with 95% intervals; the y-axis is zoomed to {SCORE_RANGE.min}–{SCORE_RANGE.max}. Spend spans {costRatio.toFixed(0)}× across the four models, score only {spread.toFixed(3)}, and every interval overlaps its neighbours. Hollow markers cost more and score lower than a model on the frontier.
+      </p>
+    </div>
+  );
+}
+
+function TaskWins({ active, onActive }: { active: string | null; onActive: (id: string | null) => void }) {
+  const total = 48;
+  const ranked = [...MODELS].sort((a, b) => b.wins - a.wins);
+  return (
+    <div className="ab-wins">
+      {ranked.map((m) => {
+        const isActive = active === m.id;
+        return (
+          <button key={m.id} type="button" className={`ab-wins-row${isActive ? " is-active" : ""}${active && !isActive ? " is-muted" : ""}`}
+            style={{ color: m.color }} onMouseEnter={() => onActive(m.id)} onMouseLeave={() => onActive(null)} onFocus={() => onActive(m.id)} onBlur={() => onActive(null)}>
+            <span className="ab-wins-name"><ModelLogo model={m.id} />{m.full}</span>
+            <span className="ab-wins-bar"><i style={{ width: `${(m.wins / total) * 100}%` }} /></span>
+            <span className="ab-wins-count"><b>{m.wins}</b> / {total}</span>
+          </button>
+        );
+      })}
+      <p className="ab-cf-note">Tasks on which the model had the best overall score of the four. Wins are counted per task, so the four counts add to {MODELS.reduce((s, m) => s + m.wins, 0)}.</p>
+    </div>
+  );
+}
+
+const VIEW_TITLE: Record<View, string> = { dimensions: "Dimensions", cost: "Score vs cost", wins: "Task wins" };
+
+export function ResultsCharts() {
+  const [view, setView] = useState<View>("dimensions");
+  const [active, setActive] = useState<string | null>(null);
+  const pick = (v: View) => { setView(v); setActive(null); };
+  return (
+    <section className="ab-results-charts" aria-label="Results charts">
       <div className="ab-lb-panel scroll-mt-24">
         <div className="ab-lb-head">
           <div>
-            <h3 className="ab-lb-title">Dimensions</h3>
+            <h3 className="ab-lb-title">{VIEW_TITLE[view]}</h3>
+          </div>
+          <div className="ab-view-switch" role="group" aria-label="Chart view">
+            <button type="button" aria-pressed={view === "dimensions"} onClick={() => pick("dimensions")}>Dimensions</button>
+            <button type="button" aria-pressed={view === "cost"} onClick={() => pick("cost")}>Cost</button>
+            <button type="button" aria-pressed={view === "wins"} onClick={() => pick("wins")}>Task wins</button>
           </div>
         </div>
-        <Dimensions active={active} onActive={setActive} />
+        {view === "dimensions" && <Dimensions active={active} onActive={setActive} />}
+        {view === "cost" && <CostFrontier active={active} onActive={setActive} />}
+        {view === "wins" && <TaskWins active={active} onActive={setActive} />}
       </div>
     </section>
   );
