@@ -46,7 +46,6 @@ export default function TaskScores({ metadata }: { metadata: Meta }) {
           ))}
         </div>
         <span className="ab-taskscores-tools">
-          <a className="ab-taskscores-all" href="/animation-bench/results.json">JSON</a>
           <button type="button" className="ab-taskscores-all" onClick={() => setOpen(open.size === results.tasks.length ? new Set() : new Set(results.tasks.map((t) => t.id)))}>
             {open.size === results.tasks.length ? "Collapse all" : "Expand all"}
           </button>

@@ -881,3 +881,29 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
   .ab-editorial .ab-run ol::after { animation: none; left: 90%; }
   .ab-editorial .ab-run li::after { animation: none; border-color: var(--bench-accent); background: var(--bench-accent); }
 }
+
+/* segmented controls speak the same language as the Contact button */
+.ab-editorial .ab-lb-toggle, .ab-editorial .ab-view-switch { display: inline-flex; padding: 0; gap: 0; border: 0; border-radius: 0; background: transparent; }
+.ab-editorial .ab-lb-toggle button, .ab-editorial .ab-view-switch button { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; height: 34px; padding: 0 14px; margin-left: -1px; border: 1px solid var(--bench-rule-2); border-radius: 0; background: #fff; color: var(--bench-ink-2); font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; transition: background .15s, color .15s, border-color .15s; }
+.ab-editorial .ab-lb-toggle button:first-child, .ab-editorial .ab-view-switch button:first-child { margin-left: 0; }
+.ab-editorial .ab-lb-toggle button:hover, .ab-editorial .ab-view-switch button:hover { background: var(--bench-hover); color: var(--bench-ink); }
+.ab-editorial .ab-lb-toggle button.is-active, .ab-editorial .ab-lb-toggle button[aria-pressed="true"], .ab-editorial .ab-view-switch button[aria-pressed="true"] { background: var(--bench-ink); border-color: var(--bench-ink); color: #fff; box-shadow: none; position: relative; z-index: 1; }
+.ab-editorial .ab-lb-toggle button:focus-visible, .ab-editorial .ab-view-switch button:focus-visible { outline: 2px solid var(--bench-accent); outline-offset: 2px; z-index: 2; }
+.ab-editorial .ab-taskscores-bar .ab-lb-toggle { margin-bottom: 4px; }
+@media (max-width: 640px) { .ab-editorial .ab-lb-toggle button, .ab-editorial .ab-view-switch button { height: 32px; padding: 0 10px; font-size: 10px; } }
+
+/* stat strip: even padding, hairlines only */
+.ab-editorial .ab-body .bench-stats { border: 0; border-top: 1px solid var(--bench-rule); border-bottom: 1px solid var(--bench-rule); background: transparent; margin-bottom: 40px; }
+.ab-editorial .ab-body .bench-stats > div { padding: 22px 22px 22px 0; border: 0; border-right: 1px solid var(--bench-rule); }
+.ab-editorial .ab-body .bench-stats > div + div { padding-left: 22px; }
+.ab-editorial .ab-body .bench-stats > div:last-child { border-right: 0; }
+.ab-editorial .ab-body .bench-stats .bench-mono-label { font-size: 9.5px; letter-spacing: .1em; color: var(--bench-ink-3); }
+.ab-editorial .ab-body .bench-stats .v { font-size: 40px; margin: 12px 0 8px; }
+.ab-editorial .ab-body .bench-stats .k { font-size: 12.5px; color: var(--bench-ink-3); }
+@media (max-width: 640px) {
+  .ab-editorial .ab-body .bench-stats > div { padding: 16px 12px; border-right: 1px solid var(--bench-rule); border-bottom: 1px solid var(--bench-rule); }
+  .ab-editorial .ab-body .bench-stats > div + div { padding-left: 12px; }
+  .ab-editorial .ab-body .bench-stats > div:nth-child(2n) { border-right: 0; }
+  .ab-editorial .ab-body .bench-stats > div:nth-child(n+3) { border-bottom: 0; }
+  .ab-editorial .ab-body .bench-stats .v { font-size: 32px; }
+}
