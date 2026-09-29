@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BenchThumb from "../research/components/BenchThumb";
 import { benchmarks } from "../research/benchmarks";
 import { ORG_COLOR } from "../research/cyberlatch/data";
 
@@ -35,7 +36,7 @@ export default function BenchmarkRows() {
           <Link href={`/research/${b.slug}`} className="research-row-link" aria-label={`${b.name} benchmark`}>
             <div className="research-row-index">
               <span className="research-num">{String(i + 1).padStart(2, "0")}</span>
-              <Motif points={b.spark} org={b.topModel.org} />
+              {b.thumb ? <BenchThumb task={b.thumb.task} /> : <Motif points={b.spark} org={b.topModel.org} />}
             </div>
             <div className="research-row-main">
               <div className="research-row-head">

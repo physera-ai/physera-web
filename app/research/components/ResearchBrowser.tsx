@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import BenchThumb from "./BenchThumb";
 import type { Benchmark } from "../benchmarks";
 import { ORG_COLOR } from "../cyberlatch/data";
 
@@ -98,7 +99,7 @@ export default function ResearchBrowser({
             <>
               <div className="research-row-index">
                 <span className="research-num">{String(i + 1).padStart(2, "0")}</span>
-                <Motif points={b.spark} org={b.topModel.org} />
+                {b.thumb ? <BenchThumb task={b.thumb.task} /> : <Motif points={b.spark} org={b.topModel.org} />}
               </div>
 
               <div className="research-row-main">

@@ -547,3 +547,9 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .btn-cta:disabled { opacity: .55; cursor: default; }
 .btn-cta-secondary { background: transparent; color: var(--bench-ink); }
 .btn-cta-secondary:hover { background: var(--bench-ink); border-color: var(--bench-ink); }
+
+/* benchmark card thumbnail: a reference recording playing */
+.research-thumb { display: block; width: 136px; aspect-ratio: 16 / 9; border: 1px solid var(--bench-rule); border-radius: 6px; background-color: #f2f3f6; background-repeat: no-repeat; }
+@media (max-width: 640px) { .research-thumb { width: 96px; } }
+.research-thumb { height: 76.5px; flex: none; }
+@media (max-width: 640px) { .research-thumb { height: 54px; } }
