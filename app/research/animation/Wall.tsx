@@ -294,10 +294,9 @@ export default function Wall() {
       <div className="ab-wall-panel">
         <div className="ab-wall-head">
           <div>
-            <h2 className="ab-wall-title">Every model gets the look. Watch the timing.</h2>
+            <h2 className="ab-wall-title">Reference vs. four reconstructions</h2>
             <p className="bench-mono-label ab-wall-subtitle">
-              Reference recording beside four frontier reconstructions, frame-locked to the same moments. Hover a
-              model to overlay the reference.
+              Frame-locked to the same moments, on any of the 46 tasks. Hover a model to overlay the reference.
             </p>
           </div>
           <div className="ab-wall-step" role="group" aria-label="Switch task">
