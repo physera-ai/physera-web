@@ -172,6 +172,11 @@ export default function Wall() {
   const timerRef = useRef<number | null>(null);
   const loadTokenRef = useRef(0);
   const wallRef = useRef<HTMLDivElement | null>(null);
+  const stripRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    stripRef.current?.querySelector<HTMLElement>('.ab-wall-thumb.is-active')?.scrollIntoView({ inline: "nearest", block: "nearest" });
+  }, [currentTaskId]);
 
   useEffect(() => {
     taskIdRef.current = currentTaskId;
@@ -290,14 +295,28 @@ export default function Wall() {
               model to overlay the reference.
             </p>
           </div>
-          <label className="ab-wall-picker">
-            <span className="bench-mono-label">Task</span>
-            <select className="ab-wall-select" value={currentTaskId} onChange={(e) => selectTask(e.target.value)} aria-label="Task">
-              {TASK_IDS.map((id) => (
-                <option key={id} value={id}>{WALL[id].label} · {WALL[id].site}</option>
-              ))}
-            </select>
-          </label>
+          <div className="ab-wall-step" role="group" aria-label="Switch task">
+            <button type="button" onClick={() => selectTask(TASK_IDS[(TASK_IDS.indexOf(currentTaskId) - 1 + TASK_IDS.length) % TASK_IDS.length])} aria-label="Previous task">←</button>
+            <span className="bench-mono-label">{TASK_IDS.indexOf(currentTaskId) + 1} / {TASK_IDS.length}</span>
+            <button type="button" onClick={() => selectTask(TASK_IDS[(TASK_IDS.indexOf(currentTaskId) + 1) % TASK_IDS.length])} aria-label="Next task">→</button>
+          </div>
+        </div>
+
+        <div className="ab-wall-strip" role="listbox" aria-label="Task" ref={stripRef}>
+          {TASK_IDS.map((id) => (
+            <button
+              key={id}
+              type="button"
+              role="option"
+              aria-selected={id === currentTaskId}
+              className={"ab-wall-thumb" + (id === currentTaskId ? " is-active" : "")}
+              onClick={() => selectTask(id)}
+              title={`${WALL[id].label} · ${WALL[id].site}`}
+            >
+              <span className="ab-wall-thumb-frame" style={{ backgroundImage: `url(${urlFor(id, "ref")})`, backgroundSize: `${WALL[id].n * 100}% 100%` }} />
+              <span className="ab-wall-thumb-label">{WALL[id].label}</span>
+            </button>
+          ))}
         </div>
 
         <div className="ab-wall-grid" ref={wallRef}>

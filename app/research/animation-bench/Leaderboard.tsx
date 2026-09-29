@@ -288,7 +288,6 @@ export default function Leaderboard() {
             <tr>
               <th className="num">Rank</th>
               <th>Model</th>
-              <th>Harness</th>
               <th className="num">Score</th>
               <th className="num">Visual</th>
               <th className="num">Motion</th>
@@ -302,7 +301,6 @@ export default function Leaderboard() {
               <tr key={m.id} className={i === 0 ? "lead" : ""}>
                 <td className="n">{i + 1}</td>
                 <td className="whitespace-nowrap"><span className="ab-lb-model"><ModelLogo model={m.id} />{m.full}</span></td>
-                <td className="whitespace-nowrap">Computer-1</td>
                 <td className="n overall">
                   <span className="ab-score-number">{m.overall[0].toFixed(3)}</span> <span className="ab-lb-ci-inline">±{m.ciHalf.toFixed(3)}</span>
                 </td>
