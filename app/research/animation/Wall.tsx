@@ -311,7 +311,7 @@ export default function Wall() {
           <div>
             <h2 className="ab-wall-title">Reference vs. 4 agent reconstructions</h2>
             <p className="bench-mono-label ab-wall-subtitle">
-              Frame-locked to the same moments. Hover a model to overlay the reference. For every task, see the{" "}
+              Frame-locked to the same moments. Hover a model to overlay the reference. For the full task set, see the{" "}
               <a className="bench-link" href="#tasks">appendix</a>.
             </p>
           </div>
