@@ -345,7 +345,7 @@ export default function Leaderboard() {
                   <span className="ab-score-number">{m.overall[0].toFixed(3)}</span> <span className="ab-lb-ci-inline">±{m.ciHalf.toFixed(3)}</span>
                 </td>
                 <td className="n">{m.visual[0].toFixed(3)}</td>
-                <td className="n">{m.motion[0].toFixed(3)}</td>
+                <td className="n motion">{m.motion[0].toFixed(3)}</td>
                 <td className="n">{m.layout[0].toFixed(3)}</td>
                 <td className="n">{m.wins}</td>
                 <td className="n">${m.cost.toFixed(2)}</td>

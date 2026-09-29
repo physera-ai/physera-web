@@ -1013,3 +1013,4 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 @media (max-width: 720px) { .ab-cvs2-row { grid-template-columns: 1fr 64px; } .ab-cvs2-track { grid-column: 1 / -1; } .ab-cvs2-headrow .ab-cvs2-axis { grid-column: 1 / -1; order: 3; } }
 .ab-score-number { font-weight: 700; }
 .ab-lb-table .n.overall .ab-score-number { font-weight: 700; }
+.ab-lb-table .n.motion { font-weight: 550; color: var(--bench-ink); }
