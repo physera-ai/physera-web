@@ -20,8 +20,14 @@ function groups(sections: Section[]): Group[] {
 
 export default function SectionNav({ sections }: { sections: Section[] }) {
   const [active, setActive] = useState(sections[0]?.id);
+  const [folded, setFolded] = useState<Set<string>>(() => new Set());
   const tree = groups(sections);
-  const openGroup = tree.find((g) => g.id === active || g.subs.some((s) => s.id === active))?.id;
+  const activeGroup = tree.find((g) => g.id === active || g.subs.some((s) => s.id === active))?.id;
+  const toggle = (id: string) => setFolded((prev) => {
+    const next = new Set(prev);
+    if (next.has(id)) next.delete(id); else next.add(id);
+    return next;
+  });
 
   useEffect(() => {
     const els = sections
@@ -49,11 +55,21 @@ export default function SectionNav({ sections }: { sections: Section[] }) {
 
   return (
     <nav className="bench-toc ab-toc" aria-label="On this page">
-      <span className="bench-mono-label bench-toc-head">Contents</span>
+      <span className="bench-mono-label bench-toc-head">Contents<em>{tree.length} sections · {sections.length - tree.length} subsections</em></span>
       <ul>
-        {tree.map((g) => (
-          <li key={g.id} className={`ab-toc-group${openGroup === g.id ? " is-open" : ""}`}>
-            {link(g)}
+        {tree.map((g) => {
+          const isActive = activeGroup === g.id;
+          const open = g.subs.length > 0 && (!folded.has(g.id) || isActive);
+          return (
+          <li key={g.id} className={`ab-toc-group${isActive ? " is-current" : ""}${open ? " is-open" : ""}`}>
+            <div className="ab-toc-row">
+              {link(g)}
+              {g.subs.length > 0 && (
+                <button type="button" className="ab-toc-fold" aria-expanded={open} aria-label={`${open ? "Collapse" : "Expand"} ${g.label}`} onClick={() => toggle(g.id)}>
+                  <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 3.5 5 6.5l2.5-3" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+              )}
+            </div>
             {g.subs.length > 0 && (
               <div className="ab-toc-subwrap">
                 <ul className="ab-toc-subs">
@@ -62,7 +78,8 @@ export default function SectionNav({ sections }: { sections: Section[] }) {
               </div>
             )}
           </li>
-        ))}
+          );
+        })}
       </ul>
     </nav>
   );
