@@ -700,3 +700,4 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-taskscores-th { display: inline-flex; align-items: center; gap: 6px; }
 .ab-taskscores-th .ab-model-logo { width: 16px; height: 16px; }
 .ab-taskscores-th .ab-model-logo img { width: 10px; height: 10px; }
+.ab-wall-strip { padding-left: 22px; padding-right: 22px; scroll-padding-inline: 22px; }

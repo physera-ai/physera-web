@@ -174,8 +174,13 @@ export default function Wall() {
   const wallRef = useRef<HTMLDivElement | null>(null);
   const stripRef = useRef<HTMLDivElement | null>(null);
 
+  const stripTouchedRef = useRef(false);
   useEffect(() => {
-    stripRef.current?.querySelector<HTMLElement>('.ab-wall-thumb.is-active')?.scrollIntoView({ inline: "nearest", block: "nearest" });
+    if (!stripTouchedRef.current) {
+      stripTouchedRef.current = true;
+      return;
+    }
+    stripRef.current?.querySelector<HTMLElement>(".ab-wall-thumb.is-active")?.scrollIntoView({ inline: "nearest", block: "nearest" });
   }, [currentTaskId]);
 
   useEffect(() => {
