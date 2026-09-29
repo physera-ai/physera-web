@@ -701,3 +701,6 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-taskscores-th .ab-model-logo { width: 16px; height: 16px; }
 .ab-taskscores-th .ab-model-logo img { width: 10px; height: 10px; }
 .ab-wall-strip { padding-left: 22px; padding-right: 22px; scroll-padding-inline: 22px; }
+.ab-radial { cursor: grab; touch-action: none; user-select: none; }
+.ab-radial.is-dragging { cursor: grabbing; }
+.ab-radial-shapes { transform-box: view-box; will-change: transform; }

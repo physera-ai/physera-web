@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ModelLogo from "./ModelLogo";
 
 type Axis = "overall" | "visual" | "motion" | "layout";
@@ -144,6 +144,29 @@ function Dimensions({ active, onActive }: { active: string | null; onActive: (id
   const round = (value: number) => Math.round(value * 1000) / 1000;
   const selected = MODELS.find((m) => m.id === active && visible.has(m.id));
 
+  // The shapes can be tugged with the pointer, resist, and spring back on release.
+  const [pull, setPull] = useState({ x: 0, y: 0, live: false });
+  const dragStart = useRef<{ x: number; y: number; scale: number } | null>(null);
+  const resist = (v: number) => (v * 0.55) / (1 + Math.abs(v) / 220);
+  const onPointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
+    const box = e.currentTarget.getBoundingClientRect();
+    dragStart.current = { x: e.clientX, y: e.clientY, scale: 1000 / box.width };
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setPull({ x: 0, y: 0, live: true });
+  };
+  const onPointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
+    const start = dragStart.current;
+    if (!start) return;
+    setPull({ x: resist((e.clientX - start.x) * start.scale), y: resist((e.clientY - start.y) * start.scale), live: true });
+  };
+  const release = (e: React.PointerEvent<SVGSVGElement>) => {
+    if (!dragStart.current) return;
+    dragStart.current = null;
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
+    setPull({ x: 0, y: 0, live: false });
+  };
+  const stretch = 1 + Math.hypot(pull.x, pull.y) / 700;
+
   return (
     <div className="ab-dimensions">
       <div className="ab-model-switches" role="group" aria-label="Models shown in dimensions chart">
@@ -162,7 +185,8 @@ function Dimensions({ active, onActive }: { active: string | null; onActive: (id
         ))}
       </div>
       <div className="ab-radial-stage">
-        <svg className="ab-radial" viewBox="0 0 1000 450" role="group" aria-label="Model reproduction scores across visual similarity, motion consistency, and layout correctness. Each spoke uses the same zero to one scale.">
+        <svg className={`ab-radial${pull.live ? " is-dragging" : ""}`} viewBox="0 0 1000 450" role="group" aria-label="Model reproduction scores across visual similarity, motion consistency, and layout correctness. Each spoke uses the same zero to one scale."
+          onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={release} onPointerCancel={release} onLostPointerCapture={release}>
           <defs>
             <pattern id="ab-radial-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#99aaa3" opacity=".26" /></pattern>
           </defs>
@@ -178,6 +202,7 @@ function Dimensions({ active, onActive }: { active: string | null; onActive: (id
               <circle cx={round(x)} cy={round(y)} r="3" />
             </g>;
           })}
+          <g className="ab-radial-shapes" style={{ transform: `translate(${pull.x}px, ${pull.y}px) scale(${stretch})`, transformOrigin: `${cx}px ${cy}px`, transition: pull.live ? "none" : "transform .75s cubic-bezier(.18, 1.9, .3, 1)" }}>
           {MODELS.map((m) => {
             const shown = visible.has(m.id);
             const highlighted = selected?.id === m.id;
@@ -191,6 +216,7 @@ function Dimensions({ active, onActive }: { active: string | null; onActive: (id
               })}
             </g>;
           })}
+          </g>
           <circle cx={cx} cy={cy} r="2.5" fill="#85958d" />
           {DIMENSIONS.map((d, i) => {
             const [x, y] = i === 0 ? [500, 32] : i === 1 ? [830, 345] : [170, 345];
