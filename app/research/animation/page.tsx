@@ -355,7 +355,6 @@ export default function AnimationBenchPage() {
                     <li>As it lands, the letters of “<em>Notetaker</em>” ripple: each lifts and drops in turn, left to right.</li>
                     <li>Easing back to “<em>Dictation</em>”, the letters stay still.</li>
                   </ol>
-                  <Vid src="/animation-bench/ab-wispr-all-models.mp4" label="Wispr Flow toggle: the reference above all four models" caption="Wispr Flow toggle, the reference and all four models. Opus 5.5 slides on time and never returns (motion 0.62); Fable 5.1 starts already switched and returns on time (0.51); Sol and Astra slide late, and neither ripples as the original does (0.36, 0.42)." />
                   <p className={P}>Every model recognised the component and reproduced its appearance (visual 0.90–0.97, layout ≈ 0.95 for all four). Two models also recognised the ripple and wrote the right mechanism for it: Claude Opus 5.5 a per-letter @keyframes wave with a 70 ms stagger; Claude Fable 5.1 a per-character transform sequence. Each model reconstructed a different fragment of it:</p>
                   <div className="overflow-x-auto"><table className="bench-table my-6 max-w-[760px]"><thead><tr><th></th><th>Slide on time (f1)</th><th>Ripple after slide</th><th>Returns on time (f10)</th></tr></thead><tbody>
                     <tr><td className="whitespace-nowrap">Claude Opus 5.5</td><td>✅</td><td>fires immediately</td><td>never returns</td></tr>
@@ -365,6 +364,7 @@ export default function AnimationBenchPage() {
                   </tbody></table></div>
                   <p className={P}><strong>What makes this case so hard?</strong> The pill is small, and each letter of the ripple lifts by only a few pixels. The stills are unevenly spaced: the first is taken almost seven seconds into the recording, a full second passes before the slide, eight quick frames about 150 ms apart catch the ripple, and a second and a half passes before the return. To rebuild it, a model has to read the timestamps as well as the pictures, and turn a few pixels of difference into a sequence with an order, a pause and a return. No single frame shows any of that.</p>
                   <p className={P}><strong>GPT-6 Sol shows what happens when that reading fails.</strong> Its page slides the thumb 0.9 seconds after load, then flips it back and forth every 3.3 seconds, indefinitely. There is no ripple at all: the letters are never split apart, so they cannot move one at a time. Every frame of it looks right (visual 0.94, layout 0.95), and it scores 0.36 on motion.</p>
+                  <Flipbook task="wisprflow-dictation-notetaker-toggle" cols={3} caption="Wispr Flow toggle, the reference and all four models. Opus 5.5 slides on time and never returns (motion 0.62); Fable 5.1 starts already switched and returns on time (0.51); Sol and Astra slide late, and neither ripples as the original does (0.36, 0.42)." />
                 </section>
 
                 <section className="ab-case">

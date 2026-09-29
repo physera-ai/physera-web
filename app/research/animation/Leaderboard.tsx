@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import ModelLogo from "./ModelLogo";
 
-type Axis = "overall" | "visual" | "motion" | "layout";
 type Triple = [mean: number, lo: number, hi: number];
 
 type ModelRow = {
@@ -46,90 +45,6 @@ const MODELS: ModelRow[] = [
     motion: [0.383, 0.335, 0.430], layout: [0.517, 0.459, 0.577],
   },
 ];
-
-const AXES: { key: Axis; label: string }[] = [
-  { key: "overall", label: "Overall" },
-  { key: "visual", label: "Visual" },
-  { key: "motion", label: "Motion" },
-  { key: "layout", label: "Layout" },
-];
-
-const W = 1000, H = 390, padL = 58, padR = 142, padT = 48, padB = 54;
-const Y_MIN = 0.3, Y_MAX = 0.8;
-const COST_MIN = 0.3, COST_MAX = 6;
-const Y_TICKS = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
-const COST_TICKS = [0.5, 1, 2, 4];
-
-function median(vals: number[]) {
-  const s = [...vals].sort((a, b) => a - b);
-  const mid = s.length / 2;
-  return s.length % 2 ? s[(s.length - 1) / 2] : (s[mid - 1] + s[mid]) / 2;
-}
-
-function Chart({ axis, active, onActive }: {
-  axis: Axis; active: string | null; onActive: (id: string | null) => void;
-}) {
-  const x = (c: number) => padL + ((Math.log10(c) - Math.log10(COST_MIN)) / (Math.log10(COST_MAX) - Math.log10(COST_MIN))) * (W - padL - padR);
-  const y = (v: number) => padT + (1 - (v - Y_MIN) / (Y_MAX - Y_MIN)) * (H - padT - padB);
-  const xMed = x(median(MODELS.map((m) => m.cost)));
-  const yMed = y(median(MODELS.map((m) => m[axis][0])));
-
-  return (
-    <div className="ab-chart-scroll" role="region" aria-label="Interactive score versus cost chart" tabIndex={0}>
-      <svg viewBox={`0 0 ${W} ${H}`} className="ab-lb-svg" role="group" aria-label={`Reproduction score vs cost per task, ${axis} axis`}>
-        <defs>
-          <pattern id="ab-chart-dots" width="8" height="8" patternUnits="userSpaceOnUse">
-            <circle cx="1" cy="1" r=".7" fill="#3457d5" opacity=".16" />
-          </pattern>
-        </defs>
-        <rect x={padL} y={padT} width={xMed - padL} height={yMed - padT} fill="#f3f9f6" className="ab-chart-zone" />
-        <rect x={padL} y={padT} width={xMed - padL} height={yMed - padT} fill="url(#ab-chart-dots)" className="ab-chart-zone" />
-        {Y_TICKS.map((t) => (
-          <g key={t}>
-            <line x1={padL} y1={y(t)} x2={W - padR} y2={y(t)} className="ab-lb-grid" />
-            <text x={padL - 16} y={y(t) + 4} textAnchor="end" className="ab-lb-tick">{t.toFixed(1)}</text>
-          </g>
-        ))}
-        {COST_TICKS.map((t) => (
-          <g key={t}>
-            <line x1={x(t)} y1={padT} x2={x(t)} y2={H - padB} className="ab-lb-grid vertical" />
-            <text x={x(t)} y={H - padB + 24} textAnchor="middle" className="ab-lb-tick">${t.toFixed(t < 1 ? 2 : 0)}</text>
-          </g>
-        ))}
-        <line x1={xMed} y1={padT} x2={xMed} y2={H - padB} className="ab-chart-median" />
-        <line x1={padL} y1={yMed} x2={W - padR} y2={yMed} className="ab-chart-median" />
-        <text x={padL} y={22} className="ab-lb-axis-label">REPRODUCTION SCORE ↑</text>
-        <text x={padL + 14} y={padT + 23} className="ab-lb-corner good">BETTER + CHEAPER</text>
-        <text x={W - padR} y={H - 5} textAnchor="end" className="ab-lb-axis-label">COST / TASK · USD · LOG SCALE →</text>
-        {MODELS.map((m) => {
-          const [mean, lo, hi] = m[axis];
-          const selected = active === m.id;
-          // Adjacent models get opposite label anchors; no data is displaced.
-          const left = m.id === "gpt-6-astra" || m.id === "claude-opus-5-5";
-          return (
-            <g key={m.id} className={`ab-lb-chip-g${selected ? " is-selected" : ""}${active && !selected ? " is-muted" : ""}`}
-              style={{ transform: `translate(${x(m.cost)}px, ${y(mean)}px)`, color: m.color }}
-              tabIndex={0} role="button" aria-pressed={selected}
-              aria-label={`${m.full}: ${mean.toFixed(3)} ${axis}, 95% confidence interval ${lo.toFixed(3)} to ${hi.toFixed(3)}, $${m.cost.toFixed(2)} per task`}
-              onMouseEnter={() => onActive(m.id)} onMouseLeave={() => onActive(null)}
-              onFocus={() => onActive(m.id)} onBlur={() => onActive(null)}
-              onClick={() => onActive(selected ? null : m.id)}
-              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onActive(selected ? null : m.id); } if (e.key === "Escape") onActive(null); }}>
-              <title>{`${m.full}: ${mean.toFixed(3)} · 95% CI ${lo.toFixed(3)}–${hi.toFixed(3)} · $${m.cost.toFixed(2)}/task`}</title>
-              <rect x={left ? -133 : -20} y={-27} width="153" height="54" fill="transparent" />
-              <line x1={0} x2={0} y1={y(hi) - y(mean)} y2={y(lo) - y(mean)} className="ab-lb-ci" />
-              {[lo, hi].map((v) => <line key={v} x1={-5} x2={5} y1={y(v) - y(mean)} y2={y(v) - y(mean)} className="ab-lb-ci" />)}
-              <circle r="17" fill="currentColor" className="ab-point-halo" />
-              <circle r="6" fill="currentColor" stroke="white" strokeWidth="2" />
-              <text x={left ? -17 : 17} y={-6} textAnchor={left ? "end" : "start"} className="ab-lb-chip-label">{m.short}</text>
-              <text x={left ? -17 : 17} y={13} textAnchor={left ? "end" : "start"} className="ab-point-value">{mean.toFixed(3)}</text>
-            </g>
-          );
-        })}
-      </svg>
-    </div>
-  );
-}
 
 const DIMENSIONS = [
   { key: "visual", label: "Visual similarity", angle: -Math.PI / 2 },
@@ -285,54 +200,17 @@ function Dimensions({ active, onActive }: { active: string | null; onActive: (id
   );
 }
 
-function Toggle({ axis, onChange }: { axis: Axis; onChange: (a: Axis) => void }) {
-  return (
-    <div className="ab-lb-toggle" role="group" aria-label="Score axis">
-      {AXES.map((a) => (
-        <button
-          key={a.key}
-          type="button"
-          aria-pressed={axis === a.key}
-          className={axis === a.key ? "is-active" : ""}
-          onClick={() => onChange(a.key)}
-        >
-          {a.label}
-        </button>
-      ))}
-    </div>
-  );
-}
-
 export function ResultsCharts() {
-  const [axis, setAxis] = useState<Axis>("overall");
-  const [view, setView] = useState<"dimensions" | "cost">("dimensions");
   const [active, setActive] = useState<string | null>(null);
-  const inspected = MODELS.find((m) => m.id === active);
   return (
-    <section className="ab-results-charts" aria-label="Model dimensions and cost comparison">
+    <section className="ab-results-charts" aria-label="Model scores across the three dimensions">
       <div className="ab-lb-panel scroll-mt-24">
         <div className="ab-lb-head">
           <div>
             <h3 className="ab-lb-title">Dimensions</h3>
-
-          </div>
-          <div className="ab-view-switch" role="group" aria-label="Chart view">
-            <button type="button" aria-pressed={view === "dimensions"} onClick={() => { setView("dimensions"); setActive(null); }}>Dimensions</button>
-            <button type="button" aria-pressed={view === "cost"} onClick={() => { setView("cost"); setActive(null); }}>Reproduction score vs cost per task</button>
           </div>
         </div>
-        {view === "dimensions" ? <Dimensions active={active} onActive={setActive} /> : <div className="ab-lb-chart">
-          <div className="ab-cost-controls"><Toggle axis={axis} onChange={setAxis} /></div>
-          <Chart axis={axis} active={active} onActive={setActive} />
-        <div className="ab-chart-inspector" aria-live="polite" aria-atomic="true">
-          {inspected ? <>
-            <span className="ab-inspector-name"><i style={{ background: inspected.color }} />{inspected.full}</span>
-            <span><b>{inspected[axis][0].toFixed(3)}</b> {axis}</span>
-            <span>95% CI <b>{inspected[axis][1].toFixed(3)}–{inspected[axis][2].toFixed(3)}</b></span>
-            <span><b>${inspected.cost.toFixed(2)}</b> / task</span>
-          </> : <><span>Hover or focus a model to inspect</span><span>↕ 95% confidence interval</span></>}
-        </div>
-        </div>}
+        <Dimensions active={active} onActive={setActive} />
       </div>
     </section>
   );

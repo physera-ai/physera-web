@@ -45,14 +45,17 @@ export function useSpriteFrame(entry: { n: number; times_ms: number[] } | undefi
   return frame;
 }
 
-export default function Flipbook({ task, rows = ALL, caption, compact }: { task: string; rows?: Row[]; caption?: string; compact?: boolean }) {
+export default function Flipbook({ task, rows = ALL, caption, compact, cols }: { task: string; rows?: Row[]; caption?: string; compact?: boolean; cols?: number }) {
   const entry = WALL[task];
   const frame = useSpriteFrame(entry);
   if (!entry) return null;
   const bgSize = `${entry.n * 100}% 100%`;
   const bgPos = `${(frame / (entry.n - 1)) * 100}% 0`;
+  const columns = cols ?? rows.length;
+  const spare = columns * Math.ceil(rows.length / columns) - rows.length;
+  const captionInGrid = Boolean(caption) && spare > 0;
   const body = (
-    <div className={`ab-flip${compact ? " ab-flip-compact" : ""}`} style={{ ["--cols" as string]: rows.length }}>
+    <div className={`ab-flip${compact ? " ab-flip-compact" : ""}`} style={{ ["--cols" as string]: columns }}>
       {rows.map((row) => {
         const s = row === "ref" ? null : entry.scores[row];
         return (
@@ -65,13 +68,14 @@ export default function Flipbook({ task, rows = ALL, caption, compact }: { task:
           </div>
         );
       })}
+      {captionInGrid && <figcaption className="ab-flip-note" style={{ gridColumn: `span ${spare}` }}>{caption}</figcaption>}
     </div>
   );
   if (!caption) return body;
   return (
     <figure className="bench-fig ab-flip-fig">
       {body}
-      <figcaption>{caption}</figcaption>
+      {!captionInGrid && <figcaption>{caption}</figcaption>}
     </figure>
   );
 }

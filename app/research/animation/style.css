@@ -466,7 +466,7 @@
 .ab-editorial .ab-case p { max-width: 760px; color: #525a68; line-height: 1.85; }
 .ab-editorial .ab-case .bench-fig:last-child { margin-bottom: 0; }
 .ab-editorial .ab-case + .ab-case { border-top: 1px solid #e0e4eb; padding-top: 24px; }
-.ab-editorial #results { border-top: 2px solid var(--bench-accent); }
+.ab-editorial #results { border-top: 1px solid var(--bench-rule-2); }
 
 @media (max-width: 1180px) {
   .ab-model-switches { grid-template-columns: 1fr 1fr; }
@@ -909,3 +909,5 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 }
 .ab-hero-reel { mask-image: none; }
 .ab-editorial .ab-toc .ab-toc-subs a.ab-toc-sub { grid-template-columns: 12px 38px 1fr; column-gap: 8px; }
+.ab-flip-note { margin: 0; padding: 6px 4px 0 6px; font-size: 13px; line-height: 1.6; color: var(--bench-ink-2); text-align: left; align-self: start; }
+.ab-editorial .bench-fig .ab-flip-note::before { content: "—"; margin-right: 8px; color: var(--bench-accent); }
