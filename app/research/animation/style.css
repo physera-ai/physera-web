@@ -778,3 +778,9 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-editorial .ab-toc .ab-toc-subs a.ab-toc-sub { grid-template-columns: 34px 1fr; }
 .ab-editorial .ab-toc .ab-toc-group > .ab-toc-row > a { font-size: 13.5px; grid-template-columns: 28px 1fr; }
 .ab-toc-row { grid-template-columns: 1fr 20px; }
+.ab-hero-reel { top: 36px; }
+.ab-toc-fold { width: 18px; height: 18px; margin-right: -18px; color: #b9c0bb; }
+.ab-toc-fold svg { width: 8px; height: 8px; }
+.ab-toc-row { grid-template-columns: 1fr 18px; }
+.ab-toc-fold { margin-right: 0; transform: translateX(16px); }
+.ab-toc-fold[aria-expanded="false"] svg { transform: rotate(-90deg); }
