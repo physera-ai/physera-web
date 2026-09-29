@@ -829,7 +829,7 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 }
 
 /* brand colour in more places */
-.ab-editorial .ab-body .bench-stats > div { border-top: 2px solid var(--bench-accent); }
+.ab-editorial .ab-body .bench-stats > div { border-top: 1px solid var(--bench-rule); }
 .ab-editorial .bench-list li::marker { color: var(--bench-accent); }
 .ab-editorial .bench-fig > figcaption::before { content: "—"; margin-right: 8px; color: var(--bench-accent); }
 .ab-editorial .ab-disclosure summary:hover h3.bench-h3 { color: var(--bench-accent); }
@@ -853,3 +853,31 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 }
 .ab-editorial .bench-list > li + li { margin-top: 10px; }
 .ab-editorial .bench-list .bench-list { margin: 8px 0 0; }
+
+/* run pipeline as a train: a carriage rides the track and stops at each station */
+.ab-editorial .ab-run ol { position: relative; overflow: visible; margin-top: 14px; border-radius: 8px; }
+.ab-editorial .ab-run ol::before { content: ""; position: absolute; left: 10%; right: 10%; top: -14px; height: 2px; background: var(--bench-rule-2); border-radius: 1px; }
+.ab-editorial .ab-run ol::after { content: ""; position: absolute; top: -18px; left: 10%; width: 22px; height: 10px; margin-left: -11px; border-radius: 3px; background: var(--bench-accent); box-shadow: 0 0 0 3px #3457d522, 6px 0 0 -2px #3457d5aa; animation: ab-train 9s cubic-bezier(.45, 0, .2, 1) infinite; }
+.ab-editorial .ab-run li { --ab-run-cycle: 9s; --ab-run-step: 1.8s; overflow: visible; }
+.ab-editorial .ab-run li::after { content: ""; position: absolute; top: -18px; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: #fff; border: 2px solid var(--bench-rule-2); transform: none; transform-origin: center; animation: ab-station var(--ab-run-cycle) linear infinite; animation-delay: calc(var(--i) * var(--ab-run-step)); box-sizing: border-box; }
+.ab-editorial .ab-run li:first-child::after, .ab-editorial .ab-run li:last-child::after { left: 50%; }
+@keyframes ab-train {
+  0%, 14.4% { left: 10%; }
+  20%, 34.4% { left: 30%; }
+  40%, 54.4% { left: 50%; }
+  60%, 74.4% { left: 70%; }
+  80%, 94.4% { left: 90%; opacity: 1; }
+  97% { left: 96%; opacity: 0; }
+  99.9% { left: 4%; opacity: 0; }
+  100% { left: 10%; opacity: 1; }
+}
+@keyframes ab-station { 0%, 14.4% { border-color: var(--bench-accent); background: var(--bench-accent); transform: scale(1.15); } 18%, 100% { border-color: var(--bench-rule-2); background: #fff; transform: scale(1); } }
+@keyframes ab-run-glow { 0%, 14.4% { color: var(--bench-accent); } 18%, 100% { color: inherit; } }
+@keyframes ab-run-bg { 0%, 14.4% { background-color: #f1f4fd; } 20%, 100% { background-color: #fff; } }
+@media (max-width: 640px) {
+  .ab-editorial .ab-run ol::before, .ab-editorial .ab-run ol::after, .ab-editorial .ab-run li::after { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ab-editorial .ab-run ol::after { animation: none; left: 90%; }
+  .ab-editorial .ab-run li::after { animation: none; border-color: var(--bench-accent); background: var(--bench-accent); }
+}
