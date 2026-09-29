@@ -39,8 +39,8 @@ export default function Footer() {
               An applied research lab working on model efficiency and behavioural simulation, and the
               benchmarks that prove them.
             </p>
-            <Link href="/contact" className="site-footer-cta">
-              Measure what your models really do <span aria-hidden="true">→</span>
+            <Link href="/contact" className="btn-cta">
+              Contact
             </Link>
           </div>
 
