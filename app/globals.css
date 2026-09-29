@@ -130,10 +130,10 @@
   --bench-rule-2: #cfcfcf;
   --bench-dot: #d8d8d8;
   --bench-hover: #f7f7f6;
-  --bench-accent: #0f9d6e;         /* manifesto emerald */
-  --bench-accent-soft: #dcf0e7;
-  --bench-good-fill: #dcf0e7;
-  --bench-good-ink: #0f9d6e;
+  --bench-accent: #3457d5;         /* royal blue */
+  --bench-accent-soft: #e3e9fb;
+  --bench-good-fill: #e3e9fb;
+  --bench-good-ink: #3457d5;
   --bench-bad-fill: #f0d9d7;
   --bench-bad-ink: #b8443d;
 }
@@ -405,7 +405,7 @@ button.bench-legend-item:focus-visible { outline: 2px solid var(--bench-good-ink
 .bench-btn:hover::after { transform: translateX(3px); }
 .bench-btn:focus-visible { outline: 2px solid var(--bench-accent); outline-offset: 2px; }
 .bench-btn-primary { background: var(--bench-accent); color: #ffffff; border-color: var(--bench-accent); }
-.bench-btn-primary:hover { background: #0c855d; border-color: #0c855d; }
+.bench-btn-primary:hover { background: #2a47b8; border-color: #2a47b8; }
 .bench-btn-ghost { background: transparent; color: var(--bench-ink); border-color: var(--bench-rule-2); }
 .bench-btn-ghost:hover { border-color: var(--bench-ink); background: #fafafa; }
 .bench-btn-dark { background: var(--bench-ink); color: #fff; border-color: var(--bench-ink); }

@@ -79,7 +79,7 @@ function Chart({ axis, active, onActive }: {
       <svg viewBox={`0 0 ${W} ${H}`} className="ab-lb-svg" role="group" aria-label={`Reproduction score vs cost per task, ${axis} axis`}>
         <defs>
           <pattern id="ab-chart-dots" width="8" height="8" patternUnits="userSpaceOnUse">
-            <circle cx="1" cy="1" r=".7" fill="#087f64" opacity=".19" />
+            <circle cx="1" cy="1" r=".7" fill="#3457d5" opacity=".16" />
           </pattern>
         </defs>
         <rect x={padL} y={padT} width={xMed - padL} height={yMed - padT} fill="#f3f9f6" className="ab-chart-zone" />
