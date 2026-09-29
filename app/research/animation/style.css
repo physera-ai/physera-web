@@ -943,3 +943,13 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-cf-model.is-active .ab-cf-meta { fill: var(--bench-ink-2); }
 .ab-cf-ci { transition: stroke-width .2s; }
 .ab-cf-model { cursor: pointer; }
+
+/* scoring example: one tab per axis */
+.ab-scoring-example { max-width: none; margin: 8px 0 44px; padding: 0; border-radius: 8px; overflow: hidden; }
+.ab-scoring-example .ab-lb-head { padding: 18px 20px; margin: 0; border-bottom: 1px solid var(--bench-rule); align-items: center; }
+.ab-scoring-example .ab-lb-title { font-size: 18px; margin: 0; }
+.ab-scoring-example .ab-view-switch button b { font-weight: 500; margin-left: 6px; opacity: .7; }
+.ab-scoring-example-body { padding: 4px 20px 6px; }
+.ab-scoring-example-body .bench-table { margin: 12px 0 18px; max-width: 760px; }
+.ab-scoring-example-note > p { margin-bottom: 14px; }
+@media (max-width: 640px) { .ab-scoring-example .ab-lb-head { padding: 14px; } .ab-scoring-example .ab-view-switch { flex-wrap: wrap; } .ab-scoring-example-body { padding: 4px 14px 6px; } }

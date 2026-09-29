@@ -11,6 +11,7 @@ import Flipbook from "./Flipbook";
 import HeroReel from "./HeroReel";
 import VisualVsMotion from "./VisualVsMotion";
 import CostVsScore from "./CostVsScore";
+import ScoringExample from "./ScoringExample";
 import Disclosure from "./Disclosure";
 
 export const metadata: Metadata = {
@@ -153,19 +154,6 @@ function SubTable({ rows }: { rows: [string, string, string, string][] }) {
       {rows.map(([name, weight, how, what]) => (
         <tr key={name}><td className="whitespace-nowrap"><strong>{name}</strong></td><td className="n">{weight}</td><td>{how}</td><td>{what}</td></tr>
       ))}
-    </tbody></table></div>
-  );
-}
-
-function ScoreTable({ rows, total, totalValue, totalWeight, head = ["Sub-score", "Weight", "Score", "Weight × score"] }: {
-  rows: [string, string, string, string][]; total: string; totalValue: string; totalWeight?: string; head?: string[];
-}) {
-  return (
-    <div className="overflow-x-auto"><table className="bench-table ab-score-table my-6 max-w-[760px]"><thead><tr>{head.map((h, i) => <th key={h} className={i ? "num" : ""}>{h}</th>)}</tr></thead><tbody>
-      {rows.map(([name, weight, score, product]) => (
-        <tr key={name}><td className="whitespace-nowrap"><strong>{name}</strong></td><td className="n">{weight}</td><td className="n">{score}</td><td className="n">{product}</td></tr>
-      ))}
-      <tr className="lead"><td className="whitespace-nowrap"><strong>{total}</strong></td><td className="n">{totalWeight ? <strong>{totalWeight}</strong> : ""}</td><td></td><td className="n"><strong>{totalValue}</strong></td></tr>
     </tbody></table></div>
   );
 }
@@ -315,18 +303,20 @@ export default function AnimationBenchPage() {
                 <h3 id="example" className="bench-h3 scroll-mt-24">Scoring example: oxigen-voxel-palm-pinned</h3>
                 <p className={P}>To show the purposes of how our scoring algorithm works, here is one reconstruction from the <a className="bench-link" href="http://oxigen.sa">oxigen.sa</a> scored end to end. In the original, a palm tree made of glowing voxels grows over a voxel landscape while the section stays pinned and the copy changes as you scroll. Opus 5.5 built something recognisable, and very different.</p>
                 <Vid src="/animation-bench/ab-scoring-example-oxigen.mp4" label="oxigen.sa voxel palm: the reference beside Claude Opus 5.5’s reconstruction" caption="The original's palm assembles, grows and fills the frame as you scroll. Opus 5.5 draws a cyan fountain that barely changes, and its copy scrolls up under the logo instead of staying pinned." />
-                <p className={P}><strong>Visual similarity: 0.453</strong></p>
-                <ScoreTable total="Visual similarity" totalValue="0.453" rows={[["MS-SSIM", "0.32", "0.42", "0.134"], ["LPIPS", "0.32", "0.34", "0.109"], ["Colour", "0.13", "0.77", "0.100"], ["Edges", "0.08", "0.29", "0.023"], ["Coverage", "0.15", "0.58", "0.087"]]} />
-                <p className={P}>The palette is close and the screen is filled in roughly the right places, but nobody would call that fountain a palm tree, and the perceptual score (LPIPS 0.34) agrees.</p>
-                <p className={P}><strong>Motion consistency: 0.362</strong></p>
-                <ScoreTable total="Motion consistency" totalValue="0.644 × 0.68 × 0.83 = 0.362" rows={[["Energy", "0.50", "0.57", "0.285"], ["Flow", "0.20", "0.52", "0.104"], ["Trajectory", "0.30", "0.85", "0.255"], ["Motion pattern", "", "", "0.644"], ["Amount penalty", "×", "0.68", ""], ["Placement penalty", "×", "0.83", ""]]} />
-                <p className={P}>The page moves in roughly the right part of the screen, which keeps it well off zero. But the fountain stays put while the original&apos;s tree is being built, so only about half of the frame-to-frame motion matches.</p>
-                <p className={P}><strong>Layout correctness: 0.283</strong></p>
-                <ScoreTable total="Layout correctness" totalValue="0.283" rows={[["Presence", "0.35", "0.11", "0.037"], ["Accuracy", "0.25", "0.35", "0.089"], ["Order", "0.15", "1.00", "0.150"], ["Alignment", "0.25", "0.03", "0.007"]]} />
-                <p className={P}>The copy exists on the page, but at most moments it&apos;s somewhere else: scrolled away, or stacked under the logo. Barely a tenth of the reference&apos;s text is on screen when it should be, and almost none of it in the right place.</p>
-                <p className={P}><strong>Overall: 0.395</strong></p>
-                <ScoreTable head={["Axis", "Weight", "Score", "Weight × score"]} total="Overall" totalWeight="0.70" totalValue="0.277 / 0.70 = 0.395" rows={[["Visual similarity", "0.30", "0.453", "0.136"], ["Motion consistency", "0.35", "0.362", "0.127"], ["Layout correctness", "0.05", "0.283", "0.014"]]} />
-                <p className={P}>The weights are the scroll-trigger weights, with layout at 0.05 because the palm is drawn on a canvas. Interaction is held out, so the sum is divided by 0.70 rather than 1.</p>
+                <ScoringExample panels={[
+                  { key: "visual", label: "Visual similarity", value: "0.453", total: "Visual similarity", totalValue: "0.453",
+                    rows: [["MS-SSIM", "0.32", "0.42", "0.134"], ["LPIPS", "0.32", "0.34", "0.109"], ["Colour", "0.13", "0.77", "0.100"], ["Edges", "0.08", "0.29", "0.023"], ["Coverage", "0.15", "0.58", "0.087"]],
+                    note: <p className={P}>The palette is close and the screen is filled in roughly the right places, but nobody would call that fountain a palm tree, and the perceptual score (LPIPS 0.34) agrees.</p> },
+                  { key: "motion", label: "Motion consistency", value: "0.362", total: "Motion consistency", totalValue: "0.644 × 0.68 × 0.83 = 0.362",
+                    rows: [["Energy", "0.50", "0.57", "0.285"], ["Flow", "0.20", "0.52", "0.104"], ["Trajectory", "0.30", "0.85", "0.255"], ["Motion pattern", "", "", "0.644"], ["Amount penalty", "×", "0.68", ""], ["Placement penalty", "×", "0.83", ""]],
+                    note: <p className={P}>The page moves in roughly the right part of the screen, which keeps it well off zero. But the fountain stays put while the original&apos;s tree is being built, so only about half of the frame-to-frame motion matches.</p> },
+                  { key: "layout", label: "Layout correctness", value: "0.283", total: "Layout correctness", totalValue: "0.283",
+                    rows: [["Presence", "0.35", "0.11", "0.037"], ["Accuracy", "0.25", "0.35", "0.089"], ["Order", "0.15", "1.00", "0.150"], ["Alignment", "0.25", "0.03", "0.007"]],
+                    note: <p className={P}>The copy exists on the page, but at most moments it&apos;s somewhere else: scrolled away, or stacked under the logo. Barely a tenth of the reference&apos;s text is on screen when it should be, and almost none of it in the right place.</p> },
+                  { key: "overall", label: "Overall", value: "0.395", head: ["Axis", "Weight", "Score", "Weight × score"], total: "Overall", totalWeight: "0.70", totalValue: "0.277 / 0.70 = 0.395",
+                    rows: [["Visual similarity", "0.30", "0.453", "0.136"], ["Motion consistency", "0.35", "0.362", "0.127"], ["Layout correctness", "0.05", "0.283", "0.014"]],
+                    note: <p className={P}>The weights are the scroll-trigger weights, with layout at 0.05 because the palm is drawn on a canvas. Interaction is held out, so the sum is divided by 0.70 rather than 1.</p> },
+                ]} />
 
               <h2 id="results" className="bench-h2 scroll-mt-24">Results</h2>
                 <ResultsCharts />
