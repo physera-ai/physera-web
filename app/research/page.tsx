@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 
 export default function ResearchIndex() {
   return (
-    <main className="bench flex w-full max-w-[1320px] flex-1 flex-col px-3 py-1 sm:px-4">
-      <section className="rounded bg-white px-5 py-14 sm:px-14 sm:py-20">
-        <div className="mx-auto max-w-[1120px]">
+    <main className="bench flex w-full max-w-[1320px] flex-1 flex-col px-6 py-1 sm:px-10">
+      <section className="rounded bg-white py-14 sm:py-20">
+        <div className="mx-auto">
           <div className="research-hero">
             <div>
               <span className="research-eyebrow research-eyebrow-lg">Physera Research</span>
