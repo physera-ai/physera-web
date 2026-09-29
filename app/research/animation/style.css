@@ -953,3 +953,61 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-scoring-example-body .bench-table { margin: 12px 0 18px; max-width: 760px; }
 .ab-scoring-example-note > p { margin-bottom: 14px; }
 @media (max-width: 640px) { .ab-scoring-example .ab-lb-head { padding: 14px; } .ab-scoring-example .ab-view-switch { flex-wrap: wrap; } .ab-scoring-example-body { padding: 4px 14px 6px; } }
+
+/* scoring example: bars beside the numbers, reading alongside */
+.ab-scoring-example-body { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 28px; padding: 18px 20px 20px; align-items: start; }
+.ab-se-table { display: flex; flex-direction: column; font-size: 13px; }
+.ab-se-row { display: grid; grid-template-columns: 150px 64px 64px 96px minmax(120px, 1fr); align-items: center; gap: 10px; padding: 10px 6px; border-top: 1px solid var(--bench-rule); }
+.ab-se-headrow { border-top: 0; padding-top: 0; padding-bottom: 8px; font: 9px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bench-ink-3); }
+.ab-se-row .n { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); font-size: 12px; color: var(--bench-ink-2); }
+.ab-se-headrow .n, .ab-se-headrow .ab-se-barhead { text-align: right; font-family: inherit; font-size: inherit; color: inherit; }
+.ab-se-barhead { text-align: left !important; padding-left: 2px; }
+.ab-se-name { font-weight: 550; color: var(--bench-ink); }
+.ab-se-row.is-factor .ab-se-name, .ab-se-row.is-subtotal .ab-se-name { font-weight: 500; color: var(--bench-ink-2); }
+.ab-se-bar { position: relative; display: flex; align-items: center; height: 18px; }
+.ab-se-track { display: block; height: 8px; border-radius: 3px; background: #e9ecf3; overflow: hidden; }
+.ab-se-track i { display: block; height: 100%; background: var(--bench-accent); border-radius: 3px; }
+.ab-se-track.is-sum { background: transparent; }
+.ab-se-track.is-sum i { background: #a9b8ea; }
+.ab-se-factor { font: 11px var(--font-mono); color: var(--bench-ink-3); }
+.ab-se-total { border-top: 1px solid var(--bench-rule-2); margin-top: 2px; padding-top: 14px; background: none; }
+.ab-se-total .ab-se-name { font-weight: 600; }
+.ab-se-total .n { color: var(--bench-ink); font-weight: 500; }
+.ab-se-stack { display: flex; width: 100%; height: 10px; border-radius: 3px; background: #e9ecf3; overflow: hidden; }
+.ab-se-stack i { display: block; height: 100%; background: var(--bench-accent); }
+.ab-se-total-mark { position: absolute; top: -16px; transform: translateX(-50%); font: 10px var(--font-mono); color: var(--bench-accent); white-space: nowrap; }
+.ab-se-aside { display: flex; flex-direction: column; padding: 4px 0 0 28px; border-left: 1px solid var(--bench-rule); }
+.ab-se-big { font-family: var(--font-serif); font-size: 44px; line-height: 1; color: var(--bench-accent); font-variant-numeric: tabular-nums; }
+.ab-se-big-label { margin: 8px 0 14px; font: 10px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bench-ink-3); }
+.ab-editorial .ab-scoring-example-note > p { max-width: none; font-size: 14px; line-height: 1.7; margin: 0; }
+@media (max-width: 900px) {
+  .ab-scoring-example-body { grid-template-columns: 1fr; gap: 18px; }
+  .ab-se-aside { border-left: 0; padding-left: 0; border-top: 1px solid var(--bench-rule); padding-top: 16px; }
+  .ab-se-row { grid-template-columns: 120px 52px 52px 80px minmax(80px, 1fr); gap: 8px; }
+}
+@media (max-width: 640px) { .ab-se-row { grid-template-columns: 1fr 48px 48px 72px; } .ab-se-bar, .ab-se-barhead { display: none; } }
+
+/* cost vs score: cheap half vs pricey half per model */
+.ab-editorial .bench-article-body .ab-cvs2 { padding: 22px 24px 16px; max-width: none; }
+.ab-cvs2-head { margin-bottom: 18px; }
+.ab-cvs2-kicker { display: block; font: 10px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bench-ink-3); margin-bottom: 8px; }
+.ab-cvs2-head h4 { margin: 0; font: 500 19px/1.35 var(--font-geist-sans), sans-serif; letter-spacing: -.02em; color: var(--bench-ink); max-width: 720px; }
+.ab-cvs2-grid { display: flex; flex-direction: column; }
+.ab-cvs2-row { display: grid; grid-template-columns: 250px minmax(0, 1fr) 80px; align-items: center; gap: 20px; padding: 14px 0; border-top: 1px solid var(--bench-rule); }
+.ab-cvs2-headrow { border-top: 0; padding: 0 0 22px; font: 9px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--bench-ink-3); }
+.ab-cvs2-headrow .n { text-align: right; }
+.ab-cvs2-axis { position: relative; height: 12px; }
+.ab-cvs2-axis em { position: absolute; top: 0; transform: translateX(-50%); font-style: normal; }
+.ab-cvs2-model { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.ab-cvs2-model b { display: inline-flex; align-items: center; gap: 8px; font: 550 14px var(--font-geist-sans), sans-serif; color: var(--bench-ink); }
+.ab-cvs2-model small { font: 10.5px var(--font-mono); color: var(--bench-ink-3); letter-spacing: .01em; }
+.ab-cvs2-track { position: relative; height: 22px; background: repeating-linear-gradient(90deg, var(--bench-rule) 0 1px, transparent 1px 20%); background-size: 20% 100%; }
+.ab-cvs2-track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--bench-rule); }
+.ab-cvs2-line { position: absolute; top: 50%; height: 3px; margin-top: -1.5px; background: var(--c); opacity: .5; }
+.ab-cvs2-dot { position: absolute; top: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; border: 2.5px solid var(--c); background: var(--c); box-sizing: border-box; }
+.ab-cvs2-dot.is-cheap { background: #fff; }
+.ab-cvs2-delta { font: 500 14px var(--font-mono); text-align: right; color: var(--bench-ink); font-variant-numeric: tabular-nums; }
+.ab-cvs2-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 14px 0 6px; font: 11px var(--font-mono); color: var(--bench-ink-3); }
+.ab-cvs2-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.ab-cvs2-legend .ab-cvs2-dot { position: static; margin: 0; --c: var(--bench-ink-3); width: 10px; height: 10px; border-width: 2px; }
+@media (max-width: 720px) { .ab-cvs2-row { grid-template-columns: 1fr 64px; } .ab-cvs2-track { grid-column: 1 / -1; } .ab-cvs2-headrow .ab-cvs2-axis { grid-column: 1 / -1; order: 3; } }
