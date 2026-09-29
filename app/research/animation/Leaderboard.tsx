@@ -341,9 +341,7 @@ export default function Leaderboard() {
         </table>
       </div>
       <p className="ab-note">
-        One selected run per model and task. Scores are reproduction scores on a 0–1 scale, not success rates. Two
-        tasks (raycast, Squarespace logo hover) keep their 24 September scores; the rest use the corrected 26
-        September scoring.
+        One selected run per model and task. Scores are reproduction scores on a 0–1 scale, not success rates.
       </p>
     </section>
   );

@@ -9,6 +9,7 @@ import AutoVideo from "./AutoVideo";
 import Wall from "./Wall";
 import Flipbook from "./Flipbook";
 import HeroReel from "./HeroReel";
+import VisualVsMotion from "./VisualVsMotion";
 import Disclosure from "./Disclosure";
 
 export const metadata: Metadata = {
@@ -329,9 +330,8 @@ export default function AnimationBenchPage() {
               <h2 id="results" className="bench-h2 scroll-mt-24">Results</h2>
                 <ResultsCharts />
                 <p className={P}><strong>Every model is weakest on motion.</strong> Each reconstruction scores higher on visual similarity than it does on motion consistency (between 0.38 and 0.47). Visual exceeds motion in 177 of the 192 reconstructions, by 0.24 on average, and the two are only moderately related (r = 0.44). A page that looks right is only somewhat more likely to move right.</p>
-                <Fig src="/animation-bench/ab-visual-vs-motion.webp" alt="Four small scatter plots, one per model, of visual similarity against motion consistency; most points fall below the diagonal." caption="Each dot is one page a model built. Dots below the diagonal look better than they move: 177 of 192 do." />
+                <VisualVsMotion caption="Each dot is one page a model built. Dots below the diagonal look better than they move: 177 of 192 do." />
                 <p className={P}><strong>Cost per task has a marginal impact.</strong> Mean spend per task ranges from $0.45 for GPT-6 Sol to $3.89 for Fable 5.1, close to a ninefold difference, against a spread in score of 0.087. Within each model, the tasks it spent more on did not score reliably higher (Spearman ρ from −0.24 to +0.24).</p>
-                <p className="ab-note">Scores use the corrected scoring of 26 September, which records reference and model identically. Two tasks, raycast and the Squarespace logo hover, could not be re-recorded and keep their 24 September scores.</p>
 
               <h2 id="failures" className="bench-h2 scroll-mt-24">What frontier models get wrong</h2>
                 <p className={P}>The final results indicate that motion is the gap. We deeply investigated all 192 generated pages and replayed a subset side by side with the reference. Each failure below is observable in the output, countable across the set, and has a named example to follow along.</p>
