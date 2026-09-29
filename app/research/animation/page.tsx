@@ -185,7 +185,7 @@ export default function AnimationBenchPage() {
             </h1>
             <div className="bench-mono-label">Physera · Updated 29 September 2026 · v0.1</div>
             <p className="max-w-[760px] text-[17px] leading-relaxed text-[#3a3a3a]">
-              Frontier multimodal coding agents can already recreate visually-plausible web animations, but current
+              Frontier multimodal coding agents can already recreate visually plausible web animations, but current
               evaluation methods fail to discriminate between screenshot parity and shippable frontend reconstruction.
             </p>
             <HeroReel />
@@ -320,9 +320,9 @@ export default function AnimationBenchPage() {
 
               <h2 id="results" className="bench-h2 scroll-mt-24">Results</h2>
                 <ResultsCharts />
-                <p className={P}><strong>Every model is weakest on motion.</strong> Each reconstruction scores higher on visual similarity than it does on motion consistency (between 0.38 and 0.47). Visual exceeds motion in 177 of the 192 reconstructions, by 0.24 on average, and the two are only moderately related (r = 0.44). A page that looks right is only somewhat more likely to move right.</p>
+                <p className={P}><strong>Every model is weakest on motion.</strong> Across all four models, mean visual similarity exceeds mean motion consistency (0.38 to 0.47). At the task level, visual exceeds motion in 177 of 192 reconstructions, by 0.24 on average, and the two are only moderately related (r = 0.44). A page that looks right is only somewhat more likely to move right.</p>
                 <VisualVsMotion caption="Each dot is one page a model built. Dots below the diagonal look better than they move: 177 of 192 do." />
-                <p className={P}><strong>Cost per task has a marginal impact.</strong> Mean spend per task ranges from $0.45 for GPT-6 Sol to $3.89 for Fable 5.1, close to a ninefold difference, against a spread in score of 0.087. Within each model, the tasks it spent more on did not score reliably higher (Spearman ρ from −0.24 to +0.24).</p>
+                <p className={P}><strong>Within this sample, cost has little association with score.</strong> Mean spend per task ranges from $0.45 for GPT-6 Sol to $3.89 for Fable 5.1, close to a ninefold difference, against a spread in score of 0.087. Per-model Spearman correlations between spend and score range from −0.24 to +0.24.</p>
                 <CostVsScore caption="Each model’s 48 tasks split at its median spend. The hollow dot is the mean overall score of the cheaper half, the filled dot the pricier half. Two models did slightly better on the tasks they spent more on, two did slightly worse; none moved by more than 0.09." />
 
               <h2 id="failures" className="bench-h2 scroll-mt-24">What frontier models get wrong</h2>
@@ -330,7 +330,7 @@ export default function AnimationBenchPage() {
 
                 <section className="ab-case">
                 <h3 id="timeline" className="bench-h3 scroll-mt-24">Timing problem</h3>
-                  <p className={P}>We believe this is the central finding. Looking more granular into the motion score, we can see a pattern emerge. Models do well on capturing motion location (location gate averages 0.88). However, across the 183 animations where motion has been captured, the timing term averages 0.57, against 0.50 when each reconstruction is paired with the reference from a different task. Put simply, the models reproduce which parts of the page should move; they have a low attentiveness to capturing the temporal consistency of animation.</p>
+                  <p className={P}>We believe this is the central finding. Looking more closely at the motion score, we can see a pattern emerge. Models do well on capturing motion location (location gate averages 0.88). However, across the 183 animations where motion has been captured, the timing term averages 0.57, against 0.50 when each reconstruction is paired with the reference from a different task. Put simply, the models reproduce which parts of the page should move; they have a low attentiveness to capturing the temporal consistency of animation.</p>
                   <p className={P}>Instead, the motion tends to arrive all at once. In a typical reconstruction the single biggest change between two frames accounts for 29% of all its movement; in the original it is 19%.</p>
                   <p className={P}>Nine of the 32 intros that should play once were written as loops that restart forever. On one eight-second sequence, three of the four models finished everything they had to show within about a second.</p>
                   <Flipbook task="neutomni-process-rolling-shape" rows={["ref", "astra", "sol"]} caption="neutomni.com. As you scroll, a white outline rolls along a track above four red cards, turning from a square into a pentagon and then a circle. GPT-6 Astra keeps pace with the reference (motion 0.56). GPT-6 Sol builds the same shape inside a narrow column, rolls it ahead of the scroll and runs out of page before the end (motion 0.39)." />
