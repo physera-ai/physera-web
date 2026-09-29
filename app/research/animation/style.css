@@ -1011,3 +1011,5 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-cvs2-legend span { display: inline-flex; align-items: center; gap: 8px; }
 .ab-cvs2-legend .ab-cvs2-dot { position: static; margin: 0; --c: var(--bench-ink-3); width: 10px; height: 10px; border-width: 2px; }
 @media (max-width: 720px) { .ab-cvs2-row { grid-template-columns: 1fr 64px; } .ab-cvs2-track { grid-column: 1 / -1; } .ab-cvs2-headrow .ab-cvs2-axis { grid-column: 1 / -1; order: 3; } }
+.ab-score-number { font-weight: 700; }
+.ab-lb-table .n.overall .ab-score-number { font-weight: 700; }
