@@ -437,8 +437,8 @@ timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},
                 <p className={P}>
                   We&rsquo;re excited to partner with teams working on frontend generation, or on environments for
                   agents that build software. Reach us at{" "}
-                  <a className="bench-link" href="mailto:tim@physera.ai">
-                    tim@physera.ai
+                  <a className="bench-link" href="mailto:hello@physera.ai">
+                    hello@physera.ai
                   </a>
                   .
                 </p>
