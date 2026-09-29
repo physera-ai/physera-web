@@ -784,3 +784,10 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-toc-row { grid-template-columns: 1fr 18px; }
 .ab-toc-fold { margin-right: 0; transform: translateX(16px); }
 .ab-toc-fold[aria-expanded="false"] svg { transform: rotate(-90deg); }
+@media (min-width: 1024px) {
+  .ab-editorial .ab-toc { padding-right: 18px; margin-right: -18px; }
+  .ab-editorial .ab-toc .bench-toc-head { margin-right: 18px; }
+  .ab-editorial .ab-toc .ab-toc-group > .ab-toc-row > a { margin-right: 0; }
+  .ab-toc-fold { transform: none; justify-self: end; }
+  .ab-toc-row { grid-template-columns: 1fr 36px; }
+}
