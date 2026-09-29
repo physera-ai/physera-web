@@ -55,7 +55,7 @@ export default function SectionNav({ sections }: { sections: Section[] }) {
 
   return (
     <nav className="bench-toc ab-toc" aria-label="On this page">
-      <span className="bench-mono-label bench-toc-head">Contents<em>{tree.length} sections · {sections.length - tree.length} subsections</em></span>
+      <span className="bench-mono-label bench-toc-head">Contents<em>{tree.length} · {sections.length - tree.length}</em></span>
       <ul>
         {tree.map((g) => {
           const isActive = activeGroup === g.id;

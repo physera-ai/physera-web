@@ -86,7 +86,7 @@ const sections: Section[] = [
   { id: "results", label: "Results" },
   { id: "failures", label: "What models get wrong" },
   { id: "timeline", label: "Timing problem", sub: true },
-  { id: "wispr", label: "Hard example: Wispr Flow", sub: true },
+  { id: "wispr", label: "Wispr Flow example", sub: true },
   { id: "under", label: "Under-animation", sub: true },
   { id: "stagger", label: "Stagger flattened", sub: true },
   { id: "hero", label: "Hero visuals", sub: true },
