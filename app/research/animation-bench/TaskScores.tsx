@@ -58,7 +58,7 @@ export default function TaskScores({ metadata }: { metadata: Meta }) {
             <tr>
               <th>Task</th>
               {models.map((id) => (
-                <th key={id} className="center" title={LABEL[id]}>{SHORT[id]}</th>
+                <th key={id} className="center" title={LABEL[id]}><span className="ab-taskscores-th"><ModelLogo model={id} />{SHORT[id]}</span></th>
               ))}
               <th>Site</th>
               <th>Genre</th>

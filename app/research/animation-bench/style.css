@@ -697,3 +697,6 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
   .ab-editorial .ab-body .bench-stats .bench-mono-label { font-size: 8px; letter-spacing: .06em; }
   .ab-editorial .ab-body .bench-stats .k { font-size: 10px; }
 }
+.ab-taskscores-th { display: inline-flex; align-items: center; gap: 6px; }
+.ab-taskscores-th .ab-model-logo { width: 16px; height: 16px; }
+.ab-taskscores-th .ab-model-logo img { width: 10px; height: 10px; }
