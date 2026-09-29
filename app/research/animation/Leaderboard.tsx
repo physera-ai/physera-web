@@ -240,12 +240,18 @@ function CostFrontier({ active, onActive }: { active: string | null; onActive: (
           return (
             <g key={m.id} className={`ab-cf-model${isActive ? " is-active" : ""}${active && !isActive ? " is-muted" : ""}`} style={{ color: m.color }}
               tabIndex={0} onMouseEnter={() => onActive(m.id)} onMouseLeave={() => onActive(null)} onFocus={() => onActive(m.id)} onBlur={() => onActive(null)}>
-              <line x1={x} y1={cyScale(m.overall[1])} x2={x} y2={cyScale(m.overall[2])} stroke="currentColor" strokeWidth="2.2" />
-              {dom
-                ? <rect x={x - 6} y={y - 6} width="12" height="12" fill="#fff" stroke="currentColor" strokeWidth="2.2" transform={`rotate(45 ${x} ${y})`} />
-                : <circle cx={x} cy={y} r="7" fill="currentColor" stroke="#fff" strokeWidth="2" />}
-              <text className="ab-cf-name" x={x + 14} y={labelAbove ? y - 22 : y + 30}>{m.full}</text>
-              <text className="ab-cf-meta" x={x + 14} y={labelAbove ? y - 8 : y + 44}>${m.cost.toFixed(2)} · {m.overall[0].toFixed(3)}{dom ? ` · dominated by ${dom.short}` : ""}</text>
+              <line className="ab-cf-ci" x1={x} y1={cyScale(m.overall[1])} x2={x} y2={cyScale(m.overall[2])} stroke="currentColor" strokeWidth={isActive ? 3.4 : 2.2} />
+              <g className="ab-cf-marker">
+                {dom
+                  ? <rect x={x - 6} y={y - 6} width="12" height="12" fill="#fff" stroke="currentColor" strokeWidth="2.2" transform={`rotate(45 ${x} ${y})`} />
+                  : <circle cx={x} cy={y} r="7" fill="currentColor" stroke="#fff" strokeWidth="2" />}
+              </g>
+              <image href={`/animation-bench/logos/${/claude/.test(m.id) ? "anthropic" : "openai"}.svg`} x={x + 14} y={(labelAbove ? y - 22 : y + 30) - 12} width="13" height="13" />
+              <text className="ab-cf-name" x={x + 32} y={labelAbove ? y - 22 : y + 30}>{m.full}</text>
+              <text className="ab-cf-meta" x={x + 32} y={labelAbove ? y - 8 : y + 44}>
+                ${m.cost.toFixed(2)} · {m.overall[0].toFixed(3)}{dom ? ` · dominated by ${dom.short}` : ""}
+                {isActive ? ` · 95% CI ${m.overall[1].toFixed(3)}–${m.overall[2].toFixed(3)}` : ""}
+              </text>
               <title>{`${m.full}: $${m.cost.toFixed(2)} per task, overall ${m.overall[0].toFixed(3)} (95% CI ${m.overall[1].toFixed(3)}–${m.overall[2].toFixed(3)})`}</title>
             </g>
           );

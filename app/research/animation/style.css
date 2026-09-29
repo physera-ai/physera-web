@@ -937,3 +937,9 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-results-charts { margin: 8px 0 56px; }
 .ab-editorial .bench-article-body figure { margin-top: 44px; margin-bottom: 56px; }
 .ab-editorial .bench-article-body > p + figure, .ab-editorial .bench-article-body > p + .ab-results-charts { margin-top: 40px; }
+.ab-cf-marker { transform-box: fill-box; transform-origin: center; transition: transform .2s cubic-bezier(.2, .7, .2, 1); }
+.ab-cf-model.is-active .ab-cf-marker { transform: scale(1.35); }
+.ab-cf-model.is-active .ab-cf-name { fill: var(--bench-accent); }
+.ab-cf-model.is-active .ab-cf-meta { fill: var(--bench-ink-2); }
+.ab-cf-ci { transition: stroke-width .2s; }
+.ab-cf-model { cursor: pointer; }

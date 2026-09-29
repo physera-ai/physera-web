@@ -21,7 +21,7 @@ function Panel({ id, name, color }: { id: ModelId; name: string; color: string }
     <figure className="ab-vvm-panel">
       <figcaption>
         <span className="ab-vvm-name"><ModelLogo model={id} />{name}</span>
-        <span className="ab-vvm-count">{below} of {points.length} look better than they move</span>
+        <span className="ab-vvm-count">{below} / {points.length} tasks score higher on visual than motion</span>
       </figcaption>
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${name}: visual similarity against motion consistency for 48 tasks; ${below} of 48 fall below the diagonal.`}>
         {TICKS.map((t) => (
