@@ -425,7 +425,7 @@ export default function AnimationBenchPage() {
                 <p className={P}>So, can frontier models rebuild a web animation, not just its first frame? Not yet. They reproduce its palette, its typography and its layout, and they usually recognise what kind of component they are looking at. More often than not they reach for the right technique. What they do not recover is time: the order in which things happen, the pause before the next thing, how long each movement lasts, and whether the page returns to where it began. Every model scored lower on motion than on appearance, and the pages they built were, for the most part, right at a glance and wrong over the following few seconds. That is precisely the gap a screenshot cannot see, and precisely the part a user notices first.</p>
 
               <h2 id="tasks" className="bench-h2 scroll-mt-24">Appendix: Tasks</h2>
-                <p className={P}>All 48 tasks with each model’s overall score, site, trigger and difficulty. One selected generation per task and model, scored against one reference capture; the best score on each task is in bold. Differences under ~0.02 should not be read as capability differences.</p>
+                <p className={P}>All 48 tasks with each model’s overall score, site, trigger and difficulty. One selected generation per task and model, scored against one reference capture; the best score on each task is in bold.</p>
                 <TaskScores metadata={TASK_META} />
 
               <h2 id="citation" className="bench-h2 scroll-mt-24">Citation</h2>
