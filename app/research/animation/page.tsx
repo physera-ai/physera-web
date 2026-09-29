@@ -193,7 +193,7 @@ export default function AnimationBenchPage() {
             <h1 className="ab-hero-title">
               Animation Bench
             </h1>
-            <div className="bench-mono-label">Physera · Updated 29 September 2026, Tim C · v0.1</div>
+            <div className="bench-mono-label">Physera · Updated 29 September 2026 · v0.1</div>
             <p className="max-w-[760px] text-[17px] leading-relaxed text-[#3a3a3a]">
               Frontier multimodal coding agents can already recreate visually-plausible web animations, but current
               evaluation methods fail to discriminate between screenshot parity and shippable frontend reconstruction.
