@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import SectionNav, { type Section } from "../cyberlatch/components/SectionNav";
-import results from "./data.json";
+import SectionNav, { type Section } from "./SectionNav";
 import "./style.css";
-import Leaderboard from "./Leaderboard";
+import Leaderboard, { ResultsCharts } from "./Leaderboard";
+import TaskScores from "./TaskScores";
 import CopyBlock from "./CopyBlock";
 import AutoVideo from "./AutoVideo";
 import Wall from "./Wall";
+import Flipbook from "./Flipbook";
+import HeroReel from "./HeroReel";
+import Disclosure from "./Disclosure";
 
 export const metadata: Metadata = {
   title: "Animation Bench",
@@ -15,18 +18,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/research/animation-bench" },
 };
 
-const LABEL: Record<string, string> = {
-  "gpt-6-astra": "GPT-6 Astra",
-  "claude-fable-5-1": "Claude Fable 5.1",
-  "claude-opus-5-5": "Claude Opus 5.5",
-  "gpt-6-sol": "GPT-6 Sol",
-};
-const SHORT: Record<string, string> = {
-  "gpt-6-astra": "Astra", "claude-fable-5-1": "Fable", "claude-opus-5-5": "Opus", "gpt-6-sol": "Sol",
-};
-const COLOR: Record<string, string> = {
-  "gpt-6-astra": "#0f9d6e", "claude-fable-5-1": "#5170c9", "claude-opus-5-5": "#ad7545", "gpt-6-sol": "#9b71a3",
-};
 const TASK_META: Record<string, [site: string, trigger: string, difficulty: string, genre: string]> = {
   "adcker-menu-services-hover": ["adcker.com", "hover", "medium", "portfolio"],
   "altitude101-glass-ring-word-swap": ["altitude101.com", "scroll", "hard", "portfolio"],
@@ -85,17 +76,21 @@ const sections: Section[] = [
   { id: "methodology", label: "Methodology" },
   { id: "task", label: "Tasks" },
   { id: "scoring", label: "Scoring" },
-  { id: "example", label: "A scored example", sub: true },
+  { id: "visual", label: "Visual similarity", sub: true },
+  { id: "motion", label: "Motion consistency", sub: true },
+  { id: "layout", label: "Layout correctness", sub: true },
+  { id: "overall", label: "Overall score", sub: true },
+  { id: "example", label: "Scoring example", sub: true },
   { id: "results", label: "Results" },
   { id: "failures", label: "What models get wrong" },
-  { id: "timeline", label: "The timeline", sub: true },
-  { id: "wispr", label: "Worked example", sub: true },
+  { id: "timeline", label: "Timing problem", sub: true },
+  { id: "wispr", label: "Hard example: Wispr Flow", sub: true },
   { id: "under", label: "Under-animation", sub: true },
   { id: "stagger", label: "Stagger flattened", sub: true },
   { id: "hero", label: "Hero visuals", sub: true },
   { id: "framing", label: "Invented framing", sub: true },
   { id: "edges", label: "Dropped behaviour", sub: true },
-  { id: "text", label: "Right words, wrong places", sub: true },
+  { id: "text", label: "Copy placement", sub: true },
   { id: "flipbook", label: "Screenshot flipbook", sub: true },
   { id: "conclusion", label: "Conclusion" },
   { id: "implications", label: "Implications", sub: true },
@@ -104,7 +99,6 @@ const sections: Section[] = [
   { id: "citation", label: "Citation" },
   { id: "partner", label: "Partner with us" },
 ];
-const fmt = (v: number) => v.toFixed(3);
 const P = "mb-7 max-w-[760px] text-[16px] leading-[1.72] text-[#3a3a3a]";
 
 function Fig({ src, alt, caption }: { src: string; alt: string; caption: string }) {
@@ -151,6 +145,29 @@ function RunPipeline() {
   );
 }
 
+function SubTable({ rows }: { rows: [string, string, string, string][] }) {
+  return (
+    <div className="overflow-x-auto"><table className="bench-table my-6 max-w-[760px]"><thead><tr><th>Sub-score</th><th className="num">Weight</th><th>How it is computed</th><th>What it catches</th></tr></thead><tbody>
+      {rows.map(([name, weight, how, what]) => (
+        <tr key={name}><td className="whitespace-nowrap"><strong>{name}</strong></td><td className="n">{weight}</td><td>{how}</td><td>{what}</td></tr>
+      ))}
+    </tbody></table></div>
+  );
+}
+
+function ScoreTable({ rows, total, totalValue, totalWeight, head = ["Sub-score", "Weight", "Score", "Weight × score"] }: {
+  rows: [string, string, string, string][]; total: string; totalValue: string; totalWeight?: string; head?: string[];
+}) {
+  return (
+    <div className="overflow-x-auto"><table className="bench-table ab-score-table my-6 max-w-[760px]"><thead><tr>{head.map((h, i) => <th key={h} className={i ? "num" : ""}>{h}</th>)}</tr></thead><tbody>
+      {rows.map(([name, weight, score, product]) => (
+        <tr key={name}><td className="whitespace-nowrap"><strong>{name}</strong></td><td className="n">{weight}</td><td className="n">{score}</td><td className="n">{product}</td></tr>
+      ))}
+      <tr className="lead"><td className="whitespace-nowrap"><strong>{total}</strong></td><td className="n">{totalWeight ? <strong>{totalWeight}</strong> : ""}</td><td></td><td className="n"><strong>{totalValue}</strong></td></tr>
+    </tbody></table></div>
+  );
+}
+
 const CITATION = `@misc{physera2026animationbench,
   title        = {Animation Bench: Evaluating Frontier Models on Web Animation Reconstruction},
   author       = {{The Team at Physera}},
@@ -162,28 +179,29 @@ const CITATION = `@misc{physera2026animationbench,
 
 export default function AnimationBenchPage() {
   return (
-    <main className="bench flex w-full max-w-[1320px] flex-1 flex-col px-3 py-1 sm:px-4">
-      <article className="rounded bg-white px-5 py-14 sm:px-12 sm:py-16">
-        <div className="mx-auto flex max-w-[1180px] flex-col">
-          <Link href="/research" className="bench-mono-label bench-link w-fit">← Research</Link>
-          <header id="overview" className="mt-6 flex scroll-mt-24 flex-col gap-5">
+    <main className="bench ab-editorial flex w-full max-w-[1640px] flex-1 flex-col px-3 py-1 sm:px-4">
+      <article className="ab-article bg-white">
+        <div className="ab-inner mx-auto flex flex-col">
+          <Link href="/research" className="bench-mono-label bench-link ab-back w-fit">← Research</Link>
+          <header id="overview" className="ab-hero scroll-mt-24">
             <div className="flex items-center gap-2">
               <span className="bench-pill bench-pill-tag">
                 <i />
                 Model evaluation
               </span>
             </div>
-            <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] leading-[1.05] tracking-[-0.03em] text-[#0d0d0d]">
+            <h1 className="ab-hero-title">
               Animation Bench
             </h1>
-            <div className="bench-mono-label">Physera · Updated 25 September 2026, Tim C · v0.1</div>
+            <div className="bench-mono-label">Physera · Updated 29 September 2026, Tim C · v0.1</div>
             <p className="max-w-[760px] text-[17px] leading-relaxed text-[#3a3a3a]">
-              Frontier multimodal coding agents can already recreate visually plausible web animations, but current
+              Frontier multimodal coding agents can already recreate visually-plausible web animations, but current
               evaluation methods fail to discriminate between screenshot parity and shippable frontend reconstruction.
             </p>
+            <HeroReel />
           </header>
 
-          <div className="bench-article mt-10">
+          <div className="bench-article ab-body mt-10">
             <SectionNav sections={sections} />
             <div className="bench-article-body">
               <div className="bench-stats mb-10">
@@ -209,39 +227,39 @@ export default function AnimationBenchPage() {
                 </div>
               </div>
 
-              <Wall />
               <Leaderboard />
+              <Wall />
 
               <h2 id="background" className="bench-h2 scroll-mt-24">Background</h2>
-                <p className={P}>Frontend generation is one of the most sought-after commercial coding agent use cases. Current design-to-code agents will happily take a picture of a page and fully reproduce its visual palette, typography, and layout. But a production page is not merely a single frame. It is a sequence of highly-versatile frames, state transitions, and numerous user interactions: hovers, scrolls, clicks, drags. Are models capable of rebuilding the full animation, not just the first frame?</p>
-                <p className={P}>We have built Animation Bench to answer that question and tested the strongest 4 frontier models on 48 tasks sourced from real websites. Each model worked in its own sandbox, using the same set of reference frames (12–24), and had to deliver a self-contained HTML file. Our results show models predominantly score highly on visual cues (0.61–0.86), yet quite low on metrics capturing motion and temporal consistency (0.27–0.38).</p>
-                <p className={P}>Entering the era of recursive self-improvement (RSI) means we need to put even more attention into how we shape the verifiers that ultimately decide how we measure progress. Left unchecked, frontier model capabilities will saturate on tasks in domains with easily-verifiable outcomes. Animation Bench is that check for web animation.</p>
+                <p className={P}>Frontend generation is one of the most sought-after commercial coding agent use cases. Current coding agents will easily capture a web page and fully reproduce its visual palette, typography, and layout. But a production page is not merely a single frame. It is a sequence of highly-versatile frames, state transitions, and numerous user interactions like hovers, scrolls, clicks, drags, etc. Are frontier models actually capable of rebuilding the full animation, not just the first frame?</p>
+                <p className={P}>We have built <strong>Animation Bench</strong> to answer that question and tested 4 frontier models on 48 tasks sourced from real websites. Each model worked in its own sandbox, using the same set of reference frames (12 to 24), and had to deliver a self-contained HTML file. Our results show models predominantly score highly on visual cues (0.63 - 0.85), yet quite low on metrics capturing motion &amp; temporal consistency (0.38 - 0.47).</p>
+                <p className={P}>As we enter the era of recursive self-improvement (RSI) means we need to put even more attention into how we shape the verifiers that ultimately decide how we measure progress. Left unchecked, frontier model capabilities will saturate on tasks in domains with easily-verifiable outcomes. Animation Bench is that check for web animation.</p>
 
               <h2 id="design" className="bench-h2 scroll-mt-24">Design philosophy</h2>
                 <p className={P}>We set out to measure how good models truly are in actual end-to-end reconstruction of a given animation. These are our key design tenets:</p>
                 <ol className="bench-list list-decimal">
                   <li><strong>Reproduction &gt; generation.</strong> Each task’s score is measured directly and objectively against the real animation.</li>
-                  <li><strong>Frames in, motion out.</strong> Each model was given between 12 and 24 frames, depending on the task, and the page’s network capture. It does not, however, get any of the site’s source code, a video, or a description of the timing.</li>
-                  <li><strong>Real sites, chosen to maximally represent true web animation coverage.</strong>
-                    <ul className="bench-list list-disc">
-                      <li>We have sourced animations from various commercial sites across editorial / portfolio work, e-commerce, product and brand.</li>
+                  <li><strong>Frames in, motion out:</strong> Each model was given between 12 to 24 frames depending on the task, and network capture of the page. It does not get source code of the site or a description of the timing.</li>
+                  <li><strong>Real sites, chosen to maximally represent true web animation coverage:</strong>
+                    <ol className="bench-list list-decimal">
+                      <li>We have sourced animations from various commercial sites across editorial / portfolio work, e-commerce, product or brand.</li>
                       <li>The 48 animations capture every common trigger: plays by itself, scroll, hover, cursor-follow, click and drag, and state changes.</li>
-                    </ul>
+                    </ol>
                   </li>
-                  <li><strong>Separate scoring axes.</strong> We have decided on 3 key scoring axes that we feel are representative of the true objective success of the given animation reproduction, namely: visual similarity, motion consistency, layout correctness. The result can win on layout, yet lose on motion, and a single number would fail to aptly describe where models fall short.</li>
-                  <li><strong>We test the running artifact.</strong> Each result is opened in a real browser, driven the way a user would, and recorded frame by frame.</li>
+                  <li><strong>Separate scoring axes:</strong> we have decided on 3 key scoring axes that we feel are representative of the true objective success of the given animation reproduction, namely: <strong>visual similarity</strong>, <strong>motion consistency</strong>, and <strong>layout correctness</strong>. The result can win on layout, yet lose on motion, and a single number would fail to aptly describe where models fall short.</li>
+                  <li><strong>We test the running artifact</strong> where each reconstruction is opened in a real browser (driven the way a user would) and recorded frame by frame.</li>
                 </ol>
 
               <h2 id="methodology" className="bench-h2 scroll-mt-24">Methodology</h2>
-                <p className={P}>We ran 192 evaluations with Computer-1 through the Harbor framework, four models on the same 48 tasks, all at maximum reasoning effort. Each model worked in its own sandbox with a 1280×720 desktop, a shell, the task’s reference frames and the page’s network capture, and had to deliver a single self-contained HTML file. The reported results contain one selected run for each model and task pair.</p>
+                <p className={P}>We ran 192 evaluations with <a className="bench-link" href="https://github.com/harbor-framework/harbor/tree/main/src/harbor/agents/computer_1">Computer-1</a> using the <a className="bench-link" href="https://www.harborframework.com/">Harbor framework</a>, four models on the same 48 tasks, all at maximum reasoning effort. Each model worked in its own sandbox with a 1280×720 desktop, a shell, the task&apos;s reference frames and the page&apos;s network capture, and had to deliver a single self-contained HTML file. The reported results contain one selected run for each model and task pair.</p>
                 <RunPipeline />
 
               <h2 id="task" className="bench-h2 scroll-mt-24">Tasks</h2>
-                <p className={P}>Each task is one precise animation on one real, deployed page, with a fixed start and end state.</p>
-                <p className={P}><strong>Input.</strong> The model receives 12 to 24 reference frames sampled across the animation (with capture timestamps where available) and a HAR capture of the page: the HTML, CSS, JavaScript, fonts, images and video the live site loaded. It does not receive the site’s source as a project, a video, or any description of the timing beyond the frames themselves.</p>
-                <p className={P}><strong>Output.</strong> Exactly one file, <code>index.html</code>, self-contained, with inline CSS and JavaScript. No external requests.</p>
+                <p className={P}>Each task is one precise animation on a production website with a fixed start and end state.</p>
+                <p className={P}><strong>Input.</strong> The model receives 12 still frames sampled across the animation (with capture timestamps where available) and a HAR capture of the page: the HTML, CSS, JavaScript, fonts, images the live site loaded. It does not receive the site’s source as a project, a video, or any description of the timing beyond the frames themselves.</p>
+                <p className={P}><strong>Output.</strong> Exactly one file, index.html, self-contained, with inline CSS and JavaScript. No external requests.</p>
                 <p className={P}><strong>Evaluation.</strong> We open the file in a headless browser at 1280×720, drive it with the task’s trigger (wait, scroll, hover, drag, click), capture it frame by frame the same way we captured the original, and compare the two captures.</p>
-                <p className={P}>The 48 tasks come from 32 sites and are chosen for coverage, not spectacle. Every task is tagged by what triggers it, what property changes, how it is timed, how much of the page moves, and what kind of site it comes from:</p>
+                <p className={P}>The 48 tasks come from 32 sites and are chosen for coverage. Every task is tagged by what triggers it, what property changes, how it is timed, how much of the page moves, and what kind of site it comes from.</p>
                 <div className="overflow-x-auto"><table className="bench-table my-6 max-w-[760px]"><thead><tr><th>Trigger</th><th className="num">Tasks</th><th>What the model has to recover</th></tr></thead><tbody>
                   <tr><td className="whitespace-nowrap">Scroll</td><td className="n">21</td><td>Progress tied to scroll position: pinned sequences, scroll-driven text, scroll-linked transforms</td></tr>
                   <tr><td className="whitespace-nowrap">Plays by itself</td><td className="n">12</td><td>Load-in entrances, ambient loops, auto-cycling scenes</td></tr>
@@ -250,231 +268,166 @@ export default function AnimationBenchPage() {
                   <tr><td className="whitespace-nowrap">Opens or changes</td><td className="n">4</td><td>Page transitions, view switches, expand-collapse</td></tr>
                   <tr><td className="whitespace-nowrap">Cursor-follow</td><td className="n">1</td><td>A contextual cursor that changes over specific elements</td></tr>
                 </tbody></table></div>
-                <p className={P}>31 tasks are hard (physics, canvas, interruptible, or whole-page), 14 medium, 3 easy. 32 are staggered, 25 one-shot, 20 scroll-linked; 16 involve canvas or WebGL. 44 of 48 come from sites unlikely to be memorised from training data. The full list is at the end of the page.</p>
 
               <h2 id="scoring" className="bench-h2 scroll-mt-24">Scoring</h2>
                 <p className={P}>Each result is compared with the original recording frame by frame. We score 3 axes, and each is built from several sub-scores that catch different kinds of mistakes.</p>
-                <div className="overflow-x-auto"><table className="bench-table my-6 max-w-[760px]"><thead><tr><th>Axis</th><th>Question</th><th>Measured by</th></tr></thead><tbody>
-                  <tr><td className="whitespace-nowrap"><strong>Visual similarity</strong></td><td>Does it look right at a sampled moment?</td><td>MS-SSIM, LPIPS, foreground colour histogram, Canny edge F1, coverage</td></tr>
-                  <tr><td className="whitespace-nowrap"><strong>Motion consistency</strong></td><td>Does it move right over time?</td><td>Per-frame motion energy, optical flow, and moving-region trajectory, gated by the <em>amount</em> and <em>location</em> of motion</td></tr>
-                  <tr><td className="whitespace-nowrap"><strong>Layout correctness</strong></td><td>Is it built like the original?</td><td>OCR: text presence, spelling, reading order, and bounding-box alignment</td></tr>
+                <Disclosure title={<h3 id="visual" className="bench-h3 scroll-mt-24">Visual similarity: does it look right at a given moment?</h3>}>
+                <p className={P}>Each reconstruction frame is compared with the reference frame at the same moment. Five sub-scores are averaged with fixed weights:</p>
+                <SubTable rows={[
+                  ["MS-SSIM", "0.32", "Structural similarity of each frame pair, at several scales", "Shapes in the wrong places; layout drift"],
+                  ["LPIPS", "0.32", "1 − perceptual distance between each frame pair (a learned metric)", "Whether a person would say the frames look alike"],
+                  ["Colour", "0.13", "Overlap of the two foreground colour histograms", "Wrong palette"],
+                  ["Edges", "0.08", "F1 of the two frames’ edge maps", "Right colour, wrong geometry"],
+                  ["Coverage", "0.15", "Ratio of foreground fill: min(fR, fC) / max(fR, fC)", "Missing or extra blocks; blank or letterboxed pages"],
+                ]} />
+                </Disclosure>
+                <Disclosure title={<h3 id="motion" className="bench-h3 scroll-mt-24">Motion consistency: does it move right over time?</h3>}>
+                <p className={P}>The motion score compares how the two recordings change over time. Three sub-scores describe the pattern of motion; two penalties then scale the result down when the amount or the placement of that motion is wrong:</p>
+                <SubTable rows={[
+                  ["Energy", "0.50", "½ timing + ½ burstiness of the frame-to-frame pixel-change curve. Timing is the correlation of the two normalised curves; burstiness the ratio of their coefficients of variation", "Motion at the wrong moments; a smooth fade where the original snaps, or the reverse"],
+                  ["Flow", "0.20", "The same two terms, on the optical-flow magnitude curve", "Real movement vs fades and flicker"],
+                  ["Trajectory", "0.30", "1 − RMS distance between the normalised cumulative paths of the moving region’s centroid", "Wrong direction or order of movement"],
+                  ["G_amount", "penalty", "min(r, 1/r)^0.35, where r is the reconstruction’s total motion over the reference’s", "Too little or too much motion overall"],
+                  ["G_placement", "penalty", "(fill ratio)^0.35: how much of the screen the content occupies, against the original", "Content in a corner, letterboxed, or missing"],
+                ]} />
+                </Disclosure>
+                <Disclosure title={<h3 id="layout" className="bench-h3 scroll-mt-24">Layout correctness: is it built like the original?</h3>}>
+                <p className={P}>The layout score runs OCR on both recordings and compares the words it finds, frame by frame:</p>
+                <SubTable rows={[
+                  ["Presence", "0.35", "F1 of OCR words matched between the two frames (a match allows up to 30% character error)", "Words missing or invented"],
+                  ["Accuracy", "0.25", "1 − character error rate over the matched words", "Misspelt copy"],
+                  ["Order", "0.15", "1 − 2 · inversions / n(n − 1) of the matched words, top to bottom", "Wrong reading order"],
+                  ["Alignment", "0.25", "Σ IoU of matched word boxes / (matched + unmatched)", "Words in the wrong positions"],
+                ]} />
+                </Disclosure>
+                <Disclosure title={<h3 id="overall" className="bench-h3 scroll-mt-24">Overall score</h3>}>
+                <p className={P}>The overall score is a weighted mean of the three axes. The weights depend on what triggers the animation. Interaction is scored separately and held out, so the three weights are renormalised. Canvas-heavy tasks set the layout weight to 0.05, since OCR cannot see into a canvas.</p>
+                <div className="overflow-x-auto"><table className="bench-table my-6 max-w-[760px]"><thead><tr><th>Trigger</th><th className="num">Visual</th><th className="num">Motion</th><th className="num">Layout</th><th className="num">Interaction (held out)</th></tr></thead><tbody>
+                  {[["autoplay", "0.35", "0.35", "0.20", "0.10"], ["scroll", "0.30", "0.35", "0.20", "0.15"], ["hover", "0.30", "0.20", "0.20", "0.30"], ["cursor", "0.30", "0.20", "0.15", "0.35"], ["gesture", "0.30", "0.20", "0.20", "0.30"], ["state-change", "0.30", "0.25", "0.20", "0.25"]].map(([t, v, m, l, i]) => (
+                    <tr key={t}><td className="whitespace-nowrap"><strong>{t}</strong></td><td className="n">{v}</td><td className="n">{m}</td><td className="n">{l}</td><td className="n">{i}</td></tr>
+                  ))}
                 </tbody></table></div>
-                <h3 className="bench-h3">Visual similarity: does it look right at a given moment?</h3>
-                <ul className="bench-list list-disc">
-                  <li><strong>Coverage:</strong> are the same parts of the screen filled? Catches missing or extra blocks of content.</li>
-                  <li><strong>MS-SSIM:</strong> are the same shapes in the same places, compared at several zoom levels? Catches layout drift that colour alone would miss.</li>
-                  <li><strong>LPIPS:</strong> would a person say the two frames look alike? A learned perceptual measure, useful where pixel comparisons are too strict.</li>
-                  <li><strong>Colour:</strong> do the foreground colours match? A hue histogram, so the palette counts without dominating.</li>
-                  <li><strong>Edges:</strong> do outlines and borders line up? Catches shapes that are the right colour but the wrong geometry.</li>
-                </ul>
-                <h3 className="bench-h3">Motion consistency: does it move right over time?</h3>
-                <ul className="bench-list list-disc">
-                  <li><strong>Energy:</strong> how much does the screen change from frame to frame? Catches pages that barely move, or move too much.</li>
-                  <li><strong>Flow:</strong> how far do pixels actually travel? Optical flow separates real movement from simple fades or flicker.</li>
-                  <li><strong>Trajectory:</strong> does the main moving element follow the same path, in the same direction and order?</li>
-                </ul>
-                <p className={P}>Motion is also gated by how much moves and where. A page that sits still, or moves in the wrong part of the screen, can’t earn motion credit elsewhere.</p>
-                <h3 className="bench-h3">Layout correctness: is it built like the original?</h3>
-                <ul className="bench-list list-disc">
-                  <li><strong>Text presence:</strong> do the same words appear?</li>
-                  <li><strong>Text accuracy:</strong> are they spelled the same?</li>
-                  <li><strong>Box alignment:</strong> do the words sit in the same positions?</li>
-                  <li><strong>Reading order:</strong> do they appear in the same top-to-bottom order?</li>
-                </ul>
-                <p className={P}>Text is the most reliable anchor for structure. A page can match in colour and shape and still put the headline in the wrong place or drop half the copy.</p>
-                <p className={P}>The overall score combines visual, motion and layout with trigger-aware weights (a scroll task, for example, weights motion more heavily). All scores are reproduction scores on a 0–1 scale, not success rates.</p>
+                <p className={P}>All scores are reproduction scores on a 0–1 scale. The code also applies a nominal 0.99 ceiling to the overall score; it never binds (the highest score in the set is 0.888).</p>
+                </Disclosure>
 
-                <h3 id="example" className="bench-h3 scroll-mt-24">Example: how one reconstruction is scored</h3>
-                <p className={P}>Here is one reconstruction scored end to end: Claude Opus 5.5’s rebuild of the pinned hero on oxigen.sa. In the original, a palm tree made of glowing voxels grows over a voxel landscape while the section stays pinned and the copy changes as you scroll. Opus 5.5 built something recognisable, and very different.</p>
-                <Vid src="/animation-bench/ab-scoring-example-oxigen.mp4" label="oxigen.sa voxel palm: the reference beside Claude Opus 5.5’s reconstruction" caption="The original’s palm assembles, grows and fills the frame as you scroll. Opus 5.5 draws a cyan fountain that barely changes, and its copy scrolls up under the logo instead of staying pinned." />
-                <p className={P}><strong>Visual similarity: 0.475</strong></p>
-                <ul className="bench-list list-disc">
-                  <li>MS-SSIM 0.41 (weight 0.32) · LPIPS 0.33 (0.32) · colour 0.78 (0.13) · edges 0.34 (0.08) · coverage 0.73 (0.15)</li>
-                </ul>
-                <p className={P}>Right mood, wrong object. The palette is close and the screen is filled in roughly the right places, but nobody would call that fountain a palm tree, and the perceptual score (LPIPS 0.33) agrees.</p>
-                <p className={P}><strong>Motion consistency: 0.384</strong></p>
-                <ul className="bench-list list-disc">
-                  <li>Profile: energy 0.50 (weight 0.5) · flow 0.46 (0.2) · trajectory 0.81 (0.3) = 0.59</li>
-                  <li>Gates: amount 0.73 · structure 0.90</li>
-                  <li>Score: 0.59 × 0.73 × 0.90 ≈ 0.38</li>
-                </ul>
-                <p className={P}>The page moves in roughly the right part of the screen, which keeps it well off zero. But the fountain stays put while the original’s tree is being built, so only about half of the frame-to-frame motion matches.</p>
-                <p className={P}><strong>Layout correctness: 0.391</strong></p>
-                <ul className="bench-list list-disc">
-                  <li>Text presence 0.32 (weight 0.35) · spelling 0.49 (0.25) · reading order 1.00 (0.15) · box alignment 0.03 (0.25)</li>
-                </ul>
-                <p className={P}>The copy exists in the page, but at most moments it’s somewhere else: scrolled away, or stacked under the logo. Only a third of the reference’s text is on screen when it should be, and almost none of it in the right place.</p>
-                <p className={P}><strong>Overall: 0.423</strong> = (0.353 × 0.475 + 0.412 × 0.384 + 0.059 × 0.391) / 0.824. Weights depend on the task: this one is mostly a 3D scene, so layout counts for little, and interaction’s 0.18 is held out and the rest rescaled.</p>
+                <h3 id="example" className="bench-h3 scroll-mt-24">Scoring example: oxigen-voxel-palm-pinned task, oxigen.sa</h3>
+                <p className={P}>To show the purposes of how our scoring algorithm works, here is one reconstruction from the <a className="bench-link" href="http://oxigen.sa">oxigen.sa</a> scored end to end. In the original, a palm tree made of glowing voxels grows over a voxel landscape while the section stays pinned and the copy changes as you scroll. Opus 5.5 built something recognisable, and very different.</p>
+                <Vid src="/animation-bench/ab-scoring-example-oxigen.mp4" label="oxigen.sa voxel palm: the reference beside Claude Opus 5.5’s reconstruction" caption="The original's palm assembles, grows and fills the frame as you scroll. Opus 5.5 draws a cyan fountain that barely changes, and its copy scrolls up under the logo instead of staying pinned." />
+                <p className={P}><strong>Visual similarity: 0.453</strong></p>
+                <ScoreTable total="Visual similarity" totalValue="0.453" rows={[["MS-SSIM", "0.32", "0.42", "0.134"], ["LPIPS", "0.32", "0.34", "0.109"], ["Colour", "0.13", "0.77", "0.100"], ["Edges", "0.08", "0.29", "0.023"], ["Coverage", "0.15", "0.58", "0.087"]]} />
+                <p className={P}>The palette is close and the screen is filled in roughly the right places, but nobody would call that fountain a palm tree, and the perceptual score (LPIPS 0.34) agrees.</p>
+                <p className={P}><strong>Motion consistency: 0.362</strong></p>
+                <ScoreTable total="Motion consistency" totalValue="0.644 × 0.68 × 0.83 = 0.362" rows={[["Energy", "0.50", "0.57", "0.285"], ["Flow", "0.20", "0.52", "0.104"], ["Trajectory", "0.30", "0.85", "0.255"], ["Motion pattern", "", "", "0.644"], ["Amount penalty", "×", "0.68", ""], ["Placement penalty", "×", "0.83", ""]]} />
+                <p className={P}>The page moves in roughly the right part of the screen, which keeps it well off zero. But the fountain stays put while the original&apos;s tree is being built, so only about half of the frame-to-frame motion matches.</p>
+                <p className={P}><strong>Layout correctness: 0.283</strong></p>
+                <ScoreTable total="Layout correctness" totalValue="0.283" rows={[["Presence", "0.35", "0.11", "0.037"], ["Accuracy", "0.25", "0.35", "0.089"], ["Order", "0.15", "1.00", "0.150"], ["Alignment", "0.25", "0.03", "0.007"]]} />
+                <p className={P}>The copy exists on the page, but at most moments it&apos;s somewhere else: scrolled away, or stacked under the logo. Barely a tenth of the reference&apos;s text is on screen when it should be, and almost none of it in the right place.</p>
+                <p className={P}><strong>Overall: 0.395</strong></p>
+                <ScoreTable head={["Axis", "Weight", "Score", "Weight × score"]} total="Overall" totalWeight="0.70" totalValue="0.277 / 0.70 = 0.395" rows={[["Visual similarity", "0.30", "0.453", "0.136"], ["Motion consistency", "0.35", "0.362", "0.127"], ["Layout correctness", "0.05", "0.283", "0.014"]]} />
+                <p className={P}>The weights are the scroll-trigger weights, with layout at 0.05 because the palm is drawn on a canvas. Interaction is held out, so the sum is divided by 0.70 rather than 1.</p>
 
               <h2 id="results" className="bench-h2 scroll-mt-24">Results</h2>
-                <div className="overflow-x-auto">
-                <table className="bench-table my-6">
-                  <thead>
-                    <tr>
-                      <th>Model</th>
-                      <th className="w-full">Mean overall, 48 tasks</th>
-                      <th className="num">Overall</th>
-                      <th className="num">Visual</th>
-                      <th className="num">Motion</th>
-                      <th className="num">Layout</th>
-                      <th className="num">Task wins</th>
-                      <th className="num">$ / task</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {results.models.map((m, i) => (
-                      <tr key={m.id} className={i === 0 ? "lead" : ""}>
-                        <td className="whitespace-nowrap">{LABEL[m.id]}</td>
-                        <td>
-                          <div className="bench-bar">
-                            <b style={{ width: `${m.mean * 100}%`, background: COLOR[m.id] }} />
-                          </div>
-                        </td>
-                        <td className="n">{fmt(m.mean)}</td>
-                        <td className="n">{fmt(m.visual)}</td>
-                        <td className="n">{fmt(m.motion)}</td>
-                        <td className="n">{fmt(m.layout)}</td>
-                        <td className="n">{m.wins}</td>
-                        <td className="n">${m.cost.toFixed(2)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-                <p className={P}>GPT-6 Astra leads clearly; the other three are closer together than a leaderboard makes them look.</p>
-                <p className={P}><strong>Astra leads; the rest are close.</strong> GPT-6 Astra leads with a mean of 0.594 and Claude Opus 5.5 trails at 0.507, a spread of 0.087 across 48 tasks. Resampling the tasks (10,000 paired draws, 95% intervals), Astra’s lead over each of the other three holds: over Fable 5.1 (+0.047; +0.018 to +0.075), Sol (+0.079; +0.044 to +0.114) and Opus 5.5 (+0.087; +0.050 to +0.127). Fable 5.1 is ahead of Opus 5.5 (+0.040; +0.009 to +0.075) and, only just, of Sol (+0.032; +0.001 to +0.063). Sol and Opus 5.5 cannot be told apart (−0.009; −0.042 to +0.025). The models also largely agree on which tasks are hard (Kendall τ 0.41–0.58 between any two), which suggests the tasks, more than the models, set the ceiling.</p>
-                <p className={P}><strong>Every model is weakest on motion.</strong> Each reproduces how a page looks far better than how it moves: visual similarity lies between 0.63 and 0.71, motion consistency between 0.38 and 0.47. Visual exceeds motion in 177 of the 192 reconstructions, by 0.24 on average, and the two are only moderately related (r = 0.44). A page that looks right is only somewhat more likely to move right.</p>
+                <ResultsCharts />
+                <p className={P}><strong>Every model is weakest on motion.</strong> Each reconstruction scores higher on visual similarity than it does on motion consistency (between 0.38 and 0.47). Visual exceeds motion in 177 of the 192 reconstructions, by 0.24 on average, and the two are only moderately related (r = 0.44). A page that looks right is only somewhat more likely to move right.</p>
                 <Fig src="/animation-bench/ab-visual-vs-motion.webp" alt="Four small scatter plots, one per model, of visual similarity against motion consistency; most points fall below the diagonal." caption="Each dot is one page a model built. Dots below the diagonal look better than they move: 177 of 192 do." />
-                <p className={P}><strong>Money does not settle it.</strong> Mean spend per task runs from $0.45 for Sol to $3.89 for Fable 5.1, close to a ninefold difference, against a spread in score of 0.087. Astra, at $3.04, is both the strongest and the second most expensive. Within each model, the tasks it spent more on did not score reliably higher (Spearman ρ from −0.24 to +0.24).</p>
+                <p className={P}><strong>Cost per task has a marginal impact.</strong> Mean spend per task ranges from $0.45 for GPT-6 Sol to $3.89 for Fable 5.1, close to a ninefold difference, against a spread in score of 0.087. Within each model, the tasks it spent more on did not score reliably higher (Spearman ρ from −0.24 to +0.24).</p>
                 <p className="ab-note">Scores use the corrected scoring of 26 September, which records reference and model identically. Two tasks, raycast and the Squarespace logo hover, could not be re-recorded and keep their 24 September scores.</p>
 
               <h2 id="failures" className="bench-h2 scroll-mt-24">What frontier models get wrong</h2>
-                <p className={P}>The axis means say <em>that</em> motion is the gap. The reconstructions themselves say <em>what</em> the gap is made of. We read all 192 generated pages and replayed a subset side by side with the reference. Each failure below is observable in the output, countable across the set, and has a named example.</p>
+                <p className={P}>The final results indicate that motion is the gap. We deeply investigated all 192 generated pages and replayed a subset side by side with the reference. Each failure below is observable in the output, countable across the set, and has a named example to follow along.</p>
 
-                <h3 id="timeline" className="bench-h3 scroll-mt-24">The timeline: parts right, schedule wrong</h3>
-                  <p className={P}>This is the central finding. Decompose the motion score and the models do well on <em>where</em> motion happens — the location gate averages 0.87 — and at chance on <em>when</em> it happens. For the 160 reconstructions that move at all, the timing term averages 0.53, a per-step correlation with the reference of r ≈ 0.05. Pair every reconstruction with the reference from a different task and the same term scores 0.51. The model’s schedule carries almost no information about the original’s schedule.</p>
-                  <p className={P}>What models produce instead is a compressed version: motion bunched into one burst. The single largest step holds a median 30% of a reconstruction’s motion, against 16% in the reference (paired n = 144, Wilcoxon p ≈ 3×10⁻¹⁷). When the timing is off, it is more often early than late (34 vs 16).</p>
-                  <p className={P}>The same pattern shows up in the code. Nine of 32 one-shot intros were written as infinite loops (<code>(now - t0) % CYCLE</code>): the model saw an entrance and shipped a screensaver. On one long autoplay sequence (8.4 s in the reference), three of four models finished all visible change within about one second.</p>
-                  <Vid src="/animation-bench/ab-timeline-berd.mp4" label="berd.xyz intro: the reference beside Claude Opus 5.5" caption="berd.xyz. The reference morphs a small window into the app, then types “Less chatting, more doing.” over its final seconds. Claude Opus 5.5 starts typing early and finishes well ahead of it (motion 0.40)." />
+                <section className="ab-case">
+                <h3 id="timeline" className="bench-h3 scroll-mt-24">Timing problem</h3>
+                  <p className={P}>We believe this is the central finding. Looking more granular into the motion score, we can see a pattern emerge. Models do well on capturing motion location (location gate averages 0.88). However, across the 183 animations where motion has been captured, the timing term averages 0.57, against 0.50 when each reconstruction is paired with the reference from a different task. Put simply, the models reproduce which parts of the page should move; they have a low attentiveness to capturing the temporal consistency of animation.</p>
+                  <p className={P}>Instead, the motion tends to arrive all at once. In a typical reconstruction the single biggest change between two frames accounts for 29% of all its movement; in the original it is 19%.</p>
+                  <p className={P}>Nine of the 32 intros that should play once were written as loops that restart forever. On one eight-second sequence, three of the four models finished everything they had to show within about a second.</p>
+                  <Flipbook task="neutomni-process-rolling-shape" rows={["ref", "astra", "sol"]} caption="neutomni.com. As you scroll, a white outline rolls along a track above four red cards, turning from a square into a pentagon and then a circle. GPT-6 Astra keeps pace with the reference (motion 0.56). GPT-6 Sol builds the same shape inside a narrow column, rolls it ahead of the scroll and runs out of page before the end (motion 0.39)." />
+                </section>
 
-                <h3 id="wispr" className="bench-h3 scroll-mt-24">Worked example: the Wispr Flow toggle</h3>
-                  <p className={P}>The clearest single case is small. On wisprflow.ai, a two-option pill — <em>Dictation | Notetaker</em> — runs one sequence:</p>
-                  <ul className="bench-list list-disc">
-                    <li>The white thumb sits on <em>Dictation</em>.</li>
-                    <li>At about 8.0 s it slides to <em>Notetaker</em>.</li>
-                    <li>From about 8.2 s to 9.3 s the letters of <em>Notetaker</em> ripple: each lifts and drops in turn, left to right.</li>
-                    <li>By about 10.7 s the thumb slides back to <em>Dictation</em>.</li>
-                  </ul>
-                  <Vid src="/animation-bench/ab-wispr-all-models.mp4" label="Wispr Flow toggle: the reference above all four models" caption="Wispr Flow toggle, the reference and all four models. Opus 5.5 slides on time and never returns (motion 0.53); Fable 5.1 starts already switched and returns on time (0.46); Sol and Astra slide late, and neither ripples as the original does (0.27, 0.29)." />
-                  <p className={P}>Every model recognised the component and reproduced its appearance (visual 0.80–0.85, layout ≈ 0.96 for all four). Two models also recognised the ripple and wrote the right mechanism for it: Claude Opus 5.5 a per-letter <code>@keyframes wave</code> with a 70 ms stagger; Claude Fable 5.1 a per-character transform sequence. Perception and mechanism were not the problem.</p>
-                  <p className={P}>The schedule was. Each model reconstructed a different fragment of it:</p>
-                  <div className="overflow-x-auto"><table className="bench-table my-6 max-w-[760px]"><thead><tr><th>Model</th><th>Slide on time (f1)</th><th>Ripple after slide</th><th>Returns on time (f10)</th></tr></thead><tbody>
-                    <tr><td className="whitespace-nowrap">Claude Opus 5.5</td><td>✓</td><td>fires immediately, short</td><td>never returns</td></tr>
-                    <tr><td className="whitespace-nowrap">Claude Fable 5.1</td><td>starts already switched</td><td>faint</td><td>✓</td></tr>
+                <section className="ab-case">
+                <h3 id="wispr" className="bench-h3 scroll-mt-24">Hard example: WisprFlow Dictation / Notetaker</h3>
+                  <p className={P}>On <a className="bench-link" href="http://wisprflow.ai">wisprflow.ai</a>, a two-option pill (<em>Dictation | Notetaker</em>) runs one sequence:</p>
+                  <ol className="bench-list list-decimal">
+                    <li>The white thumb sits on “<em>Dictation</em>”.</li>
+                    <li>Sliding to “<em>Notetaker</em>” stretches to the width of the label.</li>
+                    <li>As it lands, the letters of “<em>Notetaker</em>” ripple: each lifts and drops in turn, left to right.</li>
+                    <li>Easing back to “<em>Dictation</em>”, the letters stay still.</li>
+                  </ol>
+                  <Vid src="/animation-bench/ab-wispr-all-models.mp4" label="Wispr Flow toggle: the reference above all four models" caption="Wispr Flow toggle, the reference and all four models. Opus 5.5 slides on time and never returns (motion 0.62); Fable 5.1 starts already switched and returns on time (0.51); Sol and Astra slide late, and neither ripples as the original does (0.36, 0.42)." />
+                  <p className={P}>Every model recognised the component and reproduced its appearance (visual 0.90–0.97, layout ≈ 0.95 for all four). Two models also recognised the ripple and wrote the right mechanism for it: Claude Opus 5.5 a per-letter @keyframes wave with a 70 ms stagger; Claude Fable 5.1 a per-character transform sequence. Each model reconstructed a different fragment of it:</p>
+                  <div className="overflow-x-auto"><table className="bench-table my-6 max-w-[760px]"><thead><tr><th></th><th>Slide on time (f1)</th><th>Ripple after slide</th><th>Returns on time (f10)</th></tr></thead><tbody>
+                    <tr><td className="whitespace-nowrap">Claude Opus 5.5</td><td>✅</td><td>fires immediately</td><td>never returns</td></tr>
+                    <tr><td className="whitespace-nowrap">Claude Fable 5.1</td><td>starts already switched</td><td>short faint</td><td>✅</td></tr>
                     <tr><td className="whitespace-nowrap">GPT-6 Sol</td><td>2 frames late</td><td>none</td><td>1 frame late</td></tr>
                     <tr><td className="whitespace-nowrap">GPT-6 Astra</td><td>7 frames late</td><td>barely</td><td>never returns</td></tr>
                   </tbody></table></div>
-                  <p className={P}>Opus 5.5 scores 0.753 and Fable 5.1 0.746. The numbers call it a tie. The pages are two different half-answers. That is the failure in miniature: the models can see each part of an animation and know how to build it, but they do not recover the timeline that connects the parts — the order, the delay before the ripple, the duration, the return.</p>
-                  <p className={P}><strong>Why this case is hard.</strong> Almost nothing on screen changes. The pill is small, and each letter of the ripple lifts by only a few pixels. The stills are unevenly spaced: the first is taken almost seven seconds into the recording, a full second passes before the slide, eight quick frames about 150 ms apart catch the ripple, and a second and a half passes before the return. To rebuild it, a model has to read the timestamps as well as the pictures, and turn a few pixels of difference into a sequence with an order, a pause and a return. No single frame shows any of that.</p>
-                  <p className={P}><strong>GPT-6 Sol shows what happens when that reading fails.</strong> Its page slides the thumb 0.9 seconds after load, then flips it back and forth every 3.3 seconds, indefinitely. There is no ripple at all: the letters are never split apart, so they cannot move one at a time. Every frame of it looks right (visual 0.83, layout 0.96), and it scores 0.27 on motion.</p>
+                  <p className={P}><strong>What makes this case so hard?</strong> The pill is small, and each letter of the ripple lifts by only a few pixels. The stills are unevenly spaced: the first is taken almost seven seconds into the recording, a full second passes before the slide, eight quick frames about 150 ms apart catch the ripple, and a second and a half passes before the return. To rebuild it, a model has to read the timestamps as well as the pictures, and turn a few pixels of difference into a sequence with an order, a pause and a return. No single frame shows any of that.</p>
+                  <p className={P}><strong>GPT-6 Sol shows what happens when that reading fails.</strong> Its page slides the thumb 0.9 seconds after load, then flips it back and forth every 3.3 seconds, indefinitely. There is no ripple at all: the letters are never split apart, so they cannot move one at a time. Every frame of it looks right (visual 0.94, layout 0.95), and it scores 0.36 on motion.</p>
                   <pre className="ab-pre"><code>{`setTimeout(()=>{setState('right');restartTimer()},900);
 timer=setTimeout(()=>{setState(current==='left'?'right':'left');restartTimer()},3300);`}</code></pre>
+                </section>
 
+                <section className="ab-case">
                 <h3 id="under" className="bench-h3 scroll-mt-24">Under-animation</h3>
-                  <p className={P}>Reconstructions move less than the originals, almost never more. Only 3 of 192 carry more than twice the reference’s motion energy. Sol is the most conservative: its median reconstruction carries about a third of the reference’s motion. Even Astra, the most animated, sits below the reference at the median. Combined with the timeline finding above, the typical reconstruction is a correct-looking page with less motion, delivered faster.</p>
-                  <Vid src="/animation-bench/ab-under-animation-manifesto.mp4" label="victorfuruya.com manifesto: the reference beside Claude Opus 5.5" caption="victorfuruya.com manifesto. The reference reveals the paragraph word by word; Claude Opus 5.5 has it on screen almost at once, with a fifth of the reference’s motion (motion 0.14)." />
+                  <p className={P}>Reconstructions more often move too little than too much. The median reconstruction carries 0.63 of the reference’s motion, and 38% carry less than half; 10 of 192 overshoot by more than double. GPT-6 Sol is the most restrained, at a median of 0.56. Combined with the timeline finding above, the typical rebuild is a correct-looking page that moves less, and in fewer, larger steps.</p>
+                  <Flipbook task="ciaoenergy-cans-sideways-selection" rows={["ref", "sol"]} caption="ciaoenergy.com. As you scroll, the reference steps the can and its copy through five flavours and ends on a full-screen “ZERO BULLSHIT” finale. GPT-6 Sol gets every flavour screen right (visual 0.82) but lags behind the scroll and never plays the finale, carrying a quarter of the reference’s motion (motion 0.39, energy ×0.25)." />
+                </section>
 
+                <section className="ab-case">
                 <h3 id="stagger" className="bench-h3 scroll-mt-24">Stagger flattened</h3>
-                  <p className={P}>Staggered choreography — elements entering one after another — is the most common timing pattern in the set (32 tasks). In 34 of 128 reconstructions of staggered tasks we found no delay or stagger construct at all: every element starts together. Sol accounts for 16 of the 34. Within the same task, those pages score 0.07 lower on motion.</p>
-                  <Vid src="/animation-bench/ab-stagger-wispr-sol.mp4" label="Wispr Flow toggle: the reference beside GPT-6 Sol" caption="The same Wispr toggle, rebuilt by GPT-6 Sol. The thumb slides, but the letters of Notetaker change as one block, with no ripple (motion 0.27)." />
+                  <p className={P}>Staggered choreography in which elements enter one after another is the most common timing pattern in the set (32 tasks). In 34 of 128 reconstructions of staggered tasks we found no delay or stagger construct at all: every element starts together. GPT-6 Sol accounts for 16 of the 34. Under the corrected scoring the penalty within a task is small (0.02 on motion), so we read this as a pattern in the code more than a large effect on the score.</p>
+                  <Vid src="/animation-bench/ab-stagger-wispr-sol.mp4" label="Wispr Flow toggle: the reference beside GPT-6 Sol" caption="The same Wispr toggle, rebuilt by GPT-6 Sol. The thumb slides, but the letters of Notetaker change as one block, with no ripple (motion 0.36)." />
+                </section>
 
+                <section className="ab-case">
                 <h3 id="hero" className="bench-h3 scroll-mt-24">Hero visuals approximated</h3>
                   <p className={P}>The expensive part of a commercial animation is often its hero asset: a WebGL scene, a 3D product, a photographic sequence. Fifteen of the 16 canvas tasks come from sites that ship WebGL or three.js. Only GPT-6 Astra used WebGL, on 5 of 16, by inlining the site’s own three.js from the capture; the other models rebuilt these scenes in Canvas2D. The results are recognisable and wrong.</p>
-                  <Vid src="/animation-bench/ab-hero-oxigen.mp4" label="oxigen.sa voxel palm: the reference beside GPT-6 Astra and Claude Opus 5.5" caption="oxigen.sa. GPT-6 Astra rebuilt the voxel palm in WebGL (visual 0.62, overall 0.68); Claude Opus 5.5 drew a cyan fountain on a 2D canvas (visual 0.48, overall 0.42)." />
-                  <p className={P}>On oxigen.sa, the reference is a voxel palm tree assembling while the section stays pinned. Astra reproduces it closely frame for frame (0.68). Opus 5.5 draws a cyan fountain and lets the text scroll away under the header (0.42). Fable 5.1 builds the palm out of oversized cubes inside dark side bars (0.43). Sol’s sequence lags behind the scroll and its text overprints the tree (0.37). Elsewhere, photographic cards became flat coloured placeholders.</p>
+                  <Flipbook task="ciaoenergy-cans-fan-scroll-spin" rows={["ref", "astra", "fable"]} caption="ciaoenergy.com. The reference sweeps a line of cans across the screen as you scroll. GPT-6 Astra’s cans look like the originals and follow the sweep (visual 0.73); Claude Fable 5.1 shows six drawn cans that never line up (visual 0.59)." />
+                  <p className={P}>On <a className="bench-link" href="http://ciaoenergy.com">ciaoenergy.com</a>, scrolling turns a single can into a sweeping diagonal line of cans, one per flavour. GPT-6 Astra comes closest: its cans look like the original renders and follow the sweep, though it starts late (overall 0.55, visual 0.73). Claude Opus 5.5 and GPT-6 Sol build the line from flatter, drawn cans. GPT-6 Sol inside a narrower column, and get the arrangement roughly right (0.49 and 0.52). Claude Fable 5.1 lingers on the opening scene, then shows six cans floating apart that never form the line (0.46, visual 0.59).</p>
+                </section>
 
+                <section className="ab-case">
                 <h3 id="framing" className="bench-h3 scroll-mt-24">Invented framing</h3>
-                  <p className={P}>Eleven of the 52 reconstructions we inspected visually added dark side bars that the reference does not have: the page is letterboxed into a fixed-aspect column instead of filling the viewport (Sol 6, Opus 5.5 3, Fable 5.1 2). It is a small thing to see and a real thing to ship: the page no longer behaves like a page. On pudding.cool’s pinned word cloud, Astra and Fable 5.1 are close to the reference; Opus 5.5 adds fixed black bars on both sides and Sol runs ahead of the scroll inside a letterbox.</p>
-                  <Vid src="/animation-bench/ab-framing-pudding.mp4" label="pudding.cool word cloud: the reference beside Claude Fable 5.1 and GPT-6 Sol" caption="pudding.cool. Claude Fable 5.1 fills the page like the original (visual 0.74); GPT-6 Sol squeezes it into a column between dark side bars (visual 0.50, coverage 0.31)." />
+                  <p className={P}>Eleven of the 52 reconstructions we inspected visually added dark side bars that the reference does not have, the page is letterboxed into a fixed-aspect column instead of filling the viewport (Sol 6, Opus 5.5 3, Fable 5.1 2). The page no longer behaves like a page. On <a className="bench-link" href="https://pudding.cool">pudding.cool</a> (pinned word cloud), Astra and Fable 5.1 are close to the reference; Opus 5.5 adds fixed black bars on both sides and GPT-6 Sol runs ahead of the scroll inside a letterbox.</p>
+                  <Vid src="/animation-bench/ab-framing-pudding.mp4" label="pudding.cool word cloud: the reference beside Claude Fable 5.1 and GPT-6 Sol" caption="pudding.cool. Claude Fable 5.1 fills the page like the original (visual 0.90); GPT-6 Sol squeezes it into a column between dark side bars (visual 0.53, coverage 0.30)." />
+                </section>
 
+                <section className="ab-case">
                 <h3 id="edges" className="bench-h3 scroll-mt-24">Behaviour dropped at the edges</h3>
                   <p className={P}>Several reconstructions implement the headline behaviour and drop what surrounds it:</p>
                   <ul className="bench-list list-disc">
                     <li><strong>Pinned sections that do not pin.</strong> The content scrolls past instead of holding while the animation plays (3 of 52 inspected). On the slowdown footer, Astra holds the block while the icons rotate; Sol and Fable 5.1 let it scroll away.</li>
-                    <li><strong>Drag not wired.</strong> On kaviengcreative.com, cards should fly into a grid under drag. Astra and Fable 5.1 assemble the grid; Sol fades the title but the cards never assemble; Opus 5.5 does nothing on drag.</li>
+                    <li><strong>Incomplete dragging effect.</strong> On <a className="bench-link" href="http://kaviengcreative.com">kaviengcreative.com</a>, dragging the cards should fly them into a grid. Astra assembles the grid; Fable 5.1 brings the cards forward but never settles them into it; GPT-6 Sol fades the title but the cards never assemble; Opus 5.5 does nothing on drag.</li>
                   </ul>
                   <Fig src="/animation-bench/slowdown-footer-services-rolling-labels.webp" alt="Slowdown footer: reference row and four model rows; pinned block with rotating icons." caption="Slowdown footer: pinned block with rotating icons" />
-                  <Vid src="/animation-bench/ab-drag-kavieng.mp4" label="kaviengcreative.com drag: the reference beside GPT-6 Astra and Claude Opus 5.5" caption="kaviengcreative.com. Dragging should fly the cards into a grid. GPT-6 Astra assembles it (motion 0.73); Claude Opus 5.5 leaves the page still under the drag (motion 0.19)." />
+                  <Vid src="/animation-bench/ab-drag-kavieng.mp4" label="kaviengcreative.com drag: the reference beside GPT-6 Astra and Claude Opus 5.5" caption="kaviengcreative.com. Dragging should fly the cards into a grid. GPT-6 Astra assembles it (overall 0.57); Claude Opus 5.5 leaves the page still under the drag (overall 0.38)." />
+                </section>
 
-                <h3 id="text" className="bench-h3 scroll-mt-24">Right words, wrong places</h3>
-                  <p className={P}>The models do not invent copy. Every reconstruction’s visible text comes from the capture; none contains placeholder text. But the text is frequently not where it should be. Across the sampled frames, roughly 35–40% of the reference’s text labels never appear on screen in the reconstruction and 13% are misspelled; 30% of the text a reconstruction <em>does</em> show has no counterpart in the reference. Bounding-box alignment — whether the words occupy the same positions — averages 0.21, the lowest term on any axis.</p>
-                  <p className={P}>The visual axis shows the same split between palette and geometry. Colour agreement averages 0.86; edge agreement (whether outlines and borders line up) averages 0.29 and is the weakest visual term in 165 of 192 reconstructions. The models get the palette. They do not get the shapes.</p>
-                  <Vid src="/animation-bench/ab-layout-dialkit.mp4" label="dialkit.dev headline: the reference beside Claude Fable 5.1 and Claude Opus 5.5" caption="dialkit.dev. Claude Fable 5.1 sets the headline at the original’s size and position (layout 0.94); Claude Opus 5.5 has the same words, smaller and lighter, so they no longer sit where the original’s do (layout 0.63, box alignment 0.02)." />
+                <section className="ab-case">
+                <h3 id="text" className="bench-h3 scroll-mt-24">Copy placement</h3>
+                  <p className={P}>The models did not invent copy. Every reconstruction’s visible text comes from the capture where none of them contains placeholder text. But the text is frequently not where it should be. Across the sampled frames, roughly 41% of the reference’s text labels never appear on screen in the reconstruction and 13% are misspelled; 38% of the text a reconstruction <em>does</em> show has no counterpart in the reference. Bounding-box alignment (whether the words occupy the same positions) averages 0.21, the lowest term on any axis.</p>
+                  <p className={P}>The visual axis shows the same split between palette and geometry. Colour agreement averages 0.85; edge agreement (whether outlines and borders line up) averages 0.26 and is the weakest visual term in 184 of 192 reconstructions. The models get the palette but don’t get shapes.</p>
+                  <Vid src="/animation-bench/ab-layout-dialkit.mp4" label="dialkit.dev headline: the reference beside Claude Fable 5.1 and Claude Opus 5.5" caption="dialkit.dev. Claude Fable 5.1 sets the headline at the original’s size and position (layout 0.91); Claude Opus 5.5 has the same words, smaller and lighter, so they no longer sit where the original’s do (layout 0.62, box alignment 0.00)." />
+                </section>
 
+                <section className="ab-case">
                 <h3 id="flipbook" className="bench-h3 scroll-mt-24">The screenshot flipbook</h3>
-                  <p className={P}>Fourteen reconstructions solved the task by embedding the reference frames themselves as images and stepping through them on a timer, on scroll, or on hover (Sol 10, Astra 3, Opus 5.5 1). It is the purest form of screenshot mimicry: correct at every stored frame by construction, and wrong everywhere between them. It does not pay. Within the same task, flipbooks score 0.07 lower on motion than reconstructions that rebuild the animation, and slightly lower overall.</p>
+                  <p className={P}>Fourteen reconstructions solved the task by embedding the reference frames themselves as images and stepping through them on a timer, on scroll, or on hover (Sol 10, Astra 3, Opus 5.5 1). It is the purest form of screenshot mimicry: correct at twelve instants by construction, and wrong everywhere between them. Within the same task, flipbooks score 0.08 lower on motion than reconstructions that rebuild the animation, and slightly lower overall.</p>
                   <Vid src="/animation-bench/ab-flipbook-squarespace.mp4" label="brand.squarespace.com hover: the reference beside GPT-6 Sol and GPT-6 Astra" caption="brand.squarespace.com. GPT-6 Sol’s page is sixteen stored screenshots swapped on a timer (motion 0.48); GPT-6 Astra animates the reveal itself (motion 0.78)." />
+                </section>
 
               <h2 id="conclusion" className="bench-h2 scroll-mt-24">Conclusion</h2>
                 <h3 id="implications" className="bench-h3 scroll-mt-24">Implications</h3>
-                <p className={P}><strong>For model builders.</strong> The shortfall is not in seeing the page or writing the code. It lies in turning a handful of stills into a schedule: order, delay, duration, overlap, return. That is a narrow, nameable failure of temporal reasoning, and a narrow failure can be trained against.</p>
-                <p className={P}><strong>For benchmarks.</strong> Similarity scores tell you how far a page is from the original, not what went wrong. The natural next unit is the event: “thumb slides at t₁ ✓, ripple follows the slide ✗, thumb returns at t₂ ✓”. A list of events is something an engineer can act on and a training loop can reward.</p>
-                <p className={P}><strong>For environments.</strong> Every failure described above can be checked in a browser without a person in the loop. Does the section pin? Does the intro stop? Does the drag move the cards? Does the thumb come back? That makes frontend reconstruction an unusually clean domain in which to train agents that build, run and revise their own work.</p>
+                <p className={P}><strong>For model labs.</strong> The bottleneck to full webpage reproduction is neither perception nor writing code. Frontier models already frequently pick the right technique. Where they fall short is in their ability to fully reproduce the animation’s full sequence, they misjudge its timing, overlap and duration.</p>
+                <p className={P}><strong>For benchmarks &amp; RL environments.</strong> Current benchmarks grade model outputs based on how much a reconstructed webpage looks like the original. The better question is how do we make models reproduce a full sequence of events while maintaining temporal structure, like duration, overlay, pause, order of events. We believe a fully-fledged mechanical 3-axis scoring system is comprehensive enough to be turned into a training environment.</p>
 
               <h3 id="final" className="bench-h3 scroll-mt-24">Final thoughts</h3>
                 <p className={P}>So, can frontier models rebuild a web animation, not just its first frame? Not yet. They reproduce its palette, its typography and its layout, and they usually recognise what kind of component they are looking at. More often than not they reach for the right technique. What they do not recover is time: the order in which things happen, the pause before the next thing, how long each movement lasts, and whether the page returns to where it began. Every model scored lower on motion than on appearance, and the pages they built were, for the most part, right at a glance and wrong over the following few seconds. That is precisely the gap a screenshot cannot see, and precisely the part a user notices first.</p>
-                <p className={P}>Animation Bench is the first body of work to come from Physera that attempts to bridge the gap for the next succession of frontier models, so that they can improve on the axes people actually perceive: motion, timing, and layout. If you are working on frontend generation, or environments for agents that build software, we’d love to hear from you.</p>
+                <p className={P}>Animation Bench is the first body of work to come from Physera that attempts to bridge the gap for the next succession of frontier models, so that they can improve on the axes people actually perceive. If you are working on frontend generation, or environments for agents that build software, we’d love to hear from you.</p>
 
               <h2 id="tasks" className="bench-h2 scroll-mt-24">Appendix: Tasks</h2>
-                <p className={P}>All 48 tasks with each model’s overall score, site, genre, trigger and difficulty. One selected generation per task and model, scored against one reference capture. Differences under ~0.02 should not be read as capability differences.</p>
-                <div className="overflow-x-auto">
-                <table className="bench-table bench-grid my-6">
-                  <thead>
-                    <tr>
-                      <th>Task</th>
-                      {results.models.map((m) => (
-                        <th key={m.id} className="center" title={LABEL[m.id]}>
-                          {SHORT[m.id]}
-                        </th>
-                      ))}
-                      <th>Site</th>
-                      <th>Genre</th>
-                      <th>Trigger</th>
-                      <th>Difficulty</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {results.tasks.map((t) => {
-                      const best = Math.max(...results.models.map((m) => t.scores[m.id as keyof typeof t.scores].score));
-                      const [site, trigger, difficulty, genre] = TASK_META[t.id] ?? ["", "", "", ""];
-                      return (
-                        <tr key={t.id}>
-                          <td className="whitespace-nowrap">{t.id}</td>
-                          {results.models.map((m) => {
-                            const r = t.scores[m.id as keyof typeof t.scores];
-                            return (
-                              <td key={m.id} className={r.score === best ? "cell pass" : "cell"}>
-                                {fmt(r.score)}
-                              </td>
-                            );
-                          })}
-                          <td className="muted whitespace-nowrap">{site}</td>
-                          <td className="muted whitespace-nowrap">{genre}</td>
-                          <td className="muted whitespace-nowrap">{trigger}</td>
-                          <td className="muted">{difficulty}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-              <p className={P}>
-                The best score on each task is highlighted. Download{" "}
-                <a className="bench-link" href="/animation-bench/results.json">
-                  all 48 task scores (JSON)
-                </a>
-                .
-              </p>
+                <p className={P}>All 48 tasks with each model’s overall score, site, trigger and difficulty. One selected generation per task and model, scored against one reference capture; the best score on each task is in bold. Differences under ~0.02 should not be read as capability differences.</p>
+                <TaskScores metadata={TASK_META} />
 
               <h2 id="citation" className="bench-h2 scroll-mt-24">Citation</h2>
                 <p className={P}>If you use Animation Bench, cite this post as:</p>

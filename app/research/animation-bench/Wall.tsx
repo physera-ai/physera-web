@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import wallData from "./wall.json";
+import ModelLogo from "./ModelLogo";
 
 type ModelKey = "astra" | "fable" | "opus" | "sol";
 type ModelScores = { overall: number; visual_similarity: number; motion_consistency: number; layout_correctness: number };
@@ -76,6 +77,7 @@ function Tile({
   frameIndex,
   color,
   scores,
+  meta,
   overlayUrl,
   showOverlay,
   interactive,
@@ -90,6 +92,7 @@ function Tile({
   frameIndex: number;
   color?: string;
   scores?: ModelScores;
+  meta?: string;
   overlayUrl?: string;
   showOverlay?: boolean;
   interactive?: boolean;
@@ -129,11 +132,16 @@ function Tile({
         )}
       </div>
       <div className="ab-wall-label">
-        <span className="ab-wall-label-name">{name}</span>
+        <span className="ab-wall-label-name">{gridArea !== "ref" && <ModelLogo model={name} />}{name}</span>
         {scores && (
           <span className="ab-wall-label-scores">
             <span className="ab-wall-chipscore">overall {scores.overall.toFixed(3)}</span>
             <span className="ab-wall-chipscore">motion {scores.motion_consistency.toFixed(2)}</span>
+          </span>
+        )}
+        {!scores && meta && (
+          <span className="ab-wall-label-scores">
+            <span className="ab-wall-chipscore">{meta}</span>
           </span>
         )}
       </div>
@@ -275,26 +283,21 @@ export default function Wall() {
     <section className="ab-wall" aria-label="Reconstruction wall">
       <div className="ab-wall-panel">
         <div className="ab-wall-head">
-          <h2 className="ab-wall-title">Every model gets the look. Watch the timing.</h2>
-          <p className="bench-mono-label ab-wall-subtitle">
-            Reference recording beside four frontier reconstructions, frame-locked to the same moments. Hover a
-            model to overlay the reference.
-          </p>
-        </div>
-
-        <div className="ab-wall-chips" role="tablist" aria-label="Task">
-          {TASK_IDS.map((id) => (
-            <button
-              key={id}
-              type="button"
-              role="tab"
-              aria-selected={id === currentTaskId}
-              className={"ab-wall-chip" + (id === currentTaskId ? " is-active" : "")}
-              onClick={() => selectTask(id)}
-            >
-              {WALL[id].label}
-            </button>
-          ))}
+          <div>
+            <h2 className="ab-wall-title">Every model gets the look. Watch the timing.</h2>
+            <p className="bench-mono-label ab-wall-subtitle">
+              Reference recording beside four frontier reconstructions, frame-locked to the same moments. Hover a
+              model to overlay the reference.
+            </p>
+          </div>
+          <label className="ab-wall-picker">
+            <span className="bench-mono-label">Task</span>
+            <select className="ab-wall-select" value={currentTaskId} onChange={(e) => selectTask(e.target.value)} aria-label="Task">
+              {TASK_IDS.map((id) => (
+                <option key={id} value={id}>{WALL[id].label} · {WALL[id].site}</option>
+              ))}
+            </select>
+          </label>
         </div>
 
         <div className="ab-wall-grid" ref={wallRef}>
@@ -305,6 +308,7 @@ export default function Wall() {
             loaded={loadedRows.has("ref")}
             n={task.n}
             frameIndex={frameIndex}
+            meta={`${task.site} · ${task.trigger}`}
           />
           {MODEL_ROWS.map((m) => (
             <Tile
@@ -324,34 +328,39 @@ export default function Wall() {
               onHoverEnd={() => setHoveredModel(null)}
             />
           ))}
-        </div>
-
-        <div className="ab-wall-transport">
-          <button type="button" className="ab-wall-play" onClick={togglePlay} aria-label={playing ? "Pause" : "Play"}>
-            {playing ? "❚❚" : "▶"}
-          </button>
-          <input
-            type="range"
-            className="ab-wall-scrub"
-            min={0}
-            max={task.n - 1}
-            step={1}
-            value={frameIndex}
-            onChange={onScrub}
-            aria-label="Frame scrubber"
-          />
-          <div className="ab-wall-readout bench-mono-label">
-            frame {frameIndex + 1}/{task.n} · t = {(task.times_ms[frameIndex] / 1000).toFixed(1)} s
+          <div className="ab-wall-ctl" data-row="ctl">
+            <div className="ab-wall-ctl-meta">
+              <span className="ab-wall-ctl-task">{task.label}</span>
+              <span className="bench-mono-label">{task.site} · {task.trigger} · {task.n} frames · {(lastT / 1000).toFixed(1)} s</span>
+            </div>
+            <div className="ab-wall-transport">
+              <button type="button" className="ab-wall-play" onClick={togglePlay} aria-label={playing ? "Pause" : "Play"}>
+                {playing ? "❚❚ Pause" : "▶ Play"}
+              </button>
+              <input
+                type="range"
+                className="ab-wall-scrub"
+                min={0}
+                max={task.n - 1}
+                step={1}
+                value={frameIndex}
+                onChange={onScrub}
+                aria-label="Frame scrubber"
+              />
+            </div>
+            <div className="ab-wall-ticks" aria-hidden="true">
+              {task.times_ms.map((t, i) => (
+                <span
+                  key={i}
+                  className={"ab-wall-tick" + (i === frameIndex ? " is-current" : "")}
+                  style={{ left: `${(t / lastT) * 100}%` }}
+                />
+              ))}
+            </div>
+            <div className="ab-wall-readout bench-mono-label">
+              frame {frameIndex + 1}/{task.n} · t = {(task.times_ms[frameIndex] / 1000).toFixed(1)} s
+            </div>
           </div>
-        </div>
-        <div className="ab-wall-ticks" aria-hidden="true">
-          {task.times_ms.map((t, i) => (
-            <span
-              key={i}
-              className={"ab-wall-tick" + (i === frameIndex ? " is-current" : "")}
-              style={{ left: `${(t / lastT) * 100}%` }}
-            />
-          ))}
         </div>
       </div>
     </section>

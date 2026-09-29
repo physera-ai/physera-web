@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ModelLogo from "./ModelLogo";
 
 type Axis = "overall" | "visual" | "motion" | "layout";
 type Triple = [mean: number, lo: number, hi: number];
@@ -53,14 +54,7 @@ const AXES: { key: Axis; label: string }[] = [
   { key: "layout", label: "Layout" },
 ];
 
-const TAKEAWAYS = [
-  "GPT-6 Astra leads at 0.594 and its lead over every other model holds under resampling; Sol and Opus 5.5 are statistically tied.",
-  "Every model is weakest on motion: visual similarity 0.63–0.71, motion consistency 0.38–0.47. 177 of 192 reconstructions look better than they move.",
-  "Timing is barely better than chance. Scored against the right reference the timing term is 0.57; against a different animation's reference it is 0.50.",
-  "Cost does not buy score: a ninefold spread in spend ($0.45–$3.89 per task) against a 0.087 spread in score.",
-];
-
-const W = 1140, H = 380, padL = 64, padR = 170, padT = 30, padB = 40;
+const W = 1000, H = 390, padL = 58, padR = 142, padT = 48, padB = 54;
 const Y_MIN = 0.3, Y_MAX = 0.8;
 const COST_MIN = 0.3, COST_MAX = 6;
 const Y_TICKS = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
@@ -72,76 +66,169 @@ function median(vals: number[]) {
   return s.length % 2 ? s[(s.length - 1) / 2] : (s[mid - 1] + s[mid]) / 2;
 }
 
-function fmtCost(c: number) {
-  return c < 1 ? `$${c.toFixed(2)}` : `$${c}`;
-}
-
-function Chart({ axis }: { axis: Axis }) {
-  const x = (c: number) =>
-    padL + ((Math.log10(c) - Math.log10(COST_MIN)) / (Math.log10(COST_MAX) - Math.log10(COST_MIN))) * (W - padL - padR);
+function Chart({ axis, active, onActive }: {
+  axis: Axis; active: string | null; onActive: (id: string | null) => void;
+}) {
+  const x = (c: number) => padL + ((Math.log10(c) - Math.log10(COST_MIN)) / (Math.log10(COST_MAX) - Math.log10(COST_MIN))) * (W - padL - padR);
   const y = (v: number) => padT + (1 - (v - Y_MIN) / (Y_MAX - Y_MIN)) * (H - padT - padB);
-
-  const medianCost = median(MODELS.map((m) => m.cost));
-  const medianScore = median(MODELS.map((m) => m[axis][0]));
-  const xMed = x(medianCost);
-  const yMed = y(medianScore);
+  const xMed = x(median(MODELS.map((m) => m.cost)));
+  const yMed = y(median(MODELS.map((m) => m[axis][0])));
 
   return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      className="ab-lb-svg"
-      role="img"
-      aria-label={`Reproduction score vs cost per task, ${axis} axis`}
-    >
-      <rect x={padL} y={padT} width={xMed - padL} height={yMed - padT} fill="rgba(15,157,110,0.06)" />
-      <rect x={xMed} y={yMed} width={W - padR - xMed} height={H - padB - yMed} fill="rgba(194,69,45,0.05)" />
-
-      {Y_TICKS.map((t) => (
-        <g key={t}>
-          <line x1={padL} x2={W - padR} y1={y(t)} y2={y(t)} className="ab-lb-grid" />
-          <text x={padL - 8} y={y(t) + 4} textAnchor="end" className="ab-lb-tick">{t.toFixed(1)}</text>
-        </g>
-      ))}
-      {COST_TICKS.map((c) => (
-        <text key={c} x={x(c)} y={H - padB + 20} textAnchor="middle" className="ab-lb-tick">{fmtCost(c)}</text>
-      ))}
-      <text x={(padL + W - padR) / 2} y={H - 8} textAnchor="middle" className="ab-lb-axis-label">
-        cost per task (log scale)
-      </text>
-
-      <text x={padL + 6} y={padT + 14} className="ab-lb-corner good">EFFICIENT</text>
-      <text x={W - padR - 6} y={H - padB - 8} textAnchor="end" className="ab-lb-corner bad">INEFFICIENT</text>
-
-      {MODELS.map((m) => {
-        const [mean, lo, hi] = m[axis];
-        const cx = x(m.cost);
-        const cy = y(mean);
-        return (
-          <g
-            key={m.id}
-            className="ab-lb-chip-g"
-            style={{ transform: `translate(${cx}px, ${cy}px)` }}
-          >
-            <title>{m.full}</title>
-            <line x1={0} x2={0} y1={y(lo) - cy} y2={y(hi) - cy} className="ab-lb-ci" />
-            <rect x={-11} y={-11} width={22} height={22} rx={4} fill={m.color} />
-            <text x={17} y={4} className="ab-lb-chip-label">{m.short}</text>
+    <div className="ab-chart-scroll" role="region" aria-label="Interactive score versus cost chart" tabIndex={0}>
+      <svg viewBox={`0 0 ${W} ${H}`} className="ab-lb-svg" role="group" aria-label={`Reproduction score vs cost per task, ${axis} axis`}>
+        <defs>
+          <pattern id="ab-chart-dots" width="8" height="8" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r=".7" fill="#087f64" opacity=".19" />
+          </pattern>
+        </defs>
+        <rect x={padL} y={padT} width={xMed - padL} height={yMed - padT} fill="#f3f9f6" className="ab-chart-zone" />
+        <rect x={padL} y={padT} width={xMed - padL} height={yMed - padT} fill="url(#ab-chart-dots)" className="ab-chart-zone" />
+        {Y_TICKS.map((t) => (
+          <g key={t}>
+            <line x1={padL} y1={y(t)} x2={W - padR} y2={y(t)} className="ab-lb-grid" />
+            <text x={padL - 16} y={y(t) + 4} textAnchor="end" className="ab-lb-tick">{t.toFixed(1)}</text>
           </g>
-        );
-      })}
-    </svg>
+        ))}
+        {COST_TICKS.map((t) => (
+          <g key={t}>
+            <line x1={x(t)} y1={padT} x2={x(t)} y2={H - padB} className="ab-lb-grid vertical" />
+            <text x={x(t)} y={H - padB + 24} textAnchor="middle" className="ab-lb-tick">${t.toFixed(t < 1 ? 2 : 0)}</text>
+          </g>
+        ))}
+        <line x1={xMed} y1={padT} x2={xMed} y2={H - padB} className="ab-chart-median" />
+        <line x1={padL} y1={yMed} x2={W - padR} y2={yMed} className="ab-chart-median" />
+        <text x={padL} y={22} className="ab-lb-axis-label">REPRODUCTION SCORE ↑</text>
+        <text x={padL + 14} y={padT + 23} className="ab-lb-corner good">BETTER + CHEAPER</text>
+        <text x={W - padR} y={H - 5} textAnchor="end" className="ab-lb-axis-label">COST / TASK · USD · LOG SCALE →</text>
+        {MODELS.map((m) => {
+          const [mean, lo, hi] = m[axis];
+          const selected = active === m.id;
+          // Adjacent models get opposite label anchors; no data is displaced.
+          const left = m.id === "gpt-6-astra" || m.id === "claude-opus-5-5";
+          return (
+            <g key={m.id} className={`ab-lb-chip-g${selected ? " is-selected" : ""}${active && !selected ? " is-muted" : ""}`}
+              style={{ transform: `translate(${x(m.cost)}px, ${y(mean)}px)`, color: m.color }}
+              tabIndex={0} role="button" aria-pressed={selected}
+              aria-label={`${m.full}: ${mean.toFixed(3)} ${axis}, 95% confidence interval ${lo.toFixed(3)} to ${hi.toFixed(3)}, $${m.cost.toFixed(2)} per task`}
+              onMouseEnter={() => onActive(m.id)} onMouseLeave={() => onActive(null)}
+              onFocus={() => onActive(m.id)} onBlur={() => onActive(null)}
+              onClick={() => onActive(selected ? null : m.id)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onActive(selected ? null : m.id); } if (e.key === "Escape") onActive(null); }}>
+              <title>{`${m.full}: ${mean.toFixed(3)} · 95% CI ${lo.toFixed(3)}–${hi.toFixed(3)} · $${m.cost.toFixed(2)}/task`}</title>
+              <rect x={left ? -133 : -20} y={-27} width="153" height="54" fill="transparent" />
+              <line x1={0} x2={0} y1={y(hi) - y(mean)} y2={y(lo) - y(mean)} className="ab-lb-ci" />
+              {[lo, hi].map((v) => <line key={v} x1={-5} x2={5} y1={y(v) - y(mean)} y2={y(v) - y(mean)} className="ab-lb-ci" />)}
+              <circle r="17" fill="currentColor" className="ab-point-halo" />
+              <circle r="6" fill="currentColor" stroke="white" strokeWidth="2" />
+              <text x={left ? -17 : 17} y={-6} textAnchor={left ? "end" : "start"} className="ab-lb-chip-label">{m.short}</text>
+              <text x={left ? -17 : 17} y={13} textAnchor={left ? "end" : "start"} className="ab-point-value">{mean.toFixed(3)}</text>
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
+const DIMENSIONS = [
+  { key: "visual", label: "Visual similarity", angle: -Math.PI / 2 },
+  { key: "motion", label: "Motion consistency", angle: Math.PI / 6 },
+  { key: "layout", label: "Layout correctness", angle: Math.PI * 5 / 6 },
+] as const;
+
+function Dimensions({ active, onActive }: { active: string | null; onActive: (id: string | null) => void }) {
+  const [visible, setVisible] = useState(() => new Set(MODELS.map((m) => m.id)));
+  const cx = 500, cy = 222, rx = 370, ry = 156;
+  const point = (angle: number, value: number) => [cx + Math.cos(angle) * rx * value, cy + Math.sin(angle) * ry * value];
+  const round = (value: number) => Math.round(value * 1000) / 1000;
+  const selected = MODELS.find((m) => m.id === active && visible.has(m.id));
+
+  return (
+    <div className="ab-dimensions">
+      <div className="ab-model-switches" role="group" aria-label="Models shown in dimensions chart">
+        {MODELS.map((m) => (
+          <button key={m.id} type="button" aria-pressed={visible.has(m.id)}
+            style={{ "--model-color": m.color } as React.CSSProperties}
+            onMouseEnter={() => onActive(m.id)} onMouseLeave={() => onActive(null)}
+            onFocus={() => onActive(m.id)} onBlur={() => onActive(null)}
+            onClick={() => setVisible((previous) => {
+              const next = new Set(previous);
+              if (next.has(m.id)) next.delete(m.id); else next.add(m.id);
+              return next;
+            })}>
+            <ModelLogo model={m.id} /><span>{m.full}</span><b>{m.overall[0].toFixed(3)}</b>
+          </button>
+        ))}
+      </div>
+      <div className="ab-radial-stage">
+        <svg className="ab-radial" viewBox="0 0 1000 450" role="group" aria-label="Model reproduction scores across visual similarity, motion consistency, and layout correctness. Each spoke uses the same zero to one scale.">
+          <defs>
+            <pattern id="ab-radial-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#99aaa3" opacity=".26" /></pattern>
+          </defs>
+          <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill="url(#ab-radial-dots)" />
+          {[.2, .4, .6, .8, 1].map((v) => <g key={v} className="ab-radial-ring">
+            <ellipse cx={cx} cy={cy} rx={rx * v} ry={ry * v} />
+            <text x={cx + rx * v + 5} y={cy - 7}>{v.toFixed(1)}</text>
+          </g>)}
+          {DIMENSIONS.map((d) => {
+            const [x, y] = point(d.angle, 1);
+            return <g key={d.key} className="ab-radial-spoke">
+              <line x1={cx} y1={cy} x2={round(x)} y2={round(y)} />
+              <circle cx={round(x)} cy={round(y)} r="3" />
+            </g>;
+          })}
+          {MODELS.map((m) => {
+            const shown = visible.has(m.id);
+            const highlighted = selected?.id === m.id;
+            return <g key={m.id} className={`ab-radial-model${highlighted ? " is-highlighted" : ""}${selected && !highlighted ? " is-muted" : ""}${shown ? "" : " is-hidden"}`}
+              style={{ color: m.color }} aria-hidden={!shown}>
+              <polygon points={DIMENSIONS.map((d) => point(d.angle, m[d.key][0]).map(round).join(",")).join(" ")}
+                fill="currentColor" stroke="currentColor" />
+              {DIMENSIONS.map((d) => {
+                const [x, y] = point(d.angle, m[d.key][0]);
+                return <circle key={d.key} cx={round(x)} cy={round(y)} r={highlighted ? 5 : 3.5} fill="currentColor" stroke="white" strokeWidth="1.5" />;
+              })}
+            </g>;
+          })}
+          <circle cx={cx} cy={cy} r="2.5" fill="#85958d" />
+          {DIMENSIONS.map((d, i) => {
+            const [x, y] = i === 0 ? [500, 32] : i === 1 ? [830, 345] : [170, 345];
+            return <g key={d.key} className="ab-radial-label" transform={`translate(${round(x)}, ${round(y)})`}>
+              <text textAnchor="middle">{d.label}</text>
+              <text className="ab-radial-label-value" y="23" textAnchor="middle">
+                {selected ? selected[d.key][0].toFixed(3) : "0–1"}
+              </text>
+            </g>;
+          })}
+          {visible.size === 0 && <text x="500" y="420" textAnchor="middle" className="ab-radial-empty">Select a model to compare</text>}
+        </svg>
+      </div>
+      <div className="ab-dimension-readouts" aria-label="Dimension scores">
+        {DIMENSIONS.map((d) => <div key={d.key} className="ab-dimension-readout">
+          <span className="ab-dimension-name">{d.label}</span>
+          <div className="ab-dimension-bars">
+            {MODELS.map((m) => <div key={m.id} className={`ab-dimension-bar${visible.has(m.id) ? "" : " is-hidden"}${selected && selected.id !== m.id ? " is-muted" : ""}`}
+              aria-label={`${m.full}, ${d.label}: ${m[d.key][0].toFixed(3)}`}>
+              <span className="ab-mini-track"><i style={{ width: `${m[d.key][0] * 100}%`, background: m.color }} /></span>
+              <span>{m[d.key][0].toFixed(3)}</span>
+            </div>)}
+          </div>
+        </div>)}
+      </div>
+      <div className="ab-radial-footer"><span>0–1 scale · 48 tasks per model</span><span>Toggle models to compare · focus to inspect</span></div>
+    </div>
   );
 }
 
 function Toggle({ axis, onChange }: { axis: Axis; onChange: (a: Axis) => void }) {
   return (
-    <div className="ab-lb-toggle" role="tablist" aria-label="Score axis">
+    <div className="ab-lb-toggle" role="group" aria-label="Score axis">
       {AXES.map((a) => (
         <button
           key={a.key}
           type="button"
-          role="tab"
-          aria-selected={axis === a.key}
+          aria-pressed={axis === a.key}
           className={axis === a.key ? "is-active" : ""}
           onClick={() => onChange(a.key)}
         >
@@ -152,34 +239,51 @@ function Toggle({ axis, onChange }: { axis: Axis; onChange: (a: Axis) => void })
   );
 }
 
-export default function Leaderboard() {
+export function ResultsCharts() {
   const [axis, setAxis] = useState<Axis>("overall");
-  const ranked = [...MODELS].sort((a, b) => b.overall[0] - a.overall[0]);
-
+  const [view, setView] = useState<"dimensions" | "cost">("dimensions");
+  const [active, setActive] = useState<string | null>(null);
+  const inspected = MODELS.find((m) => m.id === active);
   return (
-    <section className="ab-lb" aria-label="Leaderboard">
-      <div id="leaderboard" className="ab-lb-panel scroll-mt-24">
+    <section className="ab-results-charts" aria-label="Model dimensions and cost comparison">
+      <div className="ab-lb-panel scroll-mt-24">
         <div className="ab-lb-head">
           <div>
-            <h2 className="ab-lb-title">Animation Bench</h2>
-            <div className="bench-mono-label ab-lb-subtitle">Reproduction score vs cost per task</div>
+            <h3 className="ab-lb-title">Dimensions</h3>
+
           </div>
-          <Toggle axis={axis} onChange={setAxis} />
+          <div className="ab-view-switch" role="group" aria-label="Chart view">
+            <button type="button" aria-pressed={view === "dimensions"} onClick={() => { setView("dimensions"); setActive(null); }}>Dimensions</button>
+            <button type="button" aria-pressed={view === "cost"} onClick={() => { setView("cost"); setActive(null); }}>Reproduction score vs cost per task</button>
+          </div>
         </div>
-        <div className="ab-lb-chart">
-          <Chart axis={axis} />
+        {view === "dimensions" ? <Dimensions active={active} onActive={setActive} /> : <div className="ab-lb-chart">
+          <div className="ab-cost-controls"><Toggle axis={axis} onChange={setAxis} /></div>
+          <Chart axis={axis} active={active} onActive={setActive} />
+        <div className="ab-chart-inspector" aria-live="polite" aria-atomic="true">
+          {inspected ? <>
+            <span className="ab-inspector-name"><i style={{ background: inspected.color }} />{inspected.full}</span>
+            <span><b>{inspected[axis][0].toFixed(3)}</b> {axis}</span>
+            <span>95% CI <b>{inspected[axis][1].toFixed(3)}–{inspected[axis][2].toFixed(3)}</b></span>
+            <span><b>${inspected.cost.toFixed(2)}</b> / task</span>
+          </> : <><span>Hover or focus a model to inspect</span><span>↕ 95% confidence interval</span></>}
         </div>
+        </div>}
       </div>
+    </section>
+  );
+}
 
-      <h2 className="bench-h2">Key takeaways</h2>
-      <ul className="bench-list list-disc">
-        {TAKEAWAYS.map((t) => (
-          <li key={t}>{t}</li>
-        ))}
-      </ul>
-
-      <div className="overflow-x-auto">
-        <table className="bench-table my-6">
+export default function Leaderboard() {
+  const ranked = [...MODELS].sort((a, b) => b.overall[0] - a.overall[0]);
+  return (
+    <section id="leaderboard" className="ab-lb ab-centerfold scroll-mt-24" aria-label="Leaderboard">
+      <div className="ab-centerfold-head">
+        <div><span className="bench-mono-label">Leaderboard</span><h2 className="ab-lb-title">Animation Bench</h2></div>
+        <span className="ab-centerfold-meta">4 models · 48 tasks · 192 reconstructions</span>
+      </div>
+      <div className="ab-lb-tablewrap overflow-x-auto">
+        <table className="bench-table ab-lb-table">
           <thead>
             <tr>
               <th className="num">Rank</th>
@@ -197,10 +301,10 @@ export default function Leaderboard() {
             {ranked.map((m, i) => (
               <tr key={m.id} className={i === 0 ? "lead" : ""}>
                 <td className="n">{i + 1}</td>
-                <td className="whitespace-nowrap">{m.full}</td>
+                <td className="whitespace-nowrap"><span className="ab-lb-model"><ModelLogo model={m.id} />{m.full}</span></td>
                 <td className="whitespace-nowrap">Computer-1</td>
-                <td className="n">
-                  {m.overall[0].toFixed(3)} <span className="ab-lb-ci-inline">±{m.ciHalf.toFixed(3)}</span>
+                <td className="n overall">
+                  <span className="ab-score-number">{m.overall[0].toFixed(3)}</span> <span className="ab-lb-ci-inline">±{m.ciHalf.toFixed(3)}</span>
                 </td>
                 <td className="n">{m.visual[0].toFixed(3)}</td>
                 <td className="n">{m.motion[0].toFixed(3)}</td>
