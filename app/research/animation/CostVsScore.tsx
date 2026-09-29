@@ -7,12 +7,13 @@ const MODELS = [
   { id: "claude-opus-5-5", name: "Claude Opus 5.5", color: "#ad7545" },
   { id: "gpt-6-sol", name: "GPT-6 Sol", color: "#9b71a3" },
 ] as const;
-type ModelId = (typeof MODELS)[number]["id"];
 
-const W = 360, H = 300, L = 44, R = 14, T = 14, B = 40;
-const XMAX = 8;
-const x = (v: number) => L + (v / XMAX) * (W - L - R);
+const W = 1000, H = 452, L = 56, R = 20, T = 30, B = 48;
+const XMIN = 0.2, XMAX = 8;
+const x = (v: number) => L + (Math.log(v / XMIN) / Math.log(XMAX / XMIN)) * (W - L - R);
 const y = (v: number) => T + (1 - v) * (H - T - B);
+const XT = [0.25, 0.5, 1, 2, 4, 8];
+const YT = [0, 0.25, 0.5, 0.75, 1];
 
 function rank(v: number[]) {
   const order = v.map((_, i) => i).sort((a, b) => v[a] - v[b]);
@@ -32,49 +33,59 @@ function spearman(a: number[], b: number[]) {
   for (let i = 0; i < n; i++) { num += (ra[i] - ma) * (rb[i] - mb); da += (ra[i] - ma) ** 2; db += (rb[i] - mb) ** 2; }
   return num / Math.sqrt(da * db);
 }
-
-function Panel({ id, name, color }: { id: ModelId; name: string; color: string }) {
-  const pts = results.tasks.map((t) => ({ task: t.id, c: t.scores[id].cost, s: t.scores[id].score }));
-  const rho = spearman(pts.map((p) => p.c), pts.map((p) => p.s));
-  const mean = pts.reduce((s, p) => s + p.c, 0) / pts.length;
-  return (
-    <figure className="ab-vvm-panel">
-      <figcaption>
-        <span className="ab-vvm-name"><ModelLogo model={id} />{name}</span>
-        <span className="ab-vvm-count">mean ${mean.toFixed(2)} per task · Spearman ρ {rho >= 0 ? "+" : "−"}{Math.abs(rho).toFixed(2)}</span>
-      </figcaption>
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${name}: cost per task against overall score for 48 tasks; Spearman correlation ${rho.toFixed(2)}.`}>
-        {[0, 2, 4, 6, 8].map((t) => (
-          <g key={t} className="ab-vvm-grid">
-            <line x1={x(t)} y1={y(0)} x2={x(t)} y2={y(1)} />
-            <text x={x(t)} y={y(0) + 16} textAnchor="middle">${t}</text>
-          </g>
-        ))}
-        {[0, 0.25, 0.5, 0.75, 1].map((t) => (
-          <g key={t} className="ab-vvm-grid">
-            <line x1={x(0)} y1={y(t)} x2={x(XMAX)} y2={y(t)} />
-            <text x={x(0) - 8} y={y(t) + 3} textAnchor="end">{t.toFixed(2)}</text>
-          </g>
-        ))}
-        <line className="ab-vvm-mean" x1={x(mean)} y1={y(0)} x2={x(mean)} y2={y(1)} stroke={color} />
-        {pts.map((p) => (
-          <circle key={p.task} cx={x(Math.min(p.c, XMAX))} cy={y(p.s)} r="3.4" fill={color} fillOpacity=".82" stroke="#fff" strokeWidth=".8">
-            <title>{`${p.task}: $${p.c.toFixed(2)}, overall ${p.s.toFixed(3)}`}</title>
-          </circle>
-        ))}
-        <text className="ab-vvm-axis" x={x(XMAX / 2)} y={H - 6} textAnchor="middle">cost per task (USD)</text>
-        <text className="ab-vvm-axis" transform={`translate(11, ${y(0.5)}) rotate(-90)`} textAnchor="middle">overall score</text>
-      </svg>
-    </figure>
-  );
-}
+const signed = (v: number) => `${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(2)}`;
 
 export default function CostVsScore({ caption }: { caption: string }) {
+  const series = MODELS.map((m) => {
+    const pts = results.tasks.map((t) => ({ task: t.id, c: t.scores[m.id].cost, s: t.scores[m.id].score }));
+    const meanC = pts.reduce((a, p) => a + p.c, 0) / pts.length;
+    const meanS = pts.reduce((a, p) => a + p.s, 0) / pts.length;
+    return { ...m, pts, meanC, meanS, rho: spearman(pts.map((p) => p.c), pts.map((p) => p.s)) };
+  });
+  // Labels whose mean costs sit within ~90 units of a neighbour take the row above so they never collide.
+  const labelRow = series.map(() => 0);
+  series.map((m, i) => ({ i, px: x(m.meanC) })).sort((a, b) => a.px - b.px).forEach((cur, k, arr) => {
+    if (k > 0 && cur.px - arr[k - 1].px < 90) labelRow[cur.i] = labelRow[arr[k - 1].i] === 0 ? 1 : 0;
+  });
   return (
-    <figure className="bench-fig ab-vvm">
-      <div className="ab-vvm-grid-2x2">
-        {MODELS.map((m) => <Panel key={m.id} {...m} />)}
+    <figure className="bench-fig ab-vvm ab-cvs">
+      <div className="ab-cvs-legend" aria-label="Models">
+        {series.map((m) => (
+          <span key={m.id} className="ab-cvs-key" style={{ ["--c" as string]: m.color }}>
+            <i /><ModelLogo model={m.id} />{m.name}
+            <small>mean ${m.meanC.toFixed(2)} · ρ {signed(m.rho)}</small>
+          </span>
+        ))}
       </div>
+      <svg viewBox={`0 0 ${W} ${H}`} className="ab-cvs-svg" role="img" aria-label="Cost per task against overall score for all four models, 192 tasks, cost on a log scale.">
+        {XT.map((t) => (
+          <g key={t} className="ab-vvm-grid">
+            <line x1={x(t)} y1={y(0)} x2={x(t)} y2={y(1)} />
+            <text x={x(t)} y={y(0) + 18} textAnchor="middle">${t < 1 ? t.toFixed(2) : t}</text>
+          </g>
+        ))}
+        {YT.map((t) => (
+          <g key={t} className="ab-vvm-grid">
+            <line x1={x(XMIN)} y1={y(t)} x2={x(XMAX)} y2={y(t)} />
+            <text x={x(XMIN) - 10} y={y(t) + 3} textAnchor="end">{t.toFixed(2)}</text>
+          </g>
+        ))}
+        {series.map((m) => m.pts.map((p) => (
+          <circle key={`${m.id}-${p.task}`} cx={x(Math.min(Math.max(p.c, XMIN), XMAX))} cy={y(p.s)} r="4" fill={m.color} fillOpacity=".62" stroke="#fff" strokeWidth=".8">
+            <title>{`${m.name} · ${p.task}: $${p.c.toFixed(2)}, overall ${p.s.toFixed(3)}`}</title>
+          </circle>
+        )))}
+        {series.map((m, i) => (
+          <g key={`${m.id}-mean`} className="ab-cvs-mean" style={{ color: m.color }}>
+            <line x1={x(m.meanC)} y1={y(0)} x2={x(m.meanC)} y2={y(1)} stroke="currentColor" />
+            <circle cx={x(m.meanC)} cy={y(m.meanS)} r="9" fill="#fff" stroke="currentColor" strokeWidth="2.2" />
+            <circle cx={x(m.meanC)} cy={y(m.meanS)} r="3" fill="currentColor" />
+            <text x={x(m.meanC)} y={y(1) - 6 - labelRow[i] * 14} textAnchor="middle">{m.meanS.toFixed(3)} · ${m.meanC.toFixed(2)}</text>
+          </g>
+        ))}
+        <text className="ab-vvm-axis" x={(x(XMIN) + x(XMAX)) / 2} y={H - 8} textAnchor="middle">cost per task (USD, log scale)</text>
+        <text className="ab-vvm-axis" transform={`translate(14, ${y(0.5)}) rotate(-90)`} textAnchor="middle">overall score</text>
+      </svg>
       <figcaption>{caption}</figcaption>
     </figure>
   );

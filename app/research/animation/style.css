@@ -723,3 +723,14 @@ main.bench.ab-editorial { max-width: 1320px; padding-left: 24px; padding-right: 
 .ab-editorial .bench-article-body .ab-vvm-panel { margin: 0; padding: 14px 14px 8px; }
 .ab-editorial .ab-vvm > .ab-vvm-grid-2x2 { margin: 0 0 12px; }
 .ab-vvm-mean { stroke-dasharray: 3 4; stroke-opacity: .55; }
+.ab-cvs-svg { display: block; width: 100%; height: auto; }
+.ab-editorial .bench-article-body .ab-cvs { padding: 14px 16px 8px; }
+.ab-cvs-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 8px 4px; }
+.ab-cvs-key { display: inline-flex; align-items: center; gap: 7px; font: 500 12.5px var(--font-geist-sans), sans-serif; color: var(--bench-ink); }
+.ab-cvs-key i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+.ab-cvs-key .ab-model-logo { width: 16px; height: 16px; }
+.ab-cvs-key .ab-model-logo img { width: 10px; height: 10px; }
+.ab-cvs-key small { font: 11px var(--font-mono); letter-spacing: .02em; color: var(--bench-ink-3); margin-left: 2px; }
+.ab-cvs-mean line { stroke-dasharray: 3 5; stroke-opacity: .45; }
+.ab-cvs-mean text { font: 10px var(--font-mono); fill: currentColor; }
+@media (max-width: 640px) { .ab-cvs-legend { gap: 6px 14px; } .ab-cvs-key small { display: none; } }
