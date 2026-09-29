@@ -18,13 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${SITE_URL}/research/cyberlatch`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/research/animation-bench`,
+      url: `${SITE_URL}/research/animation`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.8,

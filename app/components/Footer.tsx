@@ -4,8 +4,6 @@ const groups = [
   {
     title: "Research",
     links: [
-      { label: "CyberLatch", href: "/research/cyberlatch" },
-      { label: "Voice Arena", href: "/research/voice-arena" },
       { label: "All benchmarks", href: "/research" },
     ],
   },

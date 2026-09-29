@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "Animation Bench",
   description:
     "Four frontier models rebuild 48 real web animations from 12 to 24 frames and a network capture. Appearance is close to solved; the timeline is not. What models get wrong, observable and counted.",
-  alternates: { canonical: "/research/animation-bench" },
+  alternates: { canonical: "/research/animation" },
 };
 
 const TASK_META: Record<string, [site: string, trigger: string, difficulty: string, genre: string]> = {
@@ -170,11 +170,11 @@ function ScoreTable({ rows, total, totalValue, totalWeight, head = ["Sub-score",
 
 const CITATION = `@misc{physera2026animationbench,
   title        = {Animation Bench: Evaluating Frontier Models on Web Animation Reconstruction},
-  author       = {{The Team at Physera}},
+  author       = {Cvetko, Tim and Parekh, Soham and Dubey, Himanshu and Maratha, Ashwarya},
   year         = {2026},
   month        = sep,
   howpublished = {Physera},
-  url          = {https://physera.ai/research/animation-bench}
+  url          = {https://physera.ai/research/animation}
 }`;
 
 export default function AnimationBenchPage() {

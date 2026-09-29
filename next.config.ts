@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/thesis", destination: "/manifesto", permanent: true },
       { source: "/research/cyberbench", destination: "/research/cyberlatch", permanent: true },
+      { source: "/research/animation-bench", destination: "/research/animation", permanent: true },
     ];
   },
 };
