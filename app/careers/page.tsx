@@ -33,7 +33,7 @@ export default function CareersPage() {
           <div className="flex flex-wrap gap-3 pt-4">
             <a
               href="mailto:hello@physera.ai?subject=Joining Physera"
-              className="inline-flex h-8 items-center rounded-full bg-[#0d0d0d] px-3.5 text-[16px] font-medium tracking-[-0.32px] text-white transition-colors hover:bg-[#2a2a2a]"
+              className="btn-cta"
             >
               Email us
             </a>

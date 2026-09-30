@@ -117,7 +117,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-1 inline-flex h-11 w-full items-center justify-center rounded-full bg-[#232323] px-6 text-[16px] font-medium tracking-[-0.32px] text-white transition-colors hover:bg-[#3a3a3a] sm:w-auto sm:self-start"
+        className="btn-cta mt-1 h-11 w-full"
       >
         {status === "sending" ? "Sending..." : "Submit"}
       </button>

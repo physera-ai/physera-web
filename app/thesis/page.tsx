@@ -79,7 +79,7 @@ export default function ThesisPage() {
 
           <div className="flex flex-wrap gap-3 pt-4">
             <PillLink href="/contact" variant="primary">
-              Get in touch
+              Contact
             </PillLink>
             <PillLink href="/careers">Careers</PillLink>
           </div>
