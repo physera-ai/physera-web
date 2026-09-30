@@ -28,7 +28,7 @@ export default function NotFound() {
             <PillLink href="/" variant="primary">
               Back to home
             </PillLink>
-            <PillLink href="/contact">Contact</PillLink>
+            <PillLink href="/contact">Get in touch</PillLink>
           </div>
         </div>
       </article>

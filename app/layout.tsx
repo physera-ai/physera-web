@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Geist, Geist_Mono, Cactus_Classical_Serif } from "next/font/google";
+import { Geist, Cactus_Classical_Serif } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
-import FooterSwitch from "./components/FooterSwitch";
+import Footer from "./components/Footer";
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -14,11 +14,6 @@ import {
 
 const geist = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -134,8 +129,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={`${geist.variable} ${geistMono.variable} ${cactusSerif.variable} antialiased`}
+      className={`${geist.variable} ${cactusSerif.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col items-center bg-background font-sans text-foreground">
         <script
@@ -146,7 +140,7 @@ export default function RootLayout({
         />
         <Header />
         {children}
-        <FooterSwitch />
+        <Footer />
         {googleAnalyticsId ? <GoogleAnalytics gaId={googleAnalyticsId} /> : null}
       </body>
     </html>
