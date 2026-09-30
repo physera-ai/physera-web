@@ -134,6 +134,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geist.variable} ${geistMono.variable} ${cactusSerif.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col items-center bg-background font-sans text-foreground">

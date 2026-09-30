@@ -25,7 +25,7 @@ export const benchmarks: Benchmark[] = [
     access: "Open",
     updated: "Sep 2026",
     blurb:
-      "Four frontier models rebuild 48 real web animations from 12 to 24 frames and a network capture. They reproduce what an animation looks like and what it is made of—but not when things happen.",
+      "Animation Bench evaluates four frontier coding agents across 48 production web-animation reconstruction tasks. Given 12–24 timestamped frames and a HAR capture, each agent produces a self-contained HTML artifact scored frame by frame for visual similarity, motion consistency, and layout correctness.",
     tags: ["Agents", "Coding agents", "Animation", "Visual evaluation"],
     stats: [
       { label: "Models", value: "4" },

@@ -48,9 +48,9 @@ export default function ScoringExample({ panels }: { panels: ScorePanel[] }) {
             return (
               <div key={name} className={`ab-se-row${isFactor ? " is-factor" : ""}${isSubtotal ? " is-subtotal" : ""}`}>
                 <span className="ab-se-name">{name}</span>
-                <span className="n">{weight}</span>
-                <span className="n">{score}</span>
-                <span className="n">{product}</span>
+                <span className="n ab-se-weight">{weight}</span>
+                <span className="n ab-se-score">{score}</span>
+                <span className="n ab-se-product">{product}</span>
                 <span className="ab-se-bar">
                   {!Number.isNaN(w) && !Number.isNaN(sc) && (
                     <span className="ab-se-track" style={{ width: `${Math.min(100, (w / maxWeight) * 100)}%` }}><i style={{ width: `${sc * 100}%` }} /></span>
@@ -63,9 +63,9 @@ export default function ScoringExample({ panels }: { panels: ScorePanel[] }) {
           })}
           <div className="ab-se-row ab-se-total">
             <span className="ab-se-name">{panel.total}</span>
-            <span className="n">{panel.totalWeight ?? ""}</span>
-            <span className="n"></span>
-            <span className="n">{panel.totalValue}</span>
+            <span className="n ab-se-total-weight">{panel.totalWeight ?? ""}</span>
+            <span className="n ab-se-total-spacer"></span>
+            <span className="n ab-se-total-value">{panel.totalValue}</span>
             <span className="ab-se-bar">
               <span className="ab-se-stack">
                 {contributions.map((c, i) => <i key={i} style={{ width: `${c * 100}%`, opacity: 1 - i * 0.14 }} />)}

@@ -21,8 +21,10 @@ function groups(sections: Section[]): Group[] {
 export default function SectionNav({ sections }: { sections: Section[] }) {
   const [active, setActive] = useState(sections[0]?.id);
   const [folded, setFolded] = useState<Set<string>>(() => new Set());
+  const [mobileOpen, setMobileOpen] = useState(false);
   const tree = groups(sections);
   const activeGroup = tree.find((g) => g.id === active || g.subs.some((s) => s.id === active))?.id;
+  const activeLabel = sections.find((section) => section.id === active)?.label ?? sections[0]?.label ?? "Overview";
   const toggle = (id: string) => setFolded((prev) => {
     const next = new Set(prev);
     if (next.has(id)) next.delete(id); else next.add(id);
@@ -47,16 +49,27 @@ export default function SectionNav({ sections }: { sections: Section[] }) {
   }, [sections]);
 
   const link = (s: Section & { num: string }, cls = "") => (
-    <a href={`#${s.id}`} aria-current={active === s.id ? "true" : undefined} className={`${cls}${active === s.id ? " is-active" : ""}`}>
+    <a href={`#${s.id}`} aria-current={active === s.id ? "true" : undefined} className={`${cls}${active === s.id ? " is-active" : ""}`} onClick={() => setMobileOpen(false)}>
       <span className="ab-toc-num">{s.num}</span>
       {s.label}
     </a>
   );
 
   return (
-    <nav className="bench-toc ab-toc" aria-label="On this page">
+    <nav className={`bench-toc ab-toc${mobileOpen ? " is-mobile-open" : ""}`} aria-label="On this page">
+      <button
+        type="button"
+        className="ab-toc-mobile-toggle"
+        aria-expanded={mobileOpen}
+        aria-controls="animation-contents-list"
+        onClick={() => setMobileOpen((open) => !open)}
+      >
+        <span className="ab-toc-mobile-kicker">Contents</span>
+        <span className="ab-toc-mobile-current">{activeLabel}</span>
+        <svg viewBox="0 0 12 12" aria-hidden="true"><path d="m2.5 4.25 3.5 3.5 3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+      </button>
       <span className="bench-mono-label bench-toc-head">Contents<em>{tree.length} · {sections.length - tree.length}</em></span>
-      <ul>
+      <ul id="animation-contents-list">
         {tree.map((g) => {
           const isActive = activeGroup === g.id;
           const open = g.subs.length > 0 && (!folded.has(g.id) || isActive);

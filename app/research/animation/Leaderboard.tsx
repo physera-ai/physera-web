@@ -328,7 +328,7 @@ export default function Leaderboard() {
             <tr>
               <th className="num">Rank</th>
               <th>Model</th>
-              <th className="num">Score</th>
+              <th className="num overall-head">Score</th>
               <th className="num">Visual</th>
               <th className="num">Motion</th>
               <th className="num">Layout</th>
@@ -347,7 +347,7 @@ export default function Leaderboard() {
                 <td className="n">{m.visual[0].toFixed(3)}</td>
                 <td className="n motion">{m.motion[0].toFixed(3)}</td>
                 <td className="n">{m.layout[0].toFixed(3)}</td>
-                <td className="n">{m.wins}</td>
+                <td className="n wins"><span>{m.wins}</span></td>
                 <td className="n">${m.cost.toFixed(2)}</td>
               </tr>
             ))}
